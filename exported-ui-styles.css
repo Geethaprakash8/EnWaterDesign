@@ -1605,13 +1605,30 @@ section {
 
 @media (max-width: 1024px) {
   .footer-top {
-    grid-template-columns: 1fr 1fr !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 32px 24px !important;
+  }
+  .footer-top > div:first-child {
+    grid-column: span 4 !important;
+  }
+  .footer-col {
+    grid-column: span 2 !important;
+  }
+  .footer-desc {
+    max-width: 50ch !important;
   }
 }
 
 @media (max-width: 640px) {
   .footer-top {
     grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .footer-top > div:first-child {
+    grid-column: span 1 !important;
+  }
+  .footer-col {
+    grid-column: span 1 !important;
   }
 }
 

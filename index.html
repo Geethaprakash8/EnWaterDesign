@@ -41,6 +41,7 @@
       padding:18px 18px 16px;border-radius:18px;border:1px solid rgba(255,255,255,0.22);
       background:rgba(0,0,0,0.22);backdrop-filter: blur(10px);
       color:#fff;text-align:center;max-width:min(560px, calc(100vw - 28px));
+      z-index: 1002;
     }
     .fallback.show{display:flex}
     .fallback .hint{opacity:.9;line-height:1.35}
@@ -50,7 +51,106 @@
       .fallback{display:flex}
       .ui{opacity:1}
     }
+
+    /* Premium Preloader Styles */
+    .preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 100000;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
+    }
+    .preloader.fade-out {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .preloader-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .loader-circle-wrap {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .progress-ring {
+      transform: rotate(-90deg);
+      position: absolute;
+      inset: 0;
+    }
+    .progress-ring__circle-bg {
+      stroke: rgba(255, 255, 255, 0.08);
+      stroke-width: 2;
+    }
+    .progress-ring__circle {
+      stroke: #55a092;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-dasharray: 389.56;
+      stroke-dashoffset: 389.56;
+      transition: stroke-dashoffset 0.05s linear;
+    }
+    .loader-logo {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .loader-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+    }
+    .loader-brand {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    .loader-brand .brand-enwater {
+      color: #ffffff;
+    }
+    .loader-brand .brand-design {
+      color: #55a092;
+    }
+    .loader-sub {
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 24px;
+      font-weight: 600;
+      text-transform: uppercase;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    .loader-percent {
+      font-size: 16px;
+      font-weight: 700;
+      color: #55a092;
+      font-feature-settings: "tnum";
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .ui {
+      z-index: 100001; /* Ensure Skip and branding are interactive/visible */
+      opacity: 1 !important; /* Keep visible on load */
+    }
 </style>
+<style id="global-nav-style">
 <style id="global-nav-style">
 /* Global top nav — single line, dropdowns not clipped by overflow */
 .site-topnav{
@@ -325,6 +425,26 @@ header.site-topnav .drop a:hover{
 <link rel="icon" type="image/png" href="assets/images/enwater-design-logo-nav.png" />
 </head>
 <body>
+<!-- Preloader Overlay -->
+<div id="preloader" class="preloader">
+  <div class="preloader-content">
+    <div class="loader-circle-wrap">
+      <svg class="progress-ring" width="140" height="140">
+        <circle class="progress-ring__circle-bg" stroke="rgba(255,255,255,0.08)" stroke-width="2" fill="transparent" r="62" cx="70" cy="70" />
+        <circle class="progress-ring__circle" stroke="#55a092" stroke-width="3" fill="transparent" r="62" cx="70" cy="70" />
+      </svg>
+      <div class="loader-logo">
+        <img src="assets/images/enwater-design-logo-transparent-mark.png" alt="EnWater Logo" />
+      </div>
+    </div>
+    <div class="loader-brand">
+      <span class="brand-enwater">EnWater</span> <span class="brand-design">Design</span>
+    </div>
+    <div class="loader-sub">INDEPENDENT SYSTEMS ENGINEERING</div>
+    <div id="loader-percent" class="loader-percent">0%</div>
+  </div>
+</div>
+
 <div class="wrap">
 <video autoplay="" id="intro" muted="" playsinline="" poster="assets/media/intro_poster.jpg" preload="auto">
 <source src="assets/media/intro.mp4" type="video/mp4"/>
@@ -344,7 +464,7 @@ header.site-topnav .drop a:hover{
 <span>EnWater Design</span>
 </a>
 <div class="btns">
-<button class="btn" id="skip" type="button">Skip</button>
+<button class="btn" id="skip" type="button">Skip &rarr;</button>
 </div>
 </div>
 </div>
@@ -353,6 +473,9 @@ header.site-topnav .drop a:hover{
     const skipBtn = document.getElementById('skip');
     const fallback = document.getElementById('autoplayFallback');
     const playBtn = document.getElementById('playBtn');
+    const preloader = document.getElementById('preloader');
+    const loaderPercent = document.getElementById('loader-percent');
+    const progressRingCircle = document.querySelector('.progress-ring__circle');
 
     const go = () => { window.location.href = 'home.html'; };
 
@@ -362,12 +485,44 @@ header.site-topnav .drop a:hover{
     // Skip button.
     skipBtn.addEventListener('click', () => { try{ video.pause(); }catch(e){} go(); });
 
+    // Progress Ring Calculation
+    const r = progressRingCircle.r.baseVal.value;
+    const circumference = 2 * Math.PI * r;
+    progressRingCircle.style.strokeDasharray = circumference;
+    progressRingCircle.style.strokeDashoffset = circumference;
+
+    function setProgress(percent) {
+      const offset = circumference - (percent / 100) * circumference;
+      progressRingCircle.style.strokeDashoffset = offset;
+      loaderPercent.textContent = Math.round(percent) + '%';
+    }
+
+    // Simulate loader progress
+    let progress = 0;
+    const duration = 2500; // 2.5 seconds
+    const intervalTime = 16;
+    const step = (100 / (duration / intervalTime));
+
+    const progressInterval = setInterval(() => {
+      progress += step;
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(progressInterval);
+        setProgress(100);
+        setTimeout(() => {
+          preloader.classList.add('fade-out');
+        }, 300);
+      } else {
+        setProgress(progress);
+      }
+    }, intervalTime);
+
     // Autoplay detection: if it doesn't start playing quickly, show fallback UI.
     let started = false;
     video.addEventListener('playing', () => { started = true; });
     setTimeout(() => {
-      if (!started) fallback.classList.add('show');
-    }, 900);
+      if (!started && progress >= 100) fallback.classList.add('show');
+    }, 3200);
 
     // Manual play for fallback.
     playBtn?.addEventListener('click', async () => {

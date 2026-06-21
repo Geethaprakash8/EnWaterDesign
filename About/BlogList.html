@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Blog &amp; Insights | EnWater Design</title>
+<link href="../exported-ui-styles.css" rel="stylesheet"/>
+<style>
+:root {
+  --ink:       #0e1614;
+  --ink-70:    rgba(14,22,20,.70);
+  --ink-40:    rgba(14,22,20,.40);
+  --ivory:     #f5f2eb;
+  --ivory-2:   #ede9e0;
+  --stone:     #d8d3c8;
+  --teal:      #2d8a78;
+  --teal-b:    #246d5f;
+  --white:     #ffffff;
+  --deep:      #0c1f1c;
+  --serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --sans:  ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --ease-out: cubic-bezier(.16,1,.3,1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--ivory); color: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+
+/* HERO */
+.blog-hero { padding: 140px 0 80px; background: var(--deep); position: relative; overflow: hidden; }
+.blog-hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(45,138,120,.22) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 70% at 80% 70%, rgba(45,138,120,.10) 0%, transparent 55%);
+}
+.blog-hero-bg::after {
+  content: ""; position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.hero-inner { position: relative; z-index: 1; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .18em; color: var(--teal);
+  margin-bottom: 20px;
+}
+.hero-eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--teal); }
+.blog-hero h1 {
+  font-size: clamp(36px, 5vw, 64px); font-weight: 800; line-height: 1.1; color: var(--ivory); margin-bottom: 20px;
+}
+.blog-hero h1 em { font-style: italic; color: rgba(245,242,235,.50); }
+.hero-sub { font-size: 16px; color: rgba(245,242,235,.60); max-width: 60ch; }
+
+/* CONTROLS */
+.controls-bar {
+  display: flex; justify-content: space-between; align-items: center; gap: 20px;
+  background: var(--white); border: 1px solid var(--stone); border-radius: 16px;
+  padding: 16px 24px; margin: -30px auto 60px; position: relative; z-index: 10;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+.search-wrapper { position: relative; flex: 1; max-width: 320px; }
+.search-input {
+  width: 100%; padding: 10px 16px 10px 38px; border-radius: 10px;
+  border: 1px solid var(--stone); background: var(--ivory); font-size: 14px;
+  outline: none; transition: all 0.2s;
+}
+.search-input:focus { border-color: var(--teal); background: var(--white); box-shadow: 0 0 0 3px rgba(45,138,120,0.15); }
+.search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--ink-40); font-size: 14px; }
+
+.filter-group { display: flex; align-items: center; gap: 8px; }
+.filter-label { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--ink-70); letter-spacing: 0.05em; margin-right: 8px; }
+.filter-btn {
+  padding: 8px 16px; border-radius: 99px; border: 1px solid var(--stone);
+  background: var(--white); font-size: 12px; font-weight: 600; cursor: pointer;
+  transition: all 0.2s; color: var(--ink-70);
+}
+.filter-btn:hover { border-color: var(--teal); color: var(--teal); }
+.filter-btn.active { background: var(--teal); border-color: var(--teal); color: var(--white); }
+
+/* BLOG GRID */
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 80px; }
+.blog-card {
+  background: var(--white); border: 1px solid var(--stone); border-radius: 24px;
+  overflow: hidden; display: flex; flex-direction: column; height: 100%;
+  transition: all 0.3s var(--ease-out); position: relative;
+}
+.blog-card:hover {
+  transform: translateY(-6px); border-color: rgba(45,138,120,0.3);
+  box-shadow: 0 16px 48px rgba(14,22,20,0.08);
+}
+.blog-img-wrapper { position: relative; height: 200px; overflow: hidden; background: var(--deep); }
+.blog-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.blog-card:hover .blog-img { transform: scale(1.04); }
+.blog-cat-tag {
+  position: absolute; top: 16px; left: 16px; z-index: 5;
+  background: rgba(12,31,28,0.85); backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.15); color: var(--teal);
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; padding: 4px 10px; border-radius: 6px;
+}
+.blog-content-wrapper { padding: 24px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.blog-meta { display: flex; gap: 16px; font-size: 12px; color: var(--ink-70); margin-bottom: 12px; }
+.blog-title { font-family: var(--serif); font-size: 20px; font-weight: 400; line-height: 1.3; margin-bottom: 12px; color: var(--ink); }
+.blog-excerpt { font-size: 13.5px; line-height: 1.6; color: var(--ink-70); margin-bottom: 20px; }
+.blog-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 600; color: var(--teal); margin-top: auto;
+  transition: color 0.2s;
+}
+.blog-link:hover { color: var(--teal-b); }
+.no-results {
+  grid-column: 1 / -1; text-align: center; padding: 60px 20px;
+  background: var(--white); border: 1px dashed var(--stone); border-radius: 20px;
+  color: var(--ink-70); display: none;
+}
+
+@media (max-width: 1024px) {
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .controls-bar { flex-direction: column; align-items: stretch; }
+  .search-wrapper { max-width: 100%; }
+  .filter-group { flex-wrap: wrap; }
+  .blog-grid { grid-template-columns: 1fr; }
+}
+</style>
+<link rel="icon" type="image/png" href="../assets/images/enwater-design-logo-nav.png" />
+</head>
+<body>
+  <!-- NAV -->
+  <header class="site-topnav">
+    <div class="wrap">
+      <a aria-label="EnWater Design home" class="brand" href="../home.html">
+        <img alt="EnWater Design logo" class="nav-logo" src="../assets/images/enwater-design-logo.png" />
+        <span>EnWater Design</span>
+      </a>
+      <nav class="desktop-nav">
+        <ul>
+          <li><a class="rootlink" href="../home.html">Home</a></li>
+          <li>
+            <a class="rootlink active" href="about.html">About</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="about.html">About Us</a>
+              <a class="active" href="BlogList.html">Blog &amp; Insights</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+              <a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+              <a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+              <a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+              <a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+              <a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+              <a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+              <a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+              <a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+              <a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+              <a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+              <a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../Advisory/advisory-services.html">Advisory Services</a>
+              <a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+              <a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+              <a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+              <a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+              <a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+              <a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../FlowPlan/flowplan-framework.html">Framework</a>
+              <a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+              <a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+              <a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+              <a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+              <a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+              <a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink" href="../Projects/index.html">Projects</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../Projects/index.html">Projects Overview</a>
+              <a href="../Projects/project-pathways.html">Project Pathways</a>
+              <a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+              <a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+              <a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+              <a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+              <a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink" href="../Sectors/index.html">Sectors</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../Sectors/index.html">Sector Pathways</a>
+              <a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+              <a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+              <a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+              <a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+              <a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+              <a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+              <a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+              <a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+              <a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+              <a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+              <a href="../Sectors/seafood-processing.html">Seafood processing</a>
+              <a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+            </div>
+          </li>
+          <li><a class="rootlink nav-login" href="../login.html">Login</a></li>
+          <li><a class="rootlink nav-cta" href="../get-in-touch.html">Get in touch</a></li>
+        </ul>
+      </nav>
+      <button aria-expanded="false" aria-label="Toggle menu" class="mobile-nav-toggle" type="button">
+        <span class="hamburger-line line-1"></span>
+        <span class="hamburger-line line-2"></span>
+        <span class="hamburger-line line-3"></span>
+      </button>
+    </div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-content">
+        <div class="mobile-nav-item"><a class="mobile-rootlink" href="../home.html">Home</a></div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink active" href="about.html">About</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="about.html">About Us</a>
+            <a class="active" href="BlogList.html">Blog &amp; Insights</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage Overview</a>
+            <a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+            <a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+            <a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+            <a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+            <a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+            <a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+            <a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+            <a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+            <a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+            <a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+            <a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="../Advisory/advisory-services.html">Advisory Services</a>
+            <a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+            <a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+            <a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+            <a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+            <a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+            <a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="../FlowPlan/flowplan-framework.html">Framework</a>
+            <a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+            <a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+            <a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+            <a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+            <a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+            <a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink" href="../Projects/index.html">Projects</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="../Projects/index.html">Projects Overview</a>
+            <a href="../Projects/project-pathways.html">Project Pathways</a>
+            <a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+            <a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+            <a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+            <a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+            <a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink" href="../Sectors/index.html">Sectors</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="../Sectors/index.html">Sector Pathways</a>
+            <a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+            <a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+            <a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+            <a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+            <a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+            <a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+            <a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+            <a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+            <a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+            <a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+            <a href="../Sectors/seafood-processing.html">Seafood processing</a>
+            <a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item"><a class="mobile-login-btn" href="../login.html">Login</a></div>
+        <div class="mobile-nav-item no-border"><a class="mobile-cta-btn" href="../get-in-touch.html">Get in touch</a></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="blog-hero">
+    <div class="blog-hero-bg"></div>
+    <div class="wrap hero-inner">
+      <div class="hero-eyebrow">Technical Knowledge Hub</div>
+      <h1>Knowledge &amp; <br/><em>Operational Insights</em></h1>
+      <p class="hero-sub">Read advanced wastewater operations guides, technology selection comparisons, and practical design advice from independent water treatment experts.</p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTAINER -->
+  <main class="wrap" style="margin-top: 40px; min-height: 50vh;">
+    <!-- Controls (Search + Filters) -->
+    <div class="controls-bar">
+      <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input class="search-input" id="searchInput" placeholder="Search articles..." type="text" />
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Category:</span>
+        <button class="filter-btn active" data-category="All">All</button>
+        <button class="filter-btn" data-category="Operations">Operations</button>
+        <button class="filter-btn" data-category="Planning">Planning</button>
+        <button class="filter-btn" data-category="Technology">Technology</button>
+      </div>
+    </div>
+
+    <!-- Blog Grid -->
+    <div class="blog-grid" id="blogGrid">
+      <!-- JavaScript will populate cards here -->
+      <div class="no-results" id="noResults">
+        <p style="font-weight: 600; font-size: 16px; margin-bottom: 8px;">No matching insights found.</p>
+        <p style="font-size: 13px; opacity: 0.7;">Try adjusting your filters or search keywords.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+<div class="wrap">
+<div class="footer-top">
+<div>
+<div class="footer-brand"><img alt="EnWater Design logo" class="footer-logo" src="../assets/images/enwater-design-logo-transparent-mark.png"/><span class="footer-name">EnWater Design</span></div>
+<p class="footer-desc">Independent water, wastewater treatment and reuse consulting, helping owners and operators turn complex challenges into clear decisions and practical outcomes.</p>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<a href="../home.html">Home</a>
+<a href="../About/about.html">About</a>
+<a href="../About/BlogList.html">Our Blog</a>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+</div>
+<div class="footer-col">
+<h4>Services</h4>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing</a>
+<a href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<a href="../Projects/index.html">Projects</a>
+<a href="../Sectors/index.html">Sectors</a>
+</div>
+<div class="footer-col">
+<h4>Pathways</h4>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../Sectors/index.html">Sector Pathways</a>
+</div>
+<div class="footer-col">
+<h4>Get in touch</h4>
+<a href="../get-in-touch.html">Contact form</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">Industrial / CETP</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© <span id="yr"></span> EnWater Design</div>
+<div>Clear systems planning for practical project delivery</div>
+</div>
+</div>
+<script>
+  (function() {
+    const yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+  })();
+</script>
+</footer>
+
+  <script>
+    const posts = [{"id": "1", "title": "The Operator's Guide to MBR Membrane Clean-in-Place (CIP) Optimization", "slug": "mbr-cip-optimization-guide", "category": "Operations", "date": "May 25, 2026", "readTime": "7 min read", "image": "../assets/images/specialist-support.jpg", "excerpt": "Maximize membrane lifecycle and minimize chemical consumption by optimizing your Clean-in-Place (CIP) recovery cycles under actual plant operating profiles."}, {"id": "2", "title": "Decentralized Wastewater Treatment: Package Plants vs. Custom Civil Builds", "slug": "decentralized-wastewater-package-vs-civil", "category": "Planning", "date": "April 18, 2026", "readTime": "6 min read", "image": "../assets/images/Hero.jpg", "excerpt": "A practical layout comparison of capital costs, delivery timelines, footprint limits, and long-term operability between pre-engineered packages and custom concrete builds."}, {"id": "3", "title": "Industrial Water Reuse: Navigating TDS, Silica, and Organic Load Hurdles", "slug": "industrial-water-reuse-challenges", "category": "Technology", "date": "March 10, 2026", "readTime": "8 min read", "image": "../assets/images/specialist-support.jpg", "excerpt": "How to design robust reverse osmosis and advanced oxidation trains that survive load swings without catastrophic membrane fouling."}, {"id": "4", "title": "Odor Mitigation in Municipal Sewage: Biofilters vs. Wet Chemical Scrubbers", "slug": "odor-mitigation-biofilters-vs-scrubbers", "category": "Operations", "date": "May 10, 2026", "readTime": "6 min read", "image": "../assets/images/Hero.jpg", "excerpt": "Evaluate biofiltration efficiency and chemical scrubbers for hydrogen sulfide (H2S) control under high-ambient-temperature environments."}, {"id": "5", "title": "Sludge Dewatering Selection: Centrifuges vs. Screw Presses vs. Belt Filters", "slug": "sludge-dewatering-selection-guide", "category": "Technology", "date": "April 29, 2026", "readTime": "8 min read", "image": "../assets/images/specialist-support.jpg", "excerpt": "Choose the right dewatering technology based on feed solids percentage, polymer consumption, and target cake dryness."}, {"id": "6", "title": "Troubleshooting Filamentous Bulking in Activated Sludge Clarifiers", "slug": "troubleshooting-filamentous-bulking", "category": "Operations", "date": "April 05, 2026", "readTime": "7 min read", "image": "../assets/images/Hero.jpg", "excerpt": "A practical diagnostic guide to identifying, controlling, and preventing filamentous sludge bulking in secondary clarifiers."}];
+
+    let currentCategory = 'All';
+    let searchQuery = '';
+
+    const blogGrid = document.getElementById('blogGrid');
+    const noResults = document.getElementById('noResults');
+    const searchInput = document.getElementById('searchInput');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    function renderPosts() {
+      const filtered = posts.filter(post => {
+        const matchesCategory = currentCategory === 'All' || post.category === currentCategory;
+        const matchesSearch = post.title.toLowerCase().includes(searchQuery) ||
+                              post.excerpt.toLowerCase().includes(searchQuery) ||
+                              post.category.toLowerCase().includes(searchQuery);
+        return matchesCategory && matchesSearch;
+      });
+
+      // Remove existing card elements, leaving only the no-results banner
+      const cards = blogGrid.querySelectorAll('.blog-card');
+      cards.forEach(card => card.remove());
+
+      if (filtered.length === 0) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+        filtered.forEach(post => {
+          const card = document.createElement('article');
+          card.className = 'blog-card';
+          card.innerHTML = `
+            <div class="blog-img-wrapper">
+              <span class="blog-cat-tag">${post.category}</span>
+              <img class="blog-img" src="${post.image}" alt="${post.title}" />
+            </div>
+            <div class="blog-content-wrapper">
+              <div>
+                <div class="blog-meta">
+                  <span>📅 ${post.date}</span>
+                  <span>⏱️ ${post.readTime}</span>
+                </div>
+                <h3 class="blog-title">${post.title}</h3>
+                <p class="blog-excerpt">${post.excerpt}</p>
+              </div>
+              <a class="blog-link" href="#">Read Full Insight →</a>
+            </div>
+          `;
+          blogGrid.appendChild(card);
+        });
+      }
+    }
+
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.toLowerCase();
+      renderPosts();
+    });
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCategory = btn.getAttribute('data-category');
+        renderPosts();
+      });
+    });
+
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    renderPosts();
+  </script>
+  <script src="../exported-ui-effects.js"></script>
+</body>
+</html>

@@ -1,0 +1,2196 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Technology &amp; equipment fit | EnWater Design</title>
+<meta content="Technology and equipment fit: operating ranges, technology families, KPIs and pre-sourcing selection logic so vendors are compared on the same basis." name="description"/>
+<script>
+ tailwind.config = {
+ theme: {
+ extend: {
+ colors: {
+ cream: "#f4f2ec",
+ forest: "#243f38",
+ forest2: "#1f3731",
+ accent: "#55a092"
+ }
+ }
+ }
+ }
+ </script>
+<style>
+ :root{
+ --cream:#f4f2ec;
+ --ink:#1b1f1e;
+ --muted:#5a6561;
+ --forest:#243f38;
+ --forest2:#1f3731;
+ --accent:#55a092;
+ --line:rgba(27,31,30,.14);
+ --forest3:#2c5047;--bg:#f4f2ec;}
+ html{scroll-behavior:smooth}
+ body{background:var(--cream); color:var(--ink);}
+ .ewd-serif{font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;}
+ .ewd-sans{font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";}
+ .hairline{border-color: var(--line);}
+ .soft-shadow{box-shadow: 0 16px 40px rgba(0,0,0,.08);}
+ :focus-visible{ outline: 3px solid rgba(85,160,146,.45); outline-offset: 3px; }
+
+ .ewd-svc-btn{
+ width:100%;
+ text-align:left;
+ display:flex;
+ gap:.75rem;
+ align-items:flex-start;
+ padding: .85rem 1.25rem;
+ border-top: 1px solid rgba(255,255,255,.08);
+ transition: background-color .15s ease, transform .15s ease;
+ }
+ .ewd-svc-btn:hover{ background: rgba(255,255,255,.04); }
+ .ewd-svc-btn[aria-selected="true"]{
+ background: rgba(85,160,146,.14);
+ box-shadow: inset 3px 0 0 rgba(85,160,146,.9);
+ }
+ .ewd-svc-num{
+ font-size:.75rem;
+ line-height:1;
+ color: rgba(255,255,255,.65);
+ margin-top:.2rem;
+ min-width: 1.8rem;
+ }
+ .ewd-svc-title{ color: rgba(255,255,255,.95); font-weight:600; }
+ .ewd-svc-sub{ color: rgba(255,255,255,.70); font-size:.82rem; margin-top:.2rem; }
+ .ewd-chip{
+ display:inline-flex;
+ align-items:center;
+ gap:.35rem;
+ padding:.38rem .6rem;
+ border-radius: 9999px;
+ border: 1px solid rgba(255,255,255,.12);
+ background: rgba(255,255,255,.04);
+ color: rgba(255,255,255,.85);
+ font-size:.75rem;
+ line-height:1;
+ white-space:nowrap;
+ transition: background-color .15s ease, border-color .15s ease;
+ }
+ .ewd-chip:hover{ background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18); }
+ .ewd-chip .tag{
+ font-size:.68rem;
+ padding:.14rem .4rem;
+ border-radius:9999px;
+ border:1px solid rgba(255,255,255,.16);
+ color: rgba(255,255,255,.70);
+ background: rgba(0,0,0,.14);
+ }
+ .ewd-chip.req{ border-color: rgba(255,193,7,.28); }
+ .ewd-chip.req .tag{ border-color: rgba(255,193,7,.28); color: rgba(255,235,190,.85); }
+
+ /* Baseline lens hero (compact strip in forest2 tone) */
+ .ewd-focus-hero{
+ background: var(--forest2);
+ color:#fff;
+ border-radius:0;
+ box-shadow:0 18px 40px rgba(0,0,0,.25);
+ }
+ .ewd-focus-hero-inner{
+ max-width:100%;
+ margin:0;
+ padding:2.5rem 2.25rem 3rem;
+ }
+ @media (min-width:1024px){
+ .ewd-focus-hero-inner{ padding:2.9rem 2.75rem 3.25rem; }
+ }
+ .ewd-focus-grid{
+ display:grid;
+ grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
+ gap:2.5rem;
+ align-items:center;
+ }
+ @media (max-width:900px){
+ .ewd-focus-grid{
+ grid-template-columns:minmax(0,1fr);
+ gap:2rem;
+ }
+ }
+ .ewd-focus-kicker{
+ font-size:.72rem;
+ letter-spacing:.22em;
+ text-transform:uppercase;
+ color:rgba(255,255,255,.7);
+ }
+ .ewd-focus-title{
+ font-family: var(--ewd-serif, "Iowan Old Style", "Palatino", "Book Antiqua", Georgia, serif);
+ font-size:1.9rem;
+ line-height:1.2;
+ margin-top:.6rem;
+ margin-bottom:.75rem;
+ }
+ @media (min-width:1024px){
+ .ewd-focus-title{ font-size:2.1rem; }
+ }
+ .ewd-focus-body{
+ font-size:.97rem;
+ max-width:32rem;
+ color:rgba(255,255,255,.85);
+ line-height:1.7;
+ margin:0;
+ }
+ .ewd-focus-panel{
+ border-radius:26px;
+ padding:1.75rem 1.9rem 1.9rem;
+ background:
+ radial-gradient(160% 220% at 0% 0%, rgba(255,255,255,.06), transparent 40%),
+ rgba(0,0,0,.38);
+ box-shadow:0 18px 40px rgba(0,0,0,.55);
+ border:1px solid rgba(255,255,255,.18);
+ }
+ .ewd-focus-panel h3{
+ font-size:.72rem;
+ letter-spacing:.22em;
+ text-transform:uppercase;
+ margin:0 0 .8rem;
+ color:rgba(255,255,255,.7);
+ }
+ .ewd-focus-panel ul{
+ list-style:none;
+ margin:0 0 1.5rem;
+ padding:0;
+ font-size:.92rem;
+ color:rgba(255,255,255,.9);
+ }
+ .ewd-focus-panel li + li{
+ margin-top:.55rem;
+ }
+ .ewd-focus-panel li span{
+ font-weight:600;
+ }
+ .ewd-focus-next-btn{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ border-radius:999px;
+ padding:.6rem 1.8rem;
+ font-size:.86rem;
+ text-decoration:none;
+ border:1px solid rgba(255,255,255,.35);
+ background:rgba(0,0,0,.18);
+ color:#fff;
+ white-space:nowrap;
+ }
+ .ewd-focus-next-btn:hover{
+ background:rgba(255,255,255,.16);
+ border-color:rgba(255,255,255,.6);
+ }
+
+/* ===== EnWater Design: Forest lens + offer card polish (V5) ===== */
+:root{
+ --mint:#e7f2ed;
+ --mint2:#d7ebe3;
+ --mint3:#f2faf6;
+}
+
+/* Lens sections: forest background, mint cards */
+/* Enquiry button inside forest sections */
+/* "What you'll leave with" cards */
+.leave-card{ background: var(--forest) !important; color:#fff; }
+.leave-card .leave-label{ opacity:.88; }
+.leave-inner{
+ background: rgba(85,160,146,.18) !important;
+ border:1px solid rgba(255,255,255,.14);
+}
+.leave-inner p{ color: rgba(255,255,255,.88) !important; }
+
+/* Offer intro section on Integration page: forest main + mint cards */
+#integration-offer{
+ background: var(--forest2) !important;
+ color: rgba(255,255,255,.92);
+ border-color: rgba(255,255,255,.14) !important;
+}
+#integration-offer h2, #integration-offer h3{ color:#fff; }
+#integration-offer p{ color: rgba(255,255,255,.82); }
+#integration-offer .offer-subbox{
+ background: var(--mint3) !important;
+ border-color: rgba(27,31,30,.10) !important;
+ color: var(--ink) !important;
+}
+#integration-offer .offer-subbox h3, #integration-offer .offer-subbox p{ color: var(--ink) !important; }
+#integration-offer .tag-pills span{
+ background: rgba(85,160,146,.18) !important;
+ border-color: rgba(85,160,146,.38) !important;
+ color: rgba(255,255,255,.92) !important;
+}
+#integration-offer .ewd-focus-next-btn{
+ background: var(--accent) !important;
+ border-color: rgba(255,255,255,.30) !important;
+ box-shadow: 0 14px 30px rgba(0,0,0,.18);
+}
+</style><style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.sticky{position:sticky}.top-0{top:0px}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-7{margin-top:1.75rem}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-14{height:3.5rem}.h-2\.5{height:0.625rem}.h-4{height:1rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.max-w-6xl{max-width:72rem}.max-w-xl{max-width:36rem}.list-inside{list-style-position:inside}.list-disc{list-style-type:disc}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.items-stretch{align-items:stretch}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-sm{border-radius:0.125rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-l-4{border-left-width:4px}.border-emerald-500\/70{border-color:rgb(16 185 129 / 0.7)}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.bg-accent{--tw-bg-opacity:1;background-color:rgb(85 160 146 / var(--tw-bg-opacity, 1))}.bg-cream{--tw-bg-opacity:1;background-color:rgb(244 242 236 / var(--tw-bg-opacity, 1))}.bg-forest2{--tw-bg-opacity:1;background-color:rgb(31 55 49 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/55{background-color:rgb(255 255 255 / 0.55)}.bg-white\/70{background-color:rgb(255 255 255 / 0.7)}.p-6{padding:1.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.pl-4{padding-left:1rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[11px\]{font-size:11px}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-medium{font-weight:500}.font-semibold{font-weight:600}.leading-\[0\.95\]{line-height:0.95}.leading-relaxed{line-height:1.625}.tracking-wide{letter-spacing:0.025em}.text-emerald-900{--tw-text-opacity:1;color:rgb(6 78 59 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-gray-950{--tw-text-opacity:1;color:rgb(3 7 18 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/90{color:rgb(255 255 255 / 0.9)}.opacity-80{opacity:0.8}.hover\:bg-forest:hover{--tw-bg-opacity:1;background-color:rgb(36 63 56 / var(--tw-bg-opacity, 1))}.hover\:bg-white:hover{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/15:hover{background-color:rgb(255 255 255 / 0.15)}.hover\:bg-white\/70:hover{background-color:rgb(255 255 255 / 0.7)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:opacity-95:hover{opacity:0.95}@media (min-width: 768px){.md\:block{display:block}.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:py-14{padding-top:3.5rem;padding-bottom:3.5rem}.md\:text-6xl{font-size:3.75rem;line-height:1}}@media (min-width: 1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}}</style><style>
+/* Ink cards for Technology families + Example systems */
+.ewd-ink-card{
+ background: var(--ink) !important;
+ color: rgba(255,255,255,.92) !important;
+ border-color: rgba(255,255,255,.12) !important;
+}
+.ewd-ink-card h3{
+ color: rgba(255,255,255,.96) !important;
+}
+.ewd-ink-card p{
+ color: rgba(255,255,255,.78) !important;
+}
+</style><style>
+/* --- Interactive view (no icons) --- */
+.focus-btn{transition:transform .12s ease, box-shadow .12s ease, background-color .12s ease;}
+.focus-btn[aria-selected="true"]{
+ background: rgba(85,160,146,.12);
+ border-color: rgba(85,160,146,.45);
+ box-shadow: 0 10px 24px rgba(27,31,30,.08);
+}
+.focus-btn:hover{transform: translateY(-1px);}
+.focus-panel{box-shadow: 0 12px 28px rgba(27,31,30,.06);}
+
+/* --- Patch V7: Forest UI + readable inner windows --- */
+:root{
+ --forest:#243f38;
+ --forest2:#1f3731;
+ --forest3:#2c5047;
+ --accent:#55a092;
+}
+
+/* Side hero box: clean split layout */
+.leave-card{ background:var(--forest) !important; color:rgba(255,255,255,.92) !important; }
+.leave-split{ display:grid; grid-template-columns: 1fr; border:1px solid rgba(255,255,255,.12); border-radius: 1rem; overflow:hidden; }
+@media(min-width: 768px){ .leave-split{ grid-template-columns: 1.15fr .85fr; } }
+.leave-col{ padding: 1.25rem 1.25rem; }
+.leave-col--outputs{ background: rgba(255,255,255,.03); }
+.leave-col--triggers{ background: var(--forest3); border-top:1px solid rgba(255,255,255,.10); }
+@media(min-width: 768px){ .leave-col--triggers{ border-top:0; border-left:1px solid rgba(255,255,255,.10); } }
+.leave-kicker{ font-weight:650; letter-spacing:.01em; }
+.leave-list{ margin-top:.75rem; padding-left: 1.1rem; list-style: disc; }
+.leave-list li{ margin: .4rem 0; color:rgba(255,255,255,.90); }
+.leave-text{ margin-top:.6rem; font-size:.95rem; line-height:1.5; color:rgba(255,255,255,.86); }
+
+/* Lens section: forest background + mid-green panels (Process & System Design family) */
+/* Tiles */
+/* Preview panel */
+/* Typical outputs box (was light) */
+/* Pills inside preview */
+/* Integration offer: eliminate white "blank" cards by using mid-green boxes */
+#integration-offer{
+ background: var(--forest2) !important;
+ border-color: rgba(255,255,255,.14) !important;
+ color: rgba(255,255,255,.92) !important;
+}
+#integration-offer h2, #integration-offer h3{ color:#fff !important; }
+#integration-offer p, #integration-offer li{ color: rgba(255,255,255,.86) !important; }
+
+/* Cards inside offer */
+#integration-offer .soft-shadow{
+ background: var(--forest3) !important;
+ border-color: rgba(255,255,255,.12) !important;
+}
+#integration-offer .soft-shadow .text-slate-500,
+#integration-offer .soft-shadow .text-slate-400{
+ color: rgba(255,255,255,.72) !important;
+}
+#integration-offer .soft-shadow .text-slate-700{
+ color: rgba(255,255,255,.88) !important;
+}
+#integration-offer .rounded-2xl.border.hairline.bg-white.p-4{
+ background: var(--forest3) !important;
+}
+
+#integration-offer .rounded-2xl.border.hairline.bg-white.p-4 p,
+#integration-offer .rounded-2xl.border.hairline.bg-white.p-4 li{
+ color: rgba(255,255,255,.88) !important;
+}
+
+#integration-offer .rounded-2xl.border.hairline.bg-white.p-4 .text-slate-500{
+ color: rgba(255,255,255,.70) !important;
+}
+
+#integration-offer .mt-6.rounded-2xl.border.hairline.bg-white.p-4{
+ background: rgba(255,255,255,.05) !important;
+ border-color: rgba(255,255,255,.12) !important;
+}
+
+/* Buttons */
+.ewd-focus-next-btn{
+ background: var(--accent) !important;
+ border-color: rgba(255,255,255,.24) !important;
+ color: #fff !important;
+}
+</style><style>
+/* --- Patch V8: enforce white text + remove white-card look in forest sections --- */
+:root{
+ --forest:#243f38;
+ --forest2:#1f3731;
+ --forest3:#2c5047;
+ --mintDeep:#2e5b52;
+ --mintSoft: rgba(255,255,255,.05);
+ --mintBorder: rgba(255,255,255,.12);
+ --mintText: rgba(255,255,255,.90);
+ --mintMuted: rgba(255,255,255,.74);
+}
+
+/* Lens sections: make everything readable */
+/* Inner boxes inside lens panels that were bg-white/80 etc */
+/* Tiles: keep light but readable */
+/* Integration offer: remove white boxes + force readable text */
+#integration-offer{
+ background: var(--forest2) !important;
+ color: var(--mintText) !important;
+ border-color: rgba(255,255,255,.14) !important;
+}
+#integration-offer h2, #integration-offer h3{ color:#fff !important; }
+#integration-offer p, #integration-offer li{ color: rgba(255,255,255,.86) !important; }
+#integration-offer .soft-shadow{
+ background: var(--forest3) !important;
+ border-color: rgba(255,255,255,.12) !important;
+}
+#integration-offer .soft-shadow [class*="text-ink"], #integration-offer .soft-shadow .text-ink{
+ color: rgba(255,255,255,.90) !important;
+}
+
+/* Hero side "leave with" cards: stable 2-col + consistent greens */
+.leave-card{ background: var(--forest) !important; color: rgba(255,255,255,.92) !important; }
+.leave-split{ border-color: rgba(255,255,255,.12) !important; }
+.leave-col--outputs{ background: var(--forest2) !important; }
+.leave-col--triggers{ background: var(--forest3) !important; border-left: 1px solid rgba(255,255,255,.10) !important; }
+.leave-kicker{ color: rgba(255,255,255,.92) !important; }
+.leave-list li, .leave-text{ color: rgba(255,255,255,.86) !important; }
+</style><style>:root{
+ --cream:#f4f2ec;
+ --ink:#1b1f1e;
+ --muted:#5a6561;
+ --forest:#243f38;
+ --forest2:#1f3731;
+ --accent:#55a092;
+ --line:rgba(27,31,30,.14);
+ }
+ html{scroll-behavior:smooth}
+ body{background:var(--cream); color:var(--ink);}
+ .ewd-serif{font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;}
+ .ewd-sans{font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";}
+ .hairline{border-color: var(--line);}
+ .soft-shadow{box-shadow: 0 16px 40px rgba(0,0,0,.08);}
+ :focus-visible{ outline: 3px solid rgba(85,160,146,.45); outline-offset: 3px; }
+
+ .ewd-svc-btn{
+ width:100%;
+ text-align:left;
+ display:flex;
+ gap:.75rem;
+ align-items:flex-start;
+ padding: .85rem 1.25rem;
+ border-top: 1px solid rgba(255,255,255,.08);
+ transition: background-color .15s ease, transform .15s ease;
+ }
+ .ewd-svc-btn:hover{ background: rgba(255,255,255,.04); }
+ .ewd-svc-btn[aria-selected="true"]{
+ background: rgba(85,160,146,.14);
+ box-shadow: inset 3px 0 0 rgba(85,160,146,.9);
+ }
+ .ewd-svc-num{
+ font-size:.75rem;
+ line-height:1;
+ color: rgba(255,255,255,.65);
+ margin-top:.2rem;
+ min-width: 1.8rem;
+ }
+ .ewd-svc-title{ color: rgba(255,255,255,.95); font-weight:600; }
+ .ewd-svc-sub{ color: rgba(255,255,255,.70); font-size:.82rem; margin-top:.2rem; }
+ .ewd-chip{
+ display:inline-flex;
+ align-items:center;
+ gap:.35rem;
+ padding:.38rem .6rem;
+ border-radius: 9999px;
+ border: 1px solid rgba(255,255,255,.12);
+ background: rgba(255,255,255,.04);
+ color: rgba(255,255,255,.85);
+ font-size:.75rem;
+ line-height:1;
+ white-space:nowrap;
+ transition: background-color .15s ease, border-color .15s ease;
+ }
+ .ewd-chip:hover{ background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18); }
+ .ewd-chip .tag{
+ font-size:.68rem;
+ padding:.14rem .4rem;
+ border-radius:9999px;
+ border:1px solid rgba(255,255,255,.16);
+ color: rgba(255,255,255,.70);
+ background: rgba(0,0,0,.14);
+ }
+ .ewd-chip.req{ border-color: rgba(255,193,7,.28); }
+ .ewd-chip.req .tag{ border-color: rgba(255,193,7,.28); color: rgba(255,235,190,.85); }
+
+ /* Baseline lens hero (compact strip in forest2 tone) */
+ .ewd-focus-hero{
+ background: var(--forest2);
+ color:#fff;
+ border-radius:0;
+ box-shadow:0 18px 40px rgba(0,0,0,.25);
+ }
+ .ewd-focus-hero-inner{
+ max-width:100%;
+ margin:0;
+ padding:2.5rem 2.25rem 3rem;
+ }
+ @media (min-width:1024px){
+ .ewd-focus-hero-inner{ padding:2.9rem 2.75rem 3.25rem; }
+ }
+ .ewd-focus-grid{
+ display:grid;
+ grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
+ gap:2.5rem;
+ align-items:center;
+ }
+ @media (max-width:900px){
+ .ewd-focus-grid{
+ grid-template-columns:minmax(0,1fr);
+ gap:2rem;
+ }
+ }
+ .ewd-focus-kicker{
+ font-size:.72rem;
+ letter-spacing:.22em;
+ text-transform:uppercase;
+ color:rgba(255,255,255,.7);
+ }
+ .ewd-focus-title{
+ font-family: var(--ewd-serif, "Iowan Old Style", "Palatino", "Book Antiqua", Georgia, serif);
+ font-size:1.9rem;
+ line-height:1.2;
+ margin-top:.6rem;
+ margin-bottom:.75rem;
+ }
+ @media (min-width:1024px){
+ .ewd-focus-title{ font-size:2.1rem; }
+ }
+ .ewd-focus-body{
+ font-size:.97rem;
+ max-width:32rem;
+ color:rgba(255,255,255,.85);
+ line-height:1.7;
+ margin:0;
+ }
+ .ewd-focus-panel{
+ border-radius:26px;
+ padding:1.75rem 1.9rem 1.9rem;
+ background:
+ radial-gradient(160% 220% at 0% 0%, rgba(255,255,255,.06), transparent 40%),
+ rgba(0,0,0,.38);
+ box-shadow:0 18px 40px rgba(0,0,0,.55);
+ border:1px solid rgba(255,255,255,.18);
+ }
+ .ewd-focus-panel h3{
+ font-size:.72rem;
+ letter-spacing:.22em;
+ text-transform:uppercase;
+ margin:0 0 .8rem;
+ color:rgba(255,255,255,.7);
+ }
+ .ewd-focus-panel ul{
+ list-style:none;
+ margin:0 0 1.5rem;
+ padding:0;
+ font-size:.92rem;
+ color:rgba(255,255,255,.9);
+ }
+ .ewd-focus-panel li + li{
+ margin-top:.55rem;
+ }
+ .ewd-focus-panel li span{
+ font-weight:600;
+ }
+ .ewd-focus-next-btn{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ border-radius:999px;
+ padding:.6rem 1.8rem;
+ font-size:.86rem;
+ text-decoration:none;
+ border:1px solid rgba(255,255,255,.35);
+ background:rgba(0,0,0,.18);
+ color:#fff;
+ white-space:nowrap;
+ }
+ .ewd-focus-next-btn:hover{
+ background:rgba(255,255,255,.16);
+ border-color:rgba(255,255,255,.6);
+ }
+/* Horizontal scroll carousel for Example specialist systems */
+.example-systems-carousel{
+ display:flex;
+ gap:16px;
+ overflow-x:auto;
+ overflow-y:hidden;
+ padding-bottom:10px;
+ scroll-snap-type:x mandatory;
+ -webkit-overflow-scrolling:touch;
+ scrollbar-width:none; /* Firefox */
+}
+.example-systems-carousel::-webkit-scrollbar{ display:none; }
+.example-systems-carousel .example-systems-item{
+ flex: 0 0 calc((100% - 32px)/3); /* 3 cards visible */
+ scroll-snap-align:start;
+ min-width: 260px;
+}
+@media (max-width: 1024px){
+ .example-systems-carousel .example-systems-item{
+ flex-basis: calc((100% - 16px)/2); /* 2 cards visible */
+ }
+}
+@media (max-width: 640px){
+ .example-systems-carousel .example-systems-item{
+ flex-basis: 100%; /* 1 card visible */
+ }
+}
+</style><style>
+/* Ink cards for Technology families + Example systems */
+.ewd-ink-card{
+ background: var(--ink) !important;
+ color: rgba(255,255,255,.92) !important;
+ border-color: rgba(255,255,255,.12) !important;
+}
+.ewd-ink-card h3{
+ color: rgba(255,255,255,.96) !important;
+}
+.ewd-ink-card p{
+ color: rgba(255,255,255,.78) !important;
+}
+
+/* Horizontal scroll carousel for Technology families */
+.tech-family-carousel{
+ display:flex;
+ gap:16px;
+ overflow-x:auto;
+ overflow-y:hidden;
+ padding-bottom:10px;
+ scroll-snap-type:x mandatory;
+ -webkit-overflow-scrolling:touch;
+ scrollbar-width:none; /* Firefox */
+}
+.tech-family-carousel::-webkit-scrollbar{ display:none; }
+.tech-family-carousel .tech-family-item{
+ flex: 0 0 calc((100% - 32px)/3); /* 3 cards visible */
+ scroll-snap-align:start;
+ min-width: 260px;
+}
+@media (max-width: 1024px){
+ .tech-family-carousel .tech-family-item{
+ flex-basis: calc((100% - 16px)/2); /* 2 cards visible */
+ }
+}
+@media (max-width: 640px){
+ .tech-family-carousel .tech-family-item{
+ flex-basis: 100%; /* 1 card visible */
+ }
+}
+</style><style>
+/* Patch V30: Light interactive-lens scheme (match Implementation lens) */
+#techfit-focus, #integration-focus{
+ background: var(--cream) !important;
+ color: var(--ink);
+}
+
+/* Tiles */
+#techfit-focus .focus-btn, #integration-focus .focus-btn{
+ background: rgba(255,255,255,.70);
+ border: 1px solid rgba(27,31,30,.15);
+ box-shadow: none;
+}
+#techfit-focus .focus-btn:hover, #integration-focus .focus-btn:hover{
+ transform: translateY(-1px);
+ background: rgba(255,255,255,.88);
+}
+#techfit-focus .focus-btn[aria-selected="true"], #integration-focus .focus-btn[aria-selected="true"]{
+ background: rgba(85,160,146,.14);
+ border-color: rgba(85,160,146,.45);
+ box-shadow: 0 10px 24px rgba(27,31,30,.08);
+}
+
+/* Preview panel */
+#techfit-focus .focus-panel, #integration-focus .focus-panel{
+ background: rgba(255,255,255,.72);
+ border-color: rgba(27,31,30,.15) !important;
+ color: var(--ink);
+}
+
+/* Any 'next' buttons inside lens should stay readable on cream */
+#techfit-focus .ewd-focus-next-btn, #integration-focus .ewd-focus-next-btn{
+ background: rgba(27,31,30,.06);
+ border-color: rgba(27,31,30,.14);
+ color: var(--ink);
+}
+#techfit-focus .ewd-focus-next-btn:hover, #integration-focus .ewd-focus-next-btn:hover{
+ background: rgba(27,31,30,.10);
+ border-color: rgba(27,31,30,.18);
+}
+</style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.sticky{position:sticky}.top-0{top:0px}.z-50{z-index:50}.mx-2{margin-left:0.5rem;margin-right:0.5rem}.mx-auto{margin-left:auto;margin-right:auto}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-7{margin-top:1.75rem}.mt-\[7px\]{margin-top:7px}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:0.375rem}.h-14{height:3.5rem}.h-2\.5{height:0.625rem}.h-4{height:1rem}.h-full{height:100%}.min-h-\[96px\]{min-height:96px}.w-1\.5{width:0.375rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-6xl{max-width:72rem}.max-w-xl{max-width:36rem}.flex-none{flex:none}.list-inside{list-style-position:inside}.list-disc{list-style-type:disc}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.items-stretch{align-items:stretch}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-sm{border-radius:0.125rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-l-4{border-left-width:4px}.border-emerald-500\/70{border-color:rgb(16 185 129 / 0.7)}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.bg-accent{--tw-bg-opacity:1;background-color:rgb(85 160 146 / var(--tw-bg-opacity, 1))}.bg-accent\/80{background-color:rgb(85 160 146 / 0.8)}.bg-cream{--tw-bg-opacity:1;background-color:rgb(244 242 236 / var(--tw-bg-opacity, 1))}.bg-cream\/60{background-color:rgb(244 242 236 / 0.6)}.bg-forest2{--tw-bg-opacity:1;background-color:rgb(31 55 49 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/5{background-color:rgb(255 255 255 / 0.05)}.bg-white\/55{background-color:rgb(255 255 255 / 0.55)}.bg-white\/60{background-color:rgb(255 255 255 / 0.6)}.bg-white\/70{background-color:rgb(255 255 255 / 0.7)}.bg-white\/80{background-color:rgb(255 255 255 / 0.8)}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-7{padding:1.75rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.pl-4{padding-left:1rem}.pl-5{padding-left:1.25rem}.text-left{text-align:left}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[11px\]{font-size:11px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-\[0\.95\]{line-height:0.95}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.leading-tight{line-height:1.25}.tracking-\[0\.2em\]{letter-spacing:0.2em}.tracking-wide{letter-spacing:0.025em}.text-emerald-900{--tw-text-opacity:1;color:rgb(6 78 59 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-gray-950{--tw-text-opacity:1;color:rgb(3 7 18 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/90{color:rgb(255 255 255 / 0.9)}.opacity-60{opacity:0.6}.opacity-80{opacity:0.8}.opacity-90{opacity:0.9}.opacity-95{opacity:0.95}.hover\:bg-forest:hover{--tw-bg-opacity:1;background-color:rgb(36 63 56 / var(--tw-bg-opacity, 1))}.hover\:bg-white:hover{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/15:hover{background-color:rgb(255 255 255 / 0.15)}.hover\:bg-white\/70:hover{background-color:rgb(255 255 255 / 0.7)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:opacity-95:hover{opacity:0.95}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}@media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:items-start{align-items:flex-start}.sm\:justify-between{justify-content:space-between}}@media (min-width: 768px){.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-end{align-items:flex-end}.md\:justify-between{justify-content:space-between}.md\:p-7{padding:1.75rem}.md\:p-8{padding:2rem}.md\:py-12{padding-top:3rem;padding-bottom:3rem}.md\:py-14{padding-top:3.5rem;padding-bottom:3.5rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}.md\:text-5xl{font-size:3rem;line-height:1}.md\:text-6xl{font-size:3.75rem;line-height:1}}@media (min-width: 1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}}</style>
+<style>
+ /* ===== EnWater Design: Typography normalisation patch (V18) ===== */
+ /* Ensure consistent readable base without huge jumps */
+ .chip{font-size: 12px;}
+ @media(min-width:768px){ .chip{font-size: 12px;} }
+ /* Reduce overly-tight hero tracking and keep line-height comfortable */
+ .section-hero p{font-size: 1.05rem;}
+ @media(min-width:768px){ .section-hero p{font-size: 1.08rem;} }
+</style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.sticky{position:sticky}.top-0{top:0px}.z-50{z-index:50}.mx-2{margin-left:0.5rem;margin-right:0.5rem}.mx-auto{margin-left:auto;margin-right:auto}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-7{margin-top:1.75rem}.mt-\[7px\]{margin-top:7px}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:0.375rem}.h-14{height:3.5rem}.h-2\.5{height:0.625rem}.h-4{height:1rem}.h-full{height:100%}.min-h-\[96px\]{min-height:96px}.w-1\.5{width:0.375rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-6xl{max-width:72rem}.max-w-xl{max-width:36rem}.flex-none{flex:none}.list-inside{list-style-position:inside}.list-disc{list-style-type:disc}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.items-stretch{align-items:stretch}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-sm{border-radius:0.125rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-l-4{border-left-width:4px}.border-emerald-500\/70{border-color:rgb(16 185 129 / 0.7)}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.bg-accent{--tw-bg-opacity:1;background-color:rgb(85 160 146 / var(--tw-bg-opacity, 1))}.bg-accent\/80{background-color:rgb(85 160 146 / 0.8)}.bg-cream{--tw-bg-opacity:1;background-color:rgb(244 242 236 / var(--tw-bg-opacity, 1))}.bg-cream\/60{background-color:rgb(244 242 236 / 0.6)}.bg-forest2{--tw-bg-opacity:1;background-color:rgb(31 55 49 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/5{background-color:rgb(255 255 255 / 0.05)}.bg-white\/55{background-color:rgb(255 255 255 / 0.55)}.bg-white\/60{background-color:rgb(255 255 255 / 0.6)}.bg-white\/70{background-color:rgb(255 255 255 / 0.7)}.bg-white\/80{background-color:rgb(255 255 255 / 0.8)}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-7{padding:1.75rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.pl-4{padding-left:1rem}.pl-5{padding-left:1.25rem}.text-left{text-align:left}.text-2xl{font-size:1.5rem;line-height:2rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-\[11px\]{font-size:11px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-\[1\.05\]{line-height:1.05}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.leading-tight{line-height:1.25}.tracking-\[0\.2em\]{letter-spacing:0.2em}.tracking-wide{letter-spacing:0.025em}.text-emerald-900{--tw-text-opacity:1;color:rgb(6 78 59 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-gray-950{--tw-text-opacity:1;color:rgb(3 7 18 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/90{color:rgb(255 255 255 / 0.9)}.opacity-60{opacity:0.6}.opacity-80{opacity:0.8}.opacity-90{opacity:0.9}.opacity-95{opacity:0.95}.shadow-\[0_24px_60px_rgba\(0\2c 0\2c 0\2c 0\.25\)\]{--tw-shadow:0 24px 60px rgba(0,0,0,0.25);--tw-shadow-colored:0 24px 60px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.hover\:bg-forest:hover{--tw-bg-opacity:1;background-color:rgb(36 63 56 / var(--tw-bg-opacity, 1))}.hover\:bg-white:hover{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/15:hover{background-color:rgb(255 255 255 / 0.15)}.hover\:bg-white\/70:hover{background-color:rgb(255 255 255 / 0.7)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:opacity-95:hover{opacity:0.95}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}@media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:items-start{align-items:flex-start}.sm\:justify-between{justify-content:space-between}}@media (min-width: 768px){.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-end{align-items:flex-end}.md\:justify-between{justify-content:space-between}.md\:p-7{padding:1.75rem}.md\:p-8{padding:2rem}.md\:py-12{padding-top:3rem;padding-bottom:3rem}.md\:py-14{padding-top:3.5rem;padding-bottom:3.5rem}.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}.md\:text-5xl{font-size:3rem;line-height:1}}@media (min-width: 1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}}</style>
+
+
+
+<style id="techfit-baseline-alignment-patch">
+/* ===== Technology fit page: align to baseline diagnostics styling philosophy ===== */
+:root{
+  --ewd-card-bg: rgba(255,255,255,.80);
+  --ewd-card-bg-strong: rgba(255,255,255,.90);
+  --ewd-card-border: rgba(27,31,30,.10);
+  --ewd-card-shadow: 0 18px 34px rgba(27,31,30,.06);
+  --ewd-card-shadow-hover: 0 22px 42px rgba(27,31,30,.10);
+  --ewd-radius: 18px;
+}
+
+.shadow-soft{ box-shadow: 0 18px 38px rgba(27,31,30,.10); }
+main section{ position:relative; scroll-margin-top:110px; }
+main section h2.ewd-serif{ letter-spacing:-.02em; line-height:1.12; }
+
+/* Hero */
+.section-hero .text-sm.tracking-wide{
+  font-size:.72rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(27,31,30,.56) !important;
+}
+.section-hero h1{
+  max-width:13ch;
+  line-height:1.02 !important;
+  letter-spacing:-.022em;
+}
+.section-hero p{
+  font-size:1.03rem;
+  line-height:1.72;
+}
+.section-hero [class*="rounded-full border"]{
+  background:rgba(255,255,255,.78) !important;
+  border-color:rgba(27,31,30,.12) !important;
+  box-shadow:0 10px 24px rgba(27,31,30,.04);
+  backdrop-filter:blur(6px);
+}
+.section-hero a.inline-flex{
+  box-shadow:0 14px 32px rgba(27,31,30,.10);
+}
+.section-hero a.inline-flex.border{
+  background:rgba(255,255,255,.88) !important;
+}
+
+/* Key outputs / triggers side card */
+.leave-card{
+  background:var(--forest) !important;
+  color:rgba(255,255,255,.94) !important;
+  border-radius:22px !important;
+  box-shadow:0 24px 48px rgba(27,31,30,.16) !important;
+}
+.leave-split{
+  display:grid;
+  grid-template-columns:1fr;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;
+  overflow:hidden;
+  align-items:stretch;
+}
+@media(min-width:768px){
+  .leave-split{ grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr); }
+}
+.leave-col{ min-height:100%; display:flex; flex-direction:column; justify-content:flex-start; }
+.leave-col--outputs{ background:var(--forest2) !important; padding:20px 22px 18px; }
+.leave-col--triggers{ background:rgba(85,160,146,.22) !important; padding:20px 22px 18px; }
+.leave-kicker{
+  font-size:.72rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  opacity:.9;
+  min-height:2.1rem;
+  display:flex;
+  align-items:flex-start;
+}
+.leave-list{ margin:.65rem 0 0 0; padding-left:1.15rem; list-style:disc; }
+.leave-list li{ margin:.34rem 0; line-height:1.5; }
+.leave-text{ margin-top:.65rem; opacity:.95; line-height:1.58; }
+
+/* Offer section */
+#techfit-offer .bg-forest2{
+  border-radius:28px !important;
+  box-shadow:0 26px 56px rgba(27,31,30,.18);
+}
+#techfit-offer .text-xs.tracking-wide.uppercase{
+  letter-spacing:.18em;
+}
+#techfit-offer [class*="rounded-2xl"]{
+  backdrop-filter:blur(8px);
+}
+#techfit-offer p{ line-height:1.72; }
+
+/* Interactive constraint cards */
+#techfit-focus .focus-btn{
+  background:rgba(255,255,255,.78) !important;
+  border:1px solid rgba(27,31,30,.10) !important;
+  border-radius:18px !important;
+  box-shadow:0 12px 28px rgba(27,31,30,.05);
+  transition:transform .14s ease, box-shadow .14s ease, border-color .14s ease, background-color .14s ease;
+}
+#techfit-focus .focus-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 18px 34px rgba(27,31,30,.08);
+}
+#techfit-focus .focus-btn[aria-selected="true"]{
+  background:linear-gradient(180deg, rgba(255,255,255,.97), rgba(231,242,237,.94)) !important;
+  border-color:rgba(85,160,146,.42) !important;
+  box-shadow:0 14px 30px rgba(27,31,30,.10), inset 0 0 0 1px rgba(85,160,146,.12);
+}
+#techfit-focus .focus-btn .font-medium{ font-size:1rem; }
+#techfit-focus .focus-btn .text-sm{ line-height:1.55; }
+#techfit-focus .focus-panel{
+  background:rgba(255,255,255,.84) !important;
+  border:1px solid rgba(27,31,30,.10) !important;
+  border-radius:22px !important;
+  box-shadow:0 18px 36px rgba(27,31,30,.08);
+  padding-left:1.35rem !important;
+  padding-right:1.35rem !important;
+}
+@media(min-width:768px){
+  #techfit-focus .focus-panel{ padding-left:1.55rem !important; padding-right:1.55rem !important; }
+}
+#techfit-focus .focus-panel .text-sm.tracking-wide{
+  font-size:.72rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+#techfit-focus .focus-panel [class*="rounded-2xl border"]{
+  background:rgba(255,255,255,.78) !important;
+  border-color:rgba(27,31,30,.09) !important;
+  border-radius:18px !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55);
+}
+#techfit-focus .focus-panel [class*="bg-cream/50"]{
+  background:rgba(244,242,236,.78) !important;
+}
+
+/* Forest strip hero */
+#technology-focus .ewd-focus-hero{
+  border-radius:28px !important;
+  overflow:hidden;
+  box-shadow:0 24px 54px rgba(27,31,30,.18);
+}
+#technology-focus .ewd-focus-title{ max-width:15ch; }
+#technology-focus .ewd-focus-panel{
+  border-radius:24px;
+  background:radial-gradient(160% 220% at 0% 0%, rgba(255,255,255,.07), transparent 40%), rgba(0,0,0,.34);
+}
+
+/* Shared light cards across content sections */
+#fit-logic article,
+#tech-evaluation article,
+#tech-families article,
+#tech-operating-ranges article,
+#equipment-blocks article,
+#kpis-selection article,
+#tech-procurement-support article,
+#tech-deliverables article,
+#example-systems article{
+  background:var(--ewd-card-bg) !important;
+  border:1px solid var(--ewd-card-border) !important;
+  border-radius:var(--ewd-radius) !important;
+  box-shadow:var(--ewd-card-shadow);
+  transition:transform .14s ease, box-shadow .14s ease, background-color .14s ease;
+}
+#fit-logic article:hover,
+#tech-evaluation article:hover,
+#tech-families article:hover,
+#tech-operating-ranges article:hover,
+#equipment-blocks article:hover,
+#kpis-selection article:hover,
+#tech-procurement-support article:hover,
+#tech-deliverables article:hover,
+#example-systems article:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--ewd-card-shadow-hover);
+}
+#fit-logic article h3,
+#tech-evaluation article h3,
+#tech-families article h3,
+#tech-operating-ranges article h3,
+#equipment-blocks article h3,
+#kpis-selection article h3,
+#tech-procurement-support article h3,
+#tech-deliverables article h3,
+#example-systems article h3{
+  color:var(--ink) !important;
+  font-size:1.02rem;
+  line-height:1.35;
+}
+#fit-logic article p,
+#tech-evaluation article p,
+#tech-families article p,
+#tech-operating-ranges article p,
+#equipment-blocks article p,
+#kpis-selection article p,
+#tech-procurement-support article p,
+#tech-deliverables article p,
+#example-systems article p{
+  color:rgba(27,31,30,.78) !important;
+  line-height:1.72;
+}
+
+/* Section typography */
+#fit-logic p,
+#tech-evaluation p,
+#tech-families p,
+#tech-operating-ranges p,
+#equipment-blocks p,
+#streams p,
+#kpis-selection p,
+#tech-procurement-support p,
+#tech-deliverables p,
+#tech-next-steps p{
+  line-height:1.74;
+}
+
+/* Example systems carousel */
+#example-systems .example-systems-carousel{
+  gap:18px;
+  padding-bottom:.25rem;
+}
+#example-systems .ewd-ink-card{
+  background:linear-gradient(180deg, rgba(27,31,30,.97), rgba(36,63,56,.97)) !important;
+  color:rgba(255,255,255,.92) !important;
+  box-shadow:0 22px 42px rgba(27,31,30,.16);
+}
+#example-systems .ewd-ink-card h3,
+#example-systems .ewd-ink-card p{
+  color:inherit !important;
+}
+
+/* Streams chips */
+#streams .flex.flex-wrap.gap-2 > *{
+  display:inline-flex;
+  align-items:center;
+  padding:.48rem .82rem;
+  border-radius:999px;
+  border:1px solid rgba(27,31,30,.10);
+  background:rgba(255,255,255,.76);
+  box-shadow:0 8px 20px rgba(27,31,30,.04);
+}
+
+/* Final transition block */
+#tech-next-steps [class*="lg:col-span-7"]{
+  background:rgba(255,255,255,.80);
+  border:1px solid rgba(27,31,30,.10);
+  border-radius:22px;
+  padding:1.5rem 1.6rem;
+  box-shadow:var(--ewd-card-shadow);
+}
+#tech-next-steps [class*="lg:col-span-7"] a{
+  box-shadow:0 10px 24px rgba(27,31,30,.06);
+}
+#tech-next-steps [class*="lg:col-span-5"] h2{
+  max-width:12ch;
+}
+
+@media(min-width:768px){
+  .section-hero p{ font-size:1.07rem; }
+  #fit-logic article,
+  #tech-evaluation article,
+  #tech-families article,
+  #tech-operating-ranges article,
+  #equipment-blocks article,
+  #kpis-selection article,
+  #tech-procurement-support article,
+  #tech-deliverables article,
+  #example-systems article{ padding:1.45rem; }
+}
+</style>
+<style id="baseline-alignment-patch-v2">
+/* ===== Baseline alignment patch: technology fit ===== */
+
+/* Section rhythm */
+#fit-logic .max-w-6xl,
+#tech-evaluation .max-w-6xl,
+#tech-families .max-w-6xl,
+#tech-operating-ranges .max-w-6xl,
+#equipment-blocks .max-w-6xl,
+#streams .max-w-6xl,
+#kpis-selection .max-w-6xl,
+#tech-deliverables .max-w-6xl{
+  padding-top: 4.25rem !important;
+  padding-bottom: 4.25rem !important;
+}
+
+/* Make the technology families section follow the same feel as the example systems carousel */
+#tech-families .lg\:col-span-5{
+  padding-right: .5rem;
+}
+#tech-families h2{
+  font-size: clamp(2rem, 2.8vw, 3rem) !important;
+  line-height: 1.04 !important;
+}
+#tech-families > div > div > div:first-child > p{
+  max-width: 34rem;
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+#tech-families ul{
+  margin-top: 1.5rem !important;
+  padding: .15rem 0 .15rem 1.15rem !important;
+  border-left: 4px solid rgba(85,160,146,.78);
+  list-style: none !important;
+}
+#tech-families li{
+  position: relative;
+  padding-left: 1.1rem;
+  line-height: 1.7;
+}
+#tech-families li::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .72rem;
+  width: .38rem;
+  height: .38rem;
+  border-radius: 999px;
+  background: rgba(85,160,146,.88);
+}
+#tech-families li + li{
+  margin-top: .55rem;
+}
+#tech-families .tech-family-carousel{
+  gap: 18px !important;
+  padding-bottom: 12px !important;
+}
+#tech-families .tech-family-item{
+  flex: 0 0 calc((100% - 36px)/3) !important;
+  min-width: 275px !important;
+  min-height: 320px;
+  border-radius: 26px !important;
+  padding: 2rem 1.65rem 1.7rem !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  background:
+    radial-gradient(130% 160% at 0% 100%, rgba(85,160,146,.22), transparent 44%),
+    linear-gradient(145deg, #1d2624 0%, #1f3731 48%, #21463c 100%) !important;
+  box-shadow: 0 20px 38px rgba(31,55,49,.22);
+}
+#tech-families .tech-family-item h3{
+  margin-top: .25rem !important;
+  font-size: 1rem !important;
+  line-height: 1.35;
+  color: rgba(255,255,255,.98) !important;
+}
+#tech-families .tech-family-item p{
+  margin-top: .9rem !important;
+  font-size: 1.02rem !important;
+  line-height: 1.7 !important;
+  color: rgba(255,255,255,.88) !important;
+}
+
+/* Bring the interactive view closer to the baseline lens styling */
+#techfit-focus{
+  background: var(--cream) !important;
+}
+#techfit-focus .max-w-6xl{
+  padding-top: 3.5rem !important;
+  padding-bottom: 4rem !important;
+}
+#techfit-focus > div > div:first-child > div:first-child > h2{
+  font-size: clamp(2rem, 2.9vw, 3rem) !important;
+  line-height: 1.06 !important;
+}
+#techfit-focus > div > div:first-child > div:first-child > p{
+  max-width: 46rem !important;
+  font-size: 1.02rem;
+  line-height: 1.72;
+}
+#techfit-focus > div > div:first-child > div:last-child{
+  align-self: center;
+  padding-top: .35rem;
+}
+#techfit-focus .focus-btn{
+  min-height: 7.2rem !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(36,63,56,.11) !important;
+  background: rgba(255,255,255,.74) !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,.75) inset;
+  padding: 1.35rem 1.35rem !important;
+  transition: transform .16s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease;
+}
+#techfit-focus .focus-btn:hover{
+  transform: translateY(-2px);
+  background: rgba(255,255,255,.94) !important;
+  box-shadow: 0 14px 24px rgba(31,55,49,.08);
+}
+#techfit-focus .focus-btn[aria-selected="true"]{
+  background: rgba(232,243,239,.95) !important;
+  border-color: rgba(85,160,146,.42) !important;
+  box-shadow: 0 14px 28px rgba(31,55,49,.08), inset 0 0 0 1px rgba(85,160,146,.14);
+}
+#techfit-focus .focus-btn > div:first-child{
+  font-size: 1rem;
+}
+#techfit-focus .focus-btn > div:last-child{
+  margin-top: .55rem !important;
+  line-height: 1.55;
+}
+#techfit-focus .focus-panel{
+  background: rgba(248,248,245,.98) !important;
+  border: 1px solid rgba(36,63,56,.10) !important;
+  border-radius: 30px !important;
+  padding: 1.6rem 1.6rem 1.65rem !important;
+  box-shadow: 0 22px 36px rgba(31,55,49,.08) !important;
+}
+#techfit-focus .focus-panel > .flex > div:first-child > div:first-child{
+  font-size: .68rem !important;
+  letter-spacing: .2em !important;
+  text-transform: uppercase;
+  color: rgba(27,31,30,.55) !important;
+}
+#techfit-focus .focus-panel > .flex > div:first-child > div:nth-child(2){
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif !important;
+  font-size: clamp(2rem, 2.6vw, 2.45rem) !important;
+  line-height: 1.05 !important;
+  font-weight: 400 !important;
+}
+#techfit-focus .focus-panel > .flex > div:first-child > div:nth-child(3){
+  margin-top: .9rem !important;
+}
+#techfit-focus .focus-panel > .flex > div:first-child > div:nth-child(3) span{
+  border-radius: 999px !important;
+  border: 1px solid rgba(85,160,146,.20) !important;
+  background: #eef4f1 !important;
+  color: #415952 !important;
+  font-size: .69rem !important;
+  letter-spacing: .02em;
+  padding: .42rem .75rem !important;
+}
+#techfit-focus .focus-panel > .mt-6,
+#techfit-focus .focus-panel > div.mt-6.grid{
+  gap: 1.1rem !important;
+}
+#techfit-focus .focus-panel > .mt-6 > div,
+#techfit-focus .focus-panel > div.mt-6.grid > div{
+  background: rgba(255,255,255,.98) !important;
+  border: 1px solid rgba(36,63,56,.10) !important;
+  border-radius: 22px !important;
+  padding: 1.35rem 1.25rem !important;
+  box-shadow: inset 0 3px 0 rgba(85,160,146,.62);
+}
+#techfit-focus .focus-panel > .mt-6 > div > div:first-child,
+#techfit-focus .focus-panel > div.mt-6.grid > div > div:first-child{
+  font-size: 1rem !important;
+}
+#techfit-focus .focus-panel ul li{
+  margin-top: .72rem !important;
+}
+#techfit-focus .focus-panel ul li span:first-child{
+  background: rgba(85,160,146,.74) !important;
+}
+#techfit-focus .focus-panel > div:last-child{
+  margin-top: 1.15rem !important;
+  background: #edf5f1 !important;
+  border: 1px solid rgba(85,160,146,.18) !important;
+  border-radius: 22px !important;
+  padding: 1rem 1.1rem !important;
+}
+#techfit-focus .focus-panel > div:last-child > div:first-child{
+  font-size: .68rem !important;
+  letter-spacing: .2em !important;
+  text-transform: uppercase;
+  color: rgba(27,31,30,.56) !important;
+}
+#techfit-focus .focus-panel > div:last-child p{
+  margin-top: .4rem !important;
+  font-size: .98rem !important;
+  line-height: 1.6 !important;
+  color: rgba(27,31,30,.84) !important;
+}
+
+/* Give the following content sections the same clean baseline card language */
+#fit-logic article,
+#tech-evaluation article,
+#tech-operating-ranges article,
+#equipment-blocks article,
+#kpis-selection article,
+#tech-deliverables article{
+  position: relative;
+  background: rgba(255,255,255,.76) !important;
+  border: 1px solid rgba(27,31,30,.10) !important;
+  border-radius: 18px !important;
+  padding: 1.55rem 1.35rem 1.35rem !important;
+  box-shadow: 0 10px 24px rgba(31,55,49,.05), inset 0 3px 0 rgba(85,160,146,.58);
+}
+#fit-logic article h3,
+#tech-evaluation article h3,
+#tech-operating-ranges article h3,
+#equipment-blocks article h3,
+#kpis-selection article h3,
+#tech-deliverables article h3{
+  font-size: 1.02rem !important;
+  line-height: 1.38;
+}
+#fit-logic article p,
+#tech-evaluation article p,
+#tech-operating-ranges article p,
+#equipment-blocks article p,
+#kpis-selection article p,
+#tech-deliverables article p{
+  margin-top: .72rem !important;
+  font-size: .97rem !important;
+  line-height: 1.7 !important;
+}
+#fit-logic .lg\:col-span-5,
+#tech-evaluation .lg\:col-span-5,
+#tech-operating-ranges .lg\:col-span-5,
+#equipment-blocks .lg\:col-span-5,
+#kpis-selection .lg\:col-span-5,
+#tech-deliverables .lg\:col-span-5{
+  padding-right: .5rem;
+}
+#fit-logic h2,
+#tech-evaluation h2,
+#tech-deliverables h2{
+  font-size: clamp(2.1rem, 3vw, 3.25rem) !important;
+  line-height: 1.03 !important;
+}
+#tech-operating-ranges h2,
+#equipment-blocks h2,
+#kpis-selection h2,
+#streams h2{
+  font-size: clamp(2rem, 2.8vw, 3rem) !important;
+  line-height: 1.05 !important;
+}
+#fit-logic .lg\:col-span-5 > p:not(:first-child),
+#tech-evaluation .lg\:col-span-5 > p:not(:first-child),
+#tech-operating-ranges .lg\:col-span-5 > p,
+#equipment-blocks .lg\:col-span-5 > p,
+#kpis-selection .lg\:col-span-5 > p,
+#tech-deliverables .lg\:col-span-5 > p{
+  max-width: 33rem;
+  font-size: 1rem;
+  line-height: 1.74;
+}
+#tech-operating-ranges ul,
+#equipment-blocks ul,
+#kpis-selection ul{
+  margin-top: 1.35rem !important;
+  padding-left: 0 !important;
+  list-style: none !important;
+}
+#tech-operating-ranges li,
+#equipment-blocks li,
+#kpis-selection li{
+  position: relative;
+  padding-left: 1.1rem;
+  line-height: 1.68;
+}
+#tech-operating-ranges li::before,
+#equipment-blocks li::before,
+#kpis-selection li::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .7rem;
+  width: .35rem;
+  height: .35rem;
+  border-radius: 999px;
+  background: rgba(85,160,146,.86);
+}
+#streams .lg\:col-span-7 > div{
+  gap: .55rem !important;
+}
+#streams span{
+  border-radius: 999px !important;
+  background: rgba(255,255,255,.78) !important;
+  border: 1px solid rgba(27,31,30,.10) !important;
+  padding: .45rem .8rem !important;
+  color: #3f4c48 !important;
+}
+#streams span:last-child{
+  background: #edf5f1 !important;
+  border-color: rgba(85,160,146,.20) !important;
+  color: #1f4b41 !important;
+}
+
+/* Keep the example systems section visually aligned with the upgraded families section */
+#example-systems .example-systems-item{
+  min-height: 316px;
+  border-radius: 26px !important;
+  padding: 2rem 1.65rem 1.7rem !important;
+  background:
+    radial-gradient(130% 160% at 0% 100%, rgba(85,160,146,.22), transparent 44%),
+    linear-gradient(145deg, #1d2624 0%, #1f3731 48%, #21463c 100%) !important;
+  box-shadow: 0 20px 38px rgba(31,55,49,.22);
+  border: 1px solid rgba(255,255,255,.10) !important;
+}
+#example-systems .example-systems-item h3{
+  color: rgba(255,255,255,.98) !important;
+}
+#example-systems .example-systems-item p{
+  color: rgba(255,255,255,.88) !important;
+  font-size: 1rem !important;
+  line-height: 1.68 !important;
+}
+
+@media (max-width: 1024px){
+  #tech-families .tech-family-item,
+  #example-systems .example-systems-item{
+    min-height: 0;
+  }
+}
+</style>
+<style id="techfit-font-revert-patch">
+/* Restore original heading scales and hero/transition styling while keeping the section polish */
+main section h2.ewd-serif{ letter-spacing: normal !important; }
+
+/* Hero: restore original scale and breadcrumb styling */
+.section-hero .lg\:col-span-7 > div.text-sm.tracking-wide.text-ink\/60{
+  font-size: .875rem !important;
+  letter-spacing: .025em !important;
+  text-transform: none !important;
+  color: inherit !important;
+}
+.section-hero h1{
+  max-width: none !important;
+  letter-spacing: 0 !important;
+  font-size: 2.25rem !important;
+  line-height: 1.05 !important;
+}
+@media(min-width:768px){
+  .section-hero h1{
+    font-size: 3rem !important;
+    line-height: 1 !important;
+  }
+}
+.section-hero p.text-sm.font-semibold.tracking-wide.text-ink\/70{
+  font-size: .875rem !important;
+  line-height: 1.25rem !important;
+  letter-spacing: .025em !important;
+  text-transform: none !important;
+}
+.section-hero p.max-w-xl{
+  font-size: 1rem !important;
+  line-height: 1.625 !important;
+}
+
+/* Interactive view: restore original heading and preview title scale */
+#techfit-focus > div > div:first-child > div:first-child > h2{
+  font-size: 1.5rem !important;
+  line-height: 1.25 !important;
+}
+@media(min-width:768px){
+  #techfit-focus > div > div:first-child > div:first-child > h2{
+    font-size: 1.875rem !important;
+    line-height: 2.25rem !important;
+  }
+}
+#techfit-focus > div > div:first-child > div:first-child > p{
+  max-width: 42rem !important;
+  font-size: 1rem !important;
+  line-height: 1.625 !important;
+}
+#techfit-focus .focus-panel > .flex > div:first-child > div:nth-child(2){
+  font-family: inherit !important;
+  font-size: 1.5rem !important;
+  line-height: 1.375 !important;
+  font-weight: 600 !important;
+}
+
+/* Restore original section heading scales */
+#tech-families h2,
+#tech-operating-ranges h2,
+#equipment-blocks h2,
+#streams h2,
+#kpis-selection h2,
+#tech-next-steps h2{
+  font-size: 1.5rem !important;
+  line-height: 2rem !important;
+}
+@media(min-width:768px){
+  #tech-families h2,
+  #tech-operating-ranges h2,
+  #equipment-blocks h2,
+  #streams h2,
+  #kpis-selection h2,
+  #tech-next-steps h2{
+    font-size: 1.875rem !important;
+    line-height: 2.25rem !important;
+  }
+}
+#fit-logic h2,
+#tech-evaluation h2,
+#tech-deliverables h2{
+  font-size: 2.25rem !important;
+  line-height: 2.5rem !important;
+}
+
+/* Last section: revert to the original plain two-column layout */
+#tech-next-steps [class*="lg:col-span-7"]{
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+#tech-next-steps [class*="lg:col-span-7"] a{
+  box-shadow: none !important;
+}
+#tech-next-steps [class*="lg:col-span-5"] h2{
+  max-width: none !important;
+}
+</style>
+<style>
+/* Section heading alignment pass */
+.section-kicker,
+.lg\:col-span-5 > p.text-xs.font-semibold.uppercase,
+.lg\:col-span-5 > p.text-xs.font-semibold[class*="uppercase"]{
+  font-size:.72rem !important;
+  line-height:1.2 !important;
+  letter-spacing:.22em !important;
+  text-transform:uppercase !important;
+  color:rgb(6 78 59) !important;
+  font-weight:600 !important;
+  margin:0 0 .45rem 0 !important;
+}
+
+.lg\:col-span-5 > h2.ewd-serif.section-title,
+.lg\:col-span-5 > h2.ewd-serif.text-4xl.text-gray-950,
+.lg\:col-span-5 > h2.ewd-serif.text-2xl.md\:text-3xl.text-gray-950{
+  font-size:1.875rem !important;
+  line-height:1.12 !important;
+  font-weight:400 !important;
+  letter-spacing:normal !important;
+  margin-top:0 !important;
+}
+
+@media (max-width: 767px){
+  .lg\:col-span-5 > h2.ewd-serif.section-title,
+  .lg\:col-span-5 > h2.ewd-serif.text-4xl.text-gray-950,
+  .lg\:col-span-5 > h2.ewd-serif.text-2xl.md\:text-3xl.text-gray-950{
+    font-size:1.5rem !important;
+    line-height:1.16 !important;
+  }
+}
+</style>
+
+<style id="enwater-logo-refinement-v1">
+.brand-logo,.nav-logo,.nav-brand-logo{height:38px!important;width:auto!important;max-width:66px!important;object-fit:contain!important;background:transparent!important;border-radius:0!important;padding:0!important;box-shadow:none!important;}
+.brand span,.nav-brand span{white-space:nowrap;}
+.footer-logo{height:34px;width:auto;max-width:60px;object-fit:contain;background:transparent;border-radius:0;padding:0;box-shadow:none;display:block;}
+.footer-brand,.foot-brand{display:flex;align-items:center;gap:10px;}
+</style>
+
+
+
+
+<script id="design-sourcing-active-chip-visible-v42">
+(function(){
+  function showActiveChip(){
+    var nav = document.querySelector('.design-sourcing-section-nav .inner');
+    var active = nav && nav.querySelector('a.is-active');
+    if(!nav || !active) return;
+    var navRect = nav.getBoundingClientRect();
+    var activeRect = active.getBoundingClientRect();
+    if(activeRect.right > navRect.right || activeRect.left < navRect.left){
+      active.scrollIntoView({block:'nearest', inline:'center'});
+    }
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', showActiveChip);
+  else showActiveChip();
+})();
+</script>
+<link href="../exported-ui-styles.css" rel="stylesheet"/><link rel="icon" type="image/png" href="../assets/images/enwater-design-logo-nav.png" />
+</head>
+<body class="ewd-sans"><header class="site-topnav">
+<div class="wrap">
+<a aria-label="EnWater Design home" class="brand" href="../home.html">
+<img alt="EnWater Design logo" class="nav-logo" src="../assets/images/enwater-design-logo.png"/>
+<span>EnWater Design</span>
+</a>
+<nav class="desktop-nav">
+<ul>
+<li><a class="rootlink" href="../home.html">Home</a></li>
+<li>
+            <a class="rootlink " href="../About/about.html">About</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a class="" href="../About/about.html">About Us</a>
+              <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+            </div>
+          </li>
+<li>
+<a class="rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink active" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Projects/index.html">Projects</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</li>
+<li><a class="rootlink nav-login" href="../login.html">Login</a></li>
+<li><a class="rootlink nav-cta" href="../get-in-touch.html">Get in touch</a></li>
+</ul>
+</nav>
+<button aria-expanded="false" aria-label="Toggle menu" class="mobile-nav-toggle" type="button">
+<span class="hamburger-line line-1"></span>
+<span class="hamburger-line line-2"></span>
+<span class="hamburger-line line-3"></span>
+</button>
+</div>
+<div class="mobile-nav-panel">
+<div class="mobile-nav-content">
+<div class="mobile-nav-item">
+<a class="mobile-rootlink" href="../home.html">Home</a>
+</div>
+<div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink " href="../About/about.html">About</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a class="" href="../About/about.html">About Us</a>
+            <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+          </div>
+        </div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage Overview</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink active" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Projects/index.html">Projects</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<a class="mobile-login-btn" href="../login.html">Login</a>
+</div>
+<div class="mobile-nav-item no-border">
+<a class="mobile-cta-btn" href="../get-in-touch.html">Get in touch</a>
+</div>
+</div>
+</div>
+</header>
+<nav aria-label="Design &amp; Sourcing section navigation" class="design-sourcing-section-nav"><div class="inner"><span class="section-name">Design &amp; Sourcing</span><a class="" href="index.html">Design &amp; Sourcing Pathways</a><a class="" href="specialist-support.html">Specialist Support</a><a class="" href="baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a><a class="" href="requirements-reuse-savings.html">Requirements, reuse &amp; savings</a><a class="is-active" href="technology-equipment-fit.html">Technology &amp; equipment fit</a><a class="" href="system-integration-automation-de-risking.html">System integration</a><a class="" href="sourcing-advisory.html">Sourcing advisory</a><a class="" href="implementation-applied-support.html">Implementation</a></div></nav>
+<main><section class="bg-cream border-b hairline section-hero">
+<div class="max-w-6xl mx-auto px-6 py-12 md:py-14">
+<div class="grid lg:grid-cols-12 gap-10 items-stretch">
+<div class="lg:col-span-7">
+<div class="text-sm tracking-wide text-ink/60">Design &amp; Sourcing › Technology &amp; Equipment Fit</div>
+<h1 class="ewd-serif mt-3 text-4xl md:text-5xl leading-[1.05] text-ink">Technology &amp; Equipment Fit</h1>
+<p class="mt-3 text-sm font-semibold tracking-wide text-ink/70">Consulting &amp; Design · Baseline → Requirements → Fit → Procurement → Delivery support</p>
+<p class="mt-5 max-w-xl text-ink/80 leading-relaxed">On paper, many technologies look suitable. The main question is whether they fit your site conditions, available space, operator capacity and performance goals.</p>
+<p class="mt-4 max-w-xl text-ink/80 leading-relaxed">This stage checks that early, before suppliers are compared in detail or design work moves too far ahead.</p>
+<p class="mt-4 max-w-xl text-ink/80 leading-relaxed">We set the operating range each option must handle, the site limits it must fit within, and the supplier information needed for a fair comparison. That gives you a shortlist based on what can actually be built and run, not just what looks good on a datasheet.</p>
+<div class="mt-7 flex flex-wrap gap-2">
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-white/70 px-3 py-1 text-[11px] text-ink/80">Technology families</span>
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-white/70 px-3 py-1 text-[11px] text-ink/80">Operating range fit</span>
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-white/70 px-3 py-1 text-[11px] text-ink/80">KPIs &amp; supplier checks</span>
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-white/70 px-3 py-1 text-[11px] text-ink/80">Vendor-ready selection basis</span>
+</div>
+<div class="mt-7 flex flex-wrap gap-3">
+<a class="inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-6 py-3 text-sm font-medium shadow-soft hover:opacity-95" href="#techfit-focus">
+ Explore the technology view<span aria-hidden="true">→</span>
+</a>
+<a class="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white/70 text-ink px-6 py-3 text-sm font-medium hover:bg-white" href="system-integration-automation-de-risking.html">
+ Next: Integration &amp; automation
+ </a>
+</div>
+</div>
+<div class="lg:col-span-5">
+<div class="leave-card rounded-2xl shadow-soft h-full flex flex-col p-7 md:p-8"><div class="leave-split"><div class="leave-col leave-col--outputs"><div class="leave-kicker">Key outputs</div><ul class="leave-list"><li>Shortlist with clear reasons for each option</li><li>Operating range notes for each shortlisted option</li><li>KPIs, monitoring points and supplier checks</li><li>Evaluation matrix so bids are compared on the same basis</li></ul></div><div class="leave-col leave-col--triggers"><div class="leave-kicker">Typical triggers</div><ul class="leave-list"><li>New reuse target</li><li>Retrofit under tight footprint</li><li>Unstable influent</li><li>Too many vendor claims to compare</li></ul></div></div></div>
+</div>
+</div>
+</div>
+</section><section class="border-b hairline bg-cream" id="techfit-offer">
+<div class="max-w-6xl mx-auto px-6 py-10"><div class="bg-forest2 text-white rounded-3xl border border-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.25)] px-8 py-10">
+<div class="text-xs tracking-wide uppercase opacity-80">Offer <span class="mx-2 opacity-60">|</span> Make the shortlist buildable and clear</div>
+<h2 class="ewd-serif mt-2 text-2xl md:text-3xl font-semibold leading-tight">Technology &amp; equipment fit</h2>
+<p class="mt-4 text-lg leading-relaxed opacity-90 max-w-3xl">
+ We translate performance targets and site constraints into a clear shortlist, setting connection points, supplier checks and operator needs so vendors design, price and respond on the same basis.
+ </p>
+<div class="mt-6 flex flex-wrap gap-3">
+<span class="ewd-chip req"><span class="tag">SET</span> key constraints</span>
+<span class="ewd-chip req"><span class="tag">SET</span> connections + ranges</span>
+<span class="ewd-chip req"><span class="tag">CHECKS</span> performance criteria + supplier information</span>
+<span class="ewd-chip req"><span class="tag">DE-RISK</span> “brochure fit” outcomes</span>
+</div>
+<div class="mt-7 grid md:grid-cols-3 gap-3">
+<div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+<div class="text-xs tracking-wide opacity-80">Where projects fail</div>
+<p class="mt-2 text-sm leading-relaxed opacity-95">
+ Shortlists can miss physical and operating limits, such as footprint, headloss, connections or maintainability, and the chosen package becomes hard to build or run.
+ </p>
+</div>
+<div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+<div class="text-xs tracking-wide opacity-80">What we set</div>
+<ul class="mt-2 text-sm leading-relaxed opacity-95 list-disc pl-5 space-y-1">
+<li>Fit constraints, including space, headloss, access and shutdown periods.</li>
+<li>Operator capacity (simplicity, spares, maintenance load).</li>
+<li>Supplier checks, including KPIs, sampling points and performance criteria.</li>
+</ul>
+</div>
+<div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+<div class="text-xs tracking-wide opacity-80">How it changes delivery</div>
+<p class="mt-2 text-sm leading-relaxed opacity-95">
+ Vendors price to the same boundaries and performance criteria. Comparisons become fair, connection points are clearer, and commissioning checks are set early.
+ </p>
+</div>
+</div>
+<div class="mt-5 rounded-2xl bg-white/5 border border-white/10 p-4">
+<div class="text-xs tracking-wide opacity-80">Scope boundary</div>
+<p class="mt-2 text-sm leading-relaxed opacity-95">
+ We define the process-side fit criteria for selection, including the operating range, site limits, operator capacity, and the information suppliers must provide to show that a proposed solution is suitable for the duty.
+ </p>
+</div>
+<div class="mt-6 flex flex-wrap items-center gap-3">
+<a class="ewd-btn primary" href="../get-in-touch.html" style="background:var(--accent);">Open an enquiry</a>
+<a class="ewd-btn" href="#techfit-focus">See the interactive view</a>
+</div>
+</div></div>
+</section><section class="bg-cream border-b hairline" id="techfit-focus"><div class="max-w-6xl mx-auto px-6 py-10 md:py-12"><div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6"><div><div class="text-sm tracking-wide text-ink/60">Interactive view</div><h2 class="ewd-serif mt-2 text-2xl md:text-3xl leading-tight text-ink">Choose a constraint, see how technology fit changes</h2><p class="mt-3 max-w-2xl text-ink/80 leading-relaxed">Technology fit is not a vendor brochure decision. This view shows which constraints usually dominate, such as space, energy, O&amp;M and verification, and what we set early so the shortlist stays clear.</p></div><div class="text-xs text-ink/60">Click a card to preview how the work changes.</div></div><div class="mt-6 grid sm:grid-cols-2 md:grid-cols-3 gap-3"><button aria-selected="false" class="focus-btn text-left rounded-2xl border border-ink/15 bg-white/70 p-5 hover:bg-white focus:outline-none min-h-[96px]" data-focus="space" type="button"><div class="font-medium text-ink">Space / layout limits</div><div class="mt-1 text-sm text-ink/70">Retrofit geometry, connections, headloss and access limits.</div></button><button aria-selected="false" class="focus-btn text-left rounded-2xl border border-ink/15 bg-white/70 p-5 hover:bg-white focus:outline-none min-h-[96px]" data-focus="ops" type="button"><div class="font-medium text-ink">Operator capacity</div><div class="mt-1 text-sm text-ink/70">Simplicity, automation burden, maintainability.</div></button><button aria-selected="false" class="focus-btn text-left rounded-2xl border border-ink/15 bg-white/70 p-5 hover:bg-white focus:outline-none min-h-[96px]" data-focus="energy" type="button"><div class="font-medium text-ink">Energy / heat limits</div><div class="mt-1 text-sm text-ink/70">Power footprint, heat recovery, duty cycles.</div></button><button aria-selected="true" class="focus-btn text-left rounded-2xl border border-ink/15 bg-white/70 p-5 hover:bg-white focus:outline-none min-h-[96px]" data-focus="risk" type="button"><div class="font-medium text-ink">Checks &amp; risk controls</div><div class="mt-1 text-sm text-ink/70">Performance ranges, verification depth and traceability.</div></button><button aria-selected="false" class="focus-btn text-left rounded-2xl border border-ink/15 bg-white/70 p-5 hover:bg-white focus:outline-none min-h-[96px]" data-focus="capex" type="button"><div class="font-medium text-ink">CAPEX / OPEX drivers</div><div class="mt-1 text-sm text-ink/70">Lifecycle cost, chemicals, spares, waste routes.</div></button></div><div class="mt-6"><div class="focus-panel rounded-2xl border border-ink/15 bg-white/70 p-6 md:p-7 bg-white/80 border-ink/10" data-focus="space" hidden=""><div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3"><div><div class="text-sm tracking-wide text-ink/60">Preview</div><div class="mt-1 font-semibold text-ink text-2xl leading-snug">Space-driven selection</div><div class="mt-3 flex flex-wrap gap-2"><span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Footprint</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Connections</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Hydraulics</span></div></div></div><div class="mt-6 grid sm:grid-cols-2 gap-6"><div class="rounded-2xl border border-ink/10 bg-white/80 p-5"><div class="text-sm font-semibold text-ink">What we focus on</div><ul class="mt-3 space-y-2 text-sm text-ink/80"><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Map equipment ranges and access</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Check headloss and elevation constraints</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Plan shutdown periods and bypass logic</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Set the connection points vendors must respect</span></li></ul></div><div class="rounded-2xl border border-ink/10 bg-white/80 p-5"><div class="text-sm font-semibold text-ink">Checks / control emphasis</div><ul class="mt-3 space-y-2 text-sm text-ink/80"><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Information for constructability</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Performance checks for integration readiness</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Connection drawings + hold points</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Risk controls for connections</span></li></ul></div></div><div class="mt-4 rounded-2xl border border-ink/10 bg-cream px-4 py-3"><div class="text-sm tracking-wide text-ink/60">Typical outputs</div><div class="mt-1 text-sm text-ink/80">Fit notes and connection constraints so shortlists do not ignore actual site conditions.</div></div></div><div class="focus-panel rounded-2xl border border-ink/15 bg-white/70 p-6 md:p-7 bg-white/80 border-ink/10" data-focus="ops" hidden=""><div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3"><div><div class="text-sm tracking-wide text-ink/60">Preview</div><div class="mt-1 font-semibold text-ink text-2xl leading-snug">Operator-driven selection</div><div class="mt-3 flex flex-wrap gap-2"><span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Simplicity</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Reliability</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Control strategy</span></div></div></div><div class="mt-6 grid sm:grid-cols-2 gap-6"><div class="rounded-2xl border border-ink/10 bg-white/80 p-5"><div class="text-sm font-semibold text-ink">What we focus on</div><ul class="mt-3 space-y-2 text-sm text-ink/80"><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Reduce manual steps and failure modes</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Define automation and alarm philosophy</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Clarify consumables + maintenance</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Align to operator capacity on site</span></li></ul></div><div class="rounded-2xl border border-ink/10 bg-white/80 p-5"><div class="text-sm font-semibold text-ink">Checks / control emphasis</div><ul class="mt-3 space-y-2 text-sm text-ink/80"><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Maintainability checks, not just performance</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Stability checks</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Monitoring plan that operators can run</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Handover requirements</span></li></ul></div></div><div class="mt-4 rounded-2xl border border-ink/10 bg-cream px-4 py-3"><div class="text-sm tracking-wide text-ink/60">Typical outputs</div><div class="mt-1 text-sm text-ink/80">Operator-ready fit criteria + operating checks that prevent ‘too complex to run’ outcomes.</div></div></div><div class="focus-panel rounded-2xl border border-ink/15 bg-white/70 p-6 md:p-7 bg-white/80 border-ink/10" data-focus="energy" hidden=""><div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3"><div><div class="text-sm tracking-wide text-ink/60">Preview</div><div class="mt-1 font-semibold text-ink text-2xl leading-snug">Energy/heat-driven selection</div><div class="mt-3 flex flex-wrap gap-2"><span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Power</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Heat use</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Duty cycles</span></div></div></div><div class="mt-6 grid sm:grid-cols-2 gap-6"><div class="rounded-2xl border border-ink/10 bg-white/80 p-5"><div class="text-sm font-semibold text-ink">What we focus on</div><ul class="mt-3 space-y-2 text-sm text-ink/80"><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Confirm electrical limits + expansion</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Assess heat source viability if thermal involved</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Define duty cycles and peak operation</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Set energy KPIs alongside quality KPIs</span></li></ul></div><div class="rounded-2xl border border-ink/10 bg-white/80 p-5"><div class="text-sm font-semibold text-ink">Checks / control emphasis</div><ul class="mt-3 space-y-2 text-sm text-ink/80"><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Information for energy performance</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Commissioning checks for energy KPIs</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Risk checks for heat availability</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Integration notes for utilities</span></li></ul></div></div><div class="mt-4 rounded-2xl border border-ink/10 bg-cream px-4 py-3"><div class="text-sm tracking-wide text-ink/60">Typical outputs</div><div class="mt-1 text-sm text-ink/80">Energy-aligned shortlist criteria + KPI ranges vendors must design to.</div></div></div><div class="focus-panel rounded-2xl border border-ink/15 bg-white/70 p-6 md:p-7 bg-white/80 border-ink/10" data-focus="risk"><div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3"><div><div class="text-sm tracking-wide text-ink/60">Preview</div><div class="mt-1 font-semibold text-ink text-2xl leading-snug">Check-driven selection</div><div class="mt-3 flex flex-wrap gap-2"><span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Performance criteria</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Verification</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Clarity</span></div></div></div><div class="mt-6 grid sm:grid-cols-2 gap-6"><div class="rounded-2xl border border-ink/10 bg-white/80 p-5"><div class="text-sm font-semibold text-ink">What we focus on</div><ul class="mt-3 space-y-2 text-sm text-ink/80"><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Write performance ranges for each critical parameter</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Define sampling and monitoring depth</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Set commissioning and performance verification expectations</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Clarify what ‘success’ means in writing</span></li></ul></div><div class="rounded-2xl border border-ink/10 bg-white/80 p-5"><div class="text-sm font-semibold text-ink">Checks / control emphasis</div><ul class="mt-3 space-y-2 text-sm text-ink/80"><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Audit-ready information trail</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Outlier and excursion handling</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Monitoring + reporting structure</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Clear performance language</span></li></ul></div></div><div class="mt-4 rounded-2xl border border-ink/10 bg-cream px-4 py-3"><div class="text-sm tracking-wide text-ink/60">Typical outputs</div><div class="mt-1 text-sm text-ink/80">Checks plan and performance ranges that turn supplier claims into clear commitments.</div></div></div><div class="focus-panel rounded-2xl border border-ink/15 bg-white/70 p-6 md:p-7 bg-white/80 border-ink/10" data-focus="capex" hidden=""><div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3"><div><div class="text-sm tracking-wide text-ink/60">Preview</div><div class="mt-1 font-semibold text-ink text-2xl leading-snug">Cost-driver selection</div><div class="mt-3 flex flex-wrap gap-2"><span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Lifecycle cost</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Chemicals</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Waste routes</span></div></div></div><div class="mt-6 grid sm:grid-cols-2 gap-6"><div class="rounded-2xl border border-ink/10 bg-white/80 p-5"><div class="text-sm font-semibold text-ink">What we focus on</div><ul class="mt-3 space-y-2 text-sm text-ink/80"><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Identify true OPEX drivers (chemicals, energy, waste)</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Assess spares and replacement cycles</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Quantify risk-costs of non-performance</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Bound value engineering opportunities</span></li></ul></div><div class="rounded-2xl border border-ink/10 bg-white/80 p-5"><div class="text-sm font-semibold text-ink">Checks / control emphasis</div><ul class="mt-3 space-y-2 text-sm text-ink/80"><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Basis for cost assumptions</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>KPIs that protect economics</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Risk-cost linkage in evaluation</span></li><li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Vendor clarifications tied to numbers</span></li></ul></div></div><div class="mt-4 rounded-2xl border border-ink/10 bg-cream px-4 py-3"><div class="text-sm tracking-wide text-ink/60">Typical outputs</div><div class="mt-1 text-sm text-ink/80">Cost driver map + evaluation criteria that keep bids comparable and investment-ready.</div></div></div></div></div></section><section class="border-b bg-cream hairline" id="technology-focus">
+<div class="max-w-6xl mx-auto px-6 py-10">
+<div class="ewd-focus-hero">
+<div class="ewd-focus-hero-inner">
+<div class="ewd-focus-grid">
+<div class="ewd-focus-copy">
+<div class="ewd-focus-kicker">VIEW 3 OF 4</div>
+<h2 class="ewd-focus-title">Select by operating range, KPI and supplier information</h2>
+<p class="ewd-focus-body">Keep selection independent: define operating ranges and KPI expectations first, then compare options and vendors against the same rules.</p>
+</div>
+<aside aria-label="What this clarifies" class="ewd-focus-panel">
+<h3>WHAT THIS CLARIFIES</h3>
+<ul>
+<li><span class="ewd-focus-pill">Operating range fit</span> - fouling/scaling, organics, metals, variability</li><li><span class="ewd-focus-pill">KPI pack</span> - energy, chemicals, stability, cleaning and downtime</li><li><span class="ewd-focus-pill">Supplier information</span> - what vendors must demonstrate and how</li></ul>
+<a class="ewd-focus-next-btn" href="system-integration-automation-de-risking.html">Next: Integration &amp; automation</a>
+</aside>
+</div>
+</div>
+</div>
+</div>
+</section><section class="bg-cream border-b hairline" id="fit-logic">
+<div class="max-w-6xl mx-auto px-6 py-12">
+<div class="grid lg:grid-cols-12 gap-10 items-start">
+<div class="lg:col-span-5">
+<p class="text-xs font-semibold tracking-[0.2em] text-emerald-900 uppercase section-kicker">Fit logic</p>
+<h2 class="ewd-serif text-gray-950 section-title">
+ Match needs to technologies - not technologies to needs
+ </h2>
+<p class="mt-3 text-gray-700 leading-relaxed">
+ Technology selection is often treated like a shortlist exercise. We treat it as a fit problem:
+ which options survive your operating range, constraints, residuals and verification requirements.
+ </p>
+<p class="mt-4 text-gray-700 leading-relaxed">
+ Before we talk about specific technologies, we clarify how the plant has to behave across flows,
+ loads, seasons and operating scenarios. That behaviour becomes the reference point for technology fit.
+ </p>
+</div>
+<div class="lg:col-span-7 grid md:grid-cols-2 gap-4">
+<article class="bg-white/60 border hairline rounded-sm p-6 h-full">
+<h3 class="font-semibold text-gray-900">Process fit</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Stability under variability, failure modes under upset, and recoverability after excursions.
+ We look at how options behave when the plant is not in textbook conditions.
+ </p>
+</article>
+<article class="bg-white/60 border hairline rounded-sm p-6 h-full">
+<h3 class="font-semibold text-gray-900">Barrier fit</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Where reuse is involved, we test upstream stability, fouling and scaling risks, and how
+ performance will be verified at the barrier.
+ </p>
+</article>
+<article class="bg-white/60 border hairline rounded-sm p-6 h-full">
+<h3 class="font-semibold text-gray-900">Operational fit</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Control complexity, operator workload, maintainability, spares and response time to upsets.
+ We ask what it will actually feel like to run the plant day-to-day.
+ </p>
+</article>
+<article class="bg-white/60 border hairline rounded-sm p-6 h-full">
+<h3 class="font-semibold text-gray-900">Integration fit</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Connections, footprint, hydraulics, odor / vent handling, residuals handling and constructability.
+ This is where technology decisions are aligned with your site conditions.
+ </p>
+</article>
+</div>
+</div>
+</div>
+</section><section class="bg-cream border-b hairline" id="tech-evaluation">
+<div class="max-w-6xl mx-auto px-6 py-12">
+<div class="grid lg:grid-cols-12 gap-10 items-start">
+<div class="lg:col-span-5">
+<p class="text-xs font-semibold tracking-[0.2em] text-emerald-900 uppercase section-kicker">Evaluation</p>
+<h2 class="ewd-serif text-gray-950 section-title">
+ A comparable evaluation approach (so bids are not marketing competitions)
+ </h2>
+<p class="mt-3 text-gray-700 leading-relaxed">
+ We build scorecards that force comparability on the things that drive outcomes: performance
+ commitments, OPEX assumptions, automation scope, commissioning plan and documentation.
+ </p>
+<p class="mt-4 text-gray-700 leading-relaxed">
+ The goal is not to over-engineer the tender. It is to make sure that when you compare options,
+ you are comparing like-for-like operating ranges, not just headline CAPEX or marketing claims.
+ </p>
+</div>
+<div class="lg:col-span-7 grid md:grid-cols-2 gap-4">
+<article class="bg-white/60 border hairline rounded-sm p-6 h-full">
+<h3 class="font-semibold text-gray-900">Comparable assumptions</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Energy price, chemical regime, cleaning frequency, sludge disposal route and other
+ key operating assumptions are normalised before bids are scored.
+ </p>
+</article>
+<article class="bg-white/60 border hairline rounded-sm p-6 h-full">
+<h3 class="font-semibold text-gray-900">Performance commitments</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ What is guaranteed, under what operating range and for how long. This keeps outcome and
+ compliance at the centre of the decision, not just installed hardware.
+ </p>
+</article>
+<article class="bg-white/60 border hairline rounded-sm p-6 h-full">
+<h3 class="font-semibold text-gray-900">Commissioning commitments</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Stabilisation plans, test periods, operator preparation and handover expectations are made explicit,
+ so they can be priced and scheduled rather than assumed.
+ </p>
+</article>
+<article class="bg-white/60 border hairline rounded-sm p-6 h-full">
+<h3 class="font-semibold text-gray-900">Documentation commitments</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Control description, I/O list, O&amp;M manuals, spares and as-builts - logged as deliverables
+ so they do not disappear when projects get busy.
+ </p>
+</article>
+</div>
+</div>
+</div>
+</section><section class="bg-cream border-b hairline" id="tech-families"><div class="max-w-6xl mx-auto px-6 py-12">
+<div class="grid lg:grid-cols-12 gap-10 items-start"><div class="lg:col-span-5"><p class="section-kicker">Technology families</p><h2 class="ewd-serif text-gray-950 section-title">Technology families we work with</h2><p class="mt-3 text-gray-700 leading-relaxed">
+ We do not promote a single proprietary technology. Instead, we work across a set of proven families and
+ combinations that can be configured for STP, ETP, greywater, vehicle wash, laundry and biosolids streams.
+ </p><ul class="mt-4 text-sm text-gray-700 space-y-2 list-disc list-inside"><li>Group technologies into families instead of single products, so options stay open while decisions stay practical.</li><li>Focus on proven, reference-backed combinations that work for STP, ETP, greywater, vehicle wash, laundry and biosolids.</li></ul></div><div class="lg:col-span-7 tech-family-carousel"><article class="bg-white/55 border hairline rounded-sm p-6 ewd-ink-card tech-family-item"><h3 class="mt-2 font-semibold text-gray-900">Chemical treatment &amp; enhanced pre-treatment</h3><p class="mt-2 text-sm text-gray-700 leading-relaxed">Chemically enhanced pre-treatment, pH correction and batch treatment blocks that support heavy metals
+ removal, colour reduction or other specific industrial contaminants.</p></article><article class="bg-white/55 border hairline rounded-sm p-6 ewd-ink-card tech-family-item"><h3 class="mt-2 font-semibold text-gray-900">Biological treatment - MBBR-based and hybrids</h3><p class="mt-2 text-sm text-gray-700 leading-relaxed">MBBR / IFAS-type systems combined with activated sludge or clarifiers, used for STP and many ETP
+ upgrades where compact, robust biology is needed with stable performance.</p></article><article class="bg-white/55 border hairline rounded-sm p-6 ewd-ink-card tech-family-item"><h3 class="mt-2 font-semibold text-gray-900">Solid-liquid separation - DAF, lamella, clarifiers</h3><p class="mt-2 text-sm text-gray-700 leading-relaxed">Dissolved air flotation, lamella settlers and clarifiers for primary or secondary separation in
+ industrial ETPs, retrofits or where better solids capture is required.</p></article><article class="bg-white/55 border hairline rounded-sm p-6 ewd-ink-card tech-family-item"><h3 class="mt-2 font-semibold text-gray-900">Filtration - dead-end and crossflow</h3><p class="mt-2 text-sm text-gray-700 leading-relaxed">Media, cartridge and other dead-end filters used for polishing before reuse, and crossflow filters
+ supporting UF / NF / RO where higher pressures and fouling control matter.</p></article><article class="bg-white/55 border hairline rounded-sm p-6 ewd-ink-card tech-family-item"><h3 class="mt-2 font-semibold text-gray-900">Membrane-based reuse &amp; desalination</h3><p class="mt-2 text-sm text-gray-700 leading-relaxed">UF, NF and RO treatment lines for reuse and desalination, including high-TDS segments that must be coordinated
+ with brine and ZLD logic rather than treated in isolation.</p></article><article class="bg-white/55 border hairline rounded-sm p-6 ewd-ink-card tech-family-item"><h3 class="mt-2 font-semibold text-gray-900">Evaporators &amp; ZLD systems</h3><p class="mt-2 text-sm text-gray-700 leading-relaxed">Mechanical vapour recompression (MVR) evaporators, concentrators and crystallisers used where brine or high-TDS streams must be reduced to a manageable solid or near-zero liquid discharge, coordinated with upstream RO and chemical treatment.</p></article><article class="bg-white/55 border hairline rounded-sm p-6 ewd-ink-card tech-family-item"><h3 class="mt-2 font-semibold text-gray-900">Advanced oxidation and polishing</h3><p class="mt-2 text-sm text-gray-700 leading-relaxed">Advanced oxidation and polishing steps (AOP, ozone, UV and similar) used where the risk profile, reuse
+ class or contaminant mix genuinely justifies the additional complexity.</p></article><article class="bg-white/55 border hairline rounded-sm p-6 ewd-ink-card tech-family-item"><h3 class="mt-2 font-semibold text-gray-900">Biosolids dewatering &amp; thickening</h3><p class="mt-2 text-sm text-gray-700 leading-relaxed">Decanter centrifuges, belt presses, screw presses and filter presses for taking sludge from liquid handling to cake, lowering volumes and preparing material for drying, composting or further treatment.</p></article><article class="bg-white/55 border hairline rounded-sm p-6 ewd-ink-card tech-family-item"><h3 class="mt-2 font-semibold text-gray-900">Drying, composting &amp; fertiliser enhancement</h3><p class="mt-2 text-sm text-gray-700 leading-relaxed">Low-rate and high-rate dryers, composting lines and enhancement steps that turn stabilised sludge into organo-mineral fertiliser or biofertiliser products with defined quality and routes to market.</p></article></div></div></div></section><section class="bg-cream border-b hairline" id="tech-operating-ranges"><div class="max-w-6xl mx-auto px-6 py-12">
+<div class="grid lg:grid-cols-12 gap-10 items-start"><div class="lg:col-span-5"><p class="section-kicker">Operating ranges</p><h2 class="ewd-serif text-gray-950 section-title">Technology operating ranges for site streams</h2><p class="mt-3 text-gray-700 leading-relaxed">
+ For each type of plant and stream, we outline viable technology families and where they fit in the process - 
+ biological, physical-chemical, membrane-based and biosolids pathways.
+ </p><ul class="mt-4 text-sm text-gray-700 space-y-2 list-disc list-inside"><li>Map where each family performs reliably in terms of flows, loads, TDS and variability.</li><li>Show how treatment steps line up with compliance, reuse and, where relevant, ZLD or brine-handling needs.</li></ul></div><div class="lg:col-span-7 grid md:grid-cols-2 gap-4"><article class="bg-white/55 border hairline rounded-sm p-6">
+<h3 class="mt-2 font-semibold text-gray-900">Liquid treatment lines</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Combinations of headworks, biological treatment (e.g. MBBR hybrids, conventional activated sludge),
+ clarification, filtration, disinfection and, where needed, membrane and advanced polishing steps.
+ </p>
+</article><article class="bg-white/55 border hairline rounded-sm p-6">
+<h3 class="mt-2 font-semibold text-gray-900">Biosolids and side-streams</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Dewatering, drying, composting and fertiliser / biofertiliser routes for sludge and biosolids, and
+ appropriate handling for concentrates, brines and high-strength side streams.
+ </p>
+</article></div></div></div></section><section class="bg-cream border-b hairline" id="equipment-blocks"><div class="max-w-6xl mx-auto px-6 py-12">
+<div class="grid lg:grid-cols-12 gap-10 items-start"><div class="lg:col-span-5"><p class="section-kicker">Equipment blocks</p><h2 class="ewd-serif text-gray-950 section-title">Equipment blocks and configuration</h2><p class="mt-3 text-gray-700 leading-relaxed">
+ We then break proposed treatment lines into practical equipment blocks that vendors recognise - making it easier to
+ compare offers later without losing sight of the process logic.
+ </p><ul class="mt-4 text-sm text-gray-700 space-y-2 list-disc list-inside"><li>Translate process logic into equipment blocks and packages that vendors recognise and can price.</li><li>Highlight which blocks are essential today and which can be staged or made future-ready.</li></ul></div><div class="lg:col-span-7 grid md:grid-cols-3 gap-4"><article class="bg-white/55 border hairline rounded-sm p-6">
+<h3 class="mt-2 font-semibold text-gray-900">Core process units</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Screens, grit and grease removal, DAF and clarifiers, filters, membrane racks, reactors and contact
+ tanks sized for flows, loads and the variability we have already mapped.
+ </p>
+</article><article class="bg-white/55 border hairline rounded-sm p-6">
+<h3 class="mt-2 font-semibold text-gray-900">Dosing, disinfection &amp; ancillaries</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Chemical dosing systems, disinfection units, blowers, pumps, mixers and storage tanks, linked to
+ realistic control philosophies and maintenance expectations.
+ </p>
+</article><article class="bg-white/55 border hairline rounded-sm p-6">
+<h3 class="mt-2 font-semibold text-gray-900">Sludge and biosolids handling</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Thickeners, dewatering presses, dryers and associated conveying, storage and loading equipment sized to
+ support chosen biosolids pathways and logistics.
+ </p>
+</article></div></div></div></section><section class="bg-cream border-b hairline" id="streams">
+<div class="max-w-6xl mx-auto px-6 py-12">
+<div class="grid lg:grid-cols-12 gap-10 items-start">
+<div class="lg:col-span-5">
+<p class="section-kicker">Site streams</p><h2 class="ewd-serif text-gray-950 section-title">
+ Streams we typically work with
+ </h2>
+<p class="mt-3 text-gray-700 leading-relaxed">
+ Across all our specialist design work, we focus on operating plants and facilities handling:
+ </p>
+</div>
+<div class="lg:col-span-7">
+<div class="flex flex-wrap gap-2 text-xs">
+<span class="inline-flex items-center rounded-full bg-white/70 border hairline px-3 py-1 text-gray-800">
+ STP - Municipal / domestic sewage
+ </span>
+<span class="inline-flex items-center rounded-full bg-white/70 border hairline px-3 py-1 text-gray-800">
+ ETP - Industrial / trade effluent
+ </span>
+<span class="inline-flex items-center rounded-full bg-white/70 border hairline px-3 py-1 text-gray-800">
+ GWTP - Greywater treatment
+ </span>
+<span class="inline-flex items-center rounded-full bg-white/70 border hairline px-3 py-1 text-gray-800">
+ VWRP - Vehicle wash water
+ </span>
+<span class="inline-flex items-center rounded-full bg-white/70 border hairline px-3 py-1 text-gray-800">
+ LWRP - Laundry wash water
+ </span>
+<span class="inline-flex items-center rounded-full bg-white/70 border hairline px-3 py-1 text-emerald-900">
+ Biosolids &amp; sludge to resource recovery
+ </span>
+</div>
+</div>
+</div>
+</div>
+</section><section class="bg-cream border-b hairline" id="kpis-selection"><div class="max-w-6xl mx-auto px-6 py-12">
+<div class="grid lg:grid-cols-12 gap-10 items-start"><div class="lg:col-span-5"><p class="section-kicker">Selection criteria</p><h2 class="ewd-serif text-gray-950 section-title">KPIs, operating checks and selection criteria</h2><p class="mt-3 text-gray-700 leading-relaxed">
+ For each major block and treatment line, we define the KPIs and operating checks that matter - so technology and
+ equipment choices can be compared fairly and transparently when you go to market.
+ </p><ul class="mt-4 text-sm text-gray-700 space-y-2 list-disc list-inside"><li>Turn process and compliance needs into a handful of measurable KPIs and target ranges.</li><li>Define simple, transparent selection logic so vendor proposals can be compared on more than just unit price.</li></ul></div><div class="lg:col-span-7 grid md:grid-cols-2 gap-4"><article class="bg-white/55 border hairline rounded-sm p-6">
+<h3 class="mt-2 font-semibold text-gray-900">Performance and operational KPIs</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Effluent quality criteria, recovery percentages, specific energy and chemical use, uptime, cleaning
+ frequency and operator attention requirements agreed upfront.
+ </p>
+</article><article class="bg-white/55 border hairline rounded-sm p-6">
+<h3 class="mt-2 font-semibold text-gray-900">Pre-sourcing selection logic</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Criteria to screen technology and equipment families before detailed vendor engagement, keeping options
+ open where useful but avoiding unmanageable complexity.
+ </p>
+</article></div></div></div></section><section class="bg-cream border-b hairline" id="example-systems"><div class="max-w-6xl mx-auto px-6 py-12">
+<!-- Example specialist systems we often design -->
+<div class="grid lg:grid-cols-12 gap-10 items-start"><div class="lg:col-span-5"><p class="section-kicker">Example systems</p><h2 class="ewd-serif text-gray-950 section-title">Example specialist systems we often design</h2><p class="mt-3 text-gray-700 leading-relaxed">To make the technology families more concrete, these are typical system configurations we help owners develop.
+ They are not products - they are examples of how we combine blocks to solve practical problems.</p><div class="mt-4 border-l-4 border-emerald-500/70 pl-4"><h3 class="text-sm font-semibold text-gray-900 tracking-wide">Preparing for vendor-facing specifications</h3><p class="mt-2 text-sm text-gray-700 leading-relaxed">By the end of this focus area we have a clear, documented view of which technologies and equipment blocks make
+ sense, and how their performance will be judged. This becomes the bridge into vendor-neutral specifications
+ and the sourcing advisory work.</p></div></div><div class="lg:col-span-7 example-systems-carousel"><article class="bg-white/55 border hairline rounded-sm p-6 ewd-ink-card example-systems-item">
+<h3 class="mt-2 font-semibold text-gray-900">Compact MBBR-based STP upgrade with TSE reuse</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ For municipal or campus plants with limited space and rising reuse demand. Headworks → MBBR bioreactor
+ → clarifier / DAF → filtration → disinfection, delivering stable compliance and defined TSE classes for
+ landscaping or cooling.
+ </p>
+</article><article class="bg-white/55 border hairline rounded-sm p-6 ewd-ink-card example-systems-item">
+<h3 class="mt-2 font-semibold text-gray-900">Industrial ETP with DAF + MBBR + membranes</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ For food &amp; beverage or light industrial sites. Equalisation → DAF / lamella → MBBR → clarification
+ → filtration / UF → reuse or safe discharge, reducing surcharges and improving sludge handling.
+ </p>
+</article><article class="bg-white/55 border hairline rounded-sm p-6 ewd-ink-card example-systems-item">
+<h3 class="mt-2 font-semibold text-gray-900">Greywater treatment package (GWTP)</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ For residential or mixed-use buildings and campuses. Screening → biological treatment → filtration
+ → disinfection to supply non-potable uses such as flushing and irrigation, reducing fresh water demand.
+ </p>
+</article><article class="bg-white/55 border hairline rounded-sm p-6 ewd-ink-card example-systems-item">
+<h3 class="mt-2 font-semibold text-gray-900">Vehicle wash water reuse skid (VWRP)</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ For fleets, depots and car washes. Solids removal → oil separation → filtration → partial reuse,
+ lowering water purchase and discharge volumes while keeping layout compact.
+ </p>
+</article><article class="bg-white/55 border hairline rounded-sm p-6 ewd-ink-card example-systems-item">
+<h3 class="mt-2 font-semibold text-gray-900">Laundry water recycling (LWRP)</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ For commercial laundries and hospitals. Equalisation → filtration → membrane treatment → partial reuse
+ in washing stages, with careful attention to chemistry and fabric care constraints.
+ </p>
+</article><article class="bg-white/55 border hairline rounded-sm p-6 ewd-ink-card example-systems-item">
+<h3 class="mt-2 font-semibold text-gray-900">Biosolids to compost / biofertiliser</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ For STPs or combined plants. Dewatering → drying / stabilisation → composting or organo- / biofertiliser
+ processing, reducing disposal costs and enabling beneficial use where feasible.
+ </p>
+</article></div></div></div></section><section class="bg-cream border-b hairline" id="tech-procurement-support">
+<div class="max-w-6xl mx-auto px-6 py-12">
+<div class="grid lg:grid-cols-12 gap-10 items-start">
+<div class="lg:col-span-5">
+<p class="text-xs font-semibold tracking-[0.2em] text-emerald-900 uppercase section-kicker">Procurement support</p>
+<h2 class="ewd-serif text-gray-950 section-title">
+ Support through procurement without duplicating the vendor's role
+ </h2>
+<p class="mt-3 text-gray-700 leading-relaxed">
+ Our role is to keep the decision basis intact through procurement: preserve comparability,
+ prevent scope drift and ensure the commissioning obligations remain in the contract package.
+ </p>
+</div>
+<div class="lg:col-span-7 grid md:grid-cols-2 gap-4">
+<article class="bg-white/60 border hairline rounded-sm p-6 h-full">
+<h3 class="font-semibold text-gray-900">Bid alignment workshops</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Walk vendors through the operating range, requirements and verification expectations so that
+ misunderstandings are identified before award.
+ </p>
+</article>
+<article class="bg-white/60 border hairline rounded-sm p-6 h-full">
+<h3 class="font-semibold text-gray-900">Contract-ready performance clauses</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Target ranges, documentation deliverables, operator preparation and verification reporting obligations
+ are translated into language that can fit cleanly in your contracts.
+ </p>
+</article>
+</div>
+</div>
+</div>
+</section><section class="bg-cream border-b hairline" id="tech-deliverables">
+<div class="max-w-6xl mx-auto px-6 py-12">
+<div class="grid lg:grid-cols-12 gap-10 items-start">
+<div class="lg:col-span-5">
+<p class="text-xs font-semibold tracking-[0.2em] text-emerald-900 uppercase section-kicker">Outputs &amp; deliverables</p>
+<h2 class="ewd-serif text-gray-950 section-title">
+ What you receive from the technology-fit pathway
+ </h2>
+<p class="mt-3 text-gray-700 leading-relaxed">
+ The outcome of this pathway is a structured view of which technology families and equipment configurations
+ can truly work on your site - with a clear paper trail that can be handed straight into sourcing
+ or implementation.
+ </p>
+</div>
+<div class="lg:col-span-7 grid md:grid-cols-2 gap-4">
+<article class="bg-white/60 border hairline rounded-sm p-6 h-full">
+<h3 class="font-semibold text-gray-900">Fit &amp; options memo</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Shortlist with rationale against constraints, operating range, residuals and verification needs.
+ Captures why options stay in or out.
+ </p>
+</article>
+<article class="bg-white/60 border hairline rounded-sm p-6 h-full">
+<h3 class="font-semibold text-gray-900">Vendor scorecard</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Comparable scoring criteria with weightings and a basis for recommendation that can be reused
+ across future tenders.
+ </p>
+</article>
+<article class="bg-white/60 border hairline rounded-sm p-6 h-full">
+<h3 class="font-semibold text-gray-900">Clarifications &amp; bid Q&amp;A pack</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Structured questions that expose hidden scope and incompatible assumptions, so bidders respond
+ inside the same operating picture.
+ </p>
+</article>
+<article class="bg-white/60 border hairline rounded-sm p-6 h-full">
+<h3 class="font-semibold text-gray-900">Risk / assumptions register</h3>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">
+ Assumptions logged with verification actions and owner / vendor responsibilities,
+ so there is a home for uncertainty instead of it being ignored.
+ </p>
+</article>
+</div>
+</div>
+</div>
+</section><section class="bg-cream" id="tech-next-steps"><div class="max-w-6xl mx-auto px-6 py-12"><div class="grid lg:grid-cols-12 gap-10 items-start"><div class="lg:col-span-5"><p class="section-kicker">Next step</p><h2 class="ewd-serif text-gray-950 section-title">From design targets to technology fit and integration</h2></div><div class="lg:col-span-7"><p class="text-gray-700 leading-relaxed">This view comes between requirements and integration. Once reuse logic, regulatory drivers and value opportunities are translated into design targets, we use technology fit to narrow in on credible technology families and equipment blocks that can actually meet those targets on your site.</p><p class="mt-4 text-gray-700 leading-relaxed">The next step is Integration &amp; automation, where operating ranges, KPIs and information requests are carried through into how packages connect, how control and monitoring are set up, and how vendor proposals are structured so delivery partners can execute reliably.</p><div class="mt-7 flex flex-wrap gap-3 text-sm"><a class="inline-flex items-center px-4 py-2 rounded-lg bg-white border hairline text-gray-900 hover:bg-white/70 font-semibold" href="requirements-reuse-savings.html">Back: Requirements, reuse &amp; savings</a><a class="inline-flex items-center px-4 py-2 rounded-lg bg-forest2 text-white hover:bg-forest font-semibold" href="system-integration-automation-de-risking.html">Continue to integration &amp; automation</a></div></div></div></div></section></main>
+<style id="design-sourcing-footer-add-v2">
+.ds-footer{background:#1f3731;color:rgba(255,255,255,.86);border-top:1px solid rgba(255,255,255,.10);margin-top:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+.ds-footer *{box-sizing:border-box;}
+.ds-footer-pattern{background-image:radial-gradient(circle at 10% 20%,rgba(255,255,255,.07) 0,rgba(255,255,255,.07) 2px,transparent 2px),radial-gradient(circle at 70% 60%,rgba(255,255,255,.06) 0,rgba(255,255,255,.06) 2px,transparent 2px);background-size:48px 48px,64px 64px;}
+.ds-footer-inner{max-width:72rem;margin:0 auto;padding:3.5rem 1.5rem 2rem;}
+.ds-footer-grid{display:grid;gap:2.5rem;}
+@media(min-width:768px){.ds-footer-grid{grid-template-columns:repeat(3,minmax(0,1fr));}.ds-footer-bottom{flex-direction:row;align-items:center;justify-content:space-between;}}
+.ds-footer-brand{display:flex;align-items:center;gap:.55rem;color:#fff;font-weight:700;letter-spacing:.01em;}
+.ds-footer-dot{width:.625rem;height:.625rem;border-radius:999px;background:#55a092;display:inline-flex;flex:0 0 auto;}
+.ds-footer-text{margin-top:.75rem;color:rgba(255,255,255,.70);font-size:.875rem;line-height:1.65;max-width:24rem;}
+.ds-footer-links{display:grid;gap:.5rem;font-size:.875rem;align-content:start;}
+.ds-footer-links p{font-weight:700;color:#fff;margin:0 0 .15rem;}
+.ds-footer-links a{color:rgba(255,255,255,.84);text-decoration:none;}
+.ds-footer-links a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px;}
+.ds-footer-location{color:rgba(255,255,255,.70);margin:0;}
+.ds-footer-bottom{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.10);display:flex;flex-direction:column;gap:.75rem;color:rgba(255,255,255,.56);font-size:.75rem;}
+.ds-footer-bottom p{margin:0;}
+</style>
+<footer class="footer">
+<div class="wrap">
+<div class="footer-top">
+<div>
+<div class="footer-brand"><img alt="EnWater Design logo" class="footer-logo" src="../assets/images/enwater-design-logo-transparent-mark.png"/><span class="footer-name">EnWater Design</span></div>
+<p class="footer-desc">Independent water, wastewater treatment and reuse consulting, helping owners and operators turn complex challenges into clear decisions and practical outcomes.</p>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<a href="../home.html">Home</a>
+<a href="../About/about.html">About</a>
+<a href="../About/BlogList.html">Our Blog</a>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+</div>
+<div class="footer-col">
+<h4>Services</h4>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing</a>
+<a href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<a href="../Projects/index.html">Projects</a>
+<a href="../Sectors/index.html">Sectors</a>
+</div>
+<div class="footer-col">
+<h4>Pathways</h4>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../Sectors/index.html">Sector Pathways</a>
+</div>
+<div class="footer-col">
+<h4>Get in touch</h4>
+<a href="../get-in-touch.html">Contact form</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">Industrial / CETP</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© <span id="yr"></span> EnWater Design</div>
+<div>Clear systems planning for practical project delivery</div>
+</div>
+</div>
+<script>
+  (function() {
+    const yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+  })();
+</script>
+</footer>
+<script>
+(() => {
+ const root = document.getElementById("techfit-focus");
+ if(!root) return;
+ const btns = Array.from(root.querySelectorAll('.focus-btn'));
+ const panels = Array.from(root.querySelectorAll('.focus-panel'));
+ function show(key){
+ btns.forEach(b => b.setAttribute('aria-selected', b.dataset.focus === key ? 'true' : 'false'));
+ panels.forEach(p => {
+ if(p.dataset.focus === key) p.removeAttribute('hidden');
+ else p.setAttribute('hidden','');
+ });
+ }
+ btns.forEach(b => b.addEventListener('click', () => show(b.dataset.focus)));
+})();
+</script>
+<style id="design-sourcing-anchor-scroll-fix-v39">
+/* Design & Sourcing anchor landing fix: keeps hero/internal links from stopping above the target under the two sticky navigation bars. */
+html{scroll-padding-top:120px!important;}
+[id]{scroll-margin-top:120px!important;}
+</style>
+<script id="design-sourcing-anchor-scroll-fix-v39-script">
+(function(){
+  function anchorTarget(hash){
+    if(!hash || hash === '#') return null;
+    try { return document.getElementById(decodeURIComponent(hash.slice(1))); }
+    catch(e){ return document.getElementById(hash.slice(1)); }
+  }
+  function navOffset(){
+    var total = 14;
+    var top = document.querySelector('header.site-topnav, .topnav');
+    var sub = document.querySelector('.design-sourcing-section-nav');
+    if(top){ total += Math.ceil(top.getBoundingClientRect().height || 0); }
+    if(sub){ total += Math.ceil(sub.getBoundingClientRect().height || 0); }
+    return Math.max(96, total);
+  }
+  function scrollToHash(hash, behavior){
+    var target = anchorTarget(hash);
+    if(!target) return false;
+    var y = target.getBoundingClientRect().top + window.pageYOffset - navOffset();
+    window.scrollTo({top: Math.max(0, y), behavior: behavior || 'smooth'});
+    return true;
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var hash = a.getAttribute('href');
+    if(!hash || hash === '#') return;
+    if(!anchorTarget(hash)) return;
+    e.preventDefault();
+    scrollToHash(hash, 'smooth');
+    if(history && history.pushState){ history.pushState(null, '', hash); }
+    else { window.location.hash = hash; }
+  });
+  window.addEventListener('load', function(){
+    if(!window.location.hash) return;
+    [60, 250, 650].forEach(function(delay){
+      window.setTimeout(function(){ scrollToHash(window.location.hash, 'auto'); }, delay);
+    });
+  });
+})();
+</script>
+<script src="../exported-ui-effects.js"></script></body></html>

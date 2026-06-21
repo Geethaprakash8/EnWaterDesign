@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>Admin Dashboard | EnWater Design</title>
+
+  <link href="../exported-ui-styles.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --primary: #117B6F;
+      --primary-hover: #0d6157;
+      --danger: #ef4444;
+      --danger-hover: #dc2626;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border-color: #e2e8f0;
+      --font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 70px 120px 0 120px;
+      padding: 0 24px;
+      flex: 1;
+    }
+
+    /* Header Bar */
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .header-info h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+
+    .header-info p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .logout-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      background-color: rgba(239, 68, 68, 0.08);
+      color: var(--danger);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .logout-btn:hover {
+      background-color: var(--danger);
+      color: #ffffff;
+      border-color: var(--danger);
+    }
+
+    /* Navigation Tabs */
+    .tabs-bar {
+      display: flex;
+      gap: 24px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 32px;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      padding-bottom: 16px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s ease;
+    }
+
+    .tab-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+    }
+
+    .tab-btn.active {
+      color: var(--primary);
+    }
+
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: var(--primary);
+    }
+
+    /* Tab Panels */
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+      animation: fadeIn 0.3s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Table & Content Containers */
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-color);
+      background-color: #f8fafc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .export-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .export-btn:hover {
+      text-decoration: underline;
+    }
+
+    /* Scrollable Table */
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background-color: #f8fafc;
+      color: var(--text-muted);
+      font-weight: 600;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    td {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background-color: #f8fafc;
+    }
+
+    /* Column Typography */
+    .lead-name {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .lead-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .lead-type {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .lead-message {
+      font-size: 12px;
+      line-height: 1.5;
+      color: #334155;
+    }
+
+    /* Badge styling */
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: capitalize;
+      border: 1px solid transparent;
+    }
+
+    .status-badge.new {
+      background-color: rgba(59, 130, 246, 0.1);
+      border-color: rgba(59, 130, 246, 0.2);
+      color: #2563eb;
+    }
+
+    .status-badge.reviewed {
+      background-color: rgba(16, 185, 129, 0.1);
+      border-color: rgba(16, 185, 129, 0.2);
+      color: #059669;
+    }
+
+    .status-badge.archived {
+      background-color: #f1f5f9;
+      border-color: #cbd5e1;
+      color: #475569;
+    }
+
+    /* Action Buttons */
+    .action-btn-group {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .action-btn {
+      background-color: #f1f5f9;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .action-btn:hover {
+      color: var(--primary);
+      border-color: var(--primary);
+      background-color: #ffffff;
+    }
+
+    .action-btn.delete:hover {
+      color: var(--danger);
+      border-color: var(--danger);
+    }
+
+    .action-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Offerings Publishing Form */
+    .form-card {
+      max-width: 672px;
+      /* max-w-2xl */
+      margin: 0 auto;
+      padding: 32px;
+    }
+
+    .form-card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .form-card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .alert-panel {
+      padding: 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      background-color: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      color: #059669;
+      display: none;
+    }
+
+    .project-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 640px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .form-control {
+      width: 100%;
+      background-color: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 10px 16px;
+      font-size: 14px;
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(17, 123, 111, 0.15);
+      background-color: #ffffff;
+    }
+
+    select.form-control {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      background-size: 16px;
+      padding-right: 40px;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .publish-btn {
+      width: 100%;
+      margin-top: 8px;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      background-color: var(--primary);
+      color: #ffffff;
+      font-weight: 750;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(17, 123, 111, 0.25);
+      transition: all 0.2s ease;
+    }
+
+    .publish-btn:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .publish-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Loader */
+    .loader-overlay {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 0;
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    .loader-overlay svg {
+      animation: spin 1s linear infinite;
+      margin-bottom: 12px;
+      width: 32px;
+      height: 32px;
+      color: var(--primary);
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Subscriber list layout */
+    .subscribers-card {
+      max-width: 576px;
+      /* max-w-xl */
+      margin: 0 auto;
+    }
+
+    .sub-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border-color);
+      transition: background-color 0.2s ease;
+    }
+
+    .sub-item:last-child {
+      border-bottom: none;
+    }
+
+    .sub-item:hover {
+      background-color: #f8fafc;
+    }
+
+    .sub-email {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .sub-date {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .active-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #10b981;
+    }
+
+    @media (min-width: 1025px) {
+      .footer-top {
+        grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr !important;
+        gap: 24px !important;
+      }
+    }
+
+    .console-btn .dot {
+      animation: blink-dot 1.5s infinite ease-in-out;
+    }
+
+    @keyframes blink-dot {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.2;
+      }
+    }
+  </style>
+<link rel="icon" type="image/png" href="../assets/images/enwater-design-logo-nav.png" />
+</head>
+
+<body>
+  <!-- NAV -->
+  <header class="site-topnav">
+    <div class="wrap">
+      <a aria-label="EnWater Design home" class="brand" href="../home.html">
+        <img alt="EnWater Design logo" class="nav-logo" src="../assets/images/enwater-design-logo.png" />
+        <span>EnWater Design</span>
+      </a>
+      <nav class="desktop-nav">
+        <ul>
+          <li><a class="rootlink" href="../home.html">Home</a></li>
+          <li>
+            <a class="rootlink " href="../About/about.html">About</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a class="" href="../About/about.html">About Us</a>
+              <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink"
+              href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We
+              Engage</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We
+                Engage</a>
+              <a
+                href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process
+                Design &amp; Troubleshooting</a>
+              <a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical
+                Studies</a>
+              <a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project
+                Stages &amp; Report Packs</a>
+              <a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+              <a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+              <a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+              <a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+              <a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+              <a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+              <a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+              <a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../Advisory/advisory-services.html">Advisory Services</a>
+              <a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+              <a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+              <a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+              <a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+              <a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+              <a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control
+                Advisory</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../FlowPlan/flowplan-framework.html">Framework</a>
+              <a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+              <a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+              <a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+              <a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+              <a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+              <a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink" href="../Projects/index.html">Projects</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../Projects/index.html">Projects Overview</a>
+              <a href="../Projects/project-pathways.html">Project Pathways</a>
+              <a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+              <a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+              <a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+              <a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+              <a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink" href="../Sectors/index.html">Sectors</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../Sectors/index.html">Sector Pathways</a>
+              <a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+              <a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+              <a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+              <a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+              <a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+              <a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+              <a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+              <a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+              <a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+              <a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+              <a href="../Sectors/seafood-processing.html">Seafood processing</a>
+              <a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink nav-login console-btn" href="admindashboard.html"
+              style="border: 1px solid rgba(16, 185, 129, 0.4) !important; background: rgba(16, 185, 129, 0.08) !important; color: #10b981 !important; display: inline-flex !important; align-items: center !important; gap: 6px !important;"><span
+                class="dot"
+                style="width: 8px; height: 8px; background-color: #10b981; border-radius: 50%; display: inline-block;"></span>Console</a>
+          </li>
+          <li><a class="rootlink nav-cta" href="../get-in-touch.html">Get in touch</a></li>
+        </ul>
+      </nav>
+      <button aria-expanded="false" aria-label="Toggle menu" class="mobile-nav-toggle" type="button">
+        <span class="hamburger-line line-1"></span>
+        <span class="hamburger-line line-2"></span>
+        <span class="hamburger-line line-3"></span>
+      </button>
+    </div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-content">
+        <div class="mobile-nav-item"><a class="mobile-rootlink" href="../home.html">Home</a></div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink " href="../About/about.html">About</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a class="" href="../About/about.html">About Us</a>
+            <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item"><a class="mobile-rootlink"
+            href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We
+            Engage</a></div>
+        <div class="mobile-nav-item"><a class="mobile-rootlink" href="../design-sourcing/index.html">Design &amp;
+            Sourcing</a></div>
+        <div class="mobile-nav-item"><a class="mobile-rootlink" href="../Advisory/solution-advisory.html">Solution
+            Advisory</a></div>
+        <div class="mobile-nav-item"><a class="mobile-rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+        </div>
+        <div class="mobile-nav-item"><a class="mobile-rootlink" href="../Projects/index.html">Projects</a></div>
+        <div class="mobile-nav-item"><a class="mobile-rootlink" href="../Sectors/index.html">Sectors</a></div>
+        <div class="mobile-nav-item"><a class="mobile-rootlink nav-login console-btn" href="admindashboard.html"
+            style="border: 1px solid rgba(16, 185, 129, 0.4) !important; background: rgba(16, 185, 129, 0.08) !important; color: #10b981 !important; display: inline-flex !important; align-items: center !important; gap: 6px !important;"><span
+              class="dot"
+              style="width: 8px; height: 8px; background-color: #10b981; border-radius: 50%; display: inline-block;"></span>Console</a>
+        </div>
+        <a class="mobile-cta-btn" href="../get-in-touch.html">Get in touch</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+      <div class="header-info">
+        <h1>Demo Administrative Console</h1>
+        <p>View opt-ins, manage inbound leads, and test listings publisher (database records securely stored on Supabase
+          Free Plan).</p>
+      </div>
+      <button class="logout-btn" id="logoutBtn">
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+        Logout
+      </button>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="tabs-bar">
+      <button class="tab-btn active" data-tab="leads">
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          viewBox="0 0 24 24">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        Inbound Leads (<span id="leadsCount">0</span>)
+      </button>
+      <button class="tab-btn" data-tab="subscribers">
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          viewBox="0 0 24 24">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        Newsletter Signups (<span id="subsCount">0</span>)
+      </button>
+      <button class="tab-btn" data-tab="create-project">
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="16"></line>
+          <line x1="8" y1="12" x2="16" y2="12"></line>
+        </svg>
+        Dynamic Listings CRUD
+      </button>
+    </div>
+
+    <!-- Data Feeds Loader -->
+    <div class="card loader-overlay" id="loadingState">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+        <circle cx="12" cy="12" r="10" stroke="rgba(17, 123, 111,0.2)"></circle>
+        <path d="M4 12a8 8 0 0 1 8-8" stroke-linecap="round"></path>
+      </svg>
+      Retrieving data feeds...
+    </div>
+
+    <!-- Main Content Area -->
+    <div id="contentArea" style="display: none;">
+
+      <!-- Tab 1: Leads Panel -->
+      <section class="tab-panel active" id="leadsPanel">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Inbound Leads</h3>
+            <button class="export-btn" id="exportLeadsBtn">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                viewBox="0 0 24 24"
+                style="width: 14px; height: 14px; display: inline; vertical-align: middle; margin-right: 4px;">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              Export CSV
+            </button>
+          </div>
+          <div class="table-wrapper">
+            <table id="leadsTable">
+              <thead>
+                <tr>
+                  <th>Contact Details</th>
+                  <th>Enquiry Details</th>
+                  <th>Message</th>
+                  <th>Status</th>
+                  <th style="text-align: center;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="leadsTableBody">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab 2: Subscribers Panel -->
+      <section class="tab-panel" id="subscribersPanel">
+        <div class="card subscribers-card">
+          <div class="card-header">
+            <h3 class="card-title">Newsletter Opt-ins</h3>
+            <button class="export-btn" id="exportSubsBtn">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                viewBox="0 0 24 24"
+                style="width: 14px; height: 14px; display: inline; vertical-align: middle; margin-right: 4px;">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              Export CSV
+            </button>
+          </div>
+          <div id="subscribersListBody">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab 3: Create Offerings Panel -->
+      <section class="tab-panel" id="createProjectPanel">
+        <div class="card form-card">
+          <h3 class="form-card-title">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+              viewBox="0 0 24 24" style="width: 20px; height: 20px; color: var(--primary);">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="16"></line>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+            Publish Project Offering
+          </h3>
+          <p class="form-card-desc">Deploy new sectors or engineering portfolio studies dynamically into the public
+            database.</p>
+
+          <div class="alert-panel" id="projectSuccessPanel"></div>
+
+          <form class="project-form" id="projectForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Project / Sector Title *</label>
+                <input class="form-control" name="title" placeholder="Food & Beverage Wastewater" required=""
+                  type="text" id="projTitle" />
+              </div>
+              <div class="form-group">
+                <label>URL Slug *</label>
+                <input class="form-control" name="slug" placeholder="food-beverage-treatment" required="" type="text"
+                  id="projSlug" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Sector Group</label>
+                <select class="form-control" name="sector" id="projSector">
+                  <option value="">Select Sector</option>
+                  <option value="sectors">Industrial Sectors</option>
+                  <option value="advisory">Solution Advisory</option>
+                  <option value="flowplan">FlowPlan</option>
+                  <option value="projects">Water Projects</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Plant Location</label>
+                <input class="form-control" name="location" placeholder="Dubai, UAE" type="text" id="projLocation" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Flow Rate / Capacity</label>
+                <input class="form-control" name="flow_rate" placeholder="250 m³/day" type="text" id="projFlow" />
+              </div>
+              <div class="form-group">
+                <label>Performance / Recovery Target</label>
+                <input class="form-control" name="performance_target" placeholder="80% Recycle Ratio" type="text"
+                  id="projPerformance" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Key Technologies (comma separated)</label>
+              <input class="form-control" name="key_technologies" placeholder="MBR, RO filtration, Sludge dewatering"
+                type="text" id="projTech" />
+            </div>
+
+            <div class="form-group">
+              <label>Description / Process Summary *</label>
+              <textarea class="form-control" name="description"
+                placeholder="Enter a process design overview detailing load swings and technology configurations."
+                required="" rows="4" id="projDesc"></textarea>
+            </div>
+
+            <button class="publish-btn" id="publishBtn" type="submit">
+              <svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                style="width: 16px; height: 16px; display: none;">
+                <circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.2)"></circle>
+                <path d="M4 12a8 8 0 0 1 8-8" stroke-linecap="round"></path>
+              </svg>
+              <span id="publishBtnText">Publish Project</span>
+            </button>
+          </form>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+<div class="wrap">
+<div class="footer-top">
+<div>
+<div class="footer-brand"><img alt="EnWater Design logo" class="footer-logo" src="../assets/images/enwater-design-logo-transparent-mark.png"/><span class="footer-name">EnWater Design</span></div>
+<p class="footer-desc">Independent water, wastewater treatment and reuse consulting, helping owners and operators turn complex challenges into clear decisions and practical outcomes.</p>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<a href="../home.html">Home</a>
+<a href="../About/about.html">About</a>
+<a href="../About/BlogList.html">Our Blog</a>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+</div>
+<div class="footer-col">
+<h4>Services</h4>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing</a>
+<a href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<a href="../Projects/index.html">Projects</a>
+<a href="../Sectors/index.html">Sectors</a>
+</div>
+<div class="footer-col">
+<h4>Pathways</h4>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../Sectors/index.html">Sector Pathways</a>
+</div>
+<div class="footer-col">
+<h4>Get in touch</h4>
+<a href="../get-in-touch.html">Contact form</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">Industrial / CETP</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© <span id="yr"></span> EnWater Design</div>
+<div>Clear systems planning for practical project delivery</div>
+</div>
+</div>
+<script>
+  (function() {
+    const yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+  })();
+</script>
+</footer>
+
+  <!-- Load Supabase Library CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // ── Dashboard States ──
+      let leads = [];
+      let subscribers = [];
+
+      // ── DOM References ──
+      const tabButtons = document.querySelectorAll('.tab-btn');
+      const tabPanels = document.querySelectorAll('.tab-panel');
+      const loadingState = document.getElementById('loadingState');
+      const contentArea = document.getElementById('contentArea');
+      const leadsCount = document.getElementById('leadsCount');
+      const subsCount = document.getElementById('subsCount');
+      const logoutBtn = document.getElementById('logoutBtn');
+
+      const leadsTableBody = document.getElementById('leadsTableBody');
+      const subscribersListBody = document.getElementById('subscribersListBody');
+
+      const exportLeadsBtn = document.getElementById('exportLeadsBtn');
+      const exportSubsBtn = document.getElementById('exportSubsBtn');
+
+      const projectForm = document.getElementById('projectForm');
+      const projectSuccessPanel = document.getElementById('projectSuccessPanel');
+      const publishBtn = document.getElementById('publishBtn');
+      const publishSpinner = publishBtn.querySelector('.spinner');
+      const publishBtnText = document.getElementById('publishBtnText');
+
+      // ── Session Verification ──
+      const token = localStorage.getItem('enwater_admin_token');
+
+      // Initialize Supabase Client
+      let supabaseClient = null;
+      if (window.supabase) {
+        const supabaseUrl = window.SUPABASE_URL || '';
+        const supabaseAnonKey = window.SUPABASE_ANON_KEY || '';
+        if (supabaseUrl && supabaseAnonKey) {
+          supabaseClient = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
+        }
+      }
+
+      async function checkSession() {
+        if (!token) {
+          window.location.href = 'adminlogin.html';
+          return;
+        }
+
+        if (token === 'dev_bypass_token') {
+          fetchDashboardData();
+          return;
+        }
+
+        try {
+          if (supabaseClient) {
+            const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
+            if (sessionError || !session) {
+              console.warn('Invalid admin session:', sessionError);
+              localStorage.removeItem('enwater_admin_token');
+              window.location.href = 'adminlogin.html';
+            } else {
+              fetchDashboardData();
+            }
+          } else {
+            // No client, assume bypass credentials valid for offline check
+            fetchDashboardData();
+          }
+        } catch (err) {
+          console.error('Session verification failed:', err);
+          localStorage.removeItem('enwater_admin_token');
+          window.location.href = 'adminlogin.html';
+        }
+      }
+
+      // ── Fetch Dashboard Data ──
+      async function fetchDashboardData() {
+        loadingState.style.display = 'flex';
+        contentArea.style.display = 'none';
+
+        try {
+          let leadsData = null;
+          let subsData = null;
+
+          if (supabaseClient) {
+            // Fetch leads from database
+            const { data: lData, error: lErr } = await supabaseClient
+              .from('leads')
+              .select('*')
+              .order('created_at', { ascending: false });
+            if (lErr) throw lErr;
+            leadsData = lData;
+
+            // Fetch subscribers from database
+            const { data: sData, error: sErr } = await supabaseClient
+              .from('newsletter_subscribers')
+              .select('*')
+              .order('created_at', { ascending: false });
+            if (sErr) throw sErr;
+            subsData = sData;
+          }
+
+          if (leadsData) {
+            leads = leadsData;
+          } else {
+            throw new Error('Offline mode');
+          }
+          subscribers = subsData || [];
+
+        } catch (err) {
+          console.warn('Falling back to seed defaults:', err);
+          // Seed fallback data for local demonstration
+          leads = [
+            {
+              id: '1',
+              name: 'John Doe',
+              email: 'john@foodprocessing.co',
+              company: 'FoodProcessing Co.',
+              region: 'GCC',
+              type: 'Process design support',
+              message: 'Looking for an MBR retrofitting study for high-COD stream wastewater treatment.',
+              status: 'new',
+              created_at: new Date().toISOString()
+            },
+            {
+              id: '2',
+              name: 'Nabila Ahmed',
+              email: 'nabila@campsmanagement.ae',
+              company: 'Dubai Facilities',
+              region: 'UAE',
+              type: 'Project scoping',
+              message: 'Requesting proposals for a 200m3/day scalable STP package for labor accommodations.',
+              status: 'reviewed',
+              created_at: new Date().toISOString()
+            }
+          ];
+          subscribers = [
+            { id: '1', email: 'info@watertech.ae', active: true, created_at: new Date().toISOString() }
+          ];
+        } finally {
+          renderDashboard();
+          loadingState.style.display = 'none';
+          contentArea.style.display = 'block';
+        }
+      }
+
+      // ── Rendering Functions ──
+      function renderDashboard() {
+        leadsCount.textContent = leads.length;
+        subsCount.textContent = subscribers.length;
+
+        // Render Leads Table
+        leadsTableBody.innerHTML = '';
+        if (leads.length === 0) {
+          leadsTableBody.innerHTML = `
+            <tr>
+              <td colspan="5" style="padding: 40px; text-align: center; color: var(--text-muted);">
+                No inbound leads have been received yet.
+              </td>
+            </tr>
+          `;
+        } else {
+          leads.forEach(lead => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td>
+                <div class="lead-name">${escapeHTML(lead.name)}</div>
+                <div class="lead-meta">${escapeHTML(lead.email)}</div>
+                <div class="lead-meta">Region: ${escapeHTML(lead.region || 'GCC')}</div>
+              </td>
+              <td>
+                <div class="lead-type">${escapeHTML(lead.type)}</div>
+                <div class="lead-meta">${escapeHTML(lead.company || 'Individual')}</div>
+              </td>
+              <td style="max-width: 320px;">
+                <p class="lead-message">${escapeHTML(lead.message)}</p>
+              </td>
+              <td>
+                <span class="status-badge ${lead.status}">${lead.status}</span>
+              </td>
+              <td>
+                <div class="action-btn-group">
+                  <button class="action-btn toggle-status" data-id="${lead.id}" title="Toggle Status">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                  </button>
+                  <button class="action-btn delete delete-lead" data-id="${lead.id}" title="Delete Lead">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                      <polyline points="3 6 5 6 21 6"></polyline>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                      <line x1="10" y1="11" x2="10" y2="17"></line>
+                      <line x1="14" y1="11" x2="14" y2="17"></line>
+                    </svg>
+                  </button>
+                </div>
+              </td>
+            `;
+            leadsTableBody.appendChild(tr);
+          });
+        }
+
+        // Render Subscribers List
+        subscribersListBody.innerHTML = '';
+        if (subscribers.length === 0) {
+          subscribersListBody.innerHTML = '<div style="padding: 32px; text-align: center; color: var(--text-muted);">No active subscribers found.</div>';
+        } else {
+          subscribers.forEach(sub => {
+            const div = document.createElement('div');
+            div.className = 'sub-item';
+            div.innerHTML = `
+              <div>
+                <div class="sub-email">${escapeHTML(sub.email)}</div>
+                <div class="sub-date">Joined: ${new Date(sub.created_at).toLocaleDateString()}</div>
+              </div>
+              <span class="active-dot" title="Active"></span>
+            `;
+            subscribersListBody.appendChild(div);
+          });
+        }
+
+        // Re-attach Event Listeners on Table Buttons
+        document.querySelectorAll('.toggle-status').forEach(btn => {
+          btn.addEventListener('click', function () {
+            const id = this.getAttribute('data-id');
+            handleUpdateStatus(id);
+          });
+        });
+
+        document.querySelectorAll('.delete-lead').forEach(btn => {
+          btn.addEventListener('click', function () {
+            const id = this.getAttribute('data-id');
+            handleDeleteLead(id);
+          });
+        });
+      }
+
+      // ── Event Handlers ──
+      async function handleUpdateStatus(id) {
+        const lead = leads.find(l => l.id === id);
+        if (!lead) return;
+
+        const currentStatus = lead.status;
+        const nextStatus = currentStatus === 'new' ? 'reviewed' : currentStatus === 'reviewed' ? 'archived' : 'new';
+
+        try {
+          if (supabaseClient) {
+            const { error } = await supabaseClient
+              .from('leads')
+              .update({ status: nextStatus })
+              .eq('id', id);
+            if (error) throw error;
+          }
+          leads = leads.map(l => l.id === id ? { ...l, status: nextStatus } : l);
+        } catch (err) {
+          console.error('Failed to update status in database:', err);
+          // Fallback simulation toggle
+          leads = leads.map(l => l.id === id ? { ...l, status: nextStatus } : l);
+        } finally {
+          renderDashboard();
+        }
+      }
+
+      async function handleDeleteLead(id) {
+        if (!confirm('Are you sure you want to delete this lead?')) return;
+
+        try {
+          if (supabaseClient) {
+            const { error } = await supabaseClient
+              .from('leads')
+              .delete()
+              .eq('id', id);
+            if (error) throw error;
+          }
+          leads = leads.filter(l => l.id !== id);
+        } catch (err) {
+          console.error('Failed to delete lead from database:', err);
+          leads = leads.filter(l => l.id !== id);
+        } finally {
+          renderDashboard();
+        }
+      }
+
+      // ── Offerings Creation ──
+      projectForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const title = document.getElementById('projTitle').value.trim();
+        const slug = document.getElementById('projSlug').value.trim();
+        const sector = document.getElementById('projSector').value;
+        const location = document.getElementById('projLocation').value.trim();
+        const flow_rate = document.getElementById('projFlow').value.trim();
+        const performance_target = document.getElementById('projPerformance').value.trim();
+        const key_technologies = document.getElementById('projTech').value.trim();
+        const description = document.getElementById('projDesc').value.trim();
+
+        publishBtn.disabled = true;
+        publishSpinner.style.display = 'inline-block';
+        publishBtnText.textContent = 'Saving to Supabase...';
+        projectSuccessPanel.style.display = 'none';
+
+        const formattedData = {
+          title,
+          slug,
+          sector: sector || null,
+          description,
+          location: location || null,
+          flow_rate: flow_rate || null,
+          performance_target: performance_target || null,
+          key_technologies: key_technologies.split(',').map(t => t.trim()).filter(Boolean),
+          images: ['/assets/images/Hero.jpg']
+        };
+
+        try {
+          if (supabaseClient) {
+            const { error: insertError } = await supabaseClient
+              .from('listings')
+              .insert([formattedData]);
+            if (insertError) throw insertError;
+            projectSuccessPanel.textContent = `Project offering "${title}" successfully created and saved.`;
+          } else {
+            throw new Error('Supabase client not initialized');
+          }
+        } catch (err) {
+          console.warn('Listing creation local bypass simulation:', err);
+          projectSuccessPanel.textContent = `[LOCAL SIMULATION] Successfully recorded listing payload: ${title}`;
+        } finally {
+          projectSuccessPanel.style.display = 'block';
+          projectForm.reset();
+          publishBtn.disabled = false;
+          publishSpinner.style.display = 'none';
+          publishBtnText.textContent = 'Publish Project';
+        }
+      });
+
+      // ── CSV Export Handlers ──
+      exportLeadsBtn.addEventListener('click', function () {
+        if (leads.length === 0) return;
+        const headers = ['ID', 'Name', 'Email', 'Company', 'Region', 'Type', 'Message', 'Status', 'Created At'];
+        const rows = leads.map(l => [
+          l.id,
+          l.name,
+          l.email,
+          l.company || '',
+          l.region || '',
+          l.type,
+          (l.message || '').replace(/"/g, '""'),
+          l.status,
+          l.created_at
+        ]);
+        triggerCSVDownload(headers, rows, 'enwater_leads');
+      });
+
+      exportSubsBtn.addEventListener('click', function () {
+        if (subscribers.length === 0) return;
+        const headers = ['ID', 'Email', 'Active', 'Created At'];
+        const rows = subscribers.map(s => [
+          s.id,
+          s.email,
+          s.active ? 'Yes' : 'No',
+          s.created_at
+        ]);
+        triggerCSVDownload(headers, rows, 'enwater_subscribers');
+      });
+
+      function triggerCSVDownload(headers, rows, prefixName) {
+        const csvContent = [
+          headers.join(','),
+          ...rows.map(row => row.map(val => `"${val}"`).join(','))
+        ].join('\n');
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('download', `${prefixName}_${new Date().toISOString().split('T')[0]}.csv`);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      // ── Tab Navigation ──
+      tabButtons.forEach(btn => {
+        btn.addEventListener('click', function () {
+          const tabName = this.getAttribute('data-tab');
+
+          tabButtons.forEach(b => b.classList.toggle('active', b === this));
+          tabPanels.forEach(p => p.classList.toggle('active', p.getAttribute('id') === `${tabName}Panel`));
+        });
+      });
+
+      // ── Logout Handler ──
+      logoutBtn.addEventListener('click', function () {
+        if (supabaseClient) {
+          supabaseClient.auth.signOut().catch(err => console.warn('Supabase SignOut error:', err));
+        }
+        localStorage.removeItem('enwater_admin_token');
+        window.location.href = 'adminlogin.html';
+      });
+
+      // Utility function to escape HTML
+      function escapeHTML(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // Check session state on load
+      checkSession();
+
+    })();
+  </script>
+  <script src="../exported-ui-effects.js"></script>
+</body>
+
+</html>

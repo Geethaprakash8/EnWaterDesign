@@ -1,0 +1,52 @@
+Step 33 FlowPlan hero/link check and patch
+Source: FlowPlan(10).zip
+
+flowplan-diagnostics-tools.html
+  - Diagnostics breadcrumb Systems Planning fixed (1 occurrence)
+  - Diagnostics cards: See process design now opens Solution Design (21 occurrences)
+
+flowplan-planning-delivery.html
+  - flowplan-planning-delivery.html: project configurations link fixed (1 occurrence)
+  - flowplan-planning-delivery.html: reuse projects link fixed (1 occurrence)
+  - flowplan-planning-delivery.html: biosolids projects link fixed (1 occurrence)
+  - flowplan-planning-delivery.html: wastewater pathway link fixed (1 occurrence)
+
+flowplan-process-mapping.html
+  - Process Mapping hero: treatment schemes anchor fixed (1 occurrence)
+  - Process Mapping hero: Browse modules anchor fixed (1 occurrence)
+  - Process Mapping hero: Get in touch fixed (1 occurrence)
+  - Process Mapping: plant integration jump fixed (1 occurrence)
+  - Process Mapping: module reference jump fixed (1 occurrence)
+  - Process Mapping: stage cards no longer dead # (6 occurrences)
+  - Process Mapping: wastewater pathway link fixed (1 occurrence)
+  - Process Mapping: reuse pathway link fixed (1 occurrence)
+  - Process Mapping: biosolids pathway link fixed (1 occurrence)
+
+flowplan-solution-design.html
+  - flowplan-solution-design.html: project configurations link fixed (1 occurrence)
+  - flowplan-solution-design.html: reuse projects link fixed (1 occurrence)
+  - flowplan-solution-design.html: biosolids projects link fixed (1 occurrence)
+  - flowplan-solution-design.html: wastewater pathway link fixed (1 occurrence)
+
+flowplan-systems-planning.html
+  - Systems Planning hero: key solutions anchor fixed to page section (1 occurrence)
+  - Systems Planning hero: Explore projects linked (1 occurrence)
+  - Systems Planning sector pathways link fixed (1 occurrence)
+  - Systems Planning framework link fixed (1 occurrence)
+  - Systems Planning default View section link fixed (1 occurrence)
+  - Systems Planning JS sector panel target fixed (1 occurrence)
+
+treatment-reuse-planning.html
+  - Reuse Planning: view configurations fixed (1 occurrence)
+  - Reuse Planning: wastewater pathway link fixed (1 occurrence)
+  - Reuse Planning: reuse pathway link fixed (1 occurrence)
+  - Reuse Planning: biosolids pathway link fixed (1 occurrence)
+Additional exact-text fixes:
+flowplan-diagnostics-tools.html: Diagnostics implementation card: Design & Advisory fixed (1 occurrence)
+flowplan-diagnostics-tools.html: Diagnostics implementation card: Solution Structure fixed (1 occurrence)
+flowplan-diagnostics-tools.html: Diagnostics implementation card: Process Mapping fixed (2 occurrences)
+flowplan-process-mapping.html: Process Mapping: Risk & Response Matrix link fixed (1 occurrence)
+flowplan-process-mapping.html: Process Mapping: Return to Planning Framework link fixed (1 occurrence)
+flowplan-process-mapping.html: Process Mapping: Open enquiry form fixed (1 occurrence)
+flowplan-process-mapping.html: Process Mapping: View configurations fixed (1 occurrence)
+flowplan-diagnostics-tools.html: Diagnostics implementation card: Delivery Assurance fixed (1 occurrence)

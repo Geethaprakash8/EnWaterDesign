@@ -1,0 +1,2246 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Planning &amp; Delivery | EnWater Design</title>
+<link href="https://fonts.googleapis.com/" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<script>
+tailwind.config = {
+ theme: {
+ extend: {
+ colors: {
+ cream: "#f4f2ec",
+ forest: "#243f38",
+ forest2: "#1f3731",
+ accent: "#55a092"
+ }
+ }
+ }
+}
+</script><script src="https://cdn.tailwindcss.com"></script><script></script><style>
+ :root{
+ --cream:#f4f2ec;
+ --ink:#1b1f1e;
+ --muted:#5a6561;
+ --forest:#243f38;
+ --forest2:#1f3731;
+ --accent:#55a092;
+ --accent2:#468a7e;
+ --line:rgba(27,31,30,.14);
+ }
+ html{scroll-behavior:smooth}
+ html,body{margin:0; padding:0; min-height:100vh; display:flex; flex-direction:column;}
+body{background:var(--cream); color:var(--ink); margin:0; padding:0;}
+main{flex:1 0 auto;}
+footer{flex-shrink:0;}
+
+ /* subtle serif/sans typography */.fp-serif{font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;}.fp-sans{font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";}.hairline{border-color: var(--line);}.link-row:hover{background: rgba(255,255,255,.45);}.tag{border:1px solid rgba(255,255,255,.25)}.soft-shadow{box-shadow: 0 16px 40px rgba(0,0,0,.08);}.pattern{
+ background-image:
+ radial-gradient(circle at 10% 20%, rgba(255,255,255,.07) 0, rgba(255,255,255,.07) 2px, transparent 2px),
+ radial-gradient(circle at 70% 60%, rgba(255,255,255,.06) 0, rgba(255,255,255,.06) 2px, transparent 2px);
+ background-size: 48px 48px, 64px 64px;
+ }
+ /* accordion animation */.acc-panel{max-height:0; overflow:hidden; transition:max-height.35s ease;}.acc-open.acc-panel{max-height:800px;}.acc-open.acc-icon{transform: rotate(180deg);}.acc-icon{transition: transform.25s ease;}
+ /* scroll snap carousel */.snap-x{scroll-snap-type:x mandatory;}.snap-item{scroll-snap-align:start;}
+
+
+/* Layout safety: add a little breathing room even if utilities fail */
+#hero.max-w-6xl{padding-top:4rem; padding-bottom:3rem;}
+@media (min-width:768px){#hero.max-w-6xl{padding-top:5rem; padding-bottom:3rem;}}
+</style><style id="fp-module-snapshot-style">/* FlowPlan Canvas Snapshot helpers */.fp-module-card:target{
+ outline: 3px solid rgba(85,160,146,.55);
+ outline-offset: 6px;
+ border-radius: 18px;
+ }</style>
+<style>
+ body {
+ font-family: 'Roboto', sans-serif;
+ }
+ h1, h2, h3, h4, h5, h6,.font-inter {
+ font-family: 'Inter', sans-serif;
+ }
+</style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,i,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0px}.bottom-0{bottom:0px}.left-0{left:0px}.right-0{right:0px}.top-0{top:0px}.z-10{z-index:10}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mb-7{margin-bottom:1.75rem}.mb-8{margin-bottom:2rem}.mr-2{margin-right:0.5rem}.mt-16{margin-top:4rem}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-16{height:4rem}.h-2{height:0.5rem}.h-5{height:1.25rem}.h-full{height:100%}.min-h-\[62vh\]{min-height:62vh}.w-10{width:2.5rem}.w-2{width:0.5rem}.w-5{width:1.25rem}.w-full{width:100%}.max-w-3xl{max-width:48rem}.max-w-6xl{max-width:72rem}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.justify-around{justify-content:space-around}.gap-1{gap:0.25rem}.gap-2{gap:0.5rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.border{border-width:1px}.border-t{border-top-width:1px}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.bg-\[\#55a092\]{--tw-bg-opacity:1;background-color:rgb(85 160 146 / var(--tw-bg-opacity, 1))}.bg-black\/35{background-color:rgb(0 0 0 / 0.35)}.bg-emerald-50{--tw-bg-opacity:1;background-color:rgb(236 253 245 / var(--tw-bg-opacity, 1))}.bg-gray-200{--tw-bg-opacity:1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/90{background-color:rgb(255 255 255 / 0.9)}.object-cover{object-fit:cover}.p-5{padding:1.25rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.text-center{text-align:center}.align-middle{vertical-align:middle}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-semibold{font-weight:600}.tracking-tight{letter-spacing:-0.025em}.text-\[\#55a092\]{--tw-text-opacity:1;color:rgb(85 160 146 / var(--tw-text-opacity, 1))}.text-blue-700{--tw-text-opacity:1;color:rgb(29 78 216 / var(--tw-text-opacity, 1))}.text-emerald-800{--tw-text-opacity:1;color:rgb(6 95 70 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-green-700{--tw-text-opacity:1;color:rgb(21 128 61 / var(--tw-text-opacity, 1))}.text-red-700{--tw-text-opacity:1;color:rgb(185 28 28 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/90{color:rgb(255 255 255 / 0.9)}.text-yellow-700{--tw-text-opacity:1;color:rgb(161 98 7 / var(--tw-text-opacity, 1))}.shadow{--tw-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-inner{--tw-shadow:inset 0 2px 4px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:inset 0 2px 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-200{transition-duration:200ms}.hover\:z-10:hover{z-index:10}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:border-2:hover{border-width:2px}.hover\:border-blue-700:hover{--tw-border-opacity:1;border-color:rgb(29 78 216 / var(--tw-border-opacity, 1))}.hover\:border-green-700:hover{--tw-border-opacity:1;border-color:rgb(21 128 61 / var(--tw-border-opacity, 1))}.hover\:border-red-700:hover{--tw-border-opacity:1;border-color:rgb(185 28 28 / var(--tw-border-opacity, 1))}.hover\:border-yellow-700:hover{--tw-border-opacity:1;border-color:rgb(161 98 7 / var(--tw-border-opacity, 1))}.hover\:bg-blue-200:hover{--tw-bg-opacity:1;background-color:rgb(191 219 254 / var(--tw-bg-opacity, 1))}.hover\:bg-green-200:hover{--tw-bg-opacity:1;background-color:rgb(187 247 208 / var(--tw-bg-opacity, 1))}.hover\:bg-red-200:hover{--tw-bg-opacity:1;background-color:rgb(254 202 202 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-100:hover{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.hover\:bg-yellow-200:hover{--tw-bg-opacity:1;background-color:rgb(254 240 138 / var(--tw-bg-opacity, 1))}.hover\:text-blue-600:hover{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.hover\:text-blue-800:hover{--tw-text-opacity:1;color:rgb(30 64 175 / var(--tw-text-opacity, 1))}.hover\:text-green-800:hover{--tw-text-opacity:1;color:rgb(22 101 52 / var(--tw-text-opacity, 1))}.hover\:text-red-800:hover{--tw-text-opacity:1;color:rgb(153 27 27 / var(--tw-text-opacity, 1))}.hover\:text-yellow-800:hover{--tw-text-opacity:1;color:rgb(133 77 14 / var(--tw-text-opacity, 1))}.hover\:shadow-lg:hover{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.hover\:brightness-95:hover{--tw-brightness:brightness(.95);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}@media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}}@media (min-width: 768px){.md\:flex{display:flex}.md\:hidden{display:none}.md\:text-6xl{font-size:3.75rem;line-height:1}.md\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width: 1024px){.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:px-8{padding-left:2rem;padding-right:2rem}}</style><style id="pd-panel-styles">
+:root{
+ --sa-accent:#55a092;
+ --sa-forest2:#1f3731;
+}.pd-panel{
+ background: linear-gradient(135deg, rgba(31,55,49,0.98), rgba(18,32,28,0.98));
+ color:#fff;
+ border-radius: 18px;
+ overflow:hidden;
+ box-shadow: 0 18px 40px rgba(0,0,0,.18);
+ border: 1px solid rgba(255,255,255,.12);
+}.pd-panel-inner{ padding: 2.1rem 1.75rem; }
+@media (min-width:768px){.pd-panel-inner{ padding: 2.4rem 2.25rem; } }.pd-panel-grid{
+ display:grid;
+ grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+ gap: 2rem;
+ align-items:start;
+}
+@media (max-width: 960px){.pd-panel-grid{ grid-template-columns: 1fr; }
+}.sa-kicker{
+ font-size:.72rem;
+ letter-spacing:.22em;
+ text-transform: uppercase;
+ color: rgba(255,255,255,.72);
+ font-weight: 700;
+}.sa-title{
+ font-family: 'Inter', sans-serif;
+ font-weight: 750;
+ font-size: 1.85rem;
+ line-height: 1.15;
+ margin:.65rem 0.85rem;
+}
+@media (min-width:768px){.sa-title{ font-size: 2.15rem; }
+}.sa-body{
+ color: rgba(255,255,255,.88);
+ line-height: 1.75;
+}.sa-body +.sa-body{ margin-top:.9rem; }.sa-chip-row{
+ margin-top: 1.15rem;
+ display:flex;
+ flex-wrap:wrap;
+ gap:.5rem;
+}.sa-chip{
+ display:inline-flex;
+ align-items:center;
+ gap:.45rem;
+ padding:.42rem.72rem;
+ border-radius:999px;
+ border:1px solid rgba(255,255,255,.18);
+ background: rgba(255,255,255,.06);
+ font-size:.78rem;
+ color: rgba(255,255,255,.92);
+ white-space:nowrap;
+}.sa-dot{
+ width:.45rem;
+ height:.45rem;
+ border-radius:999px;
+ background: var(--sa-accent);
+ display:inline-block;
+ box-shadow: 0 0 0 4px rgba(85,160,146,.18);
+}.sa-actions{
+ margin-top: 1.15rem;
+ display:flex;
+ flex-wrap:wrap;
+ gap:.6rem;
+}.sa-btn{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ padding:.62rem 1.05rem;
+ border-radius:999px;
+ font-size:.85rem;
+ font-weight: 650;
+ text-decoration:none;
+ border:1px solid rgba(255,255,255,.22);
+ background: rgba(0,0,0,.12);
+ color:#fff;
+}.sa-btn:hover{ opacity:.95; }.sa-btn.primary{
+ background: rgba(85,160,146,.22);
+ border-color: rgba(85,160,146,.55);
+}.sa-panel{
+ border-radius: 16px;
+ padding: 1.35rem 1.35rem 1.45rem;
+ background: rgba(0,0,0,.28);
+ border: 1px solid rgba(255,255,255,.14);
+ box-shadow: 0 18px 40px rgba(0,0,0,.28);
+}.sa-panel h3{
+ font-size:.78rem;
+ letter-spacing:.24em;
+ text-transform: uppercase;
+ color: rgba(255,255,255,.75);
+ font-weight: 800;
+}.sa-panel ul{ margin-top:.85rem; padding-left: 0; list-style: none; }.sa-panel li{
+ display:flex;
+ gap:.55rem;
+ margin-top:.55rem;
+ color: rgba(255,255,255,.88);
+ line-height: 1.55;
+ font-size:.92rem;
+}.sa-bullet{
+ margin-top:.35rem;
+ width:.42rem;
+ height:.42rem;
+ border-radius:999px;
+ background: rgba(255,255,255,.65);
+ flex: 0 0 auto;
+}.sa-panel-note{
+ margin-top: 1.05rem;
+ font-size:.78rem;
+ color: rgba(255,255,255,.72);
+ line-height: 1.6;
+}
+</style><style>
+ /* FlowPlan Solution Design skin (match Process & System Design) */
+ html,body{margin:0; padding:0;}
+body{background:var(--cream); color:var(--ink); margin:0; padding:0;}.soft-card{background: rgba(255,255,255,.55);}.soft-card:hover{background: rgba(255,255,255,.70);}
+</style><style id="flowplan-theme">/* FlowPlan theme utilities (aligned to Process & System Design page) */.bg-cream{--tw-bg-opacity:1;background-color:rgb(244 242 236 / var(--tw-bg-opacity, 1))}.bg-forest{--tw-bg-opacity:1;background-color:rgb(36 63 56 / var(--tw-bg-opacity, 1))}.bg-forest2{--tw-bg-opacity:1;background-color:rgb(31 55 49 / var(--tw-bg-opacity, 1))}.bg-ink{--tw-bg-opacity:1;background-color:var(--ink);}
+
+
+/* Dotted overlay pattern used on dark banners */.pattern{
+ background-image:
+ radial-gradient(circle at 10% 20%, rgba(255,255,255,.07) 0, rgba(255,255,255,.07) 2px, transparent 2px),
+ radial-gradient(circle at 70% 60%, rgba(255,255,255,.06) 0, rgba(255,255,255,.06) 2px, transparent 2px);
+ background-size: 48px 48px, 64px 64px;
+}
+
+/* Accent utilities (from Process & System Design) */.bg-accent{--tw-bg-opacity:1;background-color:rgb(85 160 146 / var(--tw-bg-opacity, 1))}.hover\:bg-\[color\:var\(--accent2\)\]:hover{background-color:var(--accent2)}
+</style><style id="pd-check-block-fix">
+/* Stacked check blocks (match reference screenshot) */.pd-check-pad{padding:3rem 0;}
+@media(min-width:768px){.pd-check-pad{padding:3.25rem 0;}}.pd-check-lead{max-width:64rem;font-size:1.125rem;line-height:1.75;color:rgba(255,255,255,.92);}.pd-check-box{margin-top:2rem;border:1px solid rgba(255,255,255,.18);border-radius:2px;overflow:hidden;background:rgba(0,0,0,0);}.pd-check-row{padding:1.6rem 1.75rem;}
+@media(min-width:768px){.pd-check-row{padding:1.75rem 2rem;}}.pd-check-row +.pd-check-row{border-top:1px solid rgba(255,255,255,.18);}.pd-check-title{font-weight:700;font-size:1.05rem;line-height:1.25;color:rgba(255,255,255,.98);margin:0;}.pd-check-desc{margin:.55rem 0 0;color:rgba(255,255,255,.88);line-height:1.75;}
+</style><style id="fp-map-overview-fix">/* Fix FlowPlan Mapping overview block layout (ensure 2-col + card spacing even if Tailwind build is incomplete) */.fp-map-overview-grid{
+ display:grid;
+ gap:3.75rem;
+ align-items:start;
+}
+@media (min-width: 1024px){.fp-map-overview-grid{
+ grid-template-columns: minmax(0,.85fr) minmax(0, 1.15fr);
+ }
+}.fp-map-overview-left{
+ max-width: 32rem;
+}.fp-map-overview-cards{
+ display:flex;
+ flex-direction:column;
+ gap:1.35rem;
+ max-width: 34rem;
+ margin-left: auto;
+}.fp-map-overview-card{
+ border:1px solid rgba(255,255,255,.14);
+ border-radius: 12px;
+ padding: 1.15rem 1.25rem;
+ background: rgba(0,0,0,.12);
+ box-shadow: 0 10px 28px rgba(0,0,0,.12);
+}.fp-map-overview-card.title{
+ font-weight: 700;
+ font-size: 1.02rem;
+ line-height: 1.25;
+ color: rgba(255,255,255,.95);
+}.fp-map-overview-card.desc{
+ margin-top:.6rem;
+ font-size:.95rem;
+ line-height: 1.65;
+ color: rgba(255,255,255,.82);
+}
+</style>
+<style id="fp-snapshot-ink-css">
+ /* --- Module Engagement Snapshot: compact horizontal (3-panel) engagement map --- */
+ #module-snapshot{
+ background:
+ radial-gradient(900px 420px at 12% 18%, rgba(85,160,146,.22), transparent 60%),
+ radial-gradient(700px 360px at 88% 12%, rgba(255,255,255,.10), transparent 55%),
+ linear-gradient(180deg, #0b1512 0%, #081210 100%) !important;
+ color:#f3f5f4;
+ border-top: 1px solid rgba(255,255,255,.10) !important;
+ }
+
+ /* Layout */
+ #module-snapshot.ms-layout{
+ display:grid;
+ grid-template-columns: 1.08fr 1.35fr 1fr;
+ gap: 18px;
+ align-items: stretch;
+ }
+ @media (max-width: 980px){
+ #module-snapshot.ms-layout{ grid-template-columns: 1fr; }
+ }
+
+ /* Panels */
+ #module-snapshot.ms-panel{
+ border: 1px solid rgba(255,255,255,.12);
+ background: rgba(255,255,255,.05);
+ border-radius: 12px;
+ box-shadow: 0 10px 24px rgba(0,0,0,.22);
+ overflow: hidden;
+ }
+
+ /* Left panel */
+ #module-snapshot.ms-left-head{
+ padding: 16px 16px 12px;
+ border-bottom: 1px solid rgba(255,255,255,.10);
+ }
+ #module-snapshot.ms-kicker{
+ margin: 0 0 10px;
+ font-size: 12.5px;
+ line-height: 1.45;
+ color: rgba(255,255,255,.74);
+ }
+ #module-snapshot.ms-tabs{
+ display:flex;
+ flex-wrap:wrap;
+ gap: 8px;
+ }
+ #module-snapshot.ms-family{
+ appearance:none;
+ border: 1px solid rgba(255,255,255,.14);
+ background: rgba(255,255,255,.04);
+ color: rgba(255,255,255,.86);
+ border-radius: 999px;
+ padding: 7px 12px;
+ font-weight: 650;
+ font-size: 13px;
+ line-height: 1;
+ cursor:pointer;
+ transition: background.15s ease, border-color.15s ease, transform.05s ease;
+ }
+ #module-snapshot.ms-family:hover{ border-color: rgba(85,160,146,.55); }
+ #module-snapshot.ms-family:active{ transform: translateY(1px); }
+ #module-snapshot.ms-family.is-active{
+ background: rgba(85,160,146,.22);
+ border-color: rgba(85,160,146,.60);
+ color: #ffffff;
+ }
+
+ #module-snapshot.ms-list{
+ padding: 12px;
+ max-height: 360px;
+ overflow: auto;
+ }
+ #module-snapshot.ms-mod{
+ width:100%;
+ text-align:left;
+ display:block;
+ border: 1px solid rgba(255,255,255,.12);
+ background: rgba(0,0,0,.06);
+ border-radius: 12px;
+ padding: 10px 12px;
+ margin-bottom: 10px;
+ cursor:pointer;
+ transition: border-color.15s ease, background.15s ease, box-shadow.15s ease;
+ }
+ #module-snapshot.ms-mod:hover{
+ border-color: rgba(85,160,146,.55);
+ background: rgba(255,255,255,.05);
+ }
+ #module-snapshot.ms-mod.is-active{
+ border-color: rgba(85,160,146,.80);
+ box-shadow: 0 0 0 2px rgba(85,160,146,.22);
+ }
+ #module-snapshot.ms-mod-name{
+ font-weight: 750;
+ font-size: 14.5px;
+ color: #ffffff;
+ }
+ #module-snapshot.ms-mod-role{
+ margin-top: 2px;
+ font-size: 12px;
+ color: rgba(255,255,255,.68);
+ }
+ #module-snapshot.ms-hint{
+ padding: 0 16px 16px;
+ font-size: 12px;
+ color: rgba(255,255,255,.62);
+ }
+
+ /* Middle + right panels (scrollable) */
+ #module-snapshot.ms-mid,
+ #module-snapshot.ms-right{
+ padding: 16px;
+ max-height: 440px;
+ overflow: auto;
+ }
+
+ #module-snapshot.ms-title{
+ margin: 0;
+ font-family: "Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+ font-weight: 700;
+ font-size: 30px;
+ line-height: 1.1;
+ letter-spacing: -0.2px;
+ color: #ffffff;
+ }
+ #module-snapshot.ms-roleline{
+ margin: 8px 0 14px;
+ font-size: 13px;
+ color: rgba(255,255,255,.74);
+ }
+ #module-snapshot.ms-bigger{
+ font-size: 14px;
+ line-height: 1.65;
+ color: rgba(255,255,255,.80);
+ }
+ #module-snapshot.ms-tags{
+ display:flex;
+ flex-wrap:wrap;
+ gap: 8px;
+ margin-top: 12px;
+ }
+ #module-snapshot.ms-tag{
+ font-size: 12px;
+ padding: 6px 10px;
+ border-radius: 999px;
+ background: rgba(85,160,146,.16);
+ border: 1px solid rgba(85,160,146,.38);
+ color: rgba(235,255,251,.95);
+ white-space: nowrap;
+ }
+
+ #module-snapshot.ms-action{
+ margin-top: 14px;
+ display:inline-flex;
+ gap: 10px;
+ align-items:center;
+ padding: 10px 12px;
+ border-radius: 12px;
+ background: rgba(85,160,146,.90);
+ border: 1px solid rgba(255,255,255,.14);
+ color: #ffffff;
+ font-weight: 750;
+ text-decoration: none;
+ }
+ #module-snapshot.ms-action:hover{ filter: brightness(1.05); }
+ #module-snapshot.ms-action:active{ transform: translateY(1px); }
+
+ /* Right panel blocks */
+ #module-snapshot.ms-block{
+ margin-top: 14px;
+ padding: 12px;
+ border: 1px solid rgba(255,255,255,.10);
+ background: rgba(0,0,0,.10);
+ border-radius: 12px;
+ }
+ #module-snapshot.ms-h4{
+ margin: 0 0 8px;
+ font-size: 13px;
+ font-weight: 800;
+ color: rgba(255,255,255,.92);
+ letter-spacing:.2px;
+ }
+ #module-snapshot.ms-list-ul{
+ margin: 0;
+ padding-left: 16px;
+ color: rgba(255,255,255,.80);
+ font-size: 13px;
+ line-height: 1.55;
+ }
+ #module-snapshot.ms-recipes{
+ display:flex;
+ flex-direction: column;
+ gap: 10px;
+ }
+ #module-snapshot.ms-recipe{
+ padding: 10px 10px 12px;
+ border-radius: 12px;
+ background: rgba(255,255,255,.05);
+ border: 1px solid rgba(255,255,255,.10);
+ }
+ #module-snapshot.ms-recipe-title{
+ font-weight: 800;
+ font-size: 13px;
+ color: #ffffff;
+ margin: 0;
+ }
+ #module-snapshot.ms-recipe-focus{
+ margin: 6px 0 10px;
+ font-size: 12.5px;
+ color: rgba(255,255,255,.74);
+ line-height: 1.4;
+ }
+ #module-snapshot.ms-chips{
+ display:flex;
+ flex-wrap: wrap;
+ gap: 8px;
+ }
+ #module-snapshot.ms-chip{
+ display:inline-flex;
+ align-items:center;
+ gap: 6px;
+ padding: 6px 10px;
+ border-radius: 999px;
+ border: 1px solid rgba(255,255,255,.14);
+ background: rgba(255,255,255,.04);
+ color: rgba(255,255,255,.88);
+ text-decoration: none;
+ font-size: 12px;
+ font-weight: 650;
+ }
+ #module-snapshot.ms-chip:hover{ border-color: rgba(85,160,146,.55); }
+
+ /* Scrollbar (subtle) */
+ #module-snapshot.ms-list::-webkit-scrollbar,
+ #module-snapshot.ms-mid::-webkit-scrollbar,
+ #module-snapshot.ms-right::-webkit-scrollbar{
+ width: 10px;
+ }
+ #module-snapshot.ms-list::-webkit-scrollbar-thumb,
+ #module-snapshot.ms-mid::-webkit-scrollbar-thumb,
+ #module-snapshot.ms-right::-webkit-scrollbar-thumb{
+ background: rgba(255,255,255,.14);
+ border-radius: 999px;
+ }
+
+ /* Highlight target card when jumped */.ms-hl{
+ outline: 2px solid rgba(85,160,146,.95);
+ box-shadow: 0 0 0 6px rgba(85,160,146,.18);
+ transition: box-shadow.2s ease;
+ }
+
+ @media print{
+ body *{ visibility: hidden !important; }
+ #module-snapshot, #module-snapshot *{ visibility: visible !important; }
+ #module-snapshot{ position: absolute; left:0; top:0; width:100%; }
+ }
+
+ #module-snapshot.btn{
+ border-radius: 12px;
+ padding: 10px 12px;
+ font-weight: 750;
+ border: 1px solid rgba(255,255,255,.14);
+ background: rgba(255,255,255,.04);
+ color:#ffffff;
+ }
+ #module-snapshot.btn:hover{ border-color: rgba(85,160,146,.55); }
+ #module-snapshot.btn-outline{ background: rgba(0,0,0,.10); }
+ #module-snapshot.btn-accent{
+ background: rgba(85,160,146,.90);
+ border-color: rgba(255,255,255,.14);
+ }
+
+
+/* Icons in Module Engagement Snapshot domain pills */
+#module-snapshot.ms-family{
+ display: inline-flex;
+ align-items: center;
+ gap: 8px;
+}
+#module-snapshot.ms-family-ico{
+ width: 16px;
+ height: 16px;
+ flex: 0 0 auto;
+ opacity:.95;
+}
+</style>
+<style id="anchor-offset-fix">
+/* Anchor offset so section headings don't stay under the sticky nav */
+section[id], div[id] { scroll-margin-top: 96px; }
+</style><style>/* Capability callouts, forest styling to match FlowPlan Mapping band */.capability-forest{
+ position: relative;
+ overflow: hidden;
+ background: linear-gradient(180deg, rgba(36,63,56,0.96), rgba(31,55,49,0.96)) !important;
+ border-color: rgba(255,255,255,0.12) !important;
+ box-shadow: 0 14px 34px rgba(0,0,0,0.22);
+ transition: background.18s ease, border-color.18s ease, transform.18s ease;
+}.capability-forest::before{
+ content:"";
+ position:absolute;
+ inset:0;
+ pointer-events:none;
+ opacity:.95;
+ background-image:
+ radial-gradient(circle at 12% 18%, rgba(255,255,255,.07) 0, rgba(255,255,255,.07) 2px, transparent 2px),
+ radial-gradient(circle at 70% 60%, rgba(255,255,255,.06) 0, rgba(255,255,255,.06) 2px, transparent 2px);
+ background-size: 48px 48px, 64px 64px;
+}.capability-forest > *{position:relative; z-index:1;}.capability-forest:hover{
+ background: linear-gradient(180deg, rgba(44,77,67,0.98), rgba(36,64,57,0.98)) !important;
+ border-color: rgba(255,255,255,0.18) !important;
+}.capability-forest.text-slate-500,.capability-forest.text-slate-600,.capability-forest.text-gray-500,.capability-forest.text-gray-400{
+ color: rgba(255,255,255,0.82) !important;
+}.capability-forest.text-slate-700,.capability-forest.text-gray-700,.capability-forest.text-slate-800,.capability-forest.text-gray-800{
+ color: rgba(255,255,255,0.90) !important;
+}.capability-forest.text-gray-900,.capability-forest.text-gray-950{
+ color: rgba(255,255,255,0.98) !important;
+}.capability-forest.font-semibold,.capability-forest strong{
+ color: rgba(230,245,239,0.98) !important;
+}.capability-forest a{
+ color: rgba(170, 232, 216, 1) !important;
+ text-decoration: underline;
+ text-underline-offset: 3px;
+}.capability-forest a:hover{ color: rgba(200, 248, 236, 1) !important; }
+</style>
+<style id="added-spacing-utilities">
+/* Added spacing + layout utilities missing from the generated CSS subset.
+ These were already used in markup (Tailwind-style classes) but had no definitions,
+ causing edge-hugging and cramped layouts (hero + forest strip in particular). */.pt-1{padding-top:.25rem}.pt-6{padding-top:1.5rem}.pt-16{padding-top:4rem}.pt-20{padding-top:5rem}.pt-24{padding-top:6rem}.pt-28{padding-top:7rem}.pb-12{padding-bottom:3rem}.pb-14{padding-bottom:3.5rem}.pb-20{padding-bottom:5rem}.pb-24{padding-bottom:6rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.mt-10{margin-top:2.5rem}.gap-3{gap:.75rem}.gap-10{gap:2.5rem}
+
+@media (min-width: 768px){.md\:pt-20{padding-top:5rem}.md\:pt-28{padding-top:7rem}.md\:pb-12{padding-bottom:3rem}.md\:pb-24{padding-bottom:6rem}
+}
+</style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,i,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.right-0{right:0px}.right-6{right:1.5rem}.top-0{top:0px}.top-10{top:2.5rem}.top-4{top:1rem}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-0{margin-bottom:0px}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-auto{margin-left:auto}.mr-2{margin-right:0.5rem}.mr-3{margin-right:0.75rem}.mt-1\.5{margin-top:0.375rem}.mt-10{margin-top:2.5rem}.mt-2{margin-top:0.5rem}.mt-24{margin-top:6rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-14{height:3.5rem}.h-2\.5{height:0.625rem}.h-28{height:7rem}.h-36{height:9rem}.h-4{height:1rem}.h-5{height:1.25rem}.w-10{width:2.5rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-52{width:13rem}.w-\[320px\]{width:320px}.w-full{width:100%}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.max-w-6xl{max-width:72rem}.max-w-sm{max-width:24rem}.max-w-xl{max-width:36rem}.shrink-0{flex-shrink:0}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.list-disc{list-style-type:disc}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-12{gap:3rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.rounded-full{border-radius:9999px}.rounded-sm{border-radius:0.125rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-emerald-100{--tw-border-opacity:1;border-color:rgb(209 250 229 / var(--tw-border-opacity, 1))}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-gray-900\/20{border-color:rgb(17 24 39 / 0.2)}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.border-white\/15{border-color:rgb(255 255 255 / 0.15)}.bg-\[color\:var\(--accent\)\]{background-color:var(--accent)}.bg-\[color\:var\(--cream\)\]{background-color:var(--cream)}.bg-\[color\:var\(--forest\)\]{background-color:var(--forest)}.bg-emerald-50{--tw-bg-opacity:1;background-color:rgb(236 253 245 / var(--tw-bg-opacity, 1))}.bg-gray-200{--tw-bg-opacity:1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/55{background-color:rgb(255 255 255 / 0.55)}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-14{padding-top:3.5rem;padding-bottom:3.5rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pb-12{padding-bottom:3rem}.pb-14{padding-bottom:3.5rem}.pb-28{padding-bottom:7rem}.pb-4{padding-bottom:1rem}.pl-5{padding-left:1.25rem}.pt-1{padding-top:0.25rem}.pt-14{padding-top:3.5rem}.pt-16{padding-top:4rem}.pt-20{padding-top:5rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-center{text-align:center}.align-middle{vertical-align:middle}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-\[0\.95\]{line-height:0.95}.leading-relaxed{line-height:1.625}.tracking-wide{letter-spacing:0.025em}.text-blue-700{--tw-text-opacity:1;color:rgb(29 78 216 / var(--tw-text-opacity, 1))}.text-emerald-800{--tw-text-opacity:1;color:rgb(6 95 70 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-950{--tw-text-opacity:1;color:rgb(3 7 18 / var(--tw-text-opacity, 1))}.text-green-700{--tw-text-opacity:1;color:rgb(21 128 61 / var(--tw-text-opacity, 1))}.text-red-700{--tw-text-opacity:1;color:rgb(185 28 28 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/55{color:rgb(255 255 255 / 0.55)}.text-white\/70{color:rgb(255 255 255 / 0.7)}.text-white\/80{color:rgb(255 255 255 / 0.8)}.text-white\/85{color:rgb(255 255 255 / 0.85)}.text-white\/90{color:rgb(255 255 255 / 0.9)}.text-yellow-700{--tw-text-opacity:1;color:rgb(161 98 7 / var(--tw-text-opacity, 1))}.opacity-70{opacity:0.7}.opacity-80{opacity:0.8}.opacity-90{opacity:0.9}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-200{transition-duration:200ms}.hover\:z-10:hover{z-index:10}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:border-2:hover{border-width:2px}.hover\:border-blue-700:hover{--tw-border-opacity:1;border-color:rgb(29 78 216 / var(--tw-border-opacity, 1))}.hover\:border-green-700:hover{--tw-border-opacity:1;border-color:rgb(21 128 61 / var(--tw-border-opacity, 1))}.hover\:border-red-700:hover{--tw-border-opacity:1;border-color:rgb(185 28 28 / var(--tw-border-opacity, 1))}.hover\:border-yellow-700:hover{--tw-border-opacity:1;border-color:rgb(161 98 7 / var(--tw-border-opacity, 1))}.hover\:bg-\[color\:var\(--accent2\)\]:hover{background-color:var(--accent2)}.hover\:bg-blue-200:hover{--tw-bg-opacity:1;background-color:rgb(191 219 254 / var(--tw-bg-opacity, 1))}.hover\:bg-green-200:hover{--tw-bg-opacity:1;background-color:rgb(187 247 208 / var(--tw-bg-opacity, 1))}.hover\:bg-red-200:hover{--tw-bg-opacity:1;background-color:rgb(254 202 202 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/50:hover{background-color:rgb(255 255 255 / 0.5)}.hover\:bg-yellow-200:hover{--tw-bg-opacity:1;background-color:rgb(254 240 138 / var(--tw-bg-opacity, 1))}.hover\:text-blue-800:hover{--tw-text-opacity:1;color:rgb(30 64 175 / var(--tw-text-opacity, 1))}.hover\:text-green-800:hover{--tw-text-opacity:1;color:rgb(22 101 52 / var(--tw-text-opacity, 1))}.hover\:text-red-800:hover{--tw-text-opacity:1;color:rgb(153 27 27 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:text-yellow-800:hover{--tw-text-opacity:1;color:rgb(133 77 14 / var(--tw-text-opacity, 1))}.hover\:opacity-95:hover{opacity:0.95}.hover\:shadow-lg:hover{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}@media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 768px){.md\:col-span-5{grid-column:span 5 / span 5}.md\:col-span-7{grid-column:span 7 / span 7}.md\:mt-0{margin-top:0px}.md\:flex{display:flex}.md\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-end{align-items:flex-end}.md\:items-center{align-items:center}.md\:justify-between{justify-content:space-between}.md\:p-6{padding:1.5rem}.md\:py-16{padding-top:4rem;padding-bottom:4rem}.md\:pb-12{padding-bottom:3rem}.md\:pt-2{padding-top:0.5rem}.md\:pt-20{padding-top:5rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}.md\:text-5xl{font-size:3rem;line-height:1}.md\:text-6xl{font-size:3.75rem;line-height:1}}@media (min-width: 1024px){.lg\:block{display:block}.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}}</style><style>.h-\[calc\(100vh-4rem\)\]{height:calc(100vh - 4rem);}</style><style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,i,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.pointer-events-none{pointer-events:none}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0px}.right-0{right:0px}.right-6{right:1.5rem}.top-10{top:2.5rem}.top-4{top:1rem}.z-10{z-index:10}.mx-auto{margin-left:auto;margin-right:auto}.mb-0{margin-bottom:0px}.mb-10{margin-bottom:2.5rem}.mb-12{margin-bottom:3rem}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.ml-4{margin-left:1rem}.mr-2{margin-right:0.5rem}.mt-1{margin-top:0.25rem}.mt-1\.5{margin-top:0.375rem}.mt-10{margin-top:2.5rem}.mt-12{margin-top:3rem}.mt-2{margin-top:0.5rem}.mt-24{margin-top:6rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-7{margin-top:1.75rem}.mt-8{margin-top:2rem}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:0.375rem}.h-12{height:3rem}.h-2\.5{height:0.625rem}.h-32{height:8rem}.h-36{height:9rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-9{height:2.25rem}.h-\[26px\]{height:26px}.h-full{height:100%}.max-h-40{max-height:10rem}.w-1\.5{width:0.375rem}.w-12{width:3rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-56{width:14rem}.w-9{width:2.25rem}.w-\[26px\]{width:26px}.w-full{width:100%}.min-w-0{min-width:0px}.max-w-3xl{max-width:48rem}.max-w-6xl{max-width:72rem}.max-w-sm{max-width:24rem}.max-w-xl{max-width:36rem}.flex-none{flex:none}.shrink-0{flex-shrink:0}.scroll-mt-24{scroll-margin-top:6rem}.list-inside{list-style-position:inside}.list-disc{list-style-type:disc}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-12{gap:3rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-sm{border-radius:0.125rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-t{border-top-width:1px}.border-gray-300{--tw-border-opacity:1;border-color:rgb(209 213 219 / var(--tw-border-opacity, 1))}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.border-white\/15{border-color:rgb(255 255 255 / 0.15)}.border-white\/25{border-color:rgb(255 255 255 / 0.25)}.border-white\/30{border-color:rgb(255 255 255 / 0.3)}.border-white\/40{border-color:rgb(255 255 255 / 0.4)}.bg-\[color\:var\(--accent\)\]{background-color:var(--accent)}.bg-\[color\:var\(--accent2\)\]{background-color:var(--accent2)}.bg-\[color\:var\(--cream\)\]{background-color:var(--cream)}.bg-\[color\:var\(--forest\)\]{background-color:var(--forest)}.bg-\[var\(--accent\)\]{background-color:var(--accent)}.bg-black\/40{background-color:rgb(0 0 0 / 0.4)}.bg-green-100{--tw-bg-opacity:1;background-color:rgb(220 252 231 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/5{background-color:rgb(255 255 255 / 0.05)}.bg-white\/55{background-color:rgb(255 255 255 / 0.55)}.bg-white\/90{background-color:rgb(255 255 255 / 0.9)}.object-contain{object-fit:contain}.object-cover{object-fit:cover}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-14{padding-top:3.5rem;padding-bottom:3.5rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pb-10{padding-bottom:2.5rem}.pb-16{padding-bottom:4rem}.pb-28{padding-bottom:7rem}.pb-4{padding-bottom:1rem}.pr-2{padding-right:0.5rem}.pt-1{padding-top:0.25rem}.pt-14{padding-top:3.5rem}.pt-16{padding-top:4rem}.pt-20{padding-top:5rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-center{text-align:center}.align-middle{vertical-align:middle}.font-serif{font-family:ui-serif, Georgia, Cambria, "Times New Roman", Times, serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-semibold{font-weight:600}.italic{font-style:italic}.leading-\[0\.95\]{line-height:0.95}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-wide{letter-spacing:0.025em}.text-\[color\:var\(--ink\)\]{color:var(--ink)}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-gray-950{--tw-text-opacity:1;color:rgb(3 7 18 / var(--tw-text-opacity, 1))}.text-red-700{--tw-text-opacity:1;color:rgb(185 28 28 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/55{color:rgb(255 255 255 / 0.55)}.text-white\/70{color:rgb(255 255 255 / 0.7)}.text-white\/75{color:rgb(255 255 255 / 0.75)}.text-white\/80{color:rgb(255 255 255 / 0.8)}.text-white\/85{color:rgb(255 255 255 / 0.85)}.text-white\/90{color:rgb(255 255 255 / 0.9)}.opacity-70{opacity:0.7}.opacity-90{opacity:0.9}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.hover\:border-gray-400:hover{--tw-border-opacity:1;border-color:rgb(156 163 175 / var(--tw-border-opacity, 1))}.hover\:bg-\[color\:var\(--accent2\)\]:hover{background-color:var(--accent2)}.hover\:bg-\[var\(--accent2\)\]:hover{background-color:var(--accent2)}.hover\:bg-white\/15:hover{background-color:rgb(255 255 255 / 0.15)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}@media (min-width: 768px){.md\:mt-0{margin-top:0px}.md\:w-1\/2{width:50%}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:flex-row-reverse{flex-direction:row-reverse}.md\:items-center{align-items:center}.md\:justify-between{justify-content:space-between}.md\:p-7{padding:1.75rem}.md\:pb-10{padding-bottom:2.5rem}.md\:pt-2{padding-top:0.5rem}.md\:pt-20{padding-top:5rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}.md\:text-5xl{font-size:3rem;line-height:1}.md\:text-6xl{font-size:3.75rem;line-height:1}}@media (min-width: 1024px){.lg\:block{display:block}.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}</style>
+
+
+<style id="pd-storyboard-style">
+/* Planning & Delivery - storyboard styling pass */
+:root{
+  --pd-story-accent: rgba(85,160,146,.92);
+  --pd-story-accent-soft: rgba(85,160,146,.18);
+  --pd-story-ink: rgba(16,20,19,.90);
+  --pd-story-line: rgba(27,31,30,.10);
+  --pd-story-paper: rgba(255,255,255,.94);
+  --pd-story-shadow: 0 22px 54px rgba(15,23,22,.08);
+}
+
+/* Hero: keep the image-led look, add depth only */
+#hero{
+  position: relative;
+  overflow: hidden;
+}
+#hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(760px 320px at 78% 18%, rgba(85,160,146,.20), transparent 56%),
+    linear-gradient(180deg, rgba(255,255,255,0) 62%, rgba(244,242,236,.18) 100%);
+  z-index:0;
+}
+#hero .relative.z-10{ position:relative; z-index:1; }
+#hero a.inline-flex{
+  box-shadow: 0 14px 32px rgba(9,18,17,.14);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background-color .22s ease;
+}
+#hero a.inline-flex:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 38px rgba(9,18,17,.18);
+}
+
+/* Overview card - more architectural without changing text */
+#hero .bg-white\/90{
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(27,31,30,.08) !important;
+  box-shadow: 0 22px 56px rgba(9,18,17,.10) !important;
+}
+#hero .bg-white\/90::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg, rgba(85,160,146,.10), rgba(85,160,146,0) 16%),
+    linear-gradient(180deg, rgba(255,255,255,.30), rgba(255,255,255,0));
+}
+#hero .bg-white\/90 > *{
+  position:relative;
+  z-index:1;
+}
+
+/* Service stream band as chapter-intro */
+#services{
+  position: relative;
+  overflow: hidden;
+}
+#services::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.04) 0, rgba(255,255,255,0) 18%),
+    radial-gradient(700px 280px at 18% 16%, rgba(85,160,146,.18), transparent 60%);
+}
+#services > .relative{
+  position:relative;
+  z-index:1;
+}
+#services [data-acc]{
+  position: relative;
+  border-radius: 18px !important;
+  border-color: rgba(255,255,255,.16) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04)) !important;
+  box-shadow: 0 16px 36px rgba(6,13,12,.14);
+  transition: transform .24s ease, border-color .24s ease, background .24s ease, box-shadow .24s ease;
+}
+#services [data-acc]::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:18px;
+  bottom:18px;
+  width:3px;
+  border-radius:999px;
+  background: linear-gradient(180deg, rgba(85,160,146,.15), rgba(85,160,146,.85), rgba(85,160,146,.15));
+  opacity:.24;
+  transition: opacity .24s ease, transform .24s ease;
+}
+#services [data-acc]:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(6,13,12,.20);
+}
+#services [data-acc].acc-open{
+  border-color: rgba(85,160,146,.34) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.05)) !important;
+}
+#services [data-acc].acc-open::before{
+  opacity:1;
+}
+#services [data-acc] .acc-panel{
+  transition: max-height .35s ease, opacity .25s ease;
+  opacity:.84;
+}
+#services [data-acc].acc-open .acc-panel{
+  opacity:1;
+}
+
+/* Storyboard section */
+#start-journey{
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.98), rgba(250,251,250,.98)) !important;
+  border: 1px solid rgba(27,31,30,.06);
+  box-shadow: 0 28px 64px rgba(11,17,16,.08);
+}
+#start-journey::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(880px 300px at 16% 12%, rgba(85,160,146,.10), transparent 54%),
+    radial-gradient(920px 320px at 88% 88%, rgba(36,63,56,.06), transparent 56%),
+    linear-gradient(180deg, rgba(36,63,56,.03), rgba(255,255,255,0) 26%);
+}
+#start-journey > *{
+  position:relative;
+  z-index:1;
+}
+#start-journey .text-center{
+  position:relative;
+}
+#start-journey .text-center::after{
+  content:"";
+  display:block;
+  width:120px;
+  height:3px;
+  margin:22px auto 0;
+  border-radius:999px;
+  background: linear-gradient(90deg, rgba(85,160,146,0), rgba(85,160,146,.95), rgba(85,160,146,0));
+  box-shadow: 0 0 0 8px rgba(85,160,146,.08);
+}
+
+/* Direct step cards */
+#start-journey .fp-story-step{
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(27,31,30,.07);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.98), rgba(249,250,249,.98));
+  box-shadow: var(--pd-story-shadow);
+  transition: transform .34s ease, box-shadow .34s ease, border-color .34s ease, opacity .8s ease, filter .8s ease;
+  isolation:isolate;
+}
+#start-journey .fp-story-step::before{
+  content: attr(data-step);
+  position:absolute;
+  right:26px;
+  top:18px;
+  font-family: inherit;
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  line-height:1;
+  font-weight:700;
+  letter-spacing:-.04em;
+  color: rgba(36,63,56,.06);
+  z-index:0;
+  pointer-events:none;
+}
+#start-journey .fp-story-step::after{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  width:5px;
+  background: linear-gradient(180deg, rgba(85,160,146,.35), rgba(85,160,146,.95), rgba(85,160,146,.35));
+  box-shadow: 10px 0 30px rgba(85,160,146,.10);
+  z-index:0;
+}
+#start-journey .fp-story-step > *{
+  position:relative;
+  z-index:1;
+}
+#start-journey .fp-story-step:hover{
+  transform: translateY(-4px);
+  border-color: rgba(85,160,146,.24);
+  box-shadow: 0 34px 74px rgba(11,17,16,.12);
+}
+#start-journey .fp-story-step h3{
+  position: relative;
+  padding-bottom: 8px;
+}
+#start-journey .fp-story-step h3::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:72px;
+  height:2px;
+  border-radius:999px;
+  background: linear-gradient(90deg, rgba(85,160,146,.95), rgba(85,160,146,0));
+}
+#start-journey .fp-story-step ul{
+  margin-top: 1rem;
+}
+#start-journey .fp-story-step ul li{
+  padding-left: .1rem;
+}
+#start-journey .fp-story-step .fp-story-image{
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px !important;
+  box-shadow: 0 18px 42px rgba(12,18,17,.16);
+  border: 1px solid rgba(27,31,30,.06);
+  transform: translateZ(0);
+}
+#start-journey .fp-story-step .fp-story-image::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,0) 24%),
+    linear-gradient(90deg, rgba(85,160,146,.14), rgba(85,160,146,0) 20%);
+}
+#start-journey .fp-story-step .fp-story-image img{
+  transition: transform 1s ease, filter 1s ease;
+  transform-origin: center center;
+}
+#start-journey .fp-story-step.is-visible .fp-story-image img{
+  transform: scale(1.02);
+}
+#start-journey .fp-story-step .max-h-40{
+  position: relative;
+  padding-right: .2rem;
+}
+#start-journey .fp-story-step .max-h-40 span{
+  border: 1px solid rgba(85,160,146,.22);
+  background: linear-gradient(180deg, rgba(237,250,247,.98), rgba(227,245,240,.94));
+  box-shadow: 0 10px 22px rgba(85,160,146,.08);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+#start-journey .fp-story-step .max-h-40 span:hover{
+  transform: translateY(-2px);
+  border-color: rgba(85,160,146,.34);
+  box-shadow: 0 14px 24px rgba(85,160,146,.12);
+}
+
+/* Sequential reveal */
+#start-journey .fp-story-step,
+#services [data-acc],
+#contact .bg-white\/55{
+  opacity: 0;
+  transform: translateY(28px);
+  filter: saturate(.94);
+}
+#start-journey .fp-story-step.is-visible,
+#services [data-acc].is-visible,
+#contact .bg-white\/55.is-visible{
+  opacity:1;
+  transform: translateY(0);
+  filter:none;
+}
+#start-journey .fp-story-step{
+  transition-delay: var(--pd-step-delay, 0ms);
+}
+#services [data-acc],
+#contact .bg-white\/55{
+  transition: opacity .7s ease, transform .7s ease, filter .7s ease, border-color .24s ease, background .24s ease, box-shadow .24s ease;
+}
+
+/* Enquiry card as closing scene */
+#contact .bg-white\/55{
+  position:relative;
+  overflow:hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,.90), rgba(250,251,250,.90)) !important;
+  border-color: rgba(27,31,30,.08) !important;
+  box-shadow: 0 22px 54px rgba(11,17,16,.08);
+}
+#contact .bg-white\/55::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg, rgba(85,160,146,.10), rgba(85,160,146,0) 14%),
+    linear-gradient(180deg, rgba(255,255,255,.36), rgba(255,255,255,0));
+}
+#contact .bg-white\/55 > *{
+  position:relative;
+  z-index:1;
+}
+#contact input,
+#contact select,
+#contact textarea{
+  transition: border-color .22s ease, box-shadow .22s ease, background-color .22s ease;
+}
+#contact input:focus,
+#contact select:focus,
+#contact textarea:focus{
+  outline:none;
+  border-color: rgba(85,160,146,.60);
+  box-shadow: 0 0 0 4px rgba(85,160,146,.12);
+  background: rgba(255,255,255,.98);
+}
+
+/* Explore-more finish */
+#explore-more{
+  position:relative;
+  overflow:hidden;
+}
+#explore-more::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(900px 260px at 14% 18%, rgba(85,160,146,.18), transparent 58%),
+    linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+}
+#explore-more > *{
+  position:relative;
+  z-index:1;
+}
+
+@media (prefers-reduced-motion: reduce){
+  #start-journey .fp-story-step,
+  #services [data-acc],
+  #contact .bg-white\/55{
+    opacity:1 !important;
+    transform:none !important;
+    transition:none !important;
+    animation:none !important;
+  }
+  #start-journey .fp-story-step .fp-story-image img{
+    transition:none !important;
+    transform:none !important;
+  }
+}
+</style>
+
+<style id="enwater-logo-refinement-v1">
+.brand-logo,.nav-logo,.nav-brand-logo{height:38px!important;width:auto!important;max-width:66px!important;object-fit:contain!important;background:transparent!important;border-radius:0!important;padding:0!important;box-shadow:none!important;}
+.brand span,.nav-brand span{white-space:nowrap;}
+.footer-logo{height:34px;width:auto;max-width:60px;object-fit:contain;background:transparent;border-radius:0;padding:0;box-shadow:none;display:block;}
+.footer-brand,.foot-brand{display:flex;align-items:center;gap:10px;}
+</style>
+
+
+<style id="flowplan-explore-more-contextual-v5">
+/* Contextual FlowPlan Explore More cards: readable, page-specific project links. */
+#explore-more .fp-related-grid{
+  display:grid!important;
+  gap:28px!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  margin-top:2.25rem!important;
+  align-items:stretch!important;
+}
+#explore-more .fp-related-card{
+  background:#f4f2ec!important;
+  color:#0f2520!important;
+  border:1px solid rgba(255,255,255,.50)!important;
+  border-radius:16px!important;
+  overflow:hidden!important;
+  box-shadow:0 18px 36px rgba(0,0,0,.22)!important;
+  min-height:100%!important;
+  display:flex!important;
+  flex-direction:column!important;
+  transform:none!important;
+  transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease!important;
+}
+#explore-more .fp-related-card::after{display:none!important;content:none!important;}
+#explore-more .fp-related-card:hover,
+#explore-more .fp-related-card:focus-within{
+  background:#f4f2ec!important;
+  transform:translateY(-4px)!important;
+  border-color:rgba(85,160,146,.72)!important;
+  box-shadow:0 24px 44px rgba(0,0,0,.26)!important;
+}
+#explore-more .fp-related-card .fp-card-top{
+  position:relative!important;
+  height:124px!important;
+  background:linear-gradient(135deg,rgba(85,160,146,.16),rgba(255,255,255,.80))!important;
+  border-bottom:1px solid rgba(20,48,42,.12)!important;
+  flex:0 0 auto!important;
+}
+#explore-more .fp-related-card .fp-card-top::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.50;
+  background-image:radial-gradient(rgba(85,160,146,.22) 1.4px,transparent 1.4px);
+  background-size:24px 24px;
+}
+#explore-more .fp-related-card .fp-card-body{
+  padding:24px 26px 26px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  gap:13px!important;
+  flex:1!important;
+  background:#f4f2ec!important;
+}
+#explore-more .fp-related-card .fp-card-kicker{
+  color:#147164!important;
+  font-size:12px!important;
+  line-height:1.35!important;
+  font-weight:850!important;
+  letter-spacing:.09em!important;
+  text-transform:uppercase!important;
+  margin:0!important;
+}
+#explore-more .fp-related-card h3{
+  color:#071a16!important;
+  font-family:ui-serif,Georgia,Cambria,"Times New Roman",serif!important;
+  font-size:21px!important;
+  line-height:1.25!important;
+  font-weight:760!important;
+  margin:0!important;
+}
+#explore-more .fp-related-card .fp-card-text{
+  color:#102822!important;
+  font-size:14.5px!important;
+  line-height:1.58!important;
+  margin:8px 0 0!important;
+}
+#explore-more .fp-related-card a{
+  color:#00685d!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:8px!important;
+  margin-top:auto!important;
+  font-size:14px!important;
+  font-weight:760!important;
+  text-decoration:none!important;
+}
+#explore-more .fp-related-card a::after{content:"↗";font-size:13px;line-height:1;opacity:.8;}
+#explore-more .fp-related-card a:hover,
+#explore-more .fp-related-card a:focus{color:#004d44!important;text-decoration:underline!important;text-underline-offset:5px!important;}
+@media(max-width:980px){#explore-more .fp-related-grid{grid-template-columns:1fr!important;}}
+</style>
+<style id="flowplan-planning-delivery-gap-hard-fix-v2">
+/* Hard fix: remove the stray pre-header FlowPlan chip bar that created a cream gap above the top navigation. */
+html,body{margin:0!important;padding:0!important;}
+body{padding-top:0!important;}
+body > .flowplan-subnav:first-child{display:none!important;height:0!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;overflow:hidden!important;}
+header.site-topnav{position:sticky!important;top:0!important;margin-top:0!important;}
+header.site-topnav + nav.flowplan-subnav{margin-top:0!important;}
+</style>
+<link href="../exported-ui-styles.css" rel="stylesheet"/><link rel="icon" type="image/png" href="../assets/images/enwater-design-logo-nav.png" />
+</head>
+<body class="fp-sans"><header class="site-topnav">
+<div class="wrap">
+<a aria-label="EnWater Design home" class="brand" href="../home.html">
+<img alt="EnWater Design logo" class="nav-logo" src="../assets/images/enwater-design-logo.png"/>
+<span>EnWater Design</span>
+</a>
+<nav class="desktop-nav">
+<ul>
+<li><a class="rootlink" href="../home.html">Home</a></li>
+<li>
+            <a class="rootlink " href="../About/about.html">About</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a class="" href="../About/about.html">About Us</a>
+              <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+            </div>
+          </li>
+<li>
+<a class="rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink active" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Projects/index.html">Projects</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</li>
+<li><a class="rootlink nav-login" href="../login.html">Login</a></li>
+<li><a class="rootlink nav-cta" href="../get-in-touch.html">Get in touch</a></li>
+</ul>
+</nav>
+<button aria-expanded="false" aria-label="Toggle menu" class="mobile-nav-toggle" type="button">
+<span class="hamburger-line line-1"></span>
+<span class="hamburger-line line-2"></span>
+<span class="hamburger-line line-3"></span>
+</button>
+</div>
+<div class="mobile-nav-panel">
+<div class="mobile-nav-content">
+<div class="mobile-nav-item">
+<a class="mobile-rootlink" href="../home.html">Home</a>
+</div>
+<div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink " href="../About/about.html">About</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a class="" href="../About/about.html">About Us</a>
+            <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+          </div>
+        </div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage Overview</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink active" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Projects/index.html">Projects</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<a class="mobile-login-btn" href="../login.html">Login</a>
+</div>
+<div class="mobile-nav-item no-border">
+<a class="mobile-cta-btn" href="../get-in-touch.html">Get in touch</a>
+</div>
+</div>
+</div>
+</header><nav aria-label="FlowPlan" class="flowplan-subnav"><div class="fp-wrap"><span class="fp-kicker">FlowPlan</span><a href="flowplan-framework.html">Framework</a><a href="flowplan-systems-planning.html">Systems Planning</a><a href="flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a><a href="treatment-reuse-planning.html">Reuse Planning</a><a href="flowplan-solution-design.html">Solution Design</a><a href="flowplan-process-mapping.html">Process Mapping</a><a aria-current="page" class="active fp-support" href="flowplan-planning-delivery.html">Planning &amp; Delivery</a></div></nav><main><section class="relative w-full overflow-hidden" id="hero">
+<img alt="Hero" class="absolute inset-0 w-full h-full object-cover" src="assets/media/planning_delivery_hero.jpg"/>
+<div class="absolute inset-0" style="background:linear-gradient(90deg, rgba(0,0,0,.52) 0%, rgba(0,0,0,.34) 42%, rgba(0,0,0,.16) 100%);"></div>
+<div class="relative z-10">
+<div class="max-w-6xl mx-auto px-6 pt-16 pb-10 md:pt-20 md:pb-10">
+<div class="grid lg:grid-cols-2 gap-10 items-start">
+<div>
+<p class="text-xs text-white/70">FlowPlan › Planning &amp; Delivery</p>
+<h1 class="fp-serif mt-3 text-5xl md:text-6xl leading-[0.95] text-white">Planning &amp; Delivery</h1>
+<p class="mt-5 text-white/85 leading-relaxed max-w-xl">From early diagnostics to implementation, FlowPlan helps water, wastewater, and reuse projects move forward with clarity. It translates diagnostic insights into vendor-ready pathways and configured solutions that connect treatment strategies with reuse and recovery goals.</p>
+<div class="mt-7 flex flex-wrap items-center gap-3">
+<a class="inline-flex items-center gap-2 bg-[var(--accent)] hover:bg-[var(--accent2)] text-white font-semibold px-6 py-3 rounded-lg" href="#start-journey">
+<img alt="Hero Droplet Icon" class="w-[26px] h-[26px] object-contain shrink-0" src="assets/icons/hero_droplet.png"/>
+ Start the engagement
+ <span class="opacity-90">
+<svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</span>
+</a>
+<a class="inline-flex items-center gap-2 border border-white/30 bg-white/10 hover:bg-white/15 text-white font-semibold px-6 py-3 rounded-lg" href="#services">
+ Explore service streams
+ <span class="opacity-90">
+<svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-6xl mx-auto px-6 pb-16">
+<div class="bg-white/90 backdrop-blur border border-white/40 rounded-2xl p-6 md:p-7 soft-shadow">
+<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+<div>
+<h2 class="text-sm font-semibold text-gray-900">Overview</h2>
+<p class="mt-2 text-gray-700 leading-relaxed max-w-3xl">FlowPlan provides a practical roadmap that organises the work into clear service streams and design outputs, from intake and feasibility through pathway selection, solution design, module configuration, vendor alignment, coordination points, and commissioning verification.</p>
+</div>
+<div class="flex flex-wrap gap-3">
+<a class="inline-flex items-center gap-2 bg-[var(--accent)] hover:bg-[var(--accent2)] text-white text-sm font-semibold px-4 py-2 rounded-lg" href="#start-journey">
+ See how it works
+ <span class="opacity-90">
+<svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</span>
+</a>
+<a class="inline-flex items-center gap-2 border border-gray-300 hover:border-gray-400 text-gray-900 text-sm font-semibold px-4 py-2 rounded-lg bg-white" href="../get-in-touch.html">
+ Get in touch
+ <span class="text-gray-700">
+<svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section class="relative bg-forest text-white overflow-hidden scroll-mt-24" id="services">
+<div class="absolute inset-0 pattern opacity-70 pointer-events-none"></div>
+<div class="relative max-w-6xl mx-auto px-6 py-16">
+<div class="grid lg:grid-cols-2 gap-12 items-start">
+<div>
+<h2 class="text-4xl md:text-5xl font-serif leading-tight">Where FlowPlan supports your project</h2>
+<p class="mt-6 text-white/85 leading-relaxed">FlowPlan delivers planning and delivery support across the full lifecycle of water, wastewater, reuse, and biosolids projects, from the first scoping conversation through to implementation and optimisation. Engagements are organised into four service streams that integrate directly with your project teams, vendors, and operators, ensuring consistent outputs at every phase.</p>
+<ul class="mt-8 space-y-3 text-base">
+<li class="flex gap-3">
+<span class="mt-2 w-2.5 h-2.5 rounded-full bg-accent flex-none"></span>
+<span><span class="font-semibold">Early scoping &amp; feasibility</span> <span class="text-white/75">, Establish a clear decision basis from site flows, reuse targets, constraints, and capacity requirements.</span></span>
+</li>
+<li class="flex gap-3">
+<span class="mt-2 w-2.5 h-2.5 rounded-full bg-accent flex-none"></span>
+<span><span class="font-semibold">Solution Design &amp; Options</span> <span class="text-white/75">, Build a technically robust concept with clear selection logic.</span></span>
+</li>
+<li class="flex gap-3">
+<span class="mt-2 w-2.5 h-2.5 rounded-full bg-accent flex-none"></span>
+<span><span class="font-semibold">Specification &amp; vendor alignment</span> <span class="text-white/75">, Convert concepts into vendor-ready scopes and integration points.</span></span>
+</li>
+<li class="flex gap-3">
+<span class="mt-2 w-2.5 h-2.5 rounded-full bg-accent flex-none"></span>
+<span><span class="font-semibold">Implementation &amp; optimisation</span> <span class="text-white/75">, Maintain continuity through procurement, commissioning, and optimisation to ensure delivery matches design intent.</span></span>
+</li>
+</ul>
+</div>
+<div class="space-y-3">
+<div class="rounded-xl border border-white/15 bg-white/5 overflow-hidden" data-acc="">
+<button class="w-full px-5 py-4 flex items-start justify-between gap-4 text-left" type="button">
+<div class="min-w-0">
+<div class="text-sm font-semibold tracking-wide">Early scoping &amp; feasibility</div>
+<div class="mt-1 text-sm text-white/70">Establish a clear decision basis from site flows, reuse targets, constraints, and capacity requirements.</div>
+</div>
+<svg aria-hidden="true" class="acc-icon w-5 h-5 text-white/70 flex-none" fill="none" viewbox="0 0 24 24">
+<path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<div class="acc-panel px-5 pb-4" style="max-height: 0px;">
+<ul class="mt-2 space-y-2 text-sm text-white/85">
+<li class="flex gap-2"><span class="text-white/70">•</span><span>Design Support Intake &amp; Technical Input Intake</span></li>
+<li class="flex gap-2"><span class="text-white/70">•</span><span>Project Background &amp; Feasibility assessments</span></li>
+<li class="flex gap-2"><span class="text-white/70">•</span><span>High-level options &amp; reuse pathways</span></li>
+</ul>
+</div>
+</div>
+<div class="rounded-xl border border-white/15 bg-white/5 overflow-hidden" data-acc="">
+<button class="w-full px-5 py-4 flex items-start justify-between gap-4 text-left" type="button">
+<div class="min-w-0">
+<div class="text-sm font-semibold tracking-wide">Solution Design &amp; Options</div>
+<div class="mt-1 text-sm text-white/70">Build a technically robust concept with decision-ready pathway comparisons and selection logic.</div>
+</div>
+<svg aria-hidden="true" class="acc-icon w-5 h-5 text-white/70 flex-none" fill="none" viewbox="0 0 24 24">
+<path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<div class="acc-panel px-5 pb-4" style="max-height: 0px;">
+<ul class="mt-2 space-y-2 text-sm text-white/85">
+<li class="flex gap-2"><span class="text-white/70">•</span><span>Project Feasibility Report &amp; decision-ready pathway comparisons</span></li>
+<li class="flex gap-2"><span class="text-white/70">•</span><span>FlowPlan configuration logic (water, sludge, odor, energy)</span></li>
+<li class="flex gap-2"><span class="text-white/70">•</span><span>Early KPIs for quality, reuse and biosolids outputs</span></li>
+</ul>
+</div>
+</div>
+<div class="rounded-xl border border-white/15 bg-white/5 overflow-hidden" data-acc="">
+<button class="w-full px-5 py-4 flex items-start justify-between gap-4 text-left" type="button">
+<div class="min-w-0">
+<div class="text-sm font-semibold tracking-wide">Specification &amp; vendor alignment</div>
+<div class="mt-1 text-sm text-white/70">Convert concepts into vendor-ready scopes and integration points.</div>
+</div>
+<svg aria-hidden="true" class="acc-icon w-5 h-5 text-white/70 flex-none" fill="none" viewbox="0 0 24 24">
+<path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<div class="acc-panel px-5 pb-4" style="max-height: 0px;">
+<ul class="mt-2 space-y-2 text-sm text-white/85">
+<li class="flex gap-2"><span class="text-white/70">•</span><span>Terms of Reference / specification packs</span></li>
+<li class="flex gap-2"><span class="text-white/70">•</span><span>Integration points and connection definition around FlowPlan modules</span></li>
+<li class="flex gap-2"><span class="text-white/70">•</span><span>Vendor / technology evaluation criteria and check requirements</span></li>
+</ul>
+</div>
+</div>
+<div class="rounded-xl border border-white/15 bg-white/5 overflow-hidden acc-open" data-acc="">
+<button class="w-full px-5 py-4 flex items-start justify-between gap-4 text-left" type="button">
+<div class="min-w-0">
+<div class="text-sm font-semibold tracking-wide">Implementation &amp; optimisation</div>
+<div class="mt-1 text-sm text-white/70">Maintain continuity through procurement, commissioning, and optimisation to ensure delivery matches design intent.</div>
+</div>
+<svg aria-hidden="true" class="acc-icon w-5 h-5 text-white/70 flex-none" fill="none" viewbox="0 0 24 24">
+<path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<div class="acc-panel px-5 pb-4" style="max-height: 100px;">
+<ul class="mt-2 space-y-2 text-sm text-white/85">
+<li class="flex gap-2"><span class="text-white/70">•</span><span>Design handover &amp; integration notes for vendors</span></li>
+<li class="flex gap-2"><span class="text-white/70">•</span><span>Performance review against reuse / residuals KPIs</span></li>
+<li class="flex gap-2"><span class="text-white/70">•</span><span>Optimisation and next-phase upgrade planning</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section class="container mx-auto px-6 py-16 bg-white rounded-lg shadow-lg mt-12" id="start-journey"><div class="text-center mb-12">
+<div class="flex items-center justify-center gap-3">
+<img alt="Planning &amp; Delivery Icon" class="w-12 h-12" src="assets/icons/flowplan_journey_icon.png"/>
+<h2 class="text-3xl font-semibold leading-tight">The Planning &amp; Delivery Sequence</h2>
+</div>
+<div class="max-w-3xl mx-auto mt-4 space-y-3">
+<p class="text-gray-700">FlowPlan structures every project across six defined phases - from site intake to performance-verified implementation.</p>
+<p class="text-gray-500 italic">Each phase has defined outputs, vendor coordination touchpoints, and performance checkpoints.</p>
+<p class="text-gray-600 italic">Projects may engage at any phase depending on current stage - or follow the full sequence for new-build or complex upgrades.</p>
+</div>
+</div>
+<!-- Step 1 -->
+<div class="flex flex-col md:flex-row items-center gap-8 bg-white rounded-xl shadow-lg p-6 mb-12">
+<div class="md:w-1/2">
+<h3 class="text-2xl font-bold mb-2"><img alt="Intake Icon" class="inline-block w-9 h-9 align-middle mr-2" src="assets/icons/stage1_intake.png"/> Intake &amp; Problem Definition</h3>
+<p class="text-gray-700 mb-4">Site flows, reuse goals, constraints, and decision boundaries are confirmed. Essential context is captured so the plan reflects actual operational needs, not generic assumptions.</p><p class="text-gray-600 italic mt-2">Deliverable: A structured problem definition with confirmed flows, constraints, and decision boundaries, ready to carry into diagnostic and feasibility work.</p>
+<ul class="list-disc list-inside text-gray-700 ml-4">
+<li>Design Support Intake</li>
+<li>Technical Input Intake</li>
+</ul>
+</div>
+<div class="md:w-1/2">
+<img alt="Step 1 Composite" class="w-full rounded-lg shadow-md mx-auto" src="Step1_Composite_Final.png"/>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col md:flex-row-reverse items-center gap-8 bg-white rounded-xl shadow-lg p-6 mb-12">
+<div class="md:w-1/2">
+<h3 class="text-2xl font-bold mb-2"><img alt="Diagnostic Icon" class="inline-block w-9 h-9 align-middle mr-2" src="assets/icons/stage2_diagnostic.png"/> Diagnostic Mapping &amp; Opportunity Identification</h3>
+<p class="text-gray-700 mb-4">Targeted diagnostics are applied to identify risks, information gaps, and opportunity pathways for reuse, residuals routing, and compliance alignment.</p><p class="text-gray-600 italic mt-2">Deliverable: A diagnostic map of site-specific risks, information gaps, and opportunities, linked to the FlowPlan modules and response routes that address them.</p>
+<div class="max-h-40 overflow-y-auto scrollbar-thin flex flex-col gap-2 pr-2">
+<span class="bg-green-100 px-4 py-2 rounded-full">TSE Use Feasibility</span>
+<span class="bg-green-100 px-4 py-2 rounded-full">Residuals &amp; Biosolids Planning</span>
+<span class="bg-green-100 px-4 py-2 rounded-full">Source Control &amp; Pretreatment</span>
+<span class="bg-green-100 px-4 py-2 rounded-full">Risk Industrial Effluent Diagnostic</span>
+<span class="bg-green-100 px-4 py-2 rounded-full">Plant Retrofit Readiness</span>
+<span class="bg-green-100 px-4 py-2 rounded-full">ESG Priority Screening</span>
+<span class="bg-green-100 px-4 py-2 rounded-full">Vendor/Technology Evaluation</span>
+<span class="bg-green-100 px-4 py-2 rounded-full">Thermal Process Ash Diagnostic</span>
+<span class="bg-green-100 px-4 py-2 rounded-full">Biosolids Product Viability &amp; Market Fit</span>
+</div>
+</div>
+<div class="md:w-1/2">
+<img alt="Step 2 Composite" class="w-full rounded-lg shadow-md mx-auto" src="Step2_Composite_Final.png"/>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col md:flex-row items-center gap-8 bg-white rounded-xl shadow-lg p-6 mb-12">
+<div class="md:w-1/2">
+<h3 class="text-2xl font-bold mb-2"><img alt="Feasibility Icon" class="inline-block w-9 h-9 align-middle mr-2" src="assets/icons/stage3_feasibility.png"/> Feasibility &amp; Pathway Selection</h3>
+<p class="text-gray-700 mb-4">Options are compared for technical fit, economics, and operational practicality to define a decision-ready pathway before committing. Trade-offs are made visible so the preferred pathway is technically robust.</p><p class="text-gray-600 italic mt-2">Deliverable: A technically robust pathway comparison with visible trade-offs, showing the preferred option is economically justified before commitment.</p>
+<ul class="list-disc list-inside text-gray-700 ml-4">
+<li>Feasibility Report</li>
+<li>Value Engineering</li>
+</ul>
+</div>
+<div class="md:w-1/2">
+<img alt="Step 3 Composite" class="w-full rounded-lg shadow-md mx-auto" src="Step3_Composite_Final.png"/>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col md:flex-row-reverse items-center gap-8 bg-white rounded-xl shadow-lg p-6 mb-12">
+<div class="md:w-1/2">
+<h3 class="text-2xl font-bold mb-2"><img alt="Configuration Icon" class="inline-block w-9 h-9 align-middle mr-2" src="assets/icons/stage4_config.png"/> FlowPlan Configuration</h3>
+<p class="text-gray-700 mb-4">Needs are mapped to FlowPlan modules and the integration logic is defined across water, residuals, odor/septicity, and energy, including integration points and dependencies.</p><p class="text-gray-600 italic mt-2">Deliverable: A configured module set that is process-engineered as a complete system, with defined integration points across water, residuals, odour/septicity, and energy.</p>
+</div>
+<div class="md:w-1/2">
+<img alt="Step 4 Composite" class="w-full rounded-lg shadow-md mx-auto" src="Step4_Composite_Final.png"/>
+</div>
+</div>
+<!-- Step 5 -->
+<div class="flex flex-col md:flex-row items-center gap-8 bg-white rounded-xl shadow-lg p-6 mb-12">
+<div class="md:w-1/2">
+<h3 class="text-2xl font-bold mb-2"><img alt="Specification Icon" class="inline-block w-9 h-9 align-middle mr-2" src="assets/icons/stage5_specification.png"/> Specification &amp; Readiness</h3>
+<p class="text-gray-700 mb-4">Integration points, KPIs, exclusions, and performance criteria are defined before vendor engagement, so bids stay comparable and delivery remains practical.</p><p class="text-gray-600 italic mt-2">Deliverable: A Terms of Reference and scope package with defined integration points, KPIs, exclusions, and performance criteria, so bids are comparable and delivery has a clear basis from the start.</p>
+<ul class="list-disc list-inside text-gray-700 ml-4">
+<li>Terms of Reference</li>
+<li>Integration Notes</li>
+</ul>
+</div>
+<div class="md:w-1/2">
+<img alt="Step 5 Composite" class="w-full rounded-lg shadow-md mx-auto" src="Step5_Composite_Final.png"/>
+</div>
+</div>
+<!-- Step 6 -->
+<div class="flex flex-col md:flex-row-reverse items-center gap-8 bg-white rounded-xl shadow-lg p-6 mb-12">
+<div class="md:w-1/2">
+<h3 class="text-2xl font-bold mb-2"><img alt="Implementation Icon" class="inline-block w-9 h-9 align-middle mr-2" src="assets/icons/stage6_implementation.png"/> Implementation &amp; Coordination</h3>
+<p class="text-gray-700 mb-4">Delivery support stays close to protect design intent, from coordination and commissioning checks through to performance verification and optimisation.</p><p class="text-gray-600 italic mt-2">Deliverable: Verified delivery against design intent, including commissioning checks, performance review against reuse and residuals KPIs, and a clear basis for optimisation.</p>
+<ul class="list-disc list-inside text-gray-700 ml-4">
+<li>Performance Review</li>
+<li>Optimization Guidance</li>
+</ul>
+</div>
+<div class="md:w-1/2">
+<img alt="Step 6 Composite" class="w-full rounded-lg shadow-md mx-auto" src="Step6_Composite_Final.png"/>
+</div>
+</div>
+</section><section class="bg-[color:var(--cream)] border-t hairline mt-24 mb-0" id="contact">
+<div class="max-w-6xl mx-auto px-6 pt-20 pb-28">
+<div class="grid md:grid-cols-2 gap-12 items-start">
+<div>
+<h2 class="fp-serif text-3xl md:text-4xl text-gray-950">Start an Enquiry</h2>
+<p class="mt-4 text-gray-700 max-w-xl leading-relaxed">Every enquiry is matched to the right engagement phase, whether the priority is early planning, pathway selection, module configuration, or specification and vendor readiness.</p><h3 class="mt-5 text-sm font-semibold tracking-wide text-[color:var(--ink)]">Typical enquiry topics</h3><ul class="mt-2 space-y-2 text-sm text-gray-700"><li class="flex gap-2"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[color:var(--accent2)] flex-none"></span><span>Starting-point guidance (which step to begin with, based on current stage and urgency)</span></li><li class="flex gap-2"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[color:var(--accent2)] flex-none"></span><span>Diagnostics and site information planning to close sampling / monitoring gaps</span></li><li class="flex gap-2"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[color:var(--accent2)] flex-none"></span><span>Feasibility and pathway comparison (fit, risks, CAPEX/OPEX, operability)</span></li><li class="flex gap-2"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[color:var(--accent2)] flex-none"></span><span>Solution configuration and module mapping (integration points, connections, constraints)</span></li><li class="flex gap-2"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[color:var(--accent2)] flex-none"></span><span>Specification / ToR packs and performance criteria (KPIs, tests, exclusions)</span></li><li class="flex gap-2"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[color:var(--accent2)] flex-none"></span><span>Implementation coordination support (commissioning checks, verification, optimisation)</span></li></ul><h3 class="mt-5 text-sm font-semibold tracking-wide text-[color:var(--ink)]">What to share for a precise response</h3><ul class="mt-2 space-y-2 text-sm text-gray-700"><li class="flex gap-2"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[color:var(--accent2)] flex-none"></span><span>Current stage and decision deadline (intake / feasibility / specification / delivery)</span></li><li class="flex gap-2"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[color:var(--accent2)] flex-none"></span><span>Water/residuals context (what’s on site and what must be achieved)</span></li><li class="flex gap-2"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[color:var(--accent2)] flex-none"></span><span>Known constraints (space, power/heat, shutdown periods, operator capacity)</span></li><li class="flex gap-2"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[color:var(--accent2)] flex-none"></span><span>Information available (recent sampling, logs, drawings, O&amp;M history)</span></li><li class="flex gap-2"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-[color:var(--accent2)] flex-none"></span><span>Any vendor/EPC context (shortlists, approvals, lender/QA expectations)</span></li></ul>
+<div class="mt-6 text-sm text-gray-700 leading-relaxed max-w-xl">
+</div>
+<a class="mt-6 inline-flex items-center gap-2 bg-[color:var(--accent)] text-white px-4 py-2 text-sm rounded-sm hover:bg-[color:var(--accent2)]" href="../get-in-touch.html">
+ Open enquiry form
+ <span class="opacity-90">
+<svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</span>
+</a>
+</div>
+<div class="bg-white/55 rounded-sm border hairline p-6 md:pt-2 md:mt-0" id="enquiry-form">
+<p class="text-sm text-gray-700 mb-4">Select the phase closest to your current stage. If you are unsure where to begin, select General and we will identify the right starting point.</p>
+<form action="/thank-you.html" class="grid gap-3" data-netlify="true" data-static-form-name="enwater-enquiry" id="enquiryForm" method="POST" name="enwater-enquiry" netlify-honeypot="bot-field">
+<input name="form-name" type="hidden" value="enwater-enquiry"/>
+<input name="source_page" type="hidden" value="FlowPlan/flowplan-planning-delivery.html"/>
+<p style="display:none"><label>Do not fill this out: <input name="bot-field"/></label></p>
+<input class="w-full rounded-sm border hairline bg-white px-3 py-2 text-sm" id="enqName" name="name" placeholder="Name*" required=""/>
+<input class="w-full rounded-sm border hairline bg-white px-3 py-2 text-sm" id="enqEmail" name="email" placeholder="Email*" required="" type="email"/>
+<input class="w-full rounded-sm border hairline bg-white px-3 py-2 text-sm" id="enqCompany" name="company" placeholder="Company"/>
+<select class="w-full rounded-sm border hairline bg-white px-3 py-2 text-sm" id="enqRegion" name="region" required="">
+<option disabled="" selected="" value="">Region*</option>
+<option value="UAE">UAE</option>
+<option value="GCC">GCC</option>
+<option value="Global">Global</option>
+</select>
+<select class="w-full rounded-sm border hairline bg-white px-3 py-2 text-sm" id="enqType" name="enquiry_type" required=""><option disabled="" selected="" value="">Enquiry type*</option><option value="step1">Step 1, Intake &amp; Problem Definition</option><option value="step2">Step 2, Diagnostic Mapping &amp; Opportunity Identification</option><option value="step3">Step 3, Feasibility &amp; Pathway Selection</option><option value="step4">Step 4, FlowPlan Configuration</option><option value="step5">Step 5, Specification &amp; Readiness</option><option value="step6">Step 6, Implementation &amp; Coordination</option><option value="general">General, not sure where to start</option></select>
+<textarea class="w-full rounded-sm border hairline bg-white px-3 py-2 text-sm" id="enqMsg" name="message" placeholder="Your message." rows="4"></textarea>
+<div class="flex flex-wrap items-center gap-3 pt-1">
+<button class="inline-flex items-center gap-2 bg-[color:var(--accent)] text-white px-4 py-2 text-sm rounded-sm hover:bg-[color:var(--accent2)]" type="submit">
+ Send enquiry
+ <span class="opacity-90">
+<svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</span>
+</button>
+<p class="text-xs text-gray-600"></p>
+</div>
+<p class="text-xs text-red-700 hidden" id="enquiryStatus"></p>
+</form>
+</div>
+</div>
+</div>
+</section><section class="bg-[color:var(--forest)] text-white" id="explore-more">
+<div class="pattern">
+<div class="max-w-6xl mx-auto px-6 pt-14 pb-28">
+<div class="flex items-baseline justify-between gap-6">
+<h2 class="fp-serif text-3xl md:text-4xl text-white">Explore More</h2>
+<a class="text-sm text-white/85 hover:text-white inline-flex items-center gap-2" href="../Projects/project-pathways.html">
+ View configurations
+ <span class="opacity-90">
+<svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</span>
+</a>
+</div>
+<div class="fp-related-grid">
+<article class="fp-related-card">
+<div class="fp-card-top"></div>
+<div class="fp-card-body">
+<p class="fp-card-kicker">Delivery sequence</p>
+<h3>Engagement Roadmap</h3>
+<p class="fp-card-text">Use when the main task is sequencing intake, diagnostics, supplier comparison, completion checks and follow-up actions across the project journey.</p>
+<a href="../Projects/engagement-roadmap.html">Open engagement roadmap</a>
+</div></article>
+<article class="fp-related-card">
+<div class="fp-card-top"></div>
+<div class="fp-card-body">
+<p class="fp-card-kicker">Project selection</p>
+<h3>Project Pathways</h3>
+<p class="fp-card-text">Connect early scoping and feasibility decisions to the right project family before suppliers quote: STP/ETP, reuse, biosolids, equipment or utilities.</p>
+<a href="../Projects/project-pathways.html">Open project pathways</a>
+</div></article>
+<article class="fp-related-card">
+<div class="fp-card-top"></div>
+<div class="fp-card-body">
+<p class="fp-card-kicker">Implementation packs</p>
+<h3>Equipment &amp; Utilities Projects</h3>
+<p class="fp-card-text">Use when the delivery route needs equipment packages, utility connections, completion checks and supplier-ready scope inputs.</p>
+<a href="../Projects/equipment-utilities-projects.html">Explore equipment projects</a>
+</div></article>
+</div>
+</div>
+</div>
+</section>
+</main>
+<style id="enwater-flowplan-footer-standard-v4">
+.enwater-flowplan-footer{background:#173d35;color:rgba(255,255,255,.88);position:relative;border-top:1px solid rgba(255,255,255,.10);margin-top:0;}
+.enwater-flowplan-footer::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.18;background-image:linear-gradient(rgba(255,255,255,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.10) 1px,transparent 1px);background-size:18px 18px;}
+.enwater-flowplan-footer .eff-inner{position:relative;max-width:1180px;margin:0 auto;padding:44px 24px 26px;}
+.enwater-flowplan-footer .eff-grid{display:grid;gap:34px;grid-template-columns:1.4fr 1.1fr 1fr;align-items:start;}
+.enwater-flowplan-footer .eff-brand{display:flex;align-items:center;gap:12px;font-weight:750;color:#fff;font-size:16px;margin-bottom:12px;}
+.enwater-flowplan-footer .eff-logo{height:34px;width:auto;max-width:58px;object-fit:contain;background:#fff;border-radius:6px;padding:4px;box-shadow:0 1px 4px rgba(0,0,0,.16);}
+.enwater-flowplan-footer .eff-desc{max-width:440px;color:rgba(255,255,255,.72);font-size:14px;line-height:1.7;margin:0;}
+.enwater-flowplan-footer .eff-heading{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.62);font-weight:750;margin-bottom:14px;}
+.enwater-flowplan-footer a{display:block;color:rgba(255,255,255,.78);text-decoration:none;font-size:14px;line-height:1.55;margin:8px 0;}
+.enwater-flowplan-footer a:hover{color:#fff;}
+.enwater-flowplan-footer .eff-line{color:rgba(255,255,255,.78);font-size:14px;line-height:1.55;margin:8px 0;}
+.enwater-flowplan-footer .eff-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:34px;padding-top:18px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:rgba(255,255,255,.58);font-size:13px;}
+@media(max-width:780px){.enwater-flowplan-footer .eff-grid{grid-template-columns:1fr}.enwater-flowplan-footer .eff-inner{padding:38px 20px 24px}}
+</style>
+<footer class="footer">
+<div class="wrap">
+<div class="footer-top">
+<div>
+<div class="footer-brand"><img alt="EnWater Design logo" class="footer-logo" src="../assets/images/enwater-design-logo-transparent-mark.png"/><span class="footer-name">EnWater Design</span></div>
+<p class="footer-desc">Independent water, wastewater treatment and reuse consulting, helping owners and operators turn complex challenges into clear decisions and practical outcomes.</p>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<a href="../home.html">Home</a>
+<a href="../About/about.html">About</a>
+<a href="../About/BlogList.html">Our Blog</a>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+</div>
+<div class="footer-col">
+<h4>Services</h4>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing</a>
+<a href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<a href="../Projects/index.html">Projects</a>
+<a href="../Sectors/index.html">Sectors</a>
+</div>
+<div class="footer-col">
+<h4>Pathways</h4>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../Sectors/index.html">Sector Pathways</a>
+</div>
+<div class="footer-col">
+<h4>Get in touch</h4>
+<a href="../get-in-touch.html">Contact form</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">Industrial / CETP</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© <span id="yr"></span> EnWater Design</div>
+<div>Clear systems planning for practical project delivery</div>
+</div>
+</div>
+<script>
+  (function() {
+    const yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+  })();
+</script>
+</footer>
+<script>
+(function(){
+ const root = document.getElementById('module-snapshot');
+ if(!root) return;
+
+ const familyBar = root.querySelector('#msFamilyBar');
+ const listEl = root.querySelector('#msModuleList');
+ const midEl = root.querySelector('#msMid');
+ const rightEl= root.querySelector('#msRight');
+ const btnPrint = root.querySelector('#msPrint');
+
+ const esc = (s)=>String(s||"").replace(/[&<>"]/g, c=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+ const byId = (id)=>document.getElementById(id);
+
+ const MS = {
+ families: {
+ water: {
+ label:"Water & Reuse",
+ modules:["fp-mbbr","fp-clari","fp-micra","fp-rocore","oxiclear"]
+ },
+ industrial: {
+ label:"Industrial Conditioning & Brine",
+ modules:["fp-batch","fp-zldprep","fp-rocore"]
+ },
+ odor: {
+ label:"Odor & Septicity",
+ modules:["odor-capture","odor-dose","odor-polish"]
+ },
+ energy: {
+ label:"Energy & Heat",
+ modules:["cooling-loop","heating-loop","heat-recovery"]
+ },
+ sludge: {
+ label:"Sludge & Biosolids",
+ modules:["fp-sludge-dewater","fp-sludge-dry","fp-sludge-compost","fp-sludge-fert","fp-sludge-bio","fp-sludge-reuseplan","fp-incineration"]
+ }
+ },
+ modules: {
+ "fp-clari": {
+ name:"Clari+",
+ role:"Clarification & filtration",
+ biggerPicture:"A stabilisation and polishing step used to make effluent predictable, for reuse, discharge reliability, and downstream membranes where needed.",
+ usedFor:["STP/ETP polishing","TSS/clarity control","Protect reuse barriers"],
+ diagnostics:["TSS/particle load trends","Peak flow & carryover risk","Filter backwash/waste routing"],
+ recipes:[
+ {title:"Reuse polishing line", focus:"Stabilise solids first, then add barriers as needed.", stack:["fp-clari","fp-micra","fp-rocore","oxiclear"]},
+ {title:"Effluent compliance uplift", focus:"Tighten solids and turbidity to reduce downstream upsets.", stack:["fp-clari","oxiclear"]}
+ ],
+ checks:["Achieved TSS/turbidity target range","Backwash handling integration point","Headloss/cleaning strategy"]
+ },
+
+ "fp-mbbr": {
+ name:"MBBR+",
+ role:"Biological BOD/COD removal for reuse or discharge",
+ biggerPicture:"MBBR is a retrofit-friendly biological uplift. It increases stability and shock tolerance without needing a full rebuild, often the anchor for capacity and compliance upgrades.",
+ usedFor:["Upgrade capacity","Improve effluent stability","Retrofit intensification"],
+ diagnostics:["Load & hydraulics check (peaks/seasonality)","Oxygen transfer & blower capacity","Reactor space / media volume constraints"],
+ recipes:[
+ {title:"STP compliance uplift", focus:"Improve stability first, then add reuse barriers only where needed.", stack:["fp-mbbr","fp-clari","fp-micra"]},
+ {title:"Industrial reuse route", focus:"Build a stable biological base before higher-assurance polishing.", stack:["fp-mbbr","fp-clari","fp-micra","fp-rocore"]}
+ ],
+ checks:["Target effluent range (BOD/COD/NH₃ as needed)","Start-up / stabilisation plan","Controls intent (DO, recycles, alarms)"]
+ },
+
+ "fp-micra": {
+ name:"Micra+",
+ role:"Membrane barrier for reuse assurance",
+ biggerPicture:"Micra adds a defined physical barrier to protect reuse outcomes (and downstream RO where used). It’s selected to meet reuse intent and operating range, not as a default add-on.",
+ usedFor:["TSE-grade reuse","Barrier assurance","Protect RO / high-value reuse"],
+ diagnostics:["Fouling/scaling potential","Pre-treatment adequacy (solids & oils)","Cleaning strategy & downtime tolerance"],
+ recipes:[
+ {title:"TSE reuse line", focus:"Clarify first, then set barrier assurance.", stack:["fp-clari","fp-micra","oxiclear"]},
+ {title:"High-assurance reuse", focus:"Barrier + RO where quality intent requires it.", stack:["fp-clari","fp-micra","fp-rocore","oxiclear"]}
+ ],
+ checks:["Flux/throughput target range","CIP triggers & chemical plan","Concentrate/solids handling integration point"]
+ },
+
+ "fp-rocore": {
+ name:"ROCore+",
+ role:"Reverse osmosis for high-assurance water recovery",
+ biggerPicture:"ROCore is used when reuse intent demands high assurance (salts, dissolved organics, specific ions). It must be protected by realistic pre-treatment and a brine plan.",
+ usedFor:["High-assurance reuse","Water recovery RO","Industrial polishing"],
+ diagnostics:["Feed salinity & scaling risk","Pre-treatment sufficiency (turbidity/SDI)","Brine destination and constraints"],
+ recipes:[
+ {title:"Industrial reuse route", focus:"Barrier first, then RO with a brine plan.", stack:["fp-clari","fp-micra","fp-rocore"]},
+ {title:"Brine readiness", focus:"Condition the stream to protect RO and downstream thermal.", stack:["fp-batch","fp-zldprep","fp-rocore"]}
+ ],
+ checks:["Recovery/flux range & salt rejection","Chemical clean regime","Brine management integration point"]
+ },
+
+ "fp-batch": {
+ name:"Batch+",
+ role:"Factory wastewater conditioning (ETP)",
+ biggerPicture:"Batch is a targeted chemistry block: pH correction, metals precipitation, and coag/floc to make industrial streams treatable or RO-ready. It is rarely used in municipal STPs.",
+ usedFor:["Factory/industrial effluent conditioning","Metals control / pH correction","Pre-filtration / pre-membrane conditioning"],
+ diagnostics:["Industrial effluent diagnostic (metals/toxicity)","Jar testing / treatability","Sludge yield + disposal route"],
+ recipes:[
+ {title:"Factory wastewater → reuse line", focus:"Condition first, then stabilise and polish.", stack:["fp-batch","fp-clari","fp-micra","fp-rocore"]},
+ {title:"Brine/ZLD readiness", focus:"Reduce scaling & protect downstream thermal.", stack:["fp-batch","fp-zldprep","fp-rocore"]}
+ ],
+ checks:["Chemical consumption & dosing control","Settling/filtration performance","Resulting sludge quantity/quality"]
+ },
+
+ "fp-zldprep": {
+ name:"ZLD+Prep+",
+ role:"Brine / thermal feed readiness",
+ biggerPicture:"ZLD+Prep exists to make difficult brines and concentrates compatible with thermal steps (evaporators/crystallisers), by tightening scaling control, solids handling, and integration points.",
+ usedFor:["Post-RO brine conditioning","High scaling/fouling risk streams","Thermal viability preparation"],
+ diagnostics:["Brine composition & scaling risk","Heat source & thermal viability check","Solids handling pathway"],
+ recipes:[
+ {title:"RO brine pathway", focus:"Plan brine → thermal readiness.", stack:["fp-rocore","fp-zldprep"]},
+ {title:"Complex factory brine", focus:"Condition first, then define integration points.", stack:["fp-batch","fp-zldprep","fp-rocore"]}
+ ],
+ checks:["Scaling control strategy","Solids handling integration point","Thermal KPI basis (if applicable)"]
+ },
+
+ "oxiclear": {
+ name:"Oxiclear+",
+ role:"Oxidation-based polishing",
+ biggerPicture:"Oxiclear is used to tighten reuse and discharge quality by managing colour/odour drivers and disinfection performance, typically as the final polish after solids and barrier steps.",
+ usedFor:["Disinfection & polishing","Odour/colour control","Reuse finishing"],
+ diagnostics:["Residual oxidant demand","Byproduct risk (where relevant)","Contact time & dosing control"],
+ recipes:[
+ {title:"TSE reuse line", focus:"Final polish once the main barriers are in place.", stack:["fp-clari","fp-micra","oxiclear"]},
+ {title:"Compliance finishing", focus:"Target nuisance parameters and stable residual.", stack:["fp-clari","oxiclear"]}
+ ],
+ checks:["Residual control & monitoring plan","Contact system integration points","Boundary targets (micro + nuisance)"]
+ },
+
+ "odor-capture": {
+ name:"Odor+Capture",
+ role:"Ventilation capture",
+ biggerPicture:"Capture is the starting point: contain and extract foul air at headworks, tanks, and enclosed areas so the rest of the strategy can be sized and proven.",
+ usedFor:["Headworks & tank capture","Building ventilation capture","Network/source containment"],
+ diagnostics:["Source mapping + monitoring plan","Vent rates & access constraints","Community receptor sensitivity"],
+ recipes:[
+ {title:"Contain → prevent → polish", focus:"Capture first, then add dosing and polishing only where needed.", stack:["odor-capture","odor-dose","odor-polish"]}
+ ],
+ checks:["Extraction performance & balance","Ducting/connection integration points","Operational alarms & safe access"]
+ },
+
+ "odor-dose": {
+ name:"Odor+Dose",
+ role:"Chemical/biological dosing",
+ biggerPicture:"Dosing targets H₂S/septicity formation and corrosion risk. It is typically staged and monitored to avoid over-dosing and to prove control at the right locations.",
+ usedFor:["Rising mains","Small plants & tanks","Septicity control"],
+ diagnostics:["H₂S profiling (gas/liquid)","Septicity drivers & residence time","Chemical logistics & safety"],
+ recipes:[
+ {title:"Rising main control", focus:"Monitor, then dose at the right point and verify response.", stack:["odor-dose","odor-polish"]}
+ ],
+ checks:["Dose-response verification","Chemical storage & safety integration points","Control logic (feed-forward/feedback)"]
+ },
+
+ "odor-polish": {
+ name:"Odor+Polish",
+ role:"Biofilter or scrubber",
+ biggerPicture:"Polish is added where boundary limits are tight or receptors are sensitive. It is sized from capture flows and confirmed with performance checks.",
+ usedFor:["Community-sensitive locations","Final-stage odour removal","Boundary compliance"],
+ diagnostics:["Influent loading & peaks","Media/chemistry selection","Boundary monitoring plan"],
+ recipes:[
+ {title:"Final-stage removal", focus:"Polish only after containment and prevention are set.", stack:["odor-capture","odor-polish"]}
+ ],
+ checks:["Removal efficiency range","Bypass/maintenance strategy","Boundary monitoring performance checks"]
+ },
+
+ "cooling-loop": {
+ name:"Cooling Loop",
+ role:"Effluent cooling exchange",
+ biggerPicture:"A practical heat-exchange loop using treated effluent to support site cooling duties. Scoped as a utility connection with clear flow/temperature ranges and fouling controls.",
+ usedFor:["Factory cooling makeup","Heat rejection support","Utility loop integration"],
+ diagnostics:["Heat duty profile","Scaling/fouling risk","Connection constraints and redundancy"],
+ recipes:[
+ {title:"Effluent cooling loop", focus:"Define duty + target ranges early.", stack:["cooling-loop"]}
+ ],
+ checks:["ΔT / approach temperature targets","Fouling mitigation & cleaning plan","Instrumentation & control intent"]
+ },
+
+ "heating-loop": {
+ name:"Heating Loop",
+ role:"Effluent heating exchange",
+ biggerPicture:"A heat-exchange loop to deliver usable low-grade heat from effluent streams. Used where stable duty improves process performance or reduces energy cost.",
+ usedFor:["Process heating support","Warm water recovery","Utility optimisation"],
+ diagnostics:["Available source temperatures","Heat sink demand & variability","Materials compatibility and fouling"],
+ recipes:[
+ {title:"Effluent heating loop", focus:"Define duty and integration points, then verify economics.", stack:["heating-loop"]}
+ ],
+ checks:["Duty target ranges","Controls + alarms","Access/maintenance integration points"]
+ },
+
+ "heat-recovery": {
+ name:"Heat Recovery",
+ role:"Waste-heat recovery integration",
+ biggerPicture:"Recover heat from hot effluent/process streams and route it into site loops. This is an integration exercise: performance ranges, connections, and maintenance access define success.",
+ usedFor:["Laundry/process plants","Waste-heat integration","Energy cost reduction"],
+ diagnostics:["Heat source mapping","Loop integration constraints","Fouling/scaling & cleaning access"],
+ recipes:[
+ {title:"Site heat recovery", focus:"Recover then distribute through practical loops.", stack:["heat-recovery","heating-loop"]}
+ ],
+ checks:["Recovered kW/kWh basis","Integration connections","Performance verification plan"]
+ },
+
+ "fp-sludge-dewater": {
+ name:"Sludge Dewatering",
+ role:"Volume reduction & logistics",
+ biggerPicture:"Dewatering is the gateway to every downstream solids pathway, transport, drying, composting, or disposal. It turns risk and OPEX into a controllable logistics problem.",
+ usedFor:["Reduce hauling volume","Prepare for drying/compost","Stabilise handling"],
+ diagnostics:["Solids mass balance & yield","Polymer conditioning needs","Haul routes & storage constraints"],
+ recipes:[
+ {title:"Handling → Class A pathway", focus:"Dewater first, then choose drying or compost based on site conditions (space, odour, offtake).", stack:["fp-sludge-dewater","fp-sludge-dry","fp-sludge-compost"]}
+ ],
+ checks:["Cake %DS target range","Odour/leachate integration points","Operator workflow & safe access"]
+ },
+
+ "fp-sludge-dry": {
+ name:"Sludge Drying",
+ role:"Thermal or bed drying",
+ biggerPicture:"Drying reduces mass and enables Class A pathways where composting is constrained. Heat source, odour control, and solids handling define feasibility.",
+ usedFor:["Class A pathway","Mass reduction","Fuel/compost preparation"],
+ diagnostics:["Heat source availability","Odour constraints & containment","Dryer type fit (bed vs thermal)"],
+ recipes:[
+ {title:"Dewater → dry → product", focus:"Define the offtake conditions and control odour integration points.", stack:["fp-sludge-dewater","fp-sludge-dry","fp-sludge-reuseplan"]}
+ ],
+ checks:["Moisture target range","Odour capture integration points","Energy KPI basis"]
+ },
+
+ "fp-sludge-compost": {
+ name:"Biosolids Composting",
+ role:"ASP / windrow composting",
+ biggerPicture:"Composting is a practical Class A route where odour tolerance, space, and bulking supply exist. The design must be market-aware from day one.",
+ usedFor:["Class A compost outputs","Reuse programmes","Hauling reduction"],
+ diagnostics:["Bulking agent supply","Odour setback constraints","Throughput and maturation time"],
+ recipes:[
+ {title:"Dewater → compost → reuse", focus:"Compost works when space, odour tolerance, and offtake conditions are in place.", stack:["fp-sludge-dewater","fp-sludge-compost","fp-sludge-reuseplan"]}
+ ],
+ checks:["Pathogen/quality criteria basis","Odour control plan","Offtake target ranges"]
+ },
+
+ "fp-sludge-fert": {
+ name:"Fertilizer Production",
+ role:"Organo-mineral fertilizer",
+ biggerPicture:"A dedicated processing route to create a market-ready product (not just dried cake). Requires a practical market and quality position.",
+ usedFor:["Market-ready fertilizer output","Value recovery","Enhanced reuse"],
+ diagnostics:["Market specification fit","Nutrient content and blending","Regulatory route (handled with specialists as needed)"],
+ recipes:[
+ {title:"Dry → process → sell", focus:"Define product spec early and design for offtake.", stack:["fp-sludge-dry","fp-sludge-fert","fp-sludge-reuseplan"]}
+ ],
+ checks:["Product spec + performance checks","Packaging/logistics integration points","Quality monitoring plan"]
+ },
+
+ "fp-sludge-bio": {
+ name:"Biofertilizer Production",
+ role:"Bio-enhanced product",
+ biggerPicture:"Biofertilizer enhances stabilized dried material with bio-additives to improve agronomic value and market appeal. It relies on quality control and realistic distribution routes.",
+ usedFor:["Bio-enhanced reuse products","Market differentiation","Agronomic value uplift"],
+ diagnostics:["Additive supply chain","Quality & stability checks","ESG/market fit screening"],
+ recipes:[
+ {title:"Dry → enhance → distribute", focus:"Design the product and distribution pathway as part of the process.", stack:["fp-sludge-dry","fp-sludge-bio","fp-sludge-reuseplan"]}
+ ],
+ checks:["Stability/odour performance","Additive dosing/handling","Batch QA/QC plan"]
+ },
+
+ "fp-sludge-reuseplan": {
+ name:"Biosolids Reuse Planning",
+ role:"Market + compliance planning",
+ biggerPicture:"Reuse planning makes outputs workable: it aligns product targets with market routes, logistics, and performance checks. It prevents technology-first dead ends.",
+ usedFor:["Offtake readiness","Reuse KPIs and target ranges","Program planning"],
+ diagnostics:["Offtake conditions check","Stakeholder alignment needs","KPIs for outputs (compost/fert)"],
+ recipes:[
+ {title:"Market-ready pathway", focus:"Plan reuse alongside processing, not after.", stack:["fp-sludge-reuseplan","fp-sludge-compost","fp-sludge-fert"]}
+ ],
+ checks:["KPIs and target ranges","Sampling/testing plan","Roles + handover points"]
+ },
+
+ "fp-incineration": {
+ name:"Mono-incineration",
+ role:"Thermal solids + recovery",
+ biggerPicture:"Mono-incineration is used where volume reduction, risk control, and recovery (e.g., phosphorus) justify a dedicated route. It depends on stable dewatering and ash handling integration points.",
+ usedFor:["High-risk solids control","Volume reduction","Recovery-ready ash route"],
+ diagnostics:["Solids characteristics & energy balance","Ash handling and recovery route","Permitting and stakeholder constraints"],
+ recipes:[
+ {title:"Dewater → incinerate → recover", focus:"Define ash integration points and recovery intent early.", stack:["fp-sludge-dewater","fp-incineration"]}
+ ],
+ checks:["Stable feed checks","Ash quality/handling integration point","Recovery KPI basis"]
+ }
+ }
+ };
+
+ function labelFor(id){
+ const m = MS.modules[id];
+ if(m && m.name) return m.name;
+ const el = byId(id);
+ const h = el ? el.querySelector('h4, h3') : null;
+ return (h && h.textContent.trim()) || id;
+ }
+
+ function roleFor(id){
+ const m = MS.modules[id];
+ return (m && m.role) || "Module";
+ }
+
+ function chip(id, label){
+ return `<a class="ms-chip" href="#${esc(id)}" data-jump="${esc(id)}">● ${esc(label)}</a>`;
+ }
+
+ function renderModuleList(familyKey){
+ const fam = MS.families[familyKey];
+ if(!fam) return;
+
+ listEl.innerHTML = fam.modules.map(id=>{
+ return `<button type="button" class="ms-mod" data-module="${esc(id)}">
+ <div class="ms-mod-name">${esc(labelFor(id))}</div>
+ <div class="ms-mod-role">${esc(roleFor(id))}</div>
+ </button>`;
+ }).join("");
+ }
+
+ function renderPanels(id){
+ const m = MS.modules[id] || {};
+ const name = m.name || labelFor(id);
+
+ const used = (m.usedFor||[]).map(x=>`<span class="ms-tag">${esc(x)}</span>`).join("");
+ midEl.innerHTML = `
+ <h3 class="ms-title">${esc(name)}</h3>
+ <div class="ms-roleline">${esc(m.role||"")}</div>
+ <div class="ms-bigger">${esc(m.biggerPicture||"")}</div>
+ ${used ? `<div class="ms-tags">${used}</div>` : ``}
+ <a class="ms-action" href="#${esc(id)}" data-jump="${esc(id)}">Open module card <span aria-hidden="true">→</span></a>
+ `;
+
+ const diags = (m.diagnostics||[]).map(x=>`<li>${esc(x)}</li>`).join("") || `<li>, </li>`;
+ const checks = (m.checks||[]).map(x=>`<li>${esc(x)}</li>`).join("") || `<li>, </li>`;
+
+ const recipes = (m.recipes||[]).map(r=>{
+ const stack = (r.stack||[]).map(mid=>chip(mid, labelFor(mid))).join("");
+ return `<div class="ms-recipe">
+ <p class="ms-recipe-title">${esc(r.title||"Typical stack")}</p>
+ ${r.focus ? `<p class="ms-recipe-focus">${esc(r.focus)}</p>` : ``}
+ <div class="ms-chips">${stack || ""}</div>
+ </div>`;
+ }).join("");
+
+ rightEl.innerHTML = `
+ <div class="ms-block">
+ <p class="ms-h4">How it adds up (typical stacks)</p>
+ <div class="ms-recipes">${recipes || `<div style="color:rgba(255,255,255,.70);font-size:13px;">, </div>`}</div>
+ </div>
+
+ <div class="ms-block">
+ <p class="ms-h4">Diagnostics that decide</p>
+ <ul class="ms-list-ul">${diags}</ul>
+ </div>
+
+ <div class="ms-block">
+ <p class="ms-h4">Checks and integration points</p>
+ <ul class="ms-list-ul">${checks}</ul>
+ </div>
+ `;
+ }
+
+ function setActiveFamilyButton(familyKey){
+ Array.from(familyBar.querySelectorAll('.ms-family')).forEach(b=>{
+ b.classList.toggle('is-active', b.getAttribute('data-family') === familyKey);
+ });
+ }
+
+ function setActiveModuleButton(id){
+ Array.from(listEl.querySelectorAll('.ms-mod')).forEach(b=>{
+ b.classList.toggle('is-active', b.getAttribute('data-module') === id);
+ });
+ }
+
+ function jumpAndHighlight(id){
+ const el = byId(id);
+ if(!el) return;
+ el.scrollIntoView({behavior:'smooth', block:'start'});
+ el.classList.add('ms-hl');
+ window.setTimeout(()=>el.classList.remove('ms-hl'), 1400);
+ }
+
+ function selectModule(id){
+ setActiveModuleButton(id);
+ renderPanels(id);
+ }
+
+ function selectFamily(familyKey){
+ setActiveFamilyButton(familyKey);
+ renderModuleList(familyKey);
+
+ const first = MS.families[familyKey].modules[0];
+ if(first) selectModule(first);
+ }
+
+ familyBar.addEventListener('click', (e)=>{
+ const b = e.target.closest('.ms-family');
+ if(!b) return;
+ selectFamily(b.getAttribute('data-family'));
+ });
+
+ listEl.addEventListener('click', (e)=>{
+ const b = e.target.closest('.ms-mod');
+ if(!b) return;
+ selectModule(b.getAttribute('data-module'));
+ });
+
+ root.addEventListener('click', (e)=>{
+ const a = e.target.closest('[data-jump]');
+ if(!a) return;
+ e.preventDefault();
+ jumpAndHighlight(a.getAttribute('data-jump'));
+ });
+
+ if(btnPrint){
+ btnPrint.addEventListener('click', ()=>{
+ window.print();
+ });
+ }
+
+ // init
+ selectFamily('water');
+})();
+</script><script>(function(){
+ const form = document.getElementById('enquiryForm');
+ if(!form) return;
+
+ const status = document.getElementById('enquiryStatus');
+ function setStatus(msg){
+ if(!status) return;
+ status.textContent = msg || '';
+ status.classList.toggle('hidden', !msg);
+ }
+
+ document.querySelectorAll('a[href="../get-in-touch.html"]').forEach(a=>{
+ a.addEventListener('click', function(){
+ setTimeout(()=> document.getElementById('enqName')?.focus(), 150);
+ });
+ });
+
+ form.addEventListener('submit', function(e){
+ e.preventDefault();
+ const data = new FormData(form);
+
+ const name = (data.get('name') || '').toString().trim();
+ const email = (data.get('email') || '').toString().trim();
+ const region = (data.get('region') || '').toString().trim();
+ const type = (data.get('enquiry_type') || '').toString().trim();
+ const company = (data.get('company') || '').toString().trim();
+ const message = (data.get('message') || '').toString().trim();
+
+ if(!name || !email || !region || !type){
+ setStatus('Please complete the required fields.');
+ return;
+ }
+ setStatus('');
+
+ const lines = [
+ `Name: ${name}`,
+ `Email: ${email}`,
+ `Company: ${company}`,
+ `Region: ${region}`,
+ `Enquiry type: ${type}`,
+ '',
+ message
+ ];
+
+ const subject = encodeURIComponent(`FlowPlan Planning & Delivery enquiry, ${type}`);
+ const body = encodeURIComponent(lines.join('\n'));
+ const to = 'start@enwaterdesign.com';
+ window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+ });
+})();</script>
+<script>
+(function(){
+ const items = Array.from(document.querySelectorAll('[data-acc]'));
+ if(!items.length) return;
+
+ function setPanelHeight(item){
+ const panel = item.querySelector('.acc-panel');
+ if(!panel) return;
+ if(item.classList.contains('acc-open')){
+ panel.style.maxHeight = panel.scrollHeight + 'px';
+ } else {
+ panel.style.maxHeight = '0px';
+ }
+ }
+
+ function closeOthers(except){
+ items.forEach(it=>{
+ if(it === except) return;
+ it.classList.remove('acc-open');
+ setPanelHeight(it);
+ });
+ }
+
+ items.forEach(item=>{
+ const btn = item.querySelector('button');
+ if(!btn) return;
+ btn.addEventListener('click', ()=>{
+ const willOpen = !item.classList.contains('acc-open');
+ if(willOpen){
+ closeOthers(item);
+ item.classList.add('acc-open');
+ } else {
+ item.classList.remove('acc-open');
+ }
+ setPanelHeight(item);
+ });
+ });
+
+ function syncAll(){
+ items.forEach(setPanelHeight);
+ }
+
+ window.addEventListener('resize', syncAll);
+ window.requestAnimationFrame(syncAll);
+})();
+</script>
+<script id="pd-storyboard-script">
+document.addEventListener('DOMContentLoaded', function () {
+  const journey = document.getElementById('start-journey');
+  if (journey) {
+    const steps = Array.from(journey.children).filter(el => el.matches('div.flex.flex-col'));
+    steps.forEach((step, index) => {
+      step.classList.add('fp-story-step');
+      step.setAttribute('data-step', String(index + 1).padStart(2, '0'));
+      step.style.setProperty('--pd-step-delay', `${index * 120}ms`);
+      const imgs = step.querySelectorAll('img');
+      if (imgs.length) {
+        const mainImg = imgs[imgs.length - 1];
+        const wrap = mainImg.parentElement;
+        if (wrap) wrap.classList.add('fp-story-image');
+      }
+    });
+  }
+
+  const revealTargets = [];
+  document.querySelectorAll('#start-journey .fp-story-step').forEach(el => revealTargets.push(el));
+  document.querySelectorAll('#services [data-acc]').forEach(el => revealTargets.push(el));
+  const enquiryCard = document.querySelector('#contact .bg-white\\/55');
+  if (enquiryCard) revealTargets.push(enquiryCard);
+
+  if (!('IntersectionObserver' in window)) {
+    revealTargets.forEach((el, index) => {
+      if (el.classList.contains('fp-story-step')) {
+        el.style.setProperty('--pd-step-delay', `${index * 120}ms`);
+      }
+      el.classList.add('is-visible');
+    });
+    return;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+
+  revealTargets.forEach(el => io.observe(el));
+});
+</script>
+<script src="../exported-ui-effects.js"></script></body></html>

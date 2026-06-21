@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>About | EnWater Design</title>
+<style>
+:root {
+  --ink:       #0e1614;
+  --ink-70:    rgba(14,22,20,.70);
+  --ink-40:    rgba(14,22,20,.40);
+  --ivory:     #f5f2eb;
+  --ivory-2:   #ede9e0;
+  --stone:     #d8d3c8;
+  --teal:      #2d8a78;
+  --teal-b:    #246d5f;
+  --white:     #ffffff;
+  --deep:      #0c1f1c;
+  --serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --sans:  ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+  --ease-out: cubic-bezier(.16,1,.3,1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--ivory); color: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+img { display: block; width: 100%; }
+
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: .12s; }
+.reveal-delay-2 { transition-delay: .22s; }
+.reveal-delay-3 { transition-delay: .32s; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+
+/* Legacy Nav Styles Cleaned */
+
+/* HERO */
+.hero { min-height: 100svh; padding: 120px 0 80px; display: flex; align-items: center; position: relative; overflow: hidden; background: var(--deep); }
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(45,138,120,.22) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 70% at 80% 70%, rgba(45,138,120,.10) 0%, transparent 55%);
+}
+.hero-bg::after {
+  content: ""; position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.hero-inner { position: relative; z-index: 1; width: 100%; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .18em; color: var(--teal);
+  margin-bottom: 28px; opacity: 0; animation: fadeUp .6s var(--ease-out) .2s forwards;
+}
+.hero-eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--teal); }
+.hero h1 {
+  font-family: var(--sans); font-size: clamp(44px, 6.5vw, 92px); font-weight: 800;
+  line-height: 1.03; letter-spacing: -.04em; color: var(--ivory); max-width: 17ch; margin-bottom: 32px;
+  opacity: 0; animation: fadeUp .8s var(--ease-out) .35s forwards;
+}
+.hero h1 em { font-style: italic; color: rgba(245,242,235,.50); }
+.hero-sub {
+  font-size: 17px; line-height: 1.7; color: rgba(245,242,235,.60); max-width: 52ch; margin-bottom: 44px;
+  opacity: 0; animation: fadeUp .8s var(--ease-out) .5s forwards;
+}
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; opacity: 0; animation: fadeUp .8s var(--ease-out) .65s forwards; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; background: var(--teal); color: #fff; border-radius: 999px;
+  font-size: 14px; font-weight: 600; transition: background .18s, transform .18s, box-shadow .18s;
+}
+.btn-primary:hover { background: var(--teal-b); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(45,138,120,.4); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; background: rgba(255,255,255,.07); color: rgba(255,255,255,.80);
+  border: 1px solid rgba(255,255,255,.14); border-radius: 999px; font-size: 14px; font-weight: 500;
+  transition: background .18s, color .18s;
+}
+.btn-outline:hover { background: rgba(255,255,255,.12); color: #fff; }
+.hero-pills {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 40px; padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  opacity: 0; animation: fadeUp .8s var(--ease-out) .8s forwards;
+}
+.hero-pill {
+  font-size: 13px; font-weight: 500; padding: 8px 16px; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.60); transition: all .18s;
+}
+.hero-pill:hover { border-color: rgba(45,138,120,.55); color: var(--teal); background: rgba(45,138,120,.08); }
+.hero-scroll {
+  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  color: rgba(255,255,255,.28); font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  opacity: 0; animation: fadeUp .6s ease 1.2s forwards;
+}
+.hero-scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,255,255,.3), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes scrollPulse { 0%, 100% { opacity: .3; } 50% { opacity: .7; } }
+
+/* WHO WE ARE */
+.who { padding: 120px 0; background: var(--ivory); }
+.who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.section-kicker { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .18em; color: var(--teal); display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.section-kicker::before { content: ""; width: 24px; height: 1px; background: var(--teal); }
+.who h2 { font-family: var(--serif); font-size: clamp(30px, 3.4vw, 48px); font-weight: 300; line-height: 1.12; letter-spacing: -.025em; margin-bottom: 28px; }
+.who h2 em { font-style: italic; color: var(--ink-70); }
+.who-lead { font-size: 17px; line-height: 1.78; color: var(--ink-70); margin-bottom: 18px; }
+.who-pillars { margin-top: 36px; }
+.who-pillar { padding: 20px 0; border-top: 1px solid var(--stone); display: grid; grid-template-columns: 28px 1fr; gap: 16px; }
+.who-pillar:last-child { border-bottom: 1px solid var(--stone); }
+.who-pillar-n { font-family: var(--serif); font-size: 13px; color: var(--teal); padding-top: 2px; }
+.who-pillar strong { display: block; font-size: 15px; font-weight: 600; margin-bottom: 5px; }
+.who-pillar p { font-size: 14px; line-height: 1.65; color: var(--ink-70); }
+.who-right { display: grid; gap: 12px; }
+.who-img { border-radius: 20px; overflow: hidden; border: 1px solid var(--stone); line-height: 0; }
+.who-img img { height: 240px; object-fit: cover; filter: saturate(.85); }
+.who-img-cap { padding: 14px 18px; background: var(--white); font-size: 13px; color: var(--ink-70); line-height: 1.5; }
+.who-stat { background: var(--white); border: 1px solid var(--stone); border-radius: 18px; padding: 24px 24px; transition: box-shadow .2s, transform .2s; }
+.who-stat:hover { box-shadow: 0 12px 36px rgba(0,0,0,.08); transform: translateY(-3px); }
+.who-stat-n { font-family: var(--serif); font-size: 52px; font-weight: 300; line-height: 1; letter-spacing: -.04em; margin-bottom: 6px; }
+.who-stat-n span { font-size: 28px; color: var(--teal); }
+.who-stat p { font-size: 13.5px; color: var(--ink-70); line-height: 1.55; max-width: 26ch; }
+.who-stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* VALUES */
+.values { padding: 100px 0; background: var(--deep); position: relative; overflow: hidden; }
+.values::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 90% 50%, rgba(45,138,120,.12) 0%, transparent 60%); }
+.values-inner { position: relative; z-index: 1; }
+.values-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 52px; }
+.values-kicker { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .18em; color: var(--teal); display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.values-kicker::before { content: ""; width: 24px; height: 1px; background: var(--teal); }
+.values h2 { font-family: var(--serif); font-size: clamp(28px, 2.8vw, 42px); font-weight: 300; color: var(--ivory); letter-spacing: -.025em; line-height: 1.15; }
+.values-sub { font-size: 15px; color: rgba(245,242,235,.45); max-width: 34ch; text-align: right; }
+.values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,.06); border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,.06); }
+.value-card { background: rgba(12,31,28,.7); padding: 36px 28px; transition: background .22s; }
+.value-card:hover { background: rgba(45,138,120,.10); }
+.value-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(45,138,120,.18); display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 20px; color: var(--teal); }
+.value-card h3 { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--ivory); margin-bottom: 10px; letter-spacing: -.01em; }
+.value-card p { font-size: 14px; line-height: 1.65; color: rgba(245,242,235,.50); }
+
+/* APPROACH */
+.approach { padding: 120px 0; background: var(--ivory); }
+.approach-header { margin-bottom: 56px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+.approach h2 { font-family: var(--serif); font-size: clamp(28px, 2.8vw, 42px); font-weight: 300; letter-spacing: -.025em; line-height: 1.15; }
+.approach-link { font-size: 14px; font-weight: 500; color: var(--teal); border-bottom: 1px solid rgba(45,138,120,.3); padding-bottom: 2px; white-space: nowrap; transition: border-color .18s; }
+.approach-link:hover { border-color: var(--teal); }
+.approach-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.approach-card {
+  background: var(--white); border: 1px solid var(--stone); border-radius: 20px; padding: 28px;
+  transition: box-shadow .22s, transform .22s, border-color .22s; position: relative; overflow: hidden;
+}
+.approach-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--teal); transform: scaleX(0); transform-origin: left; transition: transform .28s var(--ease-out); }
+.approach-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,.10); transform: translateY(-4px); border-color: rgba(45,138,120,.3); }
+.approach-card:hover::before { transform: scaleX(1); }
+.approach-tag { font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .14em; color: var(--teal); margin-bottom: 14px; }
+.approach-card h3 { font-family: var(--serif); font-size: 19px; font-weight: 400; letter-spacing: -.01em; line-height: 1.25; margin-bottom: 12px; }
+.approach-card p { font-size: 14px; line-height: 1.68; color: var(--ink-70); }
+.approach-card a { color: var(--teal); font-weight: 500; }
+
+/* ENGAGEMENT PROGRESS */
+.progress { padding: 100px 0; background: var(--ivory-2); border-top: 1px solid var(--stone); }
+.progress-header { margin-bottom: 64px; }
+.progress h2 { font-family: var(--serif); font-size: clamp(26px, 2.6vw, 38px); font-weight: 300; letter-spacing: -.025em; }
+.progress-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; position: relative; }
+.progress-steps::before { content: ""; position: absolute; top: 36px; left: 12%; right: 12%; height: 1px; background: linear-gradient(90deg, transparent, var(--stone) 20%, var(--stone) 80%, transparent); }
+.progress-step { padding: 0 28px 0 0; position: relative; z-index: 1; }
+.step-num { width: 72px; height: 72px; border-radius: 50%; border: 1px solid var(--stone); background: var(--white); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 22px; font-weight: 300; color: var(--teal); margin-bottom: 28px; transition: background .22s, border-color .22s, box-shadow .22s; }
+.progress-step:hover .step-num { background: var(--teal); color: #fff; border-color: var(--teal); box-shadow: 0 8px 24px rgba(45,138,120,.35); }
+.progress-step h3 { font-family: var(--serif); font-size: 20px; font-weight: 400; letter-spacing: -.01em; margin-bottom: 10px; }
+.step-desc { font-size: 14.5px; line-height: 1.65; color: var(--ink-70); margin-bottom: 16px; }
+.step-outputs { padding: 14px 16px; background: var(--white); border: 1px solid var(--stone); border-radius: 12px; font-size: 13px; line-height: 1.65; color: var(--ink-70); }
+.step-outputs strong { color: var(--ink); font-weight: 600; display: block; margin-bottom: 4px; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+
+/* ON TRACK */
+.ontrack { padding: 100px 0; background: var(--ivory); }
+.ontrack-header { margin-bottom: 52px; }
+.ontrack h2 { font-family: var(--serif); font-size: clamp(26px, 2.6vw, 38px); font-weight: 300; letter-spacing: -.025em; }
+.ontrack-sub { font-size: 16px; color: var(--ink-70); margin-top: 8px; }
+.ontrack-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.ontrack-card { border: 1px solid var(--stone); border-radius: 18px; padding: 28px 24px; background: var(--white); transition: box-shadow .22s, transform .22s; }
+.ontrack-card:hover { box-shadow: 0 12px 36px rgba(0,0,0,.08); transform: translateY(-3px); }
+.ontrack-n { font-family: var(--serif); font-size: 40px; font-weight: 300; color: var(--stone); line-height: 1; margin-bottom: 16px; letter-spacing: -.04em; }
+.ontrack-card h3 { font-family: var(--serif); font-size: 17px; font-weight: 400; letter-spacing: -.01em; line-height: 1.3; margin-bottom: 10px; }
+.ontrack-card p { font-size: 13.5px; line-height: 1.68; color: var(--ink-70); }
+
+/* CTA */
+.cta-section { padding: 80px 0; background: var(--ivory-2); border-top: 1px solid var(--stone); }
+.cta-inner {
+  background: var(--deep); border-radius: 28px; padding: 64px;
+  display: flex; gap: 48px; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,.06);
+}
+.cta-inner::before { content: ""; position: absolute; top: -100px; right: -80px; width: 480px; height: 480px; border-radius: 50%; background: radial-gradient(closest-side, rgba(45,138,120,.18), transparent); pointer-events: none; }
+.cta-text { position: relative; z-index: 1; flex: 1; min-width: 280px; }
+.cta-text h2 { font-family: var(--serif); font-size: clamp(22px, 2.4vw, 34px); font-weight: 300; color: var(--ivory); letter-spacing: -.025em; line-height: 1.25; margin-bottom: 14px; max-width: 42ch; }
+.cta-text p { font-size: 15.5px; line-height: 1.7; color: rgba(245,242,235,.60); max-width: 54ch; }
+.cta-actions { display: flex; gap: 12px; flex-wrap: wrap; flex-shrink: 0; position: relative; z-index: 1; }
+.cta-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 999px; font-size: 14px; font-weight: 600; transition: all .18s; }
+.cta-btn.light { background: #fff; color: var(--deep); }
+.cta-btn.light:hover { opacity: .92; transform: translateY(-2px); }
+.cta-btn.ghost { background: rgba(255,255,255,.08); color: rgba(255,255,255,.80); border: 1px solid rgba(255,255,255,.14); font-weight: 500; }
+.cta-btn.ghost:hover { background: rgba(255,255,255,.14); color: #fff; }
+
+/* FOOTER */
+.footer { background: var(--deep); border-top: 1px solid rgba(255,255,255,.07); padding: 64px 0 32px; }
+.footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 32px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,.08); margin-bottom: 28px; }
+.footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.footer-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); }
+.footer-name { color: #fff; font-weight: 600; font-size: 15px; }
+.footer-desc { font-size: 14px; line-height: 1.75; color: rgba(255,255,255,.50); max-width: 30ch; }
+.footer-col h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .14em; color: rgba(255,255,255,.35); margin-bottom: 16px; }
+.footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,.60); padding: 4px 0; transition: color .15s; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 12.5px; color: rgba(255,255,255,.30); }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .values-grid { grid-template-columns: repeat(2, 1fr); }
+  .approach-cards { grid-template-columns: repeat(2, 1fr); }
+  .ontrack-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 900px) {
+  .who-grid { grid-template-columns: 1fr; gap: 48px; }
+  .values-header { flex-direction: column; align-items: flex-start; }
+  .values-sub { text-align: left; }
+  .approach-header { flex-direction: column; align-items: flex-start; }
+  .progress-steps { grid-template-columns: 1fr; gap: 36px; }
+  .progress-steps::before { display: none; }
+  .cta-inner { padding: 40px 28px; }
+  .who-stats-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .values-grid { grid-template-columns: 1fr; }
+  .approach-cards, .ontrack-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .hero { padding: 100px 0 64px; }
+  .wrap { padding: 0 20px; }
+  .cta-inner { flex-direction: column; padding: 32px 24px; }
+}
+</style>
+<style id="enwater-logo-refinement-v1">
+.brand-logo,.nav-logo,.nav-brand-logo{height:38px!important;width:auto!important;max-width:66px!important;object-fit:contain!important;background:transparent!important;border-radius:0!important;padding:0!important;box-shadow:none!important;}
+.brand span,.nav-brand span{white-space:nowrap;}
+.footer-logo{height:34px;width:auto;max-width:60px;object-fit:contain;background:transparent;border-radius:0;padding:0;box-shadow:none;display:block;}
+.footer-brand,.foot-brand{display:flex;align-items:center;gap:10px;}
+</style>
+
+
+<style id="enwater-about-footer-logo-fix-v1">
+/* About footer logo visibility fix only: keeps footer layout and gives the transparent mark a white field on the dark footer. */
+.footer .footer-logo {
+  height: 42px !important;
+  width: auto !important;
+  max-width: 72px !important;
+  object-fit: contain !important;
+  background: #ffffff !important;
+  border-radius: 7px !important;
+  padding: 5px !important;
+  box-shadow: 0 1px 5px rgba(0,0,0,.16) !important;
+  flex-shrink: 0 !important;
+}
+.footer .footer-brand { align-items: center !important; gap: 12px !important; }
+</style>
+
+<link href="../exported-ui-styles.css" rel="stylesheet"/><link rel="icon" type="image/png" href="../assets/images/enwater-design-logo-nav.png" />
+</head>
+<body>
+<header class="site-topnav">
+<div class="wrap">
+<a aria-label="EnWater Design home" class="brand" href="../home.html">
+<img alt="EnWater Design logo" class="nav-logo" src="../assets/images/enwater-design-logo.png"/>
+<span>EnWater Design</span>
+</a>
+<nav class="desktop-nav">
+<ul>
+<li><a class="rootlink" href="../home.html">Home</a></li>
+<li>
+            <a class="rootlink active" href="about.html">About</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a class="active" href="about.html">About Us</a>
+              <a class="" href="BlogList.html">Blog &amp; Insights</a>
+            </div>
+          </li>
+<li>
+<a class="rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Projects/index.html">Projects</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</li>
+<li><a class="rootlink nav-login" href="../login.html">Login</a></li>
+<li><a class="rootlink nav-cta" href="../get-in-touch.html">Get in touch</a></li>
+</ul>
+</nav>
+<button aria-expanded="false" aria-label="Toggle menu" class="mobile-nav-toggle" type="button">
+<span class="hamburger-line line-1"></span>
+<span class="hamburger-line line-2"></span>
+<span class="hamburger-line line-3"></span>
+</button>
+</div>
+<div class="mobile-nav-panel">
+<div class="mobile-nav-content">
+<div class="mobile-nav-item">
+<a class="mobile-rootlink" href="../home.html">Home</a>
+</div>
+<div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink active" href="about.html">About</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a class="active" href="about.html">About Us</a>
+            <a class="" href="BlogList.html">Blog &amp; Insights</a>
+          </div>
+        </div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage Overview</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Projects/index.html">Projects</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<a class="mobile-login-btn" href="../login.html">Login</a>
+</div>
+<div class="mobile-nav-item no-border">
+<a class="mobile-cta-btn" href="../get-in-touch.html">Get in touch</a>
+</div>
+</div>
+</div>
+</header>
+<!-- HERO -->
+<section class="hero">
+<div class="hero-bg"></div>
+<div class="wrap hero-inner">
+<div class="hero-eyebrow">About EnWater Design</div>
+<h1>Independent water, wastewater &amp; reuse <em>systems design firm.</em></h1>
+<p class="hero-sub">We help owners and operators translate site constraints into clear scope, aligned solution-provider engagement, and performance that holds up in day-to-day operation.</p>
+<div class="hero-actions">
+<a class="btn-primary" href="#approach">How we work →</a>
+<a class="btn-outline" href="../get-in-touch.html">Start a conversation</a>
+</div>
+<div class="hero-pills">
+<a class="hero-pill" href="../home.html">Home</a>
+<a class="hero-pill" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a class="hero-pill" href="../Projects/index.html">FlowPlan Projects</a>
+<a class="hero-pill" href="../design-sourcing/index.html">Design &amp; Sourcing</a>
+</div>
+</div>
+<div class="hero-scroll"><div class="hero-scroll-line"></div><span>Scroll</span></div>
+</section>
+<!-- WHO WE ARE -->
+<section class="who">
+<div class="wrap">
+<div class="who-grid">
+<div class="reveal">
+<div class="section-kicker">Who we are</div>
+<h2>Independent systems design, <em>practical from day one.</em></h2>
+<p class="who-lead">EnWater Design supports owners, operators and project teams to move from site conditions to a scope that can be priced, delivered, and verified.</p>
+<p class="who-lead">We take a clear technical position on configuration, connections and review criteria, and help you select and manage solution providers against that outline.</p>
+<div class="who-pillars">
+<div class="who-pillar">
+<div class="who-pillar-n">01</div>
+<div><strong>Baseline that reflects variability</strong><p>Not "average day" assumptions, but representative sampling, load variability, and actual operating limits.</p></div>
+</div>
+<div class="who-pillar">
+<div class="who-pillar-n">02</div>
+<div><strong>Vendor engagement that is comparable</strong><p>Same scope, same responsibilities, and the same performance ranges, so proposals can be genuinely compared.</p></div>
+</div>
+<div class="who-pillar">
+<div class="who-pillar-n">03</div>
+<div><strong>Delivery checks defined upfront</strong><p>Commissioning tests, QA/QC, and completion criteria agreed before delivery starts, not negotiated at the end.</p></div>
+</div>
+</div>
+</div>
+<div class="reveal reveal-delay-2">
+<div class="who-right">
+<div class="who-img">
+<img alt="Water treatment facility" src="../assets/media/intro_poster.jpg"/>
+<div class="who-img-cap">Independent from solutions. Not neutral on outcomes.</div>
+</div>
+<div class="who-stats-row">
+<div class="who-stat">
+<div class="who-stat-n">3<span>×</span></div>
+<p>Phases: Clarify, Configure, Deliver, to keep every project on track.</p>
+</div>
+<div class="who-stat">
+<div class="who-stat-n">100<span>%</span></div>
+<p>Independent advice focused on site needs, delivery clarity, and day-to-day performance.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- VALUES -->
+<section class="values">
+<div class="wrap values-inner">
+<div class="values-header reveal">
+<div>
+<div class="values-kicker">Our values</div>
+<h2>How we show up in<br/>every engagement.</h2>
+</div>
+<div class="values-sub">The principles guiding every recommendation, every scope, every handover.</div>
+</div>
+<div class="values-grid">
+<div class="value-card reveal">
+<div class="value-icon">◇</div>
+<h3>Clarity</h3>
+<p>We reduce complexity into decisions that teams can act on, with no ambiguous recommendations and no scope gaps.</p>
+</div>
+<div class="value-card reveal reveal-delay-1">
+<div class="value-icon">◎</div>
+<h3>Accountability</h3>
+<p>We define criteria early and track them through delivery. What gets measured gets delivered.</p>
+</div>
+<div class="value-card reveal reveal-delay-2">
+<div class="value-icon">⬡</div>
+<h3>Operability</h3>
+<p>We specify for running plants, not just drawing sets. Day-to-day performance over theoretical compliance.</p>
+</div>
+<div class="value-card reveal reveal-delay-3">
+<div class="value-icon">↺</div>
+<h3>Sustainable</h3>
+<p>We design for resource recovery and long-term operability, not just meeting today's compliance threshold.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- APPROACH -->
+<section class="approach" id="approach">
+<div class="wrap">
+<div class="approach-header reveal">
+<div>
+<div class="section-kicker">Our approach</div>
+<h2>Plan like a builder. Specify like an operator.<br/>Verify like an owner.</h2>
+</div>
+<a class="approach-link" href="../get-in-touch.html">Start a conversation →</a>
+</div>
+<div class="approach-cards">
+<div class="approach-card reveal">
+<div class="approach-tag">Our commitment</div>
+<h3>Water and waste as resources, not problems</h3>
+<p>We treat water use, reuse, and residuals management as opportunities from the earliest stage, not as afterthoughts. Early direction leads to better decisions, not just compliant ones.</p>
+</div>
+<div class="approach-card reveal reveal-delay-1">
+<div class="approach-tag">How we work with clients</div>
+<h3>Patience with complexity, clarity on the outcome</h3>
+<p>Water projects carry conflicting perspectives between owners, operators, regulators, and vendors. We bring the patience to work through that, and the discipline to keep refining until the outcome is deliverable.</p>
+</div>
+<div class="approach-card reveal reveal-delay-2">
+<div class="approach-tag">Collaboration</div>
+<h3>The right expertise around each problem</h3>
+<p>Every engagement draws on the expertise the duty actually requires, working with clients, specialist collaborators and vendors to keep recommendations practical.</p>
+</div>
+<div class="approach-card reveal reveal-delay-3">
+<div class="approach-tag">Our process</div>
+<h3>Introducing FlowPlan</h3>
+<p>Our structured way of moving from diagnostics to a vendor-ready scope, keeping constraints, configuration logic, and verification steps in one place. <a href="../FlowPlan/flowplan-framework.html">Explore FlowPlan →</a></p>
+</div>
+</div>
+</div>
+</section>
+<!-- ENGAGEMENT PROGRESS -->
+<section class="progress">
+<div class="wrap">
+<div class="progress-header reveal">
+<div class="section-kicker">Engagement flow</div>
+<h2>How engagements typically progress</h2>
+</div>
+<div class="progress-steps">
+<div class="progress-step reveal">
+<div class="step-num">1</div>
+<h3>Clarify</h3>
+<p class="step-desc">Define the problem, constraints, and success metrics, then confirm viability before any design work begins.</p>
+<div class="step-outputs"><strong>Typical outputs</strong>Feasibility snapshot, risk register, KPIs &amp; review ranges, recommended next step.</div>
+</div>
+<div class="progress-step reveal reveal-delay-1">
+<div class="step-num">2</div>
+<h3>Configure</h3>
+<p class="step-desc">Map a practical pathway for treatment, residuals, reuse, and connections, ready for vendor engagement.</p>
+<div class="step-outputs"><strong>Typical outputs</strong>FlowPlan configuration summary, block PFD, connection list, vendor scope / ToR outline.</div>
+</div>
+<div class="progress-step reveal reveal-delay-2">
+<div class="step-num">3</div>
+<h3>Deliver</h3>
+<p class="step-desc">Translate into a vendor-ready scope with verification steps through installation and commissioning.</p>
+<div class="step-outputs"><strong>Typical outputs</strong>Vendor-ready scope pack, scoring framework, commissioning test plan.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ON TRACK -->
+<section class="ontrack">
+<div class="wrap">
+<div class="ontrack-header reveal">
+<div class="section-kicker">What keeps projects on track</div>
+<h2>Four decisions that determine<br/>whether a system holds up</h2>
+<p class="ontrack-sub">Not just on paper, but in day-to-day operation.</p>
+</div>
+<div class="ontrack-grid">
+<div class="ontrack-card reveal">
+<div class="ontrack-n">01</div>
+<h3>Start with today's site conditions</h3>
+<p>Representative sampling, load variability, and operating limits come before any design overview. Assumed averages fail at the edges, and water systems often operate there.</p>
+</div>
+<div class="ontrack-card reveal reveal-delay-1">
+<div class="ontrack-n">02</div>
+<h3>Structure the vendor engagement</h3>
+<p>We align scope, connections, and responsibilities so vendors quote on the same outline, proposals are genuinely comparable, and there are no gaps at handover.</p>
+</div>
+<div class="ontrack-card reveal reveal-delay-2">
+<div class="ontrack-n">03</div>
+<h3>Define delivery checks before start-up</h3>
+<p>Commissioning tests, QA/QC, and performance ranges agreed upfront, not negotiated at completion. That keeps delivery aligned to what was agreed.</p>
+</div>
+<div class="ontrack-card reveal reveal-delay-3">
+<div class="ontrack-n">04</div>
+<h3>Keep reuse and residuals viable</h3>
+<p>Outcome-first means verifying that reuse outlets, biosolids markets, and OPEX targets are achievable under actual operating conditions, not just in the design case.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<section class="cta-section" id="contact">
+<div class="wrap">
+<div class="cta-inner reveal">
+<div class="cta-text">
+<h2>Have a project that's stalling, or a vendor engagement that needs structure?</h2>
+<p>Share a short description of where you are: site type, the outcome you're working toward, and where things are getting stuck. We'll come back with the right starting point.</p>
+</div>
+<div class="cta-actions">
+<a class="cta-btn light" href="../get-in-touch.html">Start a conversation</a>
+<a class="cta-btn ghost" href="../home.html">Explore the offering</a>
+</div>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="footer">
+<div class="wrap">
+<div class="footer-top">
+<div>
+<div class="footer-brand"><img alt="EnWater Design logo" class="footer-logo" src="../assets/images/enwater-design-logo-transparent-mark.png"/><span class="footer-name">EnWater Design</span></div>
+<p class="footer-desc">Independent water, wastewater treatment and reuse consulting, helping owners and operators turn complex challenges into clear decisions and practical outcomes.</p>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<a href="../home.html">Home</a>
+<a href="../About/about.html">About</a>
+<a href="../About/BlogList.html">Our Blog</a>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+</div>
+<div class="footer-col">
+<h4>Services</h4>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing</a>
+<a href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<a href="../Projects/index.html">Projects</a>
+<a href="../Sectors/index.html">Sectors</a>
+</div>
+<div class="footer-col">
+<h4>Pathways</h4>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../Sectors/index.html">Sector Pathways</a>
+</div>
+<div class="footer-col">
+<h4>Get in touch</h4>
+<a href="../get-in-touch.html">Contact form</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">Industrial / CETP</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© <span id="yr"></span> EnWater Design</div>
+<div>Clear systems planning for practical project delivery</div>
+</div>
+</div>
+<script>
+  (function() {
+    const yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+  })();
+</script>
+</footer>
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+<script src="../exported-ui-effects.js"></script></body>
+</html>

@@ -1,0 +1,5585 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>Ready-Mix / Construction - Sector Pathway | EnWater Design</title>
+  <link href="https://fonts.googleapis.com/" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: "#f4f2ec",
+            forest: "#243f38",
+            forest2: "#1f3731",
+            accent: "#55a092"
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --cream: #f4f2ec;
+      --ink: #1b1f1e;
+      --muted: #5a6561;
+      --forest: #243f38;
+      --forest2: #1f3731;
+      --accent: #55a092;
+      --accent2: #468a7e;
+      --line: rgba(27, 31, 30, .14);
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      margin: 0;
+      padding: 0;
+    }
+
+    main {
+      flex: 1 0 auto;
+    }
+
+    footer {
+      flex-shrink: 0;
+    }
+
+
+    .page-serif {
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    }
+
+    .page-sans {
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    .hairline {
+      border-color: var(--line);
+    }
+
+    .link-row:hover {
+      background: rgba(255, 255, 255, .45);
+    }
+
+    .tag {
+      border: 1px solid rgba(255, 255, 255, .25)
+    }
+
+    .soft-shadow {
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .08);
+    }
+
+    .pattern {
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, .07) 0, rgba(255, 255, 255, .07) 2px, transparent 2px),
+        radial-gradient(circle at 70% 60%, rgba(255, 255, 255, .06) 0, rgba(255, 255, 255, .06) 2px, transparent 2px);
+      background-size: 48px 48px, 64px 64px;
+    }
+
+    .acc-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease;
+    }
+
+    .acc-open .acc-panel {
+      max-height: 800px;
+    }
+
+    .acc-open .acc-icon {
+      transform: rotate(180deg);
+    }
+
+    .acc-icon {
+      transition: transform .25s ease;
+    }
+
+    .snap-x {
+      scroll-snap-type: x mandatory;
+    }
+
+    .snap-item {
+      scroll-snap-align: start;
+    }
+
+
+
+    #hero .max-w-6xl {
+      padding-top: 4rem;
+      padding-bottom: 3rem;
+    }
+
+    @media (min-width:768px) {
+      #hero .max-w-6xl {
+        padding-top: 5rem;
+        padding-bottom: 3rem;
+      }
+    }
+  </style>
+  <style id="fp-module-snapshot-style">
+    .fp-module-card:target {
+      outline: 3px solid rgba(85, 160, 146, .55);
+      outline-offset: 6px;
+      border-radius: 18px;
+    }
+  </style>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .font-inter {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+  <style>
+    *,
+    ::before,
+    ::after {
+      --tw-border-spacing-x: 0;
+      --tw-border-spacing-y: 0;
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-rotate: 0;
+      --tw-skew-x: 0;
+      --tw-skew-y: 0;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-pan-x: ;
+      --tw-pan-y: ;
+      --tw-pinch-zoom: ;
+      --tw-scroll-snap-strictness: proximity;
+      --tw-gradient-from-position: ;
+      --tw-gradient-via-position: ;
+      --tw-gradient-to-position: ;
+      --tw-ordinal: ;
+      --tw-slashed-zero: ;
+      --tw-numeric-figure: ;
+      --tw-numeric-spacing: ;
+      --tw-numeric-fraction: ;
+      --tw-ring-inset: ;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-color: rgb(59 130 246 / 0.5);
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-colored: 0 0 #0000;
+      --tw-blur: ;
+      --tw-brightness: ;
+      --tw-contrast: ;
+      --tw-grayscale: ;
+      --tw-hue-rotate: ;
+      --tw-invert: ;
+      --tw-saturate: ;
+      --tw-sepia: ;
+      --tw-drop-shadow: ;
+      --tw-backdrop-blur: ;
+      --tw-backdrop-brightness: ;
+      --tw-backdrop-contrast: ;
+      --tw-backdrop-grayscale: ;
+      --tw-backdrop-hue-rotate: ;
+      --tw-backdrop-invert: ;
+      --tw-backdrop-opacity: ;
+      --tw-backdrop-saturate: ;
+      --tw-backdrop-sepia: ;
+      --tw-contain-size: ;
+      --tw-contain-layout: ;
+      --tw-contain-paint: ;
+      --tw-contain-style:
+    }
+
+    ::backdrop {
+      --tw-border-spacing-x: 0;
+      --tw-border-spacing-y: 0;
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-rotate: 0;
+      --tw-skew-x: 0;
+      --tw-skew-y: 0;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-pan-x: ;
+      --tw-pan-y: ;
+      --tw-pinch-zoom: ;
+      --tw-scroll-snap-strictness: proximity;
+      --tw-gradient-from-position: ;
+      --tw-gradient-via-position: ;
+      --tw-gradient-to-position: ;
+      --tw-ordinal: ;
+      --tw-slashed-zero: ;
+      --tw-numeric-figure: ;
+      --tw-numeric-spacing: ;
+      --tw-numeric-fraction: ;
+      --tw-ring-inset: ;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-color: rgb(59 130 246 / 0.5);
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-colored: 0 0 #0000;
+      --tw-blur: ;
+      --tw-brightness: ;
+      --tw-contrast: ;
+      --tw-grayscale: ;
+      --tw-hue-rotate: ;
+      --tw-invert: ;
+      --tw-saturate: ;
+      --tw-sepia: ;
+      --tw-drop-shadow: ;
+      --tw-backdrop-blur: ;
+      --tw-backdrop-brightness: ;
+      --tw-backdrop-contrast: ;
+      --tw-backdrop-grayscale: ;
+      --tw-backdrop-hue-rotate: ;
+      --tw-backdrop-invert: ;
+      --tw-backdrop-opacity: ;
+      --tw-backdrop-saturate: ;
+      --tw-backdrop-sepia: ;
+      --tw-contain-size: ;
+      --tw-contain-layout: ;
+      --tw-contain-paint: ;
+      --tw-contain-style:
+    }
+
+    *,
+    ::after,
+    ::before {
+      box-sizing: border-box;
+      border-width: 0;
+      border-style: solid;
+      border-color: #e5e7eb
+    }
+
+    ::after,
+    ::before {
+      --tw-content: ''
+    }
+
+    :host,
+    html {
+      line-height: 1.5;
+      -webkit-text-size-adjust: 100%;
+      -moz-tab-size: 4;
+      tab-size: 4;
+      font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      font-feature-settings: normal;
+      font-variation-settings: normal;
+      -webkit-tap-highlight-color: transparent
+    }
+
+    body {
+      margin: 0;
+      line-height: inherit
+    }
+
+    hr {
+      height: 0;
+      color: inherit;
+      border-top-width: 1px
+    }
+
+    abbr:where([title]) {
+      -webkit-text-decoration: underline dotted;
+      text-decoration: underline dotted
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: inherit;
+      font-weight: inherit
+    }
+
+    a {
+      color: inherit;
+      text-decoration: inherit
+    }
+
+    b,
+    strong {
+      font-weight: bolder
+    }
+
+    code,
+    kbd,
+    pre,
+    samp {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-feature-settings: normal;
+      font-variation-settings: normal;
+      font-size: 1em
+    }
+
+    small {
+      font-size: 80%
+    }
+
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline
+    }
+
+    sub {
+      bottom: -.25em
+    }
+
+    sup {
+      top: -.5em
+    }
+
+    table {
+      text-indent: 0;
+      border-color: inherit;
+      border-collapse: collapse
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      font-family: inherit;
+      font-feature-settings: inherit;
+      font-variation-settings: inherit;
+      font-size: 100%;
+      font-weight: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+      color: inherit;
+      margin: 0;
+      padding: 0
+    }
+
+    button,
+    select {
+      text-transform: none
+    }
+
+    button,
+    input:where([type=button]),
+    input:where([type=reset]),
+    input:where([type=submit]) {
+      -webkit-appearance: button;
+      background-color: transparent;
+      background-image: none
+    }
+
+    :-moz-focusring {
+      outline: auto
+    }
+
+    :-moz-ui-invalid {
+      box-shadow: none
+    }
+
+    progress {
+      vertical-align: baseline
+    }
+
+    ::-webkit-inner-spin-button,
+    ::-webkit-outer-spin-button {
+      height: auto
+    }
+
+    [type=search] {
+      -webkit-appearance: textfield;
+      outline-offset: -2px
+    }
+
+    ::-webkit-search-decoration {
+      -webkit-appearance: none
+    }
+
+    ::-webkit-file-upload-button {
+      -webkit-appearance: button;
+      font: inherit
+    }
+
+    summary {
+      display: list-item
+    }
+
+    blockquote,
+    dd,
+    dl,
+    figure,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    hr,
+    p,
+    pre {
+      margin: 0
+    }
+
+    fieldset {
+      margin: 0;
+      padding: 0
+    }
+
+    legend {
+      padding: 0
+    }
+
+    menu,
+    ol,
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0
+    }
+
+    dialog {
+      padding: 0
+    }
+
+    textarea {
+      resize: vertical
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      opacity: 1;
+      color: #9ca3af
+    }
+
+    [role=button],
+    button {
+      cursor: pointer
+    }
+
+    :disabled {
+      cursor: default
+    }
+
+    audio,
+    canvas,
+    embed,
+    iframe,
+    img,
+    object,
+    svg,
+    video {
+      display: block;
+      vertical-align: middle
+    }
+
+    img,
+    video {
+      max-width: 100%;
+      height: auto
+    }
+
+    [hidden]:where(:not([hidden=until-found])) {
+      display: none
+    }
+
+    .fixed {
+      position: fixed
+    }
+
+    .absolute {
+      position: absolute
+    }
+
+    .relative {
+      position: relative
+    }
+
+    .inset-0 {
+      inset: 0px
+    }
+
+    .bottom-0 {
+      bottom: 0px
+    }
+
+    .left-0 {
+      left: 0px
+    }
+
+    .right-0 {
+      right: 0px
+    }
+
+    .top-0 {
+      top: 0px
+    }
+
+    .z-10 {
+      z-index: 10
+    }
+
+    .z-50 {
+      z-index: 50
+    }
+
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    .mb-16 {
+      margin-bottom: 4rem
+    }
+
+    .mb-2 {
+      margin-bottom: 0.5rem
+    }
+
+    .mb-4 {
+      margin-bottom: 1rem
+    }
+
+    .mb-5 {
+      margin-bottom: 1.25rem
+    }
+
+    .mb-6 {
+      margin-bottom: 1.5rem
+    }
+
+    .mb-7 {
+      margin-bottom: 1.75rem
+    }
+
+    .mb-8 {
+      margin-bottom: 2rem
+    }
+
+    .mr-2 {
+      margin-right: 0.5rem
+    }
+
+    .mt-16 {
+      margin-top: 4rem
+    }
+
+    .inline-block {
+      display: inline-block
+    }
+
+    .flex {
+      display: flex
+    }
+
+    .inline-flex {
+      display: inline-flex
+    }
+
+    .grid {
+      display: grid
+    }
+
+    .hidden {
+      display: none
+    }
+
+    .h-10 {
+      height: 2.5rem
+    }
+
+    .h-16 {
+      height: 4rem
+    }
+
+    .h-2 {
+      height: 0.5rem
+    }
+
+    .h-5 {
+      height: 1.25rem
+    }
+
+    .h-full {
+      height: 100%
+    }
+
+    .min-h-\[62vh\] {
+      min-height: 62vh
+    }
+
+    .w-10 {
+      width: 2.5rem
+    }
+
+    .w-2 {
+      width: 0.5rem
+    }
+
+    .w-5 {
+      width: 1.25rem
+    }
+
+    .w-full {
+      width: 100%
+    }
+
+    .max-w-3xl {
+      max-width: 48rem
+    }
+
+    .max-w-6xl {
+      max-width: 72rem
+    }
+
+    .transform {
+      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+    }
+
+    .flex-col {
+      flex-direction: column
+    }
+
+    .flex-wrap {
+      flex-wrap: wrap
+    }
+
+    .items-center {
+      align-items: center
+    }
+
+    .justify-center {
+      justify-content: center
+    }
+
+    .justify-between {
+      justify-content: space-between
+    }
+
+    .justify-around {
+      justify-content: space-around
+    }
+
+    .gap-1 {
+      gap: 0.25rem
+    }
+
+    .gap-2 {
+      gap: 0.5rem
+    }
+
+    .gap-4 {
+      gap: 1rem
+    }
+
+    .gap-6 {
+      gap: 1.5rem
+    }
+
+    .rounded-2xl {
+      border-radius: 1rem
+    }
+
+    .rounded-full {
+      border-radius: 9999px
+    }
+
+    .rounded-lg {
+      border-radius: 0.5rem
+    }
+
+    .border {
+      border-width: 1px
+    }
+
+    .border-t {
+      border-top-width: 1px
+    }
+
+    .border-gray-200 {
+      --tw-border-opacity: 1;
+      border-color: rgb(229 231 235 / var(--tw-border-opacity, 1))
+    }
+
+    .bg-\[\#55a092\] {
+      --tw-bg-opacity: 1;
+      background-color: rgb(85 160 146 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-black\/35 {
+      background-color: rgb(0 0 0 / 0.35)
+    }
+
+    .bg-emerald-50 {
+      --tw-bg-opacity: 1;
+      background-color: rgb(236 253 245 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-gray-200 {
+      --tw-bg-opacity: 1;
+      background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-slate-50 {
+      --tw-bg-opacity: 1;
+      background-color: rgb(248 250 252 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-white {
+      --tw-bg-opacity: 1;
+      background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-white\/10 {
+      background-color: rgb(255 255 255 / 0.1)
+    }
+
+    .bg-white\/90 {
+      background-color: rgb(255 255 255 / 0.9)
+    }
+
+    .object-cover {
+      object-fit: cover
+    }
+
+    .p-5 {
+      padding: 1.25rem
+    }
+
+    .px-3 {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem
+    }
+
+    .px-4 {
+      padding-left: 1rem;
+      padding-right: 1rem
+    }
+
+    .px-6 {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem
+    }
+
+    .py-16 {
+      padding-top: 4rem;
+      padding-bottom: 4rem
+    }
+
+    .py-2 {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem
+    }
+
+    .py-3 {
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem
+    }
+
+    .text-center {
+      text-align: center
+    }
+
+    .align-middle {
+      vertical-align: middle
+    }
+
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem
+    }
+
+    .text-3xl {
+      font-size: 1.875rem;
+      line-height: 2.25rem
+    }
+
+    .text-4xl {
+      font-size: 2.25rem;
+      line-height: 2.5rem
+    }
+
+    .text-lg {
+      font-size: 1.125rem;
+      line-height: 1.75rem
+    }
+
+    .text-sm {
+      font-size: 0.875rem;
+      line-height: 1.25rem
+    }
+
+    .text-xs {
+      font-size: 0.75rem;
+      line-height: 1rem
+    }
+
+    .font-bold {
+      font-weight: 700
+    }
+
+    .font-semibold {
+      font-weight: 600
+    }
+
+    .tracking-tight {
+      letter-spacing: -0.025em
+    }
+
+    .text-\[\#55a092\] {
+      --tw-text-opacity: 1;
+      color: rgb(85 160 146 / var(--tw-text-opacity, 1))
+    }
+
+    .text-blue-700 {
+      --tw-text-opacity: 1;
+      color: rgb(29 78 216 / var(--tw-text-opacity, 1))
+    }
+
+    .text-emerald-800 {
+      --tw-text-opacity: 1;
+      color: rgb(6 95 70 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-600 {
+      --tw-text-opacity: 1;
+      color: rgb(75 85 99 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-700 {
+      --tw-text-opacity: 1;
+      color: rgb(55 65 81 / var(--tw-text-opacity, 1))
+    }
+
+    .text-green-700 {
+      --tw-text-opacity: 1;
+      color: rgb(21 128 61 / var(--tw-text-opacity, 1))
+    }
+
+    .text-red-700 {
+      --tw-text-opacity: 1;
+      color: rgb(185 28 28 / var(--tw-text-opacity, 1))
+    }
+
+    .text-slate-500 {
+      --tw-text-opacity: 1;
+      color: rgb(100 116 139 / var(--tw-text-opacity, 1))
+    }
+
+    .text-slate-700 {
+      --tw-text-opacity: 1;
+      color: rgb(51 65 85 / var(--tw-text-opacity, 1))
+    }
+
+    .text-white {
+      --tw-text-opacity: 1;
+      color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+    }
+
+    .text-white\/90 {
+      color: rgb(255 255 255 / 0.9)
+    }
+
+    .text-yellow-700 {
+      --tw-text-opacity: 1;
+      color: rgb(161 98 7 / var(--tw-text-opacity, 1))
+    }
+
+    .shadow {
+      --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+      --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+    }
+
+    .shadow-inner {
+      --tw-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+      --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color);
+      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+    }
+
+    .shadow-md {
+      --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+    }
+
+    .shadow-sm {
+      --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+    }
+
+    .backdrop-blur {
+      --tw-backdrop-blur: blur(8px);
+      -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+      backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)
+    }
+
+    .transition {
+      transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 150ms
+    }
+
+    .transition-colors {
+      transition-property: color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;
+      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 150ms
+    }
+
+    .duration-200 {
+      transition-duration: 200ms
+    }
+
+    .hover\:z-10:hover {
+      z-index: 10
+    }
+
+    .hover\:scale-105:hover {
+      --tw-scale-x: 1.05;
+      --tw-scale-y: 1.05;
+      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+    }
+
+    .hover\:border-2:hover {
+      border-width: 2px
+    }
+
+    .hover\:border-blue-700:hover {
+      --tw-border-opacity: 1;
+      border-color: rgb(29 78 216 / var(--tw-border-opacity, 1))
+    }
+
+    .hover\:border-green-700:hover {
+      --tw-border-opacity: 1;
+      border-color: rgb(21 128 61 / var(--tw-border-opacity, 1))
+    }
+
+    .hover\:border-red-700:hover {
+      --tw-border-opacity: 1;
+      border-color: rgb(185 28 28 / var(--tw-border-opacity, 1))
+    }
+
+    .hover\:border-yellow-700:hover {
+      --tw-border-opacity: 1;
+      border-color: rgb(161 98 7 / var(--tw-border-opacity, 1))
+    }
+
+    .hover\:bg-blue-200:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgb(191 219 254 / var(--tw-bg-opacity, 1))
+    }
+
+    .hover\:bg-green-200:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgb(187 247 208 / var(--tw-bg-opacity, 1))
+    }
+
+    .hover\:bg-red-200:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgb(254 202 202 / var(--tw-bg-opacity, 1))
+    }
+
+    .hover\:bg-slate-100:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgb(241 245 249 / var(--tw-bg-opacity, 1))
+    }
+
+    .hover\:bg-yellow-200:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgb(254 240 138 / var(--tw-bg-opacity, 1))
+    }
+
+    .hover\:text-blue-600:hover {
+      --tw-text-opacity: 1;
+      color: rgb(37 99 235 / var(--tw-text-opacity, 1))
+    }
+
+    .hover\:text-blue-800:hover {
+      --tw-text-opacity: 1;
+      color: rgb(30 64 175 / var(--tw-text-opacity, 1))
+    }
+
+    .hover\:text-green-800:hover {
+      --tw-text-opacity: 1;
+      color: rgb(22 101 52 / var(--tw-text-opacity, 1))
+    }
+
+    .hover\:text-red-800:hover {
+      --tw-text-opacity: 1;
+      color: rgb(153 27 27 / var(--tw-text-opacity, 1))
+    }
+
+    .hover\:text-yellow-800:hover {
+      --tw-text-opacity: 1;
+      color: rgb(133 77 14 / var(--tw-text-opacity, 1))
+    }
+
+    .hover\:shadow-lg:hover {
+      --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+    }
+
+    .hover\:brightness-95:hover {
+      --tw-brightness: brightness(.95);
+      filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+    }
+
+    @media (min-width: 640px) {
+      .sm\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .sm\:px-6 {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem
+      }
+    }
+
+    @media (min-width: 768px) {
+      .md\:flex {
+        display: flex
+      }
+
+      .md\:hidden {
+        display: none
+      }
+
+      .md\:text-6xl {
+        font-size: 3.75rem;
+        line-height: 1
+      }
+
+      .md\:text-xl {
+        font-size: 1.25rem;
+        line-height: 1.75rem
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .lg\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+      }
+
+      .lg\:px-8 {
+        padding-left: 2rem;
+        padding-right: 2rem
+      }
+    }
+  </style>
+  <style id="sa-focus-styles">
+    :root {
+      --sa-accent: #55a092;
+      --sa-forest2: #1f3731;
+    }
+
+    .sa-focus {
+      background: linear-gradient(135deg, rgba(31, 55, 49, 0.98), rgba(18, 32, 28, 0.98));
+      color: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, .18);
+      border: 1px solid rgba(255, 255, 255, .12);
+    }
+
+    .sa-focus-inner {
+      padding: 2.1rem 1.75rem;
+    }
+
+    @media (min-width:768px) {
+      .sa-focus-inner {
+        padding: 2.4rem 2.25rem;
+      }
+    }
+
+    .sa-focus-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .sa-focus-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .sa-kicker {
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .72);
+      font-weight: 700;
+    }
+
+    .sa-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 750;
+      font-size: 1.85rem;
+      line-height: 1.15;
+      margin: .65rem 0 .85rem;
+    }
+
+    @media (min-width:768px) {
+      .sa-title {
+        font-size: 2.15rem;
+      }
+    }
+
+    .sa-body {
+      color: rgba(255, 255, 255, .88);
+      line-height: 1.75;
+    }
+
+    .sa-body+.sa-body {
+      margin-top: .9rem;
+    }
+
+    .sa-chip-row {
+      margin-top: 1.15rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .sa-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .42rem .72rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .18);
+      background: rgba(255, 255, 255, .06);
+      font-size: .78rem;
+      color: rgba(255, 255, 255, .92);
+      white-space: nowrap;
+    }
+
+    .sa-dot {
+      width: .45rem;
+      height: .45rem;
+      border-radius: 999px;
+      background: var(--sa-accent);
+      display: inline-block;
+      box-shadow: 0 0 0 4px rgba(85, 160, 146, .18);
+    }
+
+    .sa-actions {
+      margin-top: 1.15rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+    }
+
+    .sa-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .62rem 1.05rem;
+      border-radius: 999px;
+      font-size: .85rem;
+      font-weight: 650;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, .22);
+      background: rgba(0, 0, 0, .12);
+      color: #fff;
+    }
+
+    .sa-btn:hover {
+      opacity: .95;
+    }
+
+    .sa-btn.primary {
+      background: rgba(85, 160, 146, .22);
+      border-color: rgba(85, 160, 146, .55);
+    }
+
+    .sa-panel {
+      border-radius: 16px;
+      padding: 1.35rem 1.35rem 1.45rem;
+      background: rgba(0, 0, 0, .28);
+      border: 1px solid rgba(255, 255, 255, .14);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, .28);
+    }
+
+    .sa-panel h3 {
+      font-size: .78rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .75);
+      font-weight: 800;
+    }
+
+    .sa-panel ul {
+      margin-top: .85rem;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .sa-panel li {
+      display: flex;
+      gap: .55rem;
+      margin-top: .55rem;
+      color: rgba(255, 255, 255, .88);
+      line-height: 1.55;
+      font-size: .92rem;
+    }
+
+    .sa-bullet {
+      margin-top: .35rem;
+      width: .42rem;
+      height: .42rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .65);
+      flex: 0 0 auto;
+    }
+
+    .sa-panel-note {
+      margin-top: 1.05rem;
+      font-size: .78rem;
+      color: rgba(255, 255, 255, .72);
+      line-height: 1.6;
+    }
+  </style>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      margin: 0;
+      padding: 0;
+    }
+
+    .soft-card {
+      background: rgba(255, 255, 255, .55);
+    }
+
+    .soft-card:hover {
+      background: rgba(255, 255, 255, .70);
+    }
+  </style>
+  <style id="flowplan-theme">
+    .bg-cream {
+      --tw-bg-opacity: 1;
+      background-color: rgb(244 242 236 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-forest {
+      --tw-bg-opacity: 1;
+      background-color: rgb(36 63 56 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-forest2 {
+      --tw-bg-opacity: 1;
+      background-color: rgb(31 55 49 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-ink {
+      --tw-bg-opacity: 1;
+      background-color: var(--ink);
+    }
+
+
+
+    .pattern {
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, .07) 0, rgba(255, 255, 255, .07) 2px, transparent 2px),
+        radial-gradient(circle at 70% 60%, rgba(255, 255, 255, .06) 0, rgba(255, 255, 255, .06) 2px, transparent 2px);
+      background-size: 48px 48px, 64px 64px;
+    }
+
+
+    .bg-accent {
+      --tw-bg-opacity: 1;
+      background-color: rgb(85 160 146 / var(--tw-bg-opacity, 1))
+    }
+
+    .hover\:bg-\[color\:var\(--accent2\)\]:hover {
+      background-color: var(--accent2)
+    }
+  </style>
+  <style id="sa-review-block-fix">
+    .sa-review-pad {
+      padding: 3rem 0;
+    }
+
+    @media(min-width:768px) {
+      .sa-review-pad {
+        padding: 3.25rem 0;
+      }
+    }
+
+    .sa-review-lead {
+      max-width: 64rem;
+      font-size: 1.125rem;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, .92);
+    }
+
+    .sa-review-box {
+      margin-top: 2rem;
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 2px;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0);
+    }
+
+    .sa-review-row {
+      padding: 1.6rem 1.75rem;
+    }
+
+    @media(min-width:768px) {
+      .sa-review-row {
+        padding: 1.75rem 2rem;
+      }
+    }
+
+    .sa-review-row+.sa-review-row {
+      border-top: 1px solid rgba(255, 255, 255, .18);
+    }
+
+    .sa-review-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      line-height: 1.25;
+      color: rgba(255, 255, 255, .98);
+      margin: 0;
+    }
+
+    .sa-review-desc {
+      margin: .55rem 0 0;
+      color: rgba(255, 255, 255, .88);
+      line-height: 1.75;
+    }
+  </style>
+  <style id="fp-map-overview-fix">
+    .fp-map-overview-grid {
+      display: grid;
+      gap: 3.75rem;
+      align-items: start;
+    }
+
+    @media (min-width: 1024px) {
+      .fp-map-overview-grid {
+        grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+      }
+    }
+
+    .fp-map-overview-left {
+      max-width: 32rem;
+    }
+
+    .fp-map-overview-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.35rem;
+      max-width: 34rem;
+      margin-left: auto;
+    }
+
+    .fp-map-overview-card {
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 12px;
+      padding: 1.15rem 1.25rem;
+      background: rgba(0, 0, 0, .12);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, .12);
+    }
+
+    .fp-map-overview-card .title {
+      font-weight: 700;
+      font-size: 1.02rem;
+      line-height: 1.25;
+      color: rgba(255, 255, 255, .95);
+    }
+
+    .fp-map-overview-card .desc {
+      margin-top: .6rem;
+      font-size: .95rem;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, .82);
+    }
+  </style>
+  <style id="fp-snapshot-ink-css">
+    #module-snapshot {
+      background:
+        radial-gradient(900px 420px at 12% 18%, rgba(85, 160, 146, .22), transparent 60%),
+        radial-gradient(700px 360px at 88% 12%, rgba(255, 255, 255, .10), transparent 55%),
+        linear-gradient(180deg, #0b1512 0%, #081210 100%) !important;
+      color: #f3f5f4;
+      border-top: 1px solid rgba(255, 255, 255, .10) !important;
+    }
+
+
+    #module-snapshot .ms-layout {
+      display: grid;
+      grid-template-columns: 1.08fr 1.35fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 980px) {
+      #module-snapshot .ms-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    #module-snapshot .ms-panel {
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: rgba(255, 255, 255, .05);
+      border-radius: 12px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .22);
+      overflow: hidden;
+    }
+
+
+    #module-snapshot .ms-left-head {
+      padding: 16px 16px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, .10);
+    }
+
+    #module-snapshot .ms-kicker {
+      margin: 0 0 10px;
+      font-size: 12.5px;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, .74);
+    }
+
+    #module-snapshot .ms-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    #module-snapshot .ms-family {
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: rgba(255, 255, 255, .04);
+      color: rgba(255, 255, 255, .86);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-weight: 650;
+      font-size: 13px;
+      line-height: 1;
+      cursor: pointer;
+      transition: background .15s ease, border-color .15s ease, transform .05s ease;
+    }
+
+    #module-snapshot .ms-family:hover {
+      border-color: rgba(85, 160, 146, .55);
+    }
+
+    #module-snapshot .ms-family:active {
+      transform: translateY(1px);
+    }
+
+    #module-snapshot .ms-family.is-active {
+      background: rgba(85, 160, 146, .22);
+      border-color: rgba(85, 160, 146, .60);
+      color: #ffffff;
+    }
+
+    #module-snapshot .ms-list {
+      padding: 12px;
+      max-height: 360px;
+      overflow: auto;
+    }
+
+    #module-snapshot .ms-mod {
+      width: 100%;
+      text-align: left;
+      display: block;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: rgba(0, 0, 0, .06);
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: border-color .15s ease, background .15s ease, box-shadow .15s ease;
+    }
+
+    #module-snapshot .ms-mod:hover {
+      border-color: rgba(85, 160, 146, .55);
+      background: rgba(255, 255, 255, .05);
+    }
+
+    #module-snapshot .ms-mod.is-active {
+      border-color: rgba(85, 160, 146, .80);
+      box-shadow: 0 0 0 2px rgba(85, 160, 146, .22);
+    }
+
+    #module-snapshot .ms-mod-name {
+      font-weight: 750;
+      font-size: 14.5px;
+      color: #ffffff;
+    }
+
+    #module-snapshot .ms-mod-role {
+      margin-top: 2px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, .68);
+    }
+
+    #module-snapshot .ms-hint {
+      padding: 0 16px 16px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, .62);
+    }
+
+
+    #module-snapshot .ms-mid,
+    #module-snapshot .ms-right {
+      padding: 16px;
+      max-height: 440px;
+      overflow: auto;
+    }
+
+    #module-snapshot .ms-title {
+      margin: 0;
+      font-family: "Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 1.1;
+      letter-spacing: -0.2px;
+      color: #ffffff;
+    }
+
+    #module-snapshot .ms-roleline {
+      margin: 8px 0 14px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, .74);
+    }
+
+    #module-snapshot .ms-bigger {
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, .80);
+    }
+
+    #module-snapshot .ms-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    #module-snapshot .ms-tag {
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(85, 160, 146, .16);
+      border: 1px solid rgba(85, 160, 146, .38);
+      color: rgba(235, 255, 251, .95);
+      white-space: nowrap;
+    }
+
+    #module-snapshot .ms-action {
+      margin-top: 14px;
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(85, 160, 146, .90);
+      border: 1px solid rgba(255, 255, 255, .14);
+      color: #ffffff;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    #module-snapshot .ms-action:hover {
+      filter: brightness(1.05);
+    }
+
+    #module-snapshot .ms-action:active {
+      transform: translateY(1px);
+    }
+
+
+    #module-snapshot .ms-block {
+      margin-top: 14px;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, .10);
+      background: rgba(0, 0, 0, .10);
+      border-radius: 12px;
+    }
+
+    #module-snapshot .ms-h4 {
+      margin: 0 0 8px;
+      font-size: 13px;
+      font-weight: 800;
+      color: rgba(255, 255, 255, .92);
+      letter-spacing: .2px;
+    }
+
+    #module-snapshot .ms-list-ul {
+      margin: 0;
+      padding-left: 16px;
+      color: rgba(255, 255, 255, .80);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    #module-snapshot .ms-recipes {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #module-snapshot .ms-recipe {
+      padding: 10px 10px 12px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .10);
+    }
+
+    #module-snapshot .ms-recipe-title {
+      font-weight: 800;
+      font-size: 13px;
+      color: #ffffff;
+      margin: 0;
+    }
+
+    #module-snapshot .ms-recipe-focus {
+      margin: 6px 0 10px;
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, .74);
+      line-height: 1.4;
+    }
+
+    #module-snapshot .ms-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    #module-snapshot .ms-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: rgba(255, 255, 255, .04);
+      color: rgba(255, 255, 255, .88);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    #module-snapshot .ms-chip:hover {
+      border-color: rgba(85, 160, 146, .55);
+    }
+
+
+    #module-snapshot .ms-list::-webkit-scrollbar,
+    #module-snapshot .ms-mid::-webkit-scrollbar,
+    #module-snapshot .ms-right::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    #module-snapshot .ms-list::-webkit-scrollbar-thumb,
+    #module-snapshot .ms-mid::-webkit-scrollbar-thumb,
+    #module-snapshot .ms-right::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, .14);
+      border-radius: 999px;
+    }
+
+
+    .ms-hl {
+      outline: 2px solid rgba(85, 160, 146, .95);
+      box-shadow: 0 0 0 6px rgba(85, 160, 146, .18);
+      transition: box-shadow .2s ease;
+    }
+
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+
+      #module-snapshot,
+      #module-snapshot * {
+        visibility: visible !important;
+      }
+
+      #module-snapshot {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+    }
+
+    #module-snapshot .btn {
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 750;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: rgba(255, 255, 255, .04);
+      color: #ffffff;
+    }
+
+    #module-snapshot .btn:hover {
+      border-color: rgba(85, 160, 146, .55);
+    }
+
+    #module-snapshot .btn-outline {
+      background: rgba(0, 0, 0, .10);
+    }
+
+    #module-snapshot .btn-accent {
+      background: rgba(85, 160, 146, .90);
+      border-color: rgba(255, 255, 255, .14);
+    }
+
+
+
+    #module-snapshot .ms-family {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #module-snapshot .ms-family-ico {
+      width: 16px;
+      height: 16px;
+      flex: 0 0 auto;
+      opacity: .95;
+    }
+  </style>
+  <style id="anchor-offset-fix">
+    section[id],
+    div[id] {
+      scroll-margin-top: 96px;
+    }
+  </style>
+  <style>
+    .capability-forest {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(36, 63, 56, 0.96), rgba(31, 55, 49, 0.96)) !important;
+      border-color: rgba(255, 255, 255, 0.12) !important;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+      transition: background .18s ease, border-color .18s ease, transform .18s ease;
+    }
+
+    .capability-forest::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .95;
+      background-image:
+        radial-gradient(circle at 12% 18%, rgba(255, 255, 255, .07) 0, rgba(255, 255, 255, .07) 2px, transparent 2px),
+        radial-gradient(circle at 70% 60%, rgba(255, 255, 255, .06) 0, rgba(255, 255, 255, .06) 2px, transparent 2px);
+      background-size: 48px 48px, 64px 64px;
+    }
+
+    .capability-forest>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .capability-forest:hover {
+      background: linear-gradient(180deg, rgba(44, 77, 67, 0.98), rgba(36, 64, 57, 0.98)) !important;
+      border-color: rgba(255, 255, 255, 0.18) !important;
+    }
+
+    .capability-forest .text-slate-500,
+    .capability-forest .text-slate-600,
+    .capability-forest .text-gray-500,
+    .capability-forest .text-gray-400 {
+      color: rgba(255, 255, 255, 0.82) !important;
+    }
+
+    .capability-forest .text-slate-700,
+    .capability-forest .text-gray-700,
+    .capability-forest .text-slate-800,
+    .capability-forest .text-gray-800 {
+      color: rgba(255, 255, 255, 0.90) !important;
+    }
+
+    .capability-forest .text-gray-900,
+    .capability-forest .text-gray-950 {
+      color: rgba(255, 255, 255, 0.98) !important;
+    }
+
+    .capability-forest .font-semibold,
+    .capability-forest strong {
+      color: rgba(230, 245, 239, 0.98) !important;
+    }
+
+    .capability-forest a {
+      color: rgba(170, 232, 216, 1) !important;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .capability-forest a:hover {
+      color: rgba(200, 248, 236, 1) !important;
+    }
+  </style>
+  <style id="added-spacing-utilities">
+    .pt-1 {
+      padding-top: .25rem
+    }
+
+    .pt-6 {
+      padding-top: 1.5rem
+    }
+
+    .pt-16 {
+      padding-top: 4rem
+    }
+
+    .pt-20 {
+      padding-top: 5rem
+    }
+
+    .pt-24 {
+      padding-top: 6rem
+    }
+
+    .pt-28 {
+      padding-top: 7rem
+    }
+
+    .pb-12 {
+      padding-bottom: 3rem
+    }
+
+    .pb-14 {
+      padding-bottom: 3.5rem
+    }
+
+    .pb-20 {
+      padding-bottom: 5rem
+    }
+
+    .pb-24 {
+      padding-bottom: 6rem
+    }
+
+    .mt-2 {
+      margin-top: .5rem
+    }
+
+    .mt-3 {
+      margin-top: .75rem
+    }
+
+    .mt-4 {
+      margin-top: 1rem
+    }
+
+    .mt-5 {
+      margin-top: 1.25rem
+    }
+
+    .mt-6 {
+      margin-top: 1.5rem
+    }
+
+    .mt-8 {
+      margin-top: 2rem
+    }
+
+    .mt-10 {
+      margin-top: 2.5rem
+    }
+
+    .gap-3 {
+      gap: .75rem
+    }
+
+    .gap-10 {
+      gap: 2.5rem
+    }
+
+    @media (min-width: 768px) {
+      .md\:pt-20 {
+        padding-top: 5rem
+      }
+
+      .md\:pt-28 {
+        padding-top: 7rem
+      }
+
+      .md\:pb-12 {
+        padding-bottom: 3rem
+      }
+
+      .md\:pb-24 {
+        padding-bottom: 6rem
+      }
+    }
+  </style>
+  <style>
+    *,
+    ::before,
+    ::after {
+      --tw-border-spacing-x: 0;
+      --tw-border-spacing-y: 0;
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-rotate: 0;
+      --tw-skew-x: 0;
+      --tw-skew-y: 0;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-pan-x: ;
+      --tw-pan-y: ;
+      --tw-pinch-zoom: ;
+      --tw-scroll-snap-strictness: proximity;
+      --tw-gradient-from-position: ;
+      --tw-gradient-via-position: ;
+      --tw-gradient-to-position: ;
+      --tw-ordinal: ;
+      --tw-slashed-zero: ;
+      --tw-numeric-figure: ;
+      --tw-numeric-spacing: ;
+      --tw-numeric-fraction: ;
+      --tw-ring-inset: ;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-color: rgb(59 130 246 / 0.5);
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-colored: 0 0 #0000;
+      --tw-blur: ;
+      --tw-brightness: ;
+      --tw-contrast: ;
+      --tw-grayscale: ;
+      --tw-hue-rotate: ;
+      --tw-invert: ;
+      --tw-saturate: ;
+      --tw-sepia: ;
+      --tw-drop-shadow: ;
+      --tw-backdrop-blur: ;
+      --tw-backdrop-brightness: ;
+      --tw-backdrop-contrast: ;
+      --tw-backdrop-grayscale: ;
+      --tw-backdrop-hue-rotate: ;
+      --tw-backdrop-invert: ;
+      --tw-backdrop-opacity: ;
+      --tw-backdrop-saturate: ;
+      --tw-backdrop-sepia: ;
+      --tw-contain-size: ;
+      --tw-contain-layout: ;
+      --tw-contain-paint: ;
+      --tw-contain-style:
+    }
+
+    ::backdrop {
+      --tw-border-spacing-x: 0;
+      --tw-border-spacing-y: 0;
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-rotate: 0;
+      --tw-skew-x: 0;
+      --tw-skew-y: 0;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-pan-x: ;
+      --tw-pan-y: ;
+      --tw-pinch-zoom: ;
+      --tw-scroll-snap-strictness: proximity;
+      --tw-gradient-from-position: ;
+      --tw-gradient-via-position: ;
+      --tw-gradient-to-position: ;
+      --tw-ordinal: ;
+      --tw-slashed-zero: ;
+      --tw-numeric-figure: ;
+      --tw-numeric-spacing: ;
+      --tw-numeric-fraction: ;
+      --tw-ring-inset: ;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-color: rgb(59 130 246 / 0.5);
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-colored: 0 0 #0000;
+      --tw-blur: ;
+      --tw-brightness: ;
+      --tw-contrast: ;
+      --tw-grayscale: ;
+      --tw-hue-rotate: ;
+      --tw-invert: ;
+      --tw-saturate: ;
+      --tw-sepia: ;
+      --tw-drop-shadow: ;
+      --tw-backdrop-blur: ;
+      --tw-backdrop-brightness: ;
+      --tw-backdrop-contrast: ;
+      --tw-backdrop-grayscale: ;
+      --tw-backdrop-hue-rotate: ;
+      --tw-backdrop-invert: ;
+      --tw-backdrop-opacity: ;
+      --tw-backdrop-saturate: ;
+      --tw-backdrop-sepia: ;
+      --tw-contain-size: ;
+      --tw-contain-layout: ;
+      --tw-contain-paint: ;
+      --tw-contain-style:
+    }
+
+    *,
+    ::after,
+    ::before {
+      box-sizing: border-box;
+      border-width: 0;
+      border-style: solid;
+      border-color: #e5e7eb
+    }
+
+    ::after,
+    ::before {
+      --tw-content: ''
+    }
+
+    :host,
+    html {
+      line-height: 1.5;
+      -webkit-text-size-adjust: 100%;
+      -moz-tab-size: 4;
+      tab-size: 4;
+      font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      font-feature-settings: normal;
+      font-variation-settings: normal;
+      -webkit-tap-highlight-color: transparent
+    }
+
+    body {
+      margin: 0;
+      line-height: inherit
+    }
+
+    hr {
+      height: 0;
+      color: inherit;
+      border-top-width: 1px
+    }
+
+    abbr:where([title]) {
+      -webkit-text-decoration: underline dotted;
+      text-decoration: underline dotted
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: inherit;
+      font-weight: inherit
+    }
+
+    a {
+      color: inherit;
+      text-decoration: inherit
+    }
+
+    b,
+    strong {
+      font-weight: bolder
+    }
+
+    code,
+    kbd,
+    pre,
+    samp {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-feature-settings: normal;
+      font-variation-settings: normal;
+      font-size: 1em
+    }
+
+    small {
+      font-size: 80%
+    }
+
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline
+    }
+
+    sub {
+      bottom: -.25em
+    }
+
+    sup {
+      top: -.5em
+    }
+
+    table {
+      text-indent: 0;
+      border-color: inherit;
+      border-collapse: collapse
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      font-family: inherit;
+      font-feature-settings: inherit;
+      font-variation-settings: inherit;
+      font-size: 100%;
+      font-weight: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+      color: inherit;
+      margin: 0;
+      padding: 0
+    }
+
+    button,
+    select {
+      text-transform: none
+    }
+
+    button,
+    input:where([type=button]),
+    input:where([type=reset]),
+    input:where([type=submit]) {
+      -webkit-appearance: button;
+      background-color: transparent;
+      background-image: none
+    }
+
+    :-moz-focusring {
+      outline: auto
+    }
+
+    :-moz-ui-invalid {
+      box-shadow: none
+    }
+
+    progress {
+      vertical-align: baseline
+    }
+
+    ::-webkit-inner-spin-button,
+    ::-webkit-outer-spin-button {
+      height: auto
+    }
+
+    [type=search] {
+      -webkit-appearance: textfield;
+      outline-offset: -2px
+    }
+
+    ::-webkit-search-decoration {
+      -webkit-appearance: none
+    }
+
+    ::-webkit-file-upload-button {
+      -webkit-appearance: button;
+      font: inherit
+    }
+
+    summary {
+      display: list-item
+    }
+
+    blockquote,
+    dd,
+    dl,
+    figure,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    hr,
+    p,
+    pre {
+      margin: 0
+    }
+
+    fieldset {
+      margin: 0;
+      padding: 0
+    }
+
+    legend {
+      padding: 0
+    }
+
+    menu,
+    ol,
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0
+    }
+
+    dialog {
+      padding: 0
+    }
+
+    textarea {
+      resize: vertical
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      opacity: 1;
+      color: #9ca3af
+    }
+
+    [role=button],
+    button {
+      cursor: pointer
+    }
+
+    :disabled {
+      cursor: default
+    }
+
+    audio,
+    canvas,
+    embed,
+    iframe,
+    img,
+    object,
+    svg,
+    video {
+      display: block;
+      vertical-align: middle
+    }
+
+    img,
+    video {
+      max-width: 100%;
+      height: auto
+    }
+
+    [hidden]:where(:not([hidden=until-found])) {
+      display: none
+    }
+
+    .absolute {
+      position: absolute
+    }
+
+    .relative {
+      position: relative
+    }
+
+    .sticky {
+      position: sticky
+    }
+
+    .right-0 {
+      right: 0px
+    }
+
+    .right-6 {
+      right: 1.5rem
+    }
+
+    .top-0 {
+      top: 0px
+    }
+
+    .top-10 {
+      top: 2.5rem
+    }
+
+    .top-4 {
+      top: 1rem
+    }
+
+    .z-50 {
+      z-index: 50
+    }
+
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    .mb-0 {
+      margin-bottom: 0px
+    }
+
+    .mb-16 {
+      margin-bottom: 4rem
+    }
+
+    .mb-2 {
+      margin-bottom: 0.5rem
+    }
+
+    .mb-3 {
+      margin-bottom: 0.75rem
+    }
+
+    .mb-4 {
+      margin-bottom: 1rem
+    }
+
+    .mb-6 {
+      margin-bottom: 1.5rem
+    }
+
+    .mb-8 {
+      margin-bottom: 2rem
+    }
+
+    .ml-auto {
+      margin-left: auto
+    }
+
+    .mr-2 {
+      margin-right: 0.5rem
+    }
+
+    .mr-3 {
+      margin-right: 0.75rem
+    }
+
+    .mt-1\.5 {
+      margin-top: 0.375rem
+    }
+
+    .mt-10 {
+      margin-top: 2.5rem
+    }
+
+    .mt-2 {
+      margin-top: 0.5rem
+    }
+
+    .mt-24 {
+      margin-top: 6rem
+    }
+
+    .mt-3 {
+      margin-top: 0.75rem
+    }
+
+    .mt-4 {
+      margin-top: 1rem
+    }
+
+    .mt-5 {
+      margin-top: 1.25rem
+    }
+
+    .mt-6 {
+      margin-top: 1.5rem
+    }
+
+    .mt-8 {
+      margin-top: 2rem
+    }
+
+    .inline-block {
+      display: inline-block
+    }
+
+    .flex {
+      display: flex
+    }
+
+    .inline-flex {
+      display: inline-flex
+    }
+
+    .grid {
+      display: grid
+    }
+
+    .hidden {
+      display: none
+    }
+
+    .h-10 {
+      height: 2.5rem
+    }
+
+    .h-14 {
+      height: 3.5rem
+    }
+
+    .h-2\.5 {
+      height: 0.625rem
+    }
+
+    .h-28 {
+      height: 7rem
+    }
+
+    .h-36 {
+      height: 9rem
+    }
+
+    .h-4 {
+      height: 1rem
+    }
+
+    .h-5 {
+      height: 1.25rem
+    }
+
+    .w-10 {
+      width: 2.5rem
+    }
+
+    .w-2\.5 {
+      width: 0.625rem
+    }
+
+    .w-4 {
+      width: 1rem
+    }
+
+    .w-5 {
+      width: 1.25rem
+    }
+
+    .w-52 {
+      width: 13rem
+    }
+
+    .w-\[320px\] {
+      width: 320px
+    }
+
+    .w-full {
+      width: 100%
+    }
+
+    .max-w-3xl {
+      max-width: 48rem
+    }
+
+    .max-w-4xl {
+      max-width: 56rem
+    }
+
+    .max-w-6xl {
+      max-width: 72rem
+    }
+
+    .max-w-sm {
+      max-width: 24rem
+    }
+
+    .max-w-xl {
+      max-width: 36rem
+    }
+
+    .shrink-0 {
+      flex-shrink: 0
+    }
+
+    .transform {
+      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+    }
+
+    .list-disc {
+      list-style-type: disc
+    }
+
+    .flex-col {
+      flex-direction: column
+    }
+
+    .flex-wrap {
+      flex-wrap: wrap
+    }
+
+    .items-start {
+      align-items: flex-start
+    }
+
+    .items-center {
+      align-items: center
+    }
+
+    .items-baseline {
+      align-items: baseline
+    }
+
+    .justify-center {
+      justify-content: center
+    }
+
+    .justify-between {
+      justify-content: space-between
+    }
+
+    .gap-10 {
+      gap: 2.5rem
+    }
+
+    .gap-12 {
+      gap: 3rem
+    }
+
+    .gap-2 {
+      gap: 0.5rem
+    }
+
+    .gap-3 {
+      gap: 0.75rem
+    }
+
+    .gap-4 {
+      gap: 1rem
+    }
+
+    .gap-6 {
+      gap: 1.5rem
+    }
+
+    .space-y-2> :not([hidden])~ :not([hidden]) {
+      --tw-space-y-reverse: 0;
+      margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+      margin-bottom: calc(0.5rem * var(--tw-space-y-reverse))
+    }
+
+    .space-y-4> :not([hidden])~ :not([hidden]) {
+      --tw-space-y-reverse: 0;
+      margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+      margin-bottom: calc(1rem * var(--tw-space-y-reverse))
+    }
+
+    .overflow-hidden {
+      overflow: hidden
+    }
+
+    .rounded-full {
+      border-radius: 9999px
+    }
+
+    .rounded-sm {
+      border-radius: 0.125rem
+    }
+
+    .border {
+      border-width: 1px
+    }
+
+    .border-b {
+      border-bottom-width: 1px
+    }
+
+    .border-t {
+      border-top-width: 1px
+    }
+
+    .border-emerald-100 {
+      --tw-border-opacity: 1;
+      border-color: rgb(209 250 229 / var(--tw-border-opacity, 1))
+    }
+
+    .border-gray-200 {
+      --tw-border-opacity: 1;
+      border-color: rgb(229 231 235 / var(--tw-border-opacity, 1))
+    }
+
+    .border-gray-900\/20 {
+      border-color: rgb(17 24 39 / 0.2)
+    }
+
+    .border-white\/10 {
+      border-color: rgb(255 255 255 / 0.1)
+    }
+
+    .border-white\/15 {
+      border-color: rgb(255 255 255 / 0.15)
+    }
+
+    .bg-\[color\:var\(--accent\)\] {
+      background-color: var(--accent)
+    }
+
+    .bg-\[color\:var\(--cream\)\] {
+      background-color: var(--cream)
+    }
+
+    .bg-\[color\:var\(--forest\)\] {
+      background-color: var(--forest)
+    }
+
+    .bg-emerald-50 {
+      --tw-bg-opacity: 1;
+      background-color: rgb(236 253 245 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-gray-200 {
+      --tw-bg-opacity: 1;
+      background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-white {
+      --tw-bg-opacity: 1;
+      background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-white\/10 {
+      background-color: rgb(255 255 255 / 0.1)
+    }
+
+    .bg-white\/55 {
+      background-color: rgb(255 255 255 / 0.55)
+    }
+
+    .p-5 {
+      padding: 1.25rem
+    }
+
+    .p-6 {
+      padding: 1.5rem
+    }
+
+    .px-2 {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem
+    }
+
+    .px-3 {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem
+    }
+
+    .px-4 {
+      padding-left: 1rem;
+      padding-right: 1rem
+    }
+
+    .px-6 {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem
+    }
+
+    .py-1 {
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem
+    }
+
+    .py-12 {
+      padding-top: 3rem;
+      padding-bottom: 3rem
+    }
+
+    .py-14 {
+      padding-top: 3.5rem;
+      padding-bottom: 3.5rem
+    }
+
+    .py-16 {
+      padding-top: 4rem;
+      padding-bottom: 4rem
+    }
+
+    .py-2 {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem
+    }
+
+    .py-4 {
+      padding-top: 1rem;
+      padding-bottom: 1rem
+    }
+
+    .pb-12 {
+      padding-bottom: 3rem
+    }
+
+    .pb-14 {
+      padding-bottom: 3.5rem
+    }
+
+    .pb-28 {
+      padding-bottom: 7rem
+    }
+
+    .pb-4 {
+      padding-bottom: 1rem
+    }
+
+    .pl-5 {
+      padding-left: 1.25rem
+    }
+
+    .pt-1 {
+      padding-top: 0.25rem
+    }
+
+    .pt-14 {
+      padding-top: 3.5rem
+    }
+
+    .pt-16 {
+      padding-top: 4rem
+    }
+
+    .pt-20 {
+      padding-top: 5rem
+    }
+
+    .pt-6 {
+      padding-top: 1.5rem
+    }
+
+    .text-left {
+      text-align: left
+    }
+
+    .text-center {
+      text-align: center
+    }
+
+    .align-middle {
+      vertical-align: middle
+    }
+
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem
+    }
+
+    .text-3xl {
+      font-size: 1.875rem;
+      line-height: 2.25rem
+    }
+
+    .text-4xl {
+      font-size: 2.25rem;
+      line-height: 2.5rem
+    }
+
+    .text-5xl {
+      font-size: 3rem;
+      line-height: 1
+    }
+
+    .text-lg {
+      font-size: 1.125rem;
+      line-height: 1.75rem
+    }
+
+    .text-sm {
+      font-size: 0.875rem;
+      line-height: 1.25rem
+    }
+
+    .text-xl {
+      font-size: 1.25rem;
+      line-height: 1.75rem
+    }
+
+    .text-xs {
+      font-size: 0.75rem;
+      line-height: 1rem
+    }
+
+    .font-bold {
+      font-weight: 700
+    }
+
+    .font-semibold {
+      font-weight: 600
+    }
+
+    .uppercase {
+      text-transform: uppercase
+    }
+
+    .leading-\[0\.95\] {
+      line-height: 0.95
+    }
+
+    .leading-relaxed {
+      line-height: 1.625
+    }
+
+    .tracking-wide {
+      letter-spacing: 0.025em
+    }
+
+    .text-blue-700 {
+      --tw-text-opacity: 1;
+      color: rgb(29 78 216 / var(--tw-text-opacity, 1))
+    }
+
+    .text-emerald-800 {
+      --tw-text-opacity: 1;
+      color: rgb(6 95 70 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-500 {
+      --tw-text-opacity: 1;
+      color: rgb(107 114 128 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-600 {
+      --tw-text-opacity: 1;
+      color: rgb(75 85 99 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-700 {
+      --tw-text-opacity: 1;
+      color: rgb(55 65 81 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-950 {
+      --tw-text-opacity: 1;
+      color: rgb(3 7 18 / var(--tw-text-opacity, 1))
+    }
+
+    .text-green-700 {
+      --tw-text-opacity: 1;
+      color: rgb(21 128 61 / var(--tw-text-opacity, 1))
+    }
+
+    .text-red-700 {
+      --tw-text-opacity: 1;
+      color: rgb(185 28 28 / var(--tw-text-opacity, 1))
+    }
+
+    .text-slate-500 {
+      --tw-text-opacity: 1;
+      color: rgb(100 116 139 / var(--tw-text-opacity, 1))
+    }
+
+    .text-slate-700 {
+      --tw-text-opacity: 1;
+      color: rgb(51 65 85 / var(--tw-text-opacity, 1))
+    }
+
+    .text-slate-900 {
+      --tw-text-opacity: 1;
+      color: rgb(15 23 42 / var(--tw-text-opacity, 1))
+    }
+
+    .text-white {
+      --tw-text-opacity: 1;
+      color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+    }
+
+    .text-white\/55 {
+      color: rgb(255 255 255 / 0.55)
+    }
+
+    .text-white\/70 {
+      color: rgb(255 255 255 / 0.7)
+    }
+
+    .text-white\/80 {
+      color: rgb(255 255 255 / 0.8)
+    }
+
+    .text-white\/85 {
+      color: rgb(255 255 255 / 0.85)
+    }
+
+    .text-white\/90 {
+      color: rgb(255 255 255 / 0.9)
+    }
+
+    .text-yellow-700 {
+      --tw-text-opacity: 1;
+      color: rgb(161 98 7 / var(--tw-text-opacity, 1))
+    }
+
+    .opacity-70 {
+      opacity: 0.7
+    }
+
+    .opacity-80 {
+      opacity: 0.8
+    }
+
+    .opacity-90 {
+      opacity: 0.9
+    }
+
+    .shadow-md {
+      --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+    }
+
+    .transition {
+      transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 150ms
+    }
+
+    .transition-colors {
+      transition-property: color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;
+      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 150ms
+    }
+
+    .duration-200 {
+      transition-duration: 200ms
+    }
+
+    .hover\:z-10:hover {
+      z-index: 10
+    }
+
+    .hover\:scale-105:hover {
+      --tw-scale-x: 1.05;
+      --tw-scale-y: 1.05;
+      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+    }
+
+    .hover\:border-2:hover {
+      border-width: 2px
+    }
+
+    .hover\:border-blue-700:hover {
+      --tw-border-opacity: 1;
+      border-color: rgb(29 78 216 / var(--tw-border-opacity, 1))
+    }
+
+    .hover\:border-green-700:hover {
+      --tw-border-opacity: 1;
+      border-color: rgb(21 128 61 / var(--tw-border-opacity, 1))
+    }
+
+    .hover\:border-red-700:hover {
+      --tw-border-opacity: 1;
+      border-color: rgb(185 28 28 / var(--tw-border-opacity, 1))
+    }
+
+    .hover\:border-yellow-700:hover {
+      --tw-border-opacity: 1;
+      border-color: rgb(161 98 7 / var(--tw-border-opacity, 1))
+    }
+
+    .hover\:bg-\[color\:var\(--accent2\)\]:hover {
+      background-color: var(--accent2)
+    }
+
+    .hover\:bg-blue-200:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgb(191 219 254 / var(--tw-bg-opacity, 1))
+    }
+
+    .hover\:bg-green-200:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgb(187 247 208 / var(--tw-bg-opacity, 1))
+    }
+
+    .hover\:bg-red-200:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgb(254 202 202 / var(--tw-bg-opacity, 1))
+    }
+
+    .hover\:bg-white\/50:hover {
+      background-color: rgb(255 255 255 / 0.5)
+    }
+
+    .hover\:bg-yellow-200:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgb(254 240 138 / var(--tw-bg-opacity, 1))
+    }
+
+    .hover\:text-blue-800:hover {
+      --tw-text-opacity: 1;
+      color: rgb(30 64 175 / var(--tw-text-opacity, 1))
+    }
+
+    .hover\:text-green-800:hover {
+      --tw-text-opacity: 1;
+      color: rgb(22 101 52 / var(--tw-text-opacity, 1))
+    }
+
+    .hover\:text-red-800:hover {
+      --tw-text-opacity: 1;
+      color: rgb(153 27 27 / var(--tw-text-opacity, 1))
+    }
+
+    .hover\:text-white:hover {
+      --tw-text-opacity: 1;
+      color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+    }
+
+    .hover\:text-yellow-800:hover {
+      --tw-text-opacity: 1;
+      color: rgb(133 77 14 / var(--tw-text-opacity, 1))
+    }
+
+    .hover\:opacity-95:hover {
+      opacity: 0.95
+    }
+
+    .hover\:shadow-lg:hover {
+      --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+    }
+
+    @media (min-width: 640px) {
+      .sm\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+    }
+
+    @media (min-width: 768px) {
+      .md\:col-span-5 {
+        grid-column: span 5 / span 5
+      }
+
+      .md\:col-span-7 {
+        grid-column: span 7 / span 7
+      }
+
+      .md\:mt-0 {
+        margin-top: 0px
+      }
+
+      .md\:flex {
+        display: flex
+      }
+
+      .md\:grid-cols-12 {
+        grid-template-columns: repeat(12, minmax(0, 1fr))
+      }
+
+      .md\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .md\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+      }
+
+      .md\:flex-row {
+        flex-direction: row
+      }
+
+      .md\:items-end {
+        align-items: flex-end
+      }
+
+      .md\:items-center {
+        align-items: center
+      }
+
+      .md\:justify-between {
+        justify-content: space-between
+      }
+
+      .md\:p-6 {
+        padding: 1.5rem
+      }
+
+      .md\:py-16 {
+        padding-top: 4rem;
+        padding-bottom: 4rem
+      }
+
+      .md\:pb-12 {
+        padding-bottom: 3rem
+      }
+
+      .md\:pt-2 {
+        padding-top: 0.5rem
+      }
+
+      .md\:pt-20 {
+        padding-top: 5rem
+      }
+
+      .md\:text-4xl {
+        font-size: 2.25rem;
+        line-height: 2.5rem
+      }
+
+      .md\:text-5xl {
+        font-size: 3rem;
+        line-height: 1
+      }
+
+      .md\:text-6xl {
+        font-size: 3.75rem;
+        line-height: 1
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .lg\:block {
+        display: block
+      }
+
+      .lg\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .lg\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+      }
+    }
+  </style>
+  <style>
+    .sector-hero {
+      position: relative;
+      min-height: 380px;
+      padding: 78px 0 62px;
+      overflow: hidden;
+      background: #0d2b28;
+    }
+
+    .sector-hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      filter: saturate(1.06) contrast(1.06);
+    }
+
+    .sector-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(11, 27, 26, .80) 0%, rgba(11, 27, 26, .62) 48%, rgba(11, 27, 26, .22) 100%);
+    }
+
+    .sector-hero .inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    .sector-hero .kicker {
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: 11px;
+      color: rgba(255, 255, 255, .82);
+    }
+
+    .btn-on-dark {
+      border: 1px solid rgba(255, 255, 255, .35) !important;
+      color: #fff !important;
+      background: rgba(255, 255, 255, .10) !important;
+    }
+
+    .btn-on-dark:hover {
+      background: rgba(255, 255, 255, .16) !important;
+    }
+
+    .hero-action {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 20px;
+      border-radius: 8px;
+      color: #fff !important;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      transition: background .2s ease, border-color .2s ease, transform .2s ease;
+    }
+
+    .hero-action:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero-action-primary {
+      background: rgba(85, 160, 146, .90);
+      border: 1px solid rgba(255, 255, 255, .14);
+      font-weight: 750;
+    }
+
+    .hero-action-primary:hover {
+      background: rgba(85, 160, 146, .98);
+    }
+
+    .hero-action-secondary {
+      background: transparent;
+      border: 1px solid rgba(85, 160, 146, .70);
+    }
+
+    .hero-action-secondary:hover {
+      background: rgba(255, 255, 255, .08);
+      border-color: rgba(85, 160, 146, .92);
+    }
+
+
+
+    .module-line {
+      font-size: 12px;
+      color: rgba(17, 24, 39, .75);
+    }
+
+    .module-line code {
+      background: rgba(85, 160, 146, .12);
+      color: #0d6b62;
+      border: 1px solid rgba(13, 107, 98, .18);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+
+    .sector-card img {
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+  </style>
+
+
+  <style>
+    *,
+    ::before,
+    ::after {
+      --tw-border-spacing-x: 0;
+      --tw-border-spacing-y: 0;
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-rotate: 0;
+      --tw-skew-x: 0;
+      --tw-skew-y: 0;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-pan-x: ;
+      --tw-pan-y: ;
+      --tw-pinch-zoom: ;
+      --tw-scroll-snap-strictness: proximity;
+      --tw-gradient-from-position: ;
+      --tw-gradient-via-position: ;
+      --tw-gradient-to-position: ;
+      --tw-ordinal: ;
+      --tw-slashed-zero: ;
+      --tw-numeric-figure: ;
+      --tw-numeric-spacing: ;
+      --tw-numeric-fraction: ;
+      --tw-ring-inset: ;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-color: rgb(59 130 246 / 0.5);
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-colored: 0 0 #0000;
+      --tw-blur: ;
+      --tw-brightness: ;
+      --tw-contrast: ;
+      --tw-grayscale: ;
+      --tw-hue-rotate: ;
+      --tw-invert: ;
+      --tw-saturate: ;
+      --tw-sepia: ;
+      --tw-drop-shadow: ;
+      --tw-backdrop-blur: ;
+      --tw-backdrop-brightness: ;
+      --tw-backdrop-contrast: ;
+      --tw-backdrop-grayscale: ;
+      --tw-backdrop-hue-rotate: ;
+      --tw-backdrop-invert: ;
+      --tw-backdrop-opacity: ;
+      --tw-backdrop-saturate: ;
+      --tw-backdrop-sepia: ;
+      --tw-contain-size: ;
+      --tw-contain-layout: ;
+      --tw-contain-paint: ;
+      --tw-contain-style:
+    }
+
+    ::backdrop {
+      --tw-border-spacing-x: 0;
+      --tw-border-spacing-y: 0;
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-rotate: 0;
+      --tw-skew-x: 0;
+      --tw-skew-y: 0;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-pan-x: ;
+      --tw-pan-y: ;
+      --tw-pinch-zoom: ;
+      --tw-scroll-snap-strictness: proximity;
+      --tw-gradient-from-position: ;
+      --tw-gradient-via-position: ;
+      --tw-gradient-to-position: ;
+      --tw-ordinal: ;
+      --tw-slashed-zero: ;
+      --tw-numeric-figure: ;
+      --tw-numeric-spacing: ;
+      --tw-numeric-fraction: ;
+      --tw-ring-inset: ;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-color: rgb(59 130 246 / 0.5);
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-colored: 0 0 #0000;
+      --tw-blur: ;
+      --tw-brightness: ;
+      --tw-contrast: ;
+      --tw-grayscale: ;
+      --tw-hue-rotate: ;
+      --tw-invert: ;
+      --tw-saturate: ;
+      --tw-sepia: ;
+      --tw-drop-shadow: ;
+      --tw-backdrop-blur: ;
+      --tw-backdrop-brightness: ;
+      --tw-backdrop-contrast: ;
+      --tw-backdrop-grayscale: ;
+      --tw-backdrop-hue-rotate: ;
+      --tw-backdrop-invert: ;
+      --tw-backdrop-opacity: ;
+      --tw-backdrop-saturate: ;
+      --tw-backdrop-sepia: ;
+      --tw-contain-size: ;
+      --tw-contain-layout: ;
+      --tw-contain-paint: ;
+      --tw-contain-style:
+    }
+
+    *,
+    ::after,
+    ::before {
+      box-sizing: border-box;
+      border-width: 0;
+      border-style: solid;
+      border-color: #e5e7eb
+    }
+
+    ::after,
+    ::before {
+      --tw-content: ''
+    }
+
+    :host,
+    html {
+      line-height: 1.5;
+      -webkit-text-size-adjust: 100%;
+      -moz-tab-size: 4;
+      tab-size: 4;
+      font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      font-feature-settings: normal;
+      font-variation-settings: normal;
+      -webkit-tap-highlight-color: transparent
+    }
+
+    body {
+      margin: 0;
+      line-height: inherit
+    }
+
+    hr {
+      height: 0;
+      color: inherit;
+      border-top-width: 1px
+    }
+
+    abbr:where([title]) {
+      -webkit-text-decoration: underline dotted;
+      text-decoration: underline dotted
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: inherit;
+      font-weight: inherit
+    }
+
+    a {
+      color: inherit;
+      text-decoration: inherit
+    }
+
+    b,
+    strong {
+      font-weight: bolder
+    }
+
+    code,
+    kbd,
+    pre,
+    samp {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-feature-settings: normal;
+      font-variation-settings: normal;
+      font-size: 1em
+    }
+
+    small {
+      font-size: 80%
+    }
+
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline
+    }
+
+    sub {
+      bottom: -.25em
+    }
+
+    sup {
+      top: -.5em
+    }
+
+    table {
+      text-indent: 0;
+      border-color: inherit;
+      border-collapse: collapse
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      font-family: inherit;
+      font-feature-settings: inherit;
+      font-variation-settings: inherit;
+      font-size: 100%;
+      font-weight: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+      color: inherit;
+      margin: 0;
+      padding: 0
+    }
+
+    button,
+    select {
+      text-transform: none
+    }
+
+    button,
+    input:where([type=button]),
+    input:where([type=reset]),
+    input:where([type=submit]) {
+      -webkit-appearance: button;
+      background-color: transparent;
+      background-image: none
+    }
+
+    :-moz-focusring {
+      outline: auto
+    }
+
+    :-moz-ui-invalid {
+      box-shadow: none
+    }
+
+    progress {
+      vertical-align: baseline
+    }
+
+    ::-webkit-inner-spin-button,
+    ::-webkit-outer-spin-button {
+      height: auto
+    }
+
+    [type=search] {
+      -webkit-appearance: textfield;
+      outline-offset: -2px
+    }
+
+    ::-webkit-search-decoration {
+      -webkit-appearance: none
+    }
+
+    ::-webkit-file-upload-button {
+      -webkit-appearance: button;
+      font: inherit
+    }
+
+    summary {
+      display: list-item
+    }
+
+    blockquote,
+    dd,
+    dl,
+    figure,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    hr,
+    p,
+    pre {
+      margin: 0
+    }
+
+    fieldset {
+      margin: 0;
+      padding: 0
+    }
+
+    legend {
+      padding: 0
+    }
+
+    menu,
+    ol,
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0
+    }
+
+    dialog {
+      padding: 0
+    }
+
+    textarea {
+      resize: vertical
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      opacity: 1;
+      color: #9ca3af
+    }
+
+    [role=button],
+    button {
+      cursor: pointer
+    }
+
+    :disabled {
+      cursor: default
+    }
+
+    audio,
+    canvas,
+    embed,
+    iframe,
+    img,
+    object,
+    svg,
+    video {
+      display: block;
+      vertical-align: middle
+    }
+
+    img,
+    video {
+      max-width: 100%;
+      height: auto
+    }
+
+    [hidden]:where(:not([hidden=until-found])) {
+      display: none
+    }
+
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    .mb-0 {
+      margin-bottom: 0px
+    }
+
+    .mb-4 {
+      margin-bottom: 1rem
+    }
+
+    .mt-10 {
+      margin-top: 2.5rem
+    }
+
+    .mt-2 {
+      margin-top: 0.5rem
+    }
+
+    .mt-24 {
+      margin-top: 6rem
+    }
+
+    .mt-3 {
+      margin-top: 0.75rem
+    }
+
+    .mt-4 {
+      margin-top: 1rem
+    }
+
+    .mt-5 {
+      margin-top: 1.25rem
+    }
+
+    .mt-6 {
+      margin-top: 1.5rem
+    }
+
+    .mt-8 {
+      margin-top: 2rem
+    }
+
+    .flex {
+      display: flex
+    }
+
+    .inline-flex {
+      display: inline-flex
+    }
+
+    .grid {
+      display: grid
+    }
+
+    .hidden {
+      display: none
+    }
+
+    .h-2\.5 {
+      height: 0.625rem
+    }
+
+    .h-4 {
+      height: 1rem
+    }
+
+    .w-2\.5 {
+      width: 0.625rem
+    }
+
+    .w-4 {
+      width: 1rem
+    }
+
+    .w-full {
+      width: 100%
+    }
+
+    .max-w-2xl {
+      max-width: 42rem
+    }
+
+    .max-w-3xl {
+      max-width: 48rem
+    }
+
+    .max-w-4xl {
+      max-width: 56rem
+    }
+
+    .max-w-6xl {
+      max-width: 72rem
+    }
+
+    .max-w-sm {
+      max-width: 24rem
+    }
+
+    .max-w-xl {
+      max-width: 36rem
+    }
+
+    .flex-shrink-0 {
+      flex-shrink: 0
+    }
+
+    .flex-col {
+      flex-direction: column
+    }
+
+    .flex-wrap {
+      flex-wrap: wrap
+    }
+
+    .items-start {
+      align-items: flex-start
+    }
+
+    .items-center {
+      align-items: center
+    }
+
+    .gap-10 {
+      gap: 2.5rem
+    }
+
+    .gap-12 {
+      gap: 3rem
+    }
+
+    .gap-2 {
+      gap: 0.5rem
+    }
+
+    .gap-3 {
+      gap: 0.75rem
+    }
+
+    .gap-4 {
+      gap: 1rem
+    }
+
+    .gap-6 {
+      gap: 1.5rem
+    }
+
+    .space-y-2> :not([hidden])~ :not([hidden]) {
+      --tw-space-y-reverse: 0;
+      margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+      margin-bottom: calc(0.5rem * var(--tw-space-y-reverse))
+    }
+
+    .rounded-2xl {
+      border-radius: 1rem
+    }
+
+    .rounded-full {
+      border-radius: 9999px
+    }
+
+    .rounded-sm {
+      border-radius: 0.125rem
+    }
+
+    .border {
+      border-width: 1px
+    }
+
+    .border-b {
+      border-bottom-width: 1px
+    }
+
+    .border-t {
+      border-top-width: 1px
+    }
+
+    .border-white\/10 {
+      border-color: rgb(255 255 255 / 0.1)
+    }
+
+    .bg-\[color\:var\(--accent\)\] {
+      background-color: var(--accent)
+    }
+
+    .bg-\[color\:var\(--cream\)\] {
+      background-color: var(--cream)
+    }
+
+    .bg-\[color\:var\(--forest\)\] {
+      background-color: var(--forest)
+    }
+
+    .bg-white {
+      --tw-bg-opacity: 1;
+      background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-white\/55 {
+      background-color: rgb(255 255 255 / 0.55)
+    }
+
+    .p-5 {
+      padding: 1.25rem
+    }
+
+    .p-6 {
+      padding: 1.5rem
+    }
+
+    .px-3 {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem
+    }
+
+    .px-4 {
+      padding-left: 1rem;
+      padding-right: 1rem
+    }
+
+    .px-6 {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem
+    }
+
+    .py-12 {
+      padding-top: 3rem;
+      padding-bottom: 3rem
+    }
+
+    .py-14 {
+      padding-top: 3.5rem;
+      padding-bottom: 3.5rem
+    }
+
+    .py-16 {
+      padding-top: 4rem;
+      padding-bottom: 4rem
+    }
+
+    .py-2 {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem
+    }
+
+    .pb-28 {
+      padding-bottom: 7rem
+    }
+
+    .pt-1 {
+      padding-top: 0.25rem
+    }
+
+    .pt-20 {
+      padding-top: 5rem
+    }
+
+    .pt-6 {
+      padding-top: 1.5rem
+    }
+
+    .text-3xl {
+      font-size: 1.875rem;
+      line-height: 2.25rem
+    }
+
+    .text-5xl {
+      font-size: 3rem;
+      line-height: 1
+    }
+
+    .text-lg {
+      font-size: 1.125rem;
+      line-height: 1.75rem
+    }
+
+    .text-sm {
+      font-size: 0.875rem;
+      line-height: 1.25rem
+    }
+
+    .text-xl {
+      font-size: 1.25rem;
+      line-height: 1.75rem
+    }
+
+    .text-xs {
+      font-size: 0.75rem;
+      line-height: 1rem
+    }
+
+    .font-semibold {
+      font-weight: 600
+    }
+
+    .uppercase {
+      text-transform: uppercase
+    }
+
+    .leading-\[0\.95\] {
+      line-height: 0.95
+    }
+
+    .leading-relaxed {
+      line-height: 1.625
+    }
+
+    .tracking-wide {
+      letter-spacing: 0.025em
+    }
+
+    .tracking-widest {
+      letter-spacing: 0.1em
+    }
+
+    .text-gray-500 {
+      --tw-text-opacity: 1;
+      color: rgb(107 114 128 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-600 {
+      --tw-text-opacity: 1;
+      color: rgb(75 85 99 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-700 {
+      --tw-text-opacity: 1;
+      color: rgb(55 65 81 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-950 {
+      --tw-text-opacity: 1;
+      color: rgb(3 7 18 / var(--tw-text-opacity, 1))
+    }
+
+    .text-red-700 {
+      --tw-text-opacity: 1;
+      color: rgb(185 28 28 / var(--tw-text-opacity, 1))
+    }
+
+    .text-white {
+      --tw-text-opacity: 1;
+      color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+    }
+
+    .text-white\/55 {
+      color: rgb(255 255 255 / 0.55)
+    }
+
+    .text-white\/70 {
+      color: rgb(255 255 255 / 0.7)
+    }
+
+    .text-white\/80 {
+      color: rgb(255 255 255 / 0.8)
+    }
+
+    .text-white\/85 {
+      color: rgb(255 255 255 / 0.85)
+    }
+
+    .text-white\/90 {
+      color: rgb(255 255 255 / 0.9)
+    }
+
+    .opacity-90 {
+      opacity: 0.9
+    }
+
+    .hover\:bg-\[color\:var\(--accent2\)\]:hover {
+      background-color: var(--accent2)
+    }
+
+    .hover\:text-white:hover {
+      --tw-text-opacity: 1;
+      color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+    }
+
+    @media (min-width: 768px) {
+      .md\:mt-0 {
+        margin-top: 0px
+      }
+
+      .md\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .md\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+      }
+
+      .md\:flex-row {
+        flex-direction: row
+      }
+
+      .md\:items-center {
+        align-items: center
+      }
+
+      .md\:justify-between {
+        justify-content: space-between
+      }
+
+      .md\:pt-2 {
+        padding-top: 0.5rem
+      }
+
+      .md\:text-4xl {
+        font-size: 2.25rem;
+        line-height: 2.5rem
+      }
+
+      .md\:text-6xl {
+        font-size: 3.75rem;
+        line-height: 1
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .lg\:col-span-6 {
+        grid-column: span 6 / span 6
+      }
+
+      .lg\:grid-cols-12 {
+        grid-template-columns: repeat(12, minmax(0, 1fr))
+      }
+
+      .lg\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .lg\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+      }
+    }
+  </style>
+  <style id="next-steps-visibility-fix">
+    /* Fix the Next steps card so the copy stays readable in light render paths */
+    section.py-12 .rounded-2xl.bg-white {
+      background: linear-gradient(135deg, #f7fbfa 0%, #ffffff 58%, #f6f4ef 100%) !important;
+      border: 1px solid rgba(36, 63, 56, .12) !important;
+      border-top: 3px solid #55a092 !important;
+    }
+
+    section.py-12 .rounded-2xl.bg-white .page-serif.text-xl {
+      color: #1b1f1e !important;
+    }
+
+    section.py-12 .rounded-2xl.bg-white .text-gray-700 {
+      color: #44514d !important;
+    }
+
+    section.py-12 .rounded-2xl.bg-white::before {
+      content: "" !important;
+      position: absolute !important;
+      inset: 0 !important;
+      background: radial-gradient(circle at top right, rgba(85, 160, 146, .12) 0%, transparent 70%) !important;
+      pointer-events: none !important;
+    }
+
+    section.py-12 .rounded-2xl.bg-white>* {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+  <style id="card-visual-layer">
+    /* ════════════════════════════════════════════════════
+ VISIBLE CARD STYLING LAYER
+ Pure CSS - targets existing markup, no HTML changes
+ ════════════════════════════════════════════════════ */
+
+    /* ── Base card refresh: warmer background, softer feel ── */
+    main section:not(#hero) .rounded-2xl.bg-white {
+      background: linear-gradient(145deg, #ffffff 0%, #f9f8f4 100%) !important;
+      border-color: rgba(36, 63, 56, .10) !important;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── Decorative corner shimmer on every card ── */
+    main section:not(#hero) .rounded-2xl.bg-white::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle at top right, rgba(85, 160, 146, .10) 0%, transparent 70%);
+      pointer-events: none;
+      border-radius: 0 1rem 0 0;
+    }
+
+    /* ── TOP ACCENT BORDER by card type (via label text targeting) ── */
+
+    /* Stage cards - teal progression */
+    main section:not(#hero) .rounded-2xl.bg-white:has(.tracking-widest) {
+      border-top: 3px solid rgba(85, 160, 146, .35) !important;
+    }
+
+    /* Stage 1 - deep forest anchor */
+    main section:not(#hero) .rounded-2xl.bg-white:has(.tracking-widest:first-child) {
+      --card-accent: #243f38;
+    }
+
+    /* Advisory card */
+    main section:not(#hero) .rounded-2xl.bg-white:has(p.tracking-widest) {
+      border-top: 3px solid rgba(85, 160, 146, .5) !important;
+    }
+
+    /* ── Colored top-bar via nth-of-type for stage progression ── */
+    /* We paint the stage cards with a gradient bar using sibling counting */
+    main section:not(#hero) .grid.lg\:grid-cols-3>.rounded-2xl.bg-white:nth-child(1) {
+      border-top-color: #55a092 !important;
+    }
+
+    main section:not(#hero) .grid.lg\:grid-cols-3>.rounded-2xl.bg-white:nth-child(2) {
+      border-top-color: #3d8a7c !important;
+    }
+
+    main section:not(#hero) .grid.lg\:grid-cols-3>.rounded-2xl.bg-white:nth-child(3) {
+      border-top-color: #2e7568 !important;
+    }
+
+    main section:not(#hero) .grid.lg\:grid-cols-2>.rounded-2xl.bg-white:nth-child(1) {
+      border-top-color: #55a092 !important;
+    }
+
+    main section:not(#hero) .grid.lg\:grid-cols-2>.rounded-2xl.bg-white:nth-child(2) {
+      border-top-color: #3d8a7c !important;
+    }
+
+    main section:not(#hero) .grid.lg\:grid-cols-3>.rounded-2xl.bg-white {
+      border-top-width: 3px !important;
+      border-top-style: solid !important;
+    }
+
+    main section:not(#hero) .grid.lg\:grid-cols-2>.rounded-2xl.bg-white {
+      border-top-width: 3px !important;
+      border-top-style: solid !important;
+    }
+
+    /* md:grid-cols-2 (sector intro 4 cards) */
+    main section:not(#hero) .grid.md\:grid-cols-2>.rounded-2xl.bg-white:nth-child(1) {
+      border-top: 3px solid #55a092 !important;
+    }
+
+    main section:not(#hero) .grid.md\:grid-cols-2>.rounded-2xl.bg-white:nth-child(2) {
+      border-top: 3px solid #3d8a7c !important;
+    }
+
+    main section:not(#hero) .grid.md\:grid-cols-2>.rounded-2xl.bg-white:nth-child(3) {
+      border-top: 3px solid #2e7568 !important;
+    }
+
+    main section:not(#hero) .grid.md\:grid-cols-2>.rounded-2xl.bg-white:nth-child(4) {
+      border-top: 3px solid #243f38 !important;
+    }
+
+    /* ── Stage label styling: pill badge ── */
+    main section:not(#hero) .rounded-2xl .text-xs.text-gray-500.tracking-widest {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      background: rgba(85, 160, 146, .08) !important;
+      color: #0d6b62 !important;
+      border: 1px solid rgba(85, 160, 146, .22) !important;
+      border-radius: 999px !important;
+      padding: 3px 10px !important;
+      font-size: 9px !important;
+      letter-spacing: .18em !important;
+      font-weight: 800 !important;
+      margin-bottom: 4px !important;
+    }
+
+    /* ── Card heading line: subtle left rule ── */
+    main section:not(#hero) .rounded-2xl .page-serif.text-xl {
+      padding-left: 10px !important;
+      border-left: 2px solid rgba(85, 160, 146, .28) !important;
+      margin-left: 0 !important;
+    }
+
+    /* ── Sector-intro 4-card grid: alternating warm/cool tint ── */
+    #sector-intro .rounded-2xl.bg-white:nth-child(odd) {
+      background: linear-gradient(150deg, #ffffff 0%, #f4f9f8 100%) !important;
+    }
+
+    #sector-intro .rounded-2xl.bg-white:nth-child(even) {
+      background: linear-gradient(150deg, #f9f8f4 0%, #edf5f3 100%) !important;
+    }
+
+    /* ── Advisory/FlowPlan/Specialist card identity colors ── */
+    /* Using border-left as secondary visual language */
+    #approach .grid>.rounded-2xl.bg-white:nth-child(1) {
+      border-left: 4px solid rgba(85, 160, 146, .45) !important;
+      background: linear-gradient(145deg, #f4faf9 0%, #ffffff 100%) !important;
+    }
+
+    #approach .grid>.rounded-2xl.bg-white:nth-child(2) {
+      border-left: 4px solid rgba(36, 63, 56, .45) !important;
+      background: linear-gradient(145deg, #f4f9f6 0%, #ffffff 100%) !important;
+    }
+
+    #approach .grid>.rounded-2xl.bg-white:nth-child(3) {
+      border-left: 4px solid rgba(68, 138, 126, .45) !important;
+      background: linear-gradient(145deg, #f5faf9 0%, #ffffff 100%) !important;
+    }
+
+    /* ── Due diligence single checklist card ── */
+    #due-diligence .rounded-2xl.bg-white {
+      background: linear-gradient(135deg, #f0f7f5 0%, #ffffff 60%, #f9f8f4 100%) !important;
+      border-left: 4px solid rgba(36, 63, 56, .5) !important;
+      border-top: 3px solid #55a092 !important;
+    }
+
+    /* ── Treatment routes: stage numbering glow ── */
+    main section .grid.lg\:grid-cols-3>.rounded-2xl.bg-white:nth-child(1)::after,
+    main section .grid.lg\:grid-cols-3>.rounded-2xl.bg-white:nth-child(2)::after,
+    main section .grid.lg\:grid-cols-3>.rounded-2xl.bg-white:nth-child(3)::after,
+    main section .grid.lg\:grid-cols-3>.rounded-2xl.bg-white:nth-child(4)::after,
+    main section .grid.lg\:grid-cols-3>.rounded-2xl.bg-white:nth-child(5)::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 48px;
+      height: 48px;
+      background: radial-gradient(circle at bottom right, rgba(85, 160, 146, .08) 0%, transparent 70%);
+      pointer-events: none;
+      border-radius: 0 0 1rem 0;
+    }
+
+    /* ── Sustainability / "what are gains" wide card ── */
+    main section .rounded-2xl.bg-white.mt-8 {
+      border-top: 3px solid #243f38 !important;
+      border-left: 4px solid rgba(85, 160, 146, .3) !important;
+      background: linear-gradient(135deg, #f2f8f7 0%, #ffffff 50%, #faf9f6 100%) !important;
+    }
+
+    /* ── Next steps CTA card: forest dark variant ── */
+    section.py-12 .rounded-2xl.bg-white {
+      background: linear-gradient(135deg, #243f38 0%, #1f3731 100%) !important;
+      border: 1px solid rgba(255, 255, 255, .10) !important;
+      border-top: 3px solid #55a092 !important;
+    }
+
+    section.py-12 .rounded-2xl .page-serif.text-xl {
+      color: #fff !important;
+      border-left-color: rgba(85, 160, 146, .6) !important;
+    }
+
+    section.py-12 .rounded-2xl .text-gray-700 {
+      color: rgba(255, 255, 255, .78) !important;
+    }
+
+    section.py-12 .rounded-2xl::before {
+      background: radial-gradient(circle at top right, rgba(85, 160, 146, .18) 0%, transparent 70%) !important;
+    }
+
+    /* ── Card hover: reveal bottom teal bar ── */
+    main section:not(#hero) .rounded-2xl.bg-white {
+      padding-bottom: calc(1.5rem + 2px) !important;
+    }
+
+    main section:not(#hero) .rounded-2xl.bg-white::after {
+      content: "" !important;
+      position: absolute !important;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px !important;
+      background: linear-gradient(90deg, #55a092, #243f38) !important;
+      opacity: 0 !important;
+      transition: opacity .3s ease !important;
+      border-radius: 0 0 1rem 1rem !important;
+    }
+
+    main section:not(#hero) .rounded-2xl.bg-white:hover::after {
+      opacity: 1 !important;
+    }
+
+    /* ── Section background: alternating subtle tone ── */
+    #sector-intro {
+      background: linear-gradient(180deg, #f4f2ec 0%, #eff6f4 100%);
+    }
+
+    #approach {
+      background: linear-gradient(180deg, #f0f5f4 0%, #f4f2ec 100%);
+    }
+
+    main section.py-16:not([id]) {
+      background: linear-gradient(180deg, #f9f8f4 0%, #f4f2ec 100%);
+    }
+  </style>
+  <style id="story-arc-dynamics">
+    /* ── Progress spine ── */
+    #story-spine {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 3px;
+      height: 0%;
+      background: linear-gradient(180deg, #55a092 0%, #243f38 100%);
+      z-index: 9000;
+      transition: height .08s linear;
+      border-radius: 0 2px 2px 0;
+      box-shadow: 0 0 10px rgba(85, 160, 146, .45);
+    }
+
+    /* ── Chapter label that floats on scroll ── */
+    #chapter-label {
+      position: fixed;
+      left: 16px;
+      bottom: 28px;
+      z-index: 9001;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity .35s ease, transform .35s ease;
+    }
+
+    #chapter-label.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    #chapter-label-inner {
+      background: rgba(36, 63, 56, .92);
+      color: rgba(255, 255, 255, .9);
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(85, 160, 146, .4);
+      backdrop-filter: blur(6px);
+      white-space: nowrap;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+    }
+
+    /* ── Scroll-reveal base state ── */
+    .sr-fade {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .65s cubic-bezier(.22, 1, .36, 1), transform .65s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .sr-fade.sr-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .sr-fade-left {
+      opacity: 0;
+      transform: translateX(-32px);
+      transition: opacity .7s cubic-bezier(.22, 1, .36, 1), transform .7s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .sr-fade-left.sr-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .sr-scale {
+      opacity: 0;
+      transform: scale(.94);
+      transition: opacity .6s cubic-bezier(.22, 1, .36, 1), transform .6s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .sr-scale.sr-visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* ── Stagger siblings ── */
+    .sr-stagger>* {
+      transition-delay: calc(var(--i, 0) * 80ms) !important;
+    }
+
+    /* ── Card hover lift (content sections only, not hero) ── */
+    main section:not(#hero) .rounded-2xl {
+      transition: transform .3s cubic-bezier(.22, 1, .36, 1),
+        box-shadow .3s cubic-bezier(.22, 1, .36, 1),
+        border-color .3s ease !important;
+      will-change: transform;
+    }
+
+    main section:not(#hero) .rounded-2xl:hover {
+      transform: translateY(-4px) scale(1.008) !important;
+      box-shadow: 0 20px 48px rgba(36, 63, 56, .14), 0 4px 12px rgba(85, 160, 146, .10) !important;
+      border-color: rgba(85, 160, 146, .35) !important;
+    }
+
+    /* ── Section intro accent lines ── */
+    main section:not(#hero) {
+      position: relative;
+    }
+
+    .section-chapter-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--accent, #55a092);
+      font-weight: 700;
+      margin-bottom: 12px;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+
+    .section-chapter-tag.sr-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .section-chapter-tag::before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--accent, #55a092);
+      border-radius: 2px;
+    }
+
+    /* ── Horizontal rule between sections: animated grow ── */
+    main section:not(#hero)::before {
+      content: none;
+    }
+
+    /* ── List item stagger ── */
+    .sr-list-item {
+      opacity: 0;
+      transform: translateX(-12px);
+      transition: opacity .45s ease, transform .45s ease;
+    }
+
+    .sr-list-item.sr-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── Section bg pulse: alternating warm tint on scroll context ── */
+    .section-in-view {
+      background-color: rgba(244, 242, 236, 1) !important;
+    }
+
+    /* ── Accent dot pulse on bullet points ── */
+    @keyframes dotPulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(85, 160, 146, .5);
+      }
+
+      50% {
+        box-shadow: 0 0 0 5px rgba(85, 160, 146, .0);
+      }
+    }
+
+    main section:not(#hero) .rounded-full.bg-\[color\:var\(--forest\)\],
+    main section:not(#hero) .rounded-full.bg-accent\/70 {
+      transition: transform .2s ease;
+    }
+
+    main section:not(#hero) li:hover .rounded-full {
+      transform: scale(1.5);
+      animation: dotPulse .8s ease;
+    }
+
+    /* ── Stage card number glow on hover ── */
+    .text-xs.text-gray-500.tracking-widest {
+      transition: color .2s ease;
+    }
+
+    .rounded-2xl:hover .text-xs.text-gray-500.tracking-widest {
+      color: var(--accent, #55a092) !important;
+    }
+
+    /* ── "Next steps" CTA pulse ── */
+    @keyframes softGlow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(85, 160, 146, .0);
+      }
+
+      50% {
+        box-shadow: 0 0 0 8px rgba(85, 160, 146, .18);
+      }
+    }
+
+    section.py-12 .rounded-2xl {
+      animation: softGlow 3s ease-in-out infinite;
+    }
+
+    /* ── Get in touch section: entrance shimmer ── */
+    #get-in-touch {
+      position: relative;
+      overflow: hidden;
+    }
+
+    #get-in-touch::after {
+      content: "";
+      position: absolute;
+      top: -60%;
+      right: -10%;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(85, 160, 146, .07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ── Subtle page-load curtain ── */
+    #page-curtain {
+      position: fixed;
+      inset: 0;
+      background: var(--cream, #f4f2ec);
+      z-index: 99999;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity .55s ease .1s;
+    }
+
+    #page-curtain.lifted {
+      opacity: 0;
+    }
+
+    /* ── Module code tag pop ── */
+    .module-line code {
+      transition: background .2s ease, transform .2s ease;
+      display: inline-block;
+    }
+
+    .module-line code:hover {
+      background: rgba(85, 160, 146, .22) !important;
+      transform: translateY(-1px);
+    }
+
+    /* ── Focus section dark card: ambient glow ── */
+    .sa-focus {
+      transition: box-shadow .4s ease;
+    }
+
+    .sa-focus:hover {
+      box-shadow: 0 28px 60px rgba(0, 0, 0, .26), 0 0 0 1px rgba(85, 160, 146, .2) !important;
+    }
+  </style>
+
+  <style id="enwater-logo-refinement-v1">
+    .brand-logo,
+    .nav-logo,
+    .nav-brand-logo {
+      height: 38px !important;
+      width: auto !important;
+      max-width: 66px !important;
+      object-fit: contain !important;
+      background: transparent !important;
+      border-radius: 0 !important;
+      padding: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .brand span,
+    .nav-brand span {
+      white-space: nowrap;
+    }
+
+    .footer-logo {
+      height: 34px;
+      width: auto;
+      max-width: 60px;
+      object-fit: contain;
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      display: block;
+    }
+
+    .footer-brand,
+    .foot-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  </style>
+
+  <link href="../exported-ui-styles.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="../assets/images/enwater-design-logo-nav.png" />
+</head>
+
+<body>
+
+  <header class="site-topnav">
+    <div class="wrap">
+      <a aria-label="EnWater Design home" class="brand" href="../home.html">
+        <img alt="EnWater Design logo" class="nav-logo" src="../assets/images/enwater-design-logo.png" />
+        <span>EnWater Design</span>
+      </a>
+      <nav class="desktop-nav">
+        <ul>
+          <li><a class="rootlink" href="../home.html">Home</a></li>
+          <li>
+            <a class="rootlink " href="../About/about.html">About</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a class="" href="../About/about.html">About Us</a>
+              <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink"
+              href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We
+              Engage</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We
+                Engage</a>
+              <a
+                href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process
+                Design &amp; Troubleshooting</a>
+              <a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical
+                Studies</a>
+              <a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project
+                Stages &amp; Report Packs</a>
+              <a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+              <a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+              <a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+              <a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+              <a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+              <a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+              <a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+              <a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../Advisory/advisory-services.html">Advisory Services</a>
+              <a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+              <a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+              <a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+              <a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+              <a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+              <a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control
+                Advisory</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../FlowPlan/flowplan-framework.html">Framework</a>
+              <a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+              <a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+              <a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+              <a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+              <a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+              <a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink" href="../Projects/index.html">Projects</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../Projects/index.html">Projects Overview</a>
+              <a href="../Projects/project-pathways.html">Project Pathways</a>
+              <a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+              <a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+              <a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+              <a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+              <a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink active" href="../Sectors/index.html">Sectors</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../Sectors/index.html">Sector Pathways</a>
+              <a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+              <a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+              <a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+              <a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+              <a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+              <a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+              <a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+              <a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+              <a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+              <a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+              <a href="../Sectors/seafood-processing.html">Seafood processing</a>
+              <a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+            </div>
+          </li>
+          <li><a class="rootlink nav-login" href="../login.html">Login</a></li>
+          <li><a class="rootlink nav-cta" href="../get-in-touch.html">Get in touch</a></li>
+        </ul>
+      </nav>
+      <button aria-expanded="false" aria-label="Toggle menu" class="mobile-nav-toggle" type="button">
+        <span class="hamburger-line line-1"></span>
+        <span class="hamburger-line line-2"></span>
+        <span class="hamburger-line line-3"></span>
+      </button>
+    </div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-content">
+        <div class="mobile-nav-item">
+          <a class="mobile-rootlink" href="../home.html">Home</a>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink " href="../About/about.html">About</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a class="" href="../About/about.html">About Us</a>
+            <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink"
+              href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We
+              Engage</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We
+              Engage Overview</a>
+            <a
+              href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process
+              Design &amp; Troubleshooting</a>
+            <a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical
+              Studies</a>
+            <a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project
+              Stages &amp; Report Packs</a>
+            <a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+            <a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+            <a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+            <a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+            <a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+            <a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+            <a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+            <a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="../Advisory/advisory-services.html">Advisory Services</a>
+            <a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+            <a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+            <a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+            <a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+            <a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+            <a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control
+              Advisory</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="../FlowPlan/flowplan-framework.html">Framework</a>
+            <a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+            <a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+            <a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+            <a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+            <a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+            <a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink" href="../Projects/index.html">Projects</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="../Projects/index.html">Projects Overview</a>
+            <a href="../Projects/project-pathways.html">Project Pathways</a>
+            <a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+            <a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+            <a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+            <a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+            <a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink active" href="../Sectors/index.html">Sectors</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="../Sectors/index.html">Sector Pathways</a>
+            <a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+            <a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+            <a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+            <a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+            <a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+            <a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+            <a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+            <a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+            <a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+            <a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+            <a href="../Sectors/seafood-processing.html">Seafood processing</a>
+            <a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <a class="mobile-login-btn" href="../login.html">Login</a>
+        </div>
+        <div class="mobile-nav-item no-border">
+          <a class="mobile-cta-btn" href="../get-in-touch.html">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div aria-label="Sector Pathways navigation" class="aq-sector-nav" role="navigation">
+      <div class="aq-sector-nav-inner"><span class="nav-caption">SECTORS</span><a href="index.html">Sector
+          Pathways</a><a href="facility-management-labor-camps.html">Facility Mgmt / Labor Camps</a><a
+          href="hotels-commercial-towers.html">Hotels &amp; Towers</a><a href="vehicle-wash-car-wash.html">Vehicle
+          Wash</a><a href="catering-restaurants.html">Catering &amp; Restaurants</a><a
+          href="commercial-laundry.html">Commercial Laundry</a><a aria-current="page" class="is-active"
+          href="ready-mix-construction.html">Ready-Mix / Construction</a><a href="food-beverage-processing.html">Food
+          &amp; Beverage</a><a href="paper-packaging.html">Paper &amp; Packaging</a><a
+          href="metals-fabrication.html">Metals Fabrication</a><a
+          href="common-effluent-plant-cetp-industrial-parks.html">CETP / Industrial Parks</a><a
+          href="stormwater-urban-runoff.html">Stormwater</a><a href="seafood-processing.html">Seafood Processing</a>
+      </div>
+    </div>
+    <style>
+      .aq-sector-nav {
+        position: sticky;
+        top: 72px;
+        z-index: 900;
+        background: rgba(244, 242, 236, .96);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(27, 31, 30, .08);
+        border-bottom: 1px solid rgba(27, 31, 30, .10);
+      }
+
+      .aq-sector-nav-inner {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 10px 18px 10px 38px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        justify-content: flex-start;
+        overflow-x: auto;
+        white-space: nowrap;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .aq-sector-nav-inner::-webkit-scrollbar {
+        display: none;
+      }
+
+      .aq-sector-nav .nav-caption {
+        font-size: 11px;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: #6a756f;
+        white-space: nowrap;
+        padding-right: 6px;
+        font-weight: 700;
+      }
+
+      .aq-sector-nav a {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 11px;
+        border-radius: 999px;
+        color: #23443c;
+        text-decoration: none;
+        border: 1px solid rgba(27, 31, 30, .12);
+        background: rgba(255, 255, 255, .72);
+        font: 650 13px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      }
+
+      .aq-sector-nav a:hover {
+        background: #fff;
+      }
+
+      .aq-sector-nav a.is-active {
+        background: #23443c;
+        color: #fff;
+        border-color: #23443c;
+      }
+
+      @media (max-width:900px) {
+        .aq-sector-nav {
+          top: 58px;
+        }
+
+        .aq-sector-nav-inner {
+          padding: 10px 14px;
+          gap: 8px;
+        }
+
+        .aq-sector-nav .nav-caption {
+          display: none;
+        }
+
+        .aq-sector-nav a {
+          font-size: 12.5px;
+          padding: 8px 10px;
+        }
+      }
+    </style>
+    <section class="border-b hairline" id="hero">
+      <div class="sector-hero">
+        <img alt="Ready-Mix / Construction sector photo" src="./index_files/7aa13eace324.png" />
+        <div class="max-w-6xl mx-auto px-6 inner">
+          <p class="kicker">Sector Pathways › Ready-Mix / Construction</p>
+          <h1 class="page-serif mt-3 text-5xl md:text-6xl leading-[0.95] text-white">Ready-Mix / Construction</h1>
+          <p class="mt-5 text-white/90 leading-relaxed max-w-2xl">Recover washwater and reduce disposal by stabilising
+            high solids and alkalinity - then routing treated water back into batching or controlled non‑critical uses
+            with clear review checks.</p>
+          <div class="mt-6 flex gap-3 flex-wrap">
+            <a class="hero-action hero-action-primary" href="#approach">How we help</a>
+            <a class="hero-action hero-action-secondary" href="#due-diligence">Upstream due diligence</a>
+            <a class="hero-action hero-action-secondary" href="#get-in-touch">Get in touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-16 border-b hairline" id="sector-intro">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-6">
+            <h2 class="page-serif text-3xl text-gray-950">A pathway for high-solids, high-alkalinity washwater</h2>
+            <p class="mt-4 text-gray-700 leading-relaxed max-w-xl">Ready‑mix and construction washwater is often
+              dominated by suspended solids, high pH, and intermittent peaks. Water savings come from capturing and
+              reusing stable fractions safely in batching or washdown.</p>
+            <p class="mt-4 text-gray-700 leading-relaxed max-w-xl">We work with ready-mix and construction sites to
+              close the loop on washwater - verifying solids loading, pH variability, and batching constraints before
+              briefing suppliers on performance requirements for safe, maintainable reuse.</p>
+          </div>
+          <div class="lg:col-span-6">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="rounded-2xl border hairline bg-white p-5">
+                <p class="text-xs text-gray-500 tracking-widest uppercase">Stage 1</p>
+                <p class="page-serif text-lg text-gray-950 mt-2">Capture and settle solids</p>
+                <p class="mt-2 text-gray-700 leading-relaxed text-sm">Robust settling and solids handling to protect
+                  pumps and reuse stability.</p>
+              </div>
+              <div class="rounded-2xl border hairline bg-white p-5">
+                <p class="text-xs text-gray-500 tracking-widest uppercase">Stage 2</p>
+                <p class="page-serif text-lg text-gray-950 mt-2">Control pH and chemistry</p>
+                <p class="mt-2 text-gray-700 leading-relaxed text-sm">Neutralisation/dosing logic sized for variability
+                  and verification.</p>
+              </div>
+              <div class="rounded-2xl border hairline bg-white p-5">
+                <p class="text-xs text-gray-500 tracking-widest uppercase">Stage 3</p>
+                <p class="page-serif text-lg text-gray-950 mt-2">Polish for reuse destinations</p>
+                <p class="mt-2 text-gray-700 leading-relaxed text-sm">Filtration where needed for batching or
+                  non‑critical reuse.</p>
+              </div>
+              <div class="rounded-2xl border hairline bg-white p-5">
+                <p class="text-xs text-gray-500 tracking-widest uppercase">Stage 4</p>
+                <p class="page-serif text-lg text-gray-950 mt-2">Residuals routing &amp; review checks</p>
+                <p class="mt-2 text-gray-700 leading-relaxed text-sm">Define sludge handling and review checks for
+                  consistent reuse.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-16 border-b hairline">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="page-serif text-3xl text-gray-950">Where washwater recovery starts</h2>
+        <p class="mt-4 text-gray-700 leading-relaxed max-w-3xl">We start with a practical water balance: recoverable
+          volume vs fit‑for‑purpose demand. Savings are reliable when the end‑use target, constraints, and review checks
+          are agreed early - so the treatment system is sized for what the site can actually operate. For ready-mix and
+          construction, the critical question is what the recovered water can be used for: washout reuse is relatively
+          straightforward; batching support requires tighter chemistry control and clear review checks on pH and
+          suspended solids.</p>
+        <div class="grid lg:grid-cols-2 gap-6 mt-8">
+          <div class="rounded-2xl border hairline bg-white p-6">
+            <p class="page-serif text-xl text-gray-950">Typical savings levers</p>
+            <ul class="mt-4 space-y-2 text-gray-700">
+              <li class="flex gap-3"><span
+                  class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span><span>Closed‑loop
+                  washout reuse for trucks and yard operations</span></li>
+              <li class="flex gap-3"><span
+                  class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span><span>Reduced fresh
+                  water via recycled wash water make‑up</span></li>
+              <li class="flex gap-3"><span
+                  class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span><span>Lower solids
+                  discharge through capture and controlled release</span></li>
+            </ul>
+          </div>
+          <div class="rounded-2xl border hairline bg-white p-6">
+            <p class="page-serif text-xl text-gray-950">Constraints that set the ceiling</p>
+            <ul class="mt-4 space-y-2 text-gray-700">
+              <li class="flex gap-3"><span
+                  class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span><span>Fines/solids
+                  loading and settling behavior (storage and cleaning frequency)</span></li>
+              <li class="flex gap-3"><span
+                  class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span><span>pH/alkalinity
+                  swings and how they impact reuse constraints</span></li>
+              <li class="flex gap-3"><span
+                  class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span><span>Space for
+                  settling/clarification and access for sludge removal</span></li>
+              <li class="flex gap-3"><span
+                  class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span><span>What recycled
+                  water can be used for (washout, batching support) under site rules</span></li>
+            </ul>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-gray-600">Washwater recovery usually depends on solids loading, alkalinity, fines
+          return, and how recovered water is stored and reused on site.</p>
+      </div>
+    </section>
+    <section class="bg-cream border-b hairline py-16" id="approach">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="page-serif text-3xl text-gray-950">How EnWater Design supports washwater recovery</h2>
+        <p class="mt-4 text-gray-700 leading-relaxed max-w-3xl">In ready‑mix sites, simple systems win when they’re
+          sized for variability and solids site conditions. We focus on stability, performance checks, and residuals
+          routing - not over‑engineering.</p>
+        <div class="grid lg:grid-cols-3 gap-6 mt-8">
+          <div class="rounded-2xl border hairline bg-white p-6">
+            <p class="text-xs text-gray-500 tracking-widest uppercase">Advisory</p>
+            <p class="page-serif text-xl text-gray-950 mt-2">Define safe reuse routes</p>
+            <ul class="mt-4 space-y-2 text-gray-700">
+              <li class="flex gap-3"><span
+                  class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-accent/70 flex-shrink-0"></span><span>Agree where
+                  treated water can be reused (batching, washdown) and the limits.</span></li>
+              <li class="flex gap-3"><span
+                  class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-accent/70 flex-shrink-0"></span><span>Set
+                  performance requirements around pH stability, solids carryover, and operability.</span></li>
+              <li class="flex gap-3"><span
+                  class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-accent/70 flex-shrink-0"></span><span>Form a scope
+                  vendors can price with clear residuals assumptions.</span></li>
+            </ul>
+          </div>
+          <div class="rounded-2xl border hairline bg-white p-6">
+            <p class="text-xs text-gray-500 tracking-widest uppercase">FlowPlan</p>
+            <p class="page-serif text-xl text-gray-950 mt-2">Stage solids → pH → polish</p>
+            <ul class="mt-4 space-y-2 text-gray-700">
+              <li class="flex gap-3"><span
+                  class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-accent/70 flex-shrink-0"></span><span>Map
+                  settling/clarification stages with clear solids connections.</span></li>
+              <li class="flex gap-3"><span
+                  class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-accent/70 flex-shrink-0"></span><span>Clarify
+                  dosing/control boundaries and monitoring expectations.</span></li>
+              <li class="flex gap-3"><span
+                  class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-accent/70 flex-shrink-0"></span><span>Use module
+                  references to compare proposals on performance and maintainability.</span></li>
+            </ul>
+            <p class="module-line mt-4">Typical modules: <code>Batch+</code> <code>Clari+</code> <code>ReusePlan+</code>
+            </p>
+          </div>
+          <div class="rounded-2xl border hairline bg-white p-6">
+            <p class="text-xs text-gray-500 tracking-widest uppercase">Specialist</p>
+            <p class="page-serif text-xl text-gray-950 mt-2">Check solids behaviour, pH swings, and sludge handling
+              requirements</p>
+            <ul class="mt-4 space-y-2 text-gray-700">
+              <li class="flex gap-3"><span
+                  class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-accent/70 flex-shrink-0"></span><span>Confirm
+                  solids loading, settling rates, and seasonal variability.</span></li>
+              <li class="flex gap-3"><span
+                  class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-accent/70 flex-shrink-0"></span><span>Validate pH
+                  swings and dosing needs tied to review checks.</span></li>
+              <li class="flex gap-3"><span
+                  class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-accent/70 flex-shrink-0"></span><span>Benchmark
+                  similar sites to avoid known solids handling pitfalls.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-16 border-b hairline" id="due-diligence">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="page-serif text-3xl text-gray-950">What must be confirmed before washwater reuse is fixed</h2>
+        <p class="mt-4 text-gray-700 leading-relaxed max-w-3xl">For ready-mix and construction sites, we confirm solids
+          loading, alkalinity swings, settlement behaviour, reuse demand, and maintenance practicality before the reuse
+          route is fixed.</p>
+        <div class="rounded-2xl border hairline bg-white p-6 mt-8">
+          <ul class="mt-4 space-y-2 text-gray-700">
+            <li class="flex gap-3"><span
+                class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span><span>Fines/solids
+                loading and settling behavior (storage and cleaning frequency)</span></li>
+            <li class="flex gap-3"><span
+                class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span><span>pH/alkalinity
+                swings and how they impact reuse constraints</span></li>
+            <li class="flex gap-3"><span
+                class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span><span>Space for
+                settling/clarification and access for sludge removal</span></li>
+            <li class="flex gap-3"><span
+                class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span><span>What recycled
+                water can be used for (washout, batching support) under site rules</span></li>
+            <li class="flex gap-3"><span
+                class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span><span>Decision
+                deadlines and tie‑in time ranges (minimal disruption to operations)</span></li>
+            <li class="flex gap-3"><span
+                class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span><span>Benchmark
+                assumptions against comparable installations (performance, O&amp;M approach, typical failure
+                modes).</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="py-16 border-b hairline">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="page-serif text-3xl text-gray-950">Typical washwater recovery routes</h2>
+        <p class="mt-4 text-gray-700 leading-relaxed max-w-3xl">These routes reflect how washwater is usually recovered:
+          solids capture first, settling and pH control where needed, then reuse loops sized around actual site demand.
+        </p>
+        <div class="grid lg:grid-cols-3 gap-6 mt-8">
+          <div class="rounded-2xl border hairline bg-white p-6">
+            <p class="text-xs text-gray-500 tracking-widest uppercase">Stage 1</p>
+            <p class="page-serif text-xl text-gray-950 mt-2">High‑rate solids capture</p>
+            <p class="mt-3 text-gray-700 leading-relaxed">Design settling/clarification that handles heavy fines
+              predictably.</p>
+          </div>
+          <div class="rounded-2xl border hairline bg-white p-6">
+            <p class="text-xs text-gray-500 tracking-widest uppercase">Stage 2</p>
+            <p class="page-serif text-xl text-gray-950 mt-2">Batch pH and chemistry control</p>
+            <p class="mt-3 text-gray-700 leading-relaxed">Use robust batch logic to bring water back into an acceptable
+              range.</p>
+          </div>
+          <div class="rounded-2xl border hairline bg-white p-6">
+            <p class="text-xs text-gray-500 tracking-widest uppercase">Stage 3</p>
+            <p class="page-serif text-xl text-gray-950 mt-2">Recycle loop with simple QA</p>
+            <p class="mt-3 text-gray-700 leading-relaxed">Define clarity/pH review checks and reuse routing.</p>
+          </div>
+          <div class="rounded-2xl border hairline bg-white p-6">
+            <p class="text-xs text-gray-500 tracking-widest uppercase">Stage 4</p>
+            <p class="page-serif text-xl text-gray-950 mt-2">Polish only where warranted</p>
+            <p class="mt-3 text-gray-700 leading-relaxed">If higher clarity is needed, add polishing as a second step.
+            </p>
+          </div>
+          <div class="rounded-2xl border hairline bg-white p-6">
+            <p class="text-xs text-gray-500 tracking-widest uppercase">Stage 5</p>
+            <p class="page-serif text-xl text-gray-950 mt-2">Residuals routing</p>
+            <p class="mt-3 text-gray-700 leading-relaxed">Plan sludge handling and disposal with practical maintenance
+              routines.</p>
+          </div>
+        </div>
+        <p class="mt-6 text-sm text-gray-600 max-w-4xl">Configuration depends on what upstream checks confirm about
+          solids loading, alkalinity, whether batch pH control or polishing is needed, and the intended reuse route.</p>
+        <div class="rounded-2xl border hairline bg-white p-6 mt-8">
+          <p class="page-serif text-xl text-gray-950">What are the sustainability gains: Lower fresh-water demand and
+            lower discharge impact</p>
+          <p class="mt-3 text-gray-700 leading-relaxed">For ready-mix and construction sites, the most useful
+            sustainability gains usually come from solids capture, washwater reuse, and lower discharge impact from
+            high-alkalinity streams.</p>
+          <p class="mt-3 text-gray-700 leading-relaxed">The practical gain is closing the washwater loop without letting
+            solids and alkalinity create repeated operational problems. Good capture up front makes reuse simpler and
+            discharge easier to control.</p>
+          <ul class="mt-4 space-y-2 text-gray-700">
+            <li class="flex gap-3"><span
+                class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span><span>Potable offset:
+                reuse matched to end‑use quality limits.</span></li>
+            <li class="flex gap-3"><span
+                class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span><span>Lower discharge
+                impact: a consistent compliance record and lower peak solids and alkalinity to sewer.</span></li>
+            <li class="flex gap-3"><span
+                class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span><span>Operational
+                sustainability: controls, connections, and a maintenance plan sized for the site team.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="py-12">
+      <div class="max-w-6xl mx-auto px-6">
+        <div
+          class="rounded-2xl border hairline bg-white p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <p class="page-serif text-xl text-gray-950">Next steps</p>
+            <p class="mt-2 text-gray-700">If you share your end‑use target and constraints, we’ll outline the diligence
+              focus and the module families most likely to fit.</p>
+          </div>
+          <div class="flex gap-3 flex-wrap">
+            <a href="ready-mix-construction.html#get-in-touch"
+              style="display:inline-flex;align-items:center;padding:10px 20px;border-radius:8px;background:rgba(85,160,146,.90);color:#fff;font-weight:750;text-decoration:none;font-size:14px;border:1px solid rgba(255,255,255,.14);">Open
+              an enquiry</a>
+            <a href="index.html"
+              style="display:inline-flex;align-items:center;padding:10px 20px;border-radius:8px;background:transparent;border:1px solid rgba(85,160,146,.70);color:#0d6b62;font-weight:700;text-decoration:none;font-size:14px;">←
+              Back to sectors</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="bg-[color:var(--cream)] border-t hairline mt-24 mb-0" id="get-in-touch">
+      <div class="max-w-6xl mx-auto px-6 pt-20 pb-28">
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+          <div>
+            <h2 class="page-serif text-3xl md:text-4xl text-gray-950">Get In Touch</h2>
+            <p class="mt-4 text-gray-700 max-w-xl leading-relaxed">Share what you’re trying to achieve in Ready-Mix /
+              Construction - reuse, compliance, recovery, or reliability. We’ll translate outcomes into a practical
+              scope and a check plan that suppliers can price and verify.</p>
+            <div class="mt-6 text-sm text-gray-700 leading-relaxed max-w-xl">
+              <ul class="space-y-2">
+                <li>
+                  <span class="flex gap-3">
+                    <span class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span>
+                    <span>Your primary end‑use target (washout reuse, batching support, or discharge compliance
+                      position)</span>
+                  </span>
+                </li>
+                <li>
+                  <span class="flex gap-3">
+                    <span class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span>
+                    <span>Approximate flows/loads and where variability shows up (peaks, batches, seasonality)</span>
+                  </span>
+                </li>
+                <li>
+                  <span class="flex gap-3">
+                    <span class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span>
+                    <span>Key constraints (space, utilities/heat, shutdown time ranges, operator capacity)</span>
+                  </span>
+                </li>
+                <li>
+                  <span class="flex gap-3">
+                    <span class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span>
+                    <span>Known pain points (odour, scaling, fouling, grease/oil, metals/emulsions, shock events)</span>
+                  </span>
+                </li>
+                <li>
+                  <span class="flex gap-3">
+                    <span class="inline-flex w-2.5 h-2.5 mt-2 rounded-full bg-[color:var(--forest)]"></span>
+                    <span>Performance final review requirements (KPIs, sampling, commissioning checks, handover
+                      conditions)</span>
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <a class="mt-6 inline-flex items-center gap-2 bg-[color:var(--accent)] text-white px-4 py-2 text-sm rounded-sm hover:bg-[color:var(--accent2)]"
+              href="../get-in-touch.html"> Open enquiry form <span class="opacity-90">
+                <svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+                  <path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+                  <path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="1.8"></path>
+                </svg>
+              </span>
+            </a>
+          </div>
+          <div class="bg-white/55 rounded-sm border hairline p-6 md:pt-2 md:mt-0" id="enquiry-form">
+            <p class="text-sm text-gray-700 mb-4">Fill in the below form and we’ll get you to the right place.</p>
+            <form action="/thank-you.html" class="grid gap-3" data-netlify="true"
+              data-static-form-name="enwater-enquiry" id="enquiryForm" method="POST" name="enwater-enquiry"
+              netlify-honeypot="bot-field">
+              <input name="form-name" type="hidden" value="enwater-enquiry" />
+              <input name="source_page" type="hidden" value="Sectors/ready-mix-construction.html" />
+              <p style="display:none"><label>Do not fill this out: <input name="bot-field" /></label></p>
+              <input class="w-full rounded-sm border hairline bg-white px-3 py-2 text-sm" id="enqName" name="name"
+                placeholder="Name*" required="" />
+              <input class="w-full rounded-sm border hairline bg-white px-3 py-2 text-sm" id="enqEmail" name="email"
+                placeholder="Email*" required="" type="email" />
+              <input class="w-full rounded-sm border hairline bg-white px-3 py-2 text-sm" id="enqCompany" name="company"
+                placeholder="Company" />
+              <select class="w-full rounded-sm border hairline bg-white px-3 py-2 text-sm" id="enqRegion" name="region"
+                required="">
+                <option disabled="" selected="" value="">Region*</option>
+                <option value="UAE">UAE</option>
+                <option value="GCC">GCC</option>
+                <option value="Global">Global</option>
+              </select>
+              <select class="w-full rounded-sm border hairline bg-white px-3 py-2 text-sm" id="enqType"
+                name="enquiry_type" required="">
+                <option disabled="" selected="" value="">What do you need help with?*</option>
+                <option>Understanding the treatment route</option>
+                <option>Reviewing the current setup</option>
+                <option>Water quality checks and sampling plan</option>
+                <option>Reuse, discharge, or recovery requirements</option>
+                <option>Vendor scope and specification support</option>
+                <option>Procurement and vendor comparison</option>
+                <option>Commissioning and performance review</option>
+                <option>Not sure, help me choose</option>
+              </select>
+              <textarea class="w-full rounded-sm border hairline bg-white px-3 py-2 text-sm" id="enqMsg" name="message"
+                placeholder="Your message." rows="4"></textarea>
+              <div class="flex flex-wrap items-center gap-3 pt-1">
+                <button
+                  class="inline-flex items-center gap-2 bg-[color:var(--accent)] text-white px-4 py-2 text-sm rounded-sm hover:bg-[color:var(--accent2)]"
+                  type="submit"> Send enquiry <span class="opacity-90">
+                    <svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+                      <path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+                      <path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="1.8"></path>
+                    </svg>
+                  </span>
+                </button>
+                <p class="text-xs text-gray-600">We'll respond within one working day.</p>
+              </div>
+              <p class="text-xs text-red-700 hidden" id="enquiryStatus"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+<div class="wrap">
+<div class="footer-top">
+<div>
+<div class="footer-brand"><img alt="EnWater Design logo" class="footer-logo" src="../assets/images/enwater-design-logo-transparent-mark.png"/><span class="footer-name">EnWater Design</span></div>
+<p class="footer-desc">Independent water, wastewater treatment and reuse consulting, helping owners and operators turn complex challenges into clear decisions and practical outcomes.</p>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<a href="../home.html">Home</a>
+<a href="../About/about.html">About</a>
+<a href="../About/BlogList.html">Our Blog</a>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+</div>
+<div class="footer-col">
+<h4>Services</h4>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing</a>
+<a href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<a href="../Projects/index.html">Projects</a>
+<a href="../Sectors/index.html">Sectors</a>
+</div>
+<div class="footer-col">
+<h4>Pathways</h4>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../Sectors/index.html">Sector Pathways</a>
+</div>
+<div class="footer-col">
+<h4>Get in touch</h4>
+<a href="../get-in-touch.html">Contact form</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">Industrial / CETP</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© <span id="yr"></span> EnWater Design</div>
+<div>Clear systems planning for practical project delivery</div>
+</div>
+</div>
+<script>
+  (function() {
+    const yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+  })();
+</script>
+</footer>
+  <script id="story-arc-script">
+    (function () {
+      'use strict';
+
+      var chapters = [
+        { id: 'sector-intro', label: 'The Challenge' },
+        { id: 'approach', label: 'Our Approach' },
+        { id: 'due-diligence', label: 'Due Diligence' },
+        { id: 'get-in-touch', label: 'Next Steps' }
+      ];
+
+      function ensureFixedEls() {
+        if (!document.getElementById('page-curtain')) {
+          var curtain = document.createElement('div');
+          curtain.id = 'page-curtain';
+          document.body.appendChild(curtain);
+        }
+        if (!document.getElementById('story-spine')) {
+          var spine = document.createElement('div');
+          spine.id = 'story-spine';
+          document.body.appendChild(spine);
+        }
+        if (!document.getElementById('chapter-label')) {
+          var label = document.createElement('div');
+          label.id = 'chapter-label';
+          var inner = document.createElement('div');
+          inner.id = 'chapter-label-inner';
+          label.appendChild(inner);
+          document.body.appendChild(label);
+        }
+      }
+
+      function chapterForSection(section) {
+        var match = chapters.find(function (c) { return c.id === section.id; });
+        if (match) return match.label;
+        return (section.getAttribute('data-story-label') || section.id || '').replace(/-/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+      }
+
+      function ensureSectionTags() {
+        document.querySelectorAll('main section[id]:not(#hero)').forEach(function (sec) {
+          var label = chapterForSection(sec);
+          sec.setAttribute('data-story-label', label);
+          var leadCol = sec.querySelector('.lg\\:col-span-6, .md\\:col-span-7, .md\\:col-span-5, .max-w-6xl > div, .max-w-6xl');
+          var h2 = sec.querySelector('h2');
+          if (!h2) return;
+          var existingTag = sec.querySelector('.section-chapter-tag');
+          if (!existingTag) {
+            var tag = document.createElement('div');
+            tag.className = 'section-chapter-tag';
+            tag.textContent = label;
+            h2.parentNode.insertBefore(tag, h2);
+          } else if (!existingTag.textContent.trim()) {
+            existingTag.textContent = label;
+          }
+        });
+      }
+
+      function setupRevealClasses() {
+        document.querySelectorAll('main section:not(#hero)').forEach(function (sec) {
+          sec.classList.add('sr-fade');
+        });
+
+        document.querySelectorAll('main section:not(#hero) h2').forEach(function (el) {
+          el.classList.add('sr-fade-left');
+        });
+
+        document.querySelectorAll('main section:not(#hero) .section-chapter-tag').forEach(function (el) {
+          el.classList.add('sr-fade-left');
+        });
+
+        document.querySelectorAll('main section:not(#hero) .grid > .rounded-2xl').forEach(function (card, i) {
+          card.classList.add('sr-scale');
+          card.style.setProperty('--i', i % 6);
+          if (card.parentElement) card.parentElement.classList.add('sr-stagger');
+        });
+
+        document.querySelectorAll('main section:not(#hero) ul li').forEach(function (li, i) {
+          li.classList.add('sr-list-item');
+          li.style.transitionDelay = ((i % 8) * 55) + 'ms';
+        });
+      }
+
+      function updateSpine() {
+        var doc = document.documentElement;
+        var scrolled = doc.scrollTop || document.body.scrollTop;
+        var total = doc.scrollHeight - doc.clientHeight;
+        var pct = total > 0 ? (scrolled / total * 100) : 0;
+        var spine = document.getElementById('story-spine');
+        if (spine) spine.style.height = pct + '%';
+      }
+
+      var chapterLabel, chapterInner, labelTimer;
+      function updateChapter() {
+        var sections = Array.from(document.querySelectorAll('main section[id]:not(#hero)'));
+        if (!chapterLabel || !chapterInner || !sections.length) return;
+        var scrollMid = window.scrollY + window.innerHeight * 0.5;
+        var current = null;
+        sections.forEach(function (sec) {
+          if (sec.getBoundingClientRect().top + window.scrollY <= scrollMid) current = sec;
+          sec.classList.remove('section-in-view');
+        });
+        if (current) {
+          current.classList.add('section-in-view');
+          chapterInner.textContent = chapterForSection(current);
+          chapterLabel.classList.add('visible');
+          clearTimeout(labelTimer);
+          labelTimer = setTimeout(function () { chapterLabel.classList.remove('visible'); }, 2200);
+        } else {
+          chapterLabel.classList.remove('visible');
+        }
+      }
+
+      function setupObserver() {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('sr-visible');
+              io.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.sr-fade, .sr-fade-left, .sr-scale, .sr-list-item, .section-chapter-tag').forEach(function (el) {
+          io.observe(el);
+        });
+      }
+
+      function init() {
+        ensureFixedEls();
+        chapterLabel = document.getElementById('chapter-label');
+        chapterInner = document.getElementById('chapter-label-inner');
+        ensureSectionTags();
+        setupRevealClasses();
+        setupObserver();
+        updateSpine();
+        updateChapter();
+        window.addEventListener('load', function () {
+          requestAnimationFrame(function () {
+            var curtain = document.getElementById('page-curtain');
+            if (curtain) curtain.classList.add('lifted');
+          });
+        });
+        var ticking = false;
+        window.addEventListener('scroll', function () {
+          if (!ticking) {
+            requestAnimationFrame(function () {
+              updateSpine();
+              updateChapter();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+  <script src="../exported-ui-effects.js"></script>
+</body>
+
+</html>

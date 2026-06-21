@@ -1,0 +1,217 @@
+<header class="site-topnav">
+<div class="wrap">
+<a aria-label="EnWater Design home" class="brand" href="../../home.html">
+<img alt="EnWater Design logo" class="nav-logo" src="../../assets/images/enwater-design-logo.png"/>
+<span>EnWater Design</span>
+</a>
+<nav class="desktop-nav">
+<ul>
+<li><a class="rootlink" href="../../home.html">Home</a></li>
+<li><a class="rootlink" href="../../about.html">About</a></li>
+<li>
+<a class="rootlink active" href="../../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<a href="../../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../../Projects/index.html">Projects</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../../Projects/index.html">Projects Overview</a>
+<a href="../../Projects/project-pathways.html">Project Pathways</a>
+<a href="../../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../../Sectors/index.html">Sectors</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../../Sectors/index.html">Sector Pathways</a>
+<a href="../../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</li>
+<li><a class="rootlink nav-cta" href="../../get-in-touch.html">Get in touch</a></li>
+</ul>
+</nav>
+<button aria-expanded="false" aria-label="Toggle menu" class="mobile-nav-toggle" type="button">
+<span class="hamburger-line line-1"></span>
+<span class="hamburger-line line-2"></span>
+<span class="hamburger-line line-3"></span>
+</button>
+</div>
+<div class="mobile-nav-panel">
+<div class="mobile-nav-content">
+<div class="mobile-nav-item">
+<a class="mobile-rootlink" href="../../home.html">Home</a>
+</div>
+<div class="mobile-nav-item">
+<a class="mobile-rootlink" href="../../about.html">About</a>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink active" href="../../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage Overview</a>
+<a href="../../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../../Projects/index.html">Projects</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../../Projects/index.html">Projects Overview</a>
+<a href="../../Projects/project-pathways.html">Project Pathways</a>
+<a href="../../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../../Sectors/index.html">Sectors</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../../Sectors/index.html">Sector Pathways</a>
+<a href="../../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</div>
+<div class="mobile-nav-item no-border">
+<a class="mobile-cta-btn" href="../../get-in-touch.html">Get in touch</a>
+</div>
+</div>
+</div>
+</header>

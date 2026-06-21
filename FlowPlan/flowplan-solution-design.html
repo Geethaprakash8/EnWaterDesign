@@ -1,0 +1,2378 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>FlowPlan Solution Design | EnWater Design</title>
+<link href="https://fonts.googleapis.com/" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        cream: "#f4f2ec",
+        forest: "#243f38",
+        forest2: "#1f3731",
+        accent: "#55a092"
+      }
+    }
+  }
+}
+</script><script src="tailwind.js"></script><style>
+  :root{
+    --cream:#f4f2ec;
+    --ink:#1b1f1e;
+    --muted:#5a6561;
+    --forest:#243f38;
+    --forest2:#1f3731;
+    --accent:#55a092;
+    --accent2:#468a7e;
+    --line:rgba(27,31,30,.14);
+  }
+  html{scroll-behavior:smooth}
+  html,body{margin:0; padding:0; min-height:100vh; display:flex; flex-direction:column;}
+body{background:var(--cream); color:var(--ink); margin:0; padding:0;}
+main{flex:1 0 auto;}
+footer{flex-shrink:0;}
+
+  /* subtle section typography */
+  .fp-serif{font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;}
+  .fp-sans{font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";}
+  .hairline{border-color: var(--line);}
+  .link-row:hover{background: rgba(255,255,255,.45);}
+  .tag{border:1px solid rgba(255,255,255,.25)}
+  .soft-shadow{box-shadow: 0 16px 40px rgba(0,0,0,.08);}
+  .pattern{
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(255,255,255,.07) 0, rgba(255,255,255,.07) 2px, transparent 2px),
+      radial-gradient(circle at 70% 60%, rgba(255,255,255,.06) 0, rgba(255,255,255,.06) 2px, transparent 2px);
+    background-size: 48px 48px, 64px 64px;
+  }
+  /* accordion animation */
+  .acc-panel{max-height:0; overflow:hidden; transition:max-height .35s ease;}
+  .acc-open .acc-panel{max-height:800px;}
+  .acc-open .acc-icon{transform: rotate(180deg);}
+  .acc-icon{transition: transform .25s ease;}
+  /* scroll snap carousel */
+  .snap-x{scroll-snap-type:x mandatory;}
+  .snap-item{scroll-snap-align:start;}
+
+
+/* Layout safety: add a little breathing room even if utilities fail */
+#hero .max-w-6xl{padding-top:4rem; padding-bottom:3rem;}
+@media (min-width:768px){#hero .max-w-6xl{padding-top:5rem; padding-bottom:3rem;}}
+
+
+.flowplan-subnav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(16,20,19,.08)}
+.flowplan-subnav .fp-wrap{max-width:72rem;margin:0 auto;padding:10px 24px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.flowplan-subnav .fp-kicker{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#5a6760;font-weight:700;margin-right:4px}
+.flowplan-subnav a{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;border:1px solid rgba(16,20,19,.10);background:#fff;color:#1f2a25;text-decoration:none;font-size:14px;line-height:1.2;font-weight:600;transition:all .18s ease}
+.flowplan-subnav a:hover{border-color:rgba(85,160,146,.45);background:rgba(85,160,146,.08)}
+.flowplan-subnav a.active{background:#123f3a;color:#fff;border-color:#123f3a;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+@media (max-width: 720px){.flowplan-subnav .fp-wrap{padding:10px 16px;gap:8px}.flowplan-subnav a{font-size:13px;padding:7px 10px}}
+</style><style id="fp-module-snapshot-style">/* FlowPlan Canvas Snapshot helpers */
+    .fp-module-card:target{
+      outline: 3px solid rgba(85,160,146,.55);
+      outline-offset: 6px;
+      border-radius: 18px;
+    }</style>
+<style>
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6, .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+</style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0px}.bottom-0{bottom:0px}.left-0{left:0px}.right-0{right:0px}.top-0{top:0px}.z-10{z-index:10}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mb-7{margin-bottom:1.75rem}.mb-8{margin-bottom:2rem}.mr-2{margin-right:0.5rem}.mt-16{margin-top:4rem}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-16{height:4rem}.h-2{height:0.5rem}.h-5{height:1.25rem}.h-full{height:100%}.min-h-\[62vh\]{min-height:62vh}.w-10{width:2.5rem}.w-2{width:0.5rem}.w-5{width:1.25rem}.w-full{width:100%}.max-w-3xl{max-width:48rem}.max-w-6xl{max-width:72rem}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.justify-around{justify-content:space-around}.gap-1{gap:0.25rem}.gap-2{gap:0.5rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.border{border-width:1px}.border-t{border-top-width:1px}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.bg-\[\#55a092\]{--tw-bg-opacity:1;background-color:rgb(85 160 146 / var(--tw-bg-opacity, 1))}.bg-black\/35{background-color:rgb(0 0 0 / 0.35)}.bg-emerald-50{--tw-bg-opacity:1;background-color:rgb(236 253 245 / var(--tw-bg-opacity, 1))}.bg-gray-200{--tw-bg-opacity:1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/90{background-color:rgb(255 255 255 / 0.9)}.object-cover{object-fit:cover}.p-5{padding:1.25rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.text-center{text-align:center}.align-middle{vertical-align:middle}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-semibold{font-weight:600}.tracking-tight{letter-spacing:-0.025em}.text-\[\#55a092\]{--tw-text-opacity:1;color:rgb(85 160 146 / var(--tw-text-opacity, 1))}.text-blue-700{--tw-text-opacity:1;color:rgb(29 78 216 / var(--tw-text-opacity, 1))}.text-emerald-800{--tw-text-opacity:1;color:rgb(6 95 70 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-green-700{--tw-text-opacity:1;color:rgb(21 128 61 / var(--tw-text-opacity, 1))}.text-red-700{--tw-text-opacity:1;color:rgb(185 28 28 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/90{color:rgb(255 255 255 / 0.9)}.text-yellow-700{--tw-text-opacity:1;color:rgb(161 98 7 / var(--tw-text-opacity, 1))}.shadow{--tw-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-inner{--tw-shadow:inset 0 2px 4px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:inset 0 2px 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-200{transition-duration:200ms}.hover\:z-10:hover{z-index:10}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:border-2:hover{border-width:2px}.hover\:border-blue-700:hover{--tw-border-opacity:1;border-color:rgb(29 78 216 / var(--tw-border-opacity, 1))}.hover\:border-green-700:hover{--tw-border-opacity:1;border-color:rgb(21 128 61 / var(--tw-border-opacity, 1))}.hover\:border-red-700:hover{--tw-border-opacity:1;border-color:rgb(185 28 28 / var(--tw-border-opacity, 1))}.hover\:border-yellow-700:hover{--tw-border-opacity:1;border-color:rgb(161 98 7 / var(--tw-border-opacity, 1))}.hover\:bg-blue-200:hover{--tw-bg-opacity:1;background-color:rgb(191 219 254 / var(--tw-bg-opacity, 1))}.hover\:bg-green-200:hover{--tw-bg-opacity:1;background-color:rgb(187 247 208 / var(--tw-bg-opacity, 1))}.hover\:bg-red-200:hover{--tw-bg-opacity:1;background-color:rgb(254 202 202 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-100:hover{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.hover\:bg-yellow-200:hover{--tw-bg-opacity:1;background-color:rgb(254 240 138 / var(--tw-bg-opacity, 1))}.hover\:text-blue-600:hover{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.hover\:text-blue-800:hover{--tw-text-opacity:1;color:rgb(30 64 175 / var(--tw-text-opacity, 1))}.hover\:text-green-800:hover{--tw-text-opacity:1;color:rgb(22 101 52 / var(--tw-text-opacity, 1))}.hover\:text-red-800:hover{--tw-text-opacity:1;color:rgb(153 27 27 / var(--tw-text-opacity, 1))}.hover\:text-yellow-800:hover{--tw-text-opacity:1;color:rgb(133 77 14 / var(--tw-text-opacity, 1))}.hover\:shadow-lg:hover{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.hover\:brightness-95:hover{--tw-brightness:brightness(.95);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}@media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}}@media (min-width: 768px){.md\:flex{display:flex}.md\:hidden{display:none}.md\:text-6xl{font-size:3.75rem;line-height:1}.md\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width: 1024px){.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:px-8{padding-left:2rem;padding-right:2rem}}</style><style id="sa-focus-styles">
+:root{
+  --sa-accent:#55a092;
+  --sa-forest2:#1f3731;
+}
+.sa-focus{
+  background: linear-gradient(135deg, rgba(31,55,49,0.98), rgba(18,32,28,0.98));
+  color:#fff;
+  border-radius: 18px;
+  overflow:hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,.18);
+  border: 1px solid rgba(255,255,255,.12);
+}
+.sa-focus-inner{ padding: 2.1rem 1.75rem; }
+@media (min-width:768px){ .sa-focus-inner{ padding: 2.4rem 2.25rem; } }
+.sa-focus-grid{
+  display:grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items:start;
+}
+@media (max-width: 960px){
+  .sa-focus-grid{ grid-template-columns: 1fr; }
+}
+.sa-kicker{
+  font-size: .72rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.72);
+  font-weight: 700;
+}
+.sa-title{
+  font-family: 'Inter', sans-serif;
+  font-weight: 750;
+  font-size: 1.85rem;
+  line-height: 1.15;
+  margin: .65rem 0 .85rem;
+}
+@media (min-width:768px){
+  .sa-title{ font-size: 2.15rem; }
+}
+.sa-body{
+  color: rgba(255,255,255,.88);
+  line-height: 1.75;
+}
+.sa-body + .sa-body{ margin-top: .9rem; }
+.sa-chip-row{
+  margin-top: 1.15rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap: .5rem;
+}
+.sa-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:.45rem;
+  padding:.42rem .72rem;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.06);
+  font-size: .78rem;
+  color: rgba(255,255,255,.92);
+  white-space:nowrap;
+}
+.sa-dot{
+  width:.45rem;
+  height:.45rem;
+  border-radius:999px;
+  background: var(--sa-accent);
+  display:inline-block;
+  box-shadow: 0 0 0 4px rgba(85,160,146,.18);
+}
+.sa-actions{
+  margin-top: 1.15rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap: .6rem;
+}
+.sa-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: .62rem 1.05rem;
+  border-radius:999px;
+  font-size:.85rem;
+  font-weight: 650;
+  text-decoration:none;
+  border:1px solid rgba(255,255,255,.22);
+  background: rgba(0,0,0,.12);
+  color:#fff;
+}
+.sa-btn:hover{ opacity:.95; }
+.sa-btn.primary{
+  background: rgba(85,160,146,.22);
+  border-color: rgba(85,160,146,.55);
+}
+.sa-panel{
+  border-radius: 16px;
+  padding: 1.35rem 1.35rem 1.45rem;
+  background: rgba(0,0,0,.28);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 18px 40px rgba(0,0,0,.28);
+}
+.sa-panel h3{
+  font-size: .78rem;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.75);
+  font-weight: 800;
+}
+.sa-panel ul{ margin-top: .85rem; padding-left: 0; list-style: none; }
+.sa-panel li{
+  display:flex;
+  gap: .55rem;
+  margin-top: .55rem;
+  color: rgba(255,255,255,.88);
+  line-height: 1.55;
+  font-size: .92rem;
+}
+.sa-bullet{
+  margin-top: .35rem;
+  width:.42rem;
+  height:.42rem;
+  border-radius:999px;
+  background: rgba(255,255,255,.65);
+  flex: 0 0 auto;
+}
+.sa-panel-note{
+  margin-top: 1.05rem;
+  font-size: .78rem;
+  color: rgba(255,255,255,.72);
+  line-height: 1.6;
+}
+</style><style>
+  /* FlowPlan Solution Design skin (match Process & System Design) */
+  html,body{margin:0; padding:0;}
+body{background:var(--cream); color:var(--ink); margin:0; padding:0;}
+  .soft-card{background: rgba(255,255,255,.55);}
+  .soft-card:hover{background: rgba(255,255,255,.70);}
+</style><style id="flowplan-shell">/* FlowPlan utilities (aligned to Process & System Design page) */
+.bg-cream{--tw-bg-opacity:1;background-color:rgb(244 242 236 / var(--tw-bg-opacity, 1))}
+.bg-forest{--tw-bg-opacity:1;background-color:rgb(36 63 56 / var(--tw-bg-opacity, 1))}
+.bg-forest2{--tw-bg-opacity:1;background-color:rgb(31 55 49 / var(--tw-bg-opacity, 1))}
+.bg-ink{--tw-bg-opacity:1;background-color:var(--ink);}
+
+
+/* Dotted overlay pattern used on dark banners */
+.pattern{
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,.07) 0, rgba(255,255,255,.07) 2px, transparent 2px),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,.06) 0, rgba(255,255,255,.06) 2px, transparent 2px);
+  background-size: 48px 48px, 64px 64px;
+}
+
+/* Accent utilities (from Process & System Design) */
+.bg-accent{--tw-bg-opacity:1;background-color:rgb(85 160 146 / var(--tw-bg-opacity, 1))}
+.hover\:bg-\[color\:var\(--accent2\)\]:hover{background-color:var(--accent2)}
+</style><style id="sa-check-block-fix">
+/* Review blocks (match reference screenshot) */
+.sa-check-pad{padding:3rem 0;}
+@media(min-width:768px){.sa-check-pad{padding:3.25rem 0;}}
+.sa-check-lead{max-width:64rem;font-size:1.125rem;line-height:1.75;color:rgba(255,255,255,.92);}
+.sa-check-box{margin-top:2rem;border:1px solid rgba(255,255,255,.18);border-radius:2px;overflow:hidden;background:rgba(0,0,0,0);}
+.sa-check-row{padding:1.6rem 1.75rem;}
+@media(min-width:768px){.sa-check-row{padding:1.75rem 2rem;}}
+.sa-check-row + .sa-check-row{border-top:1px solid rgba(255,255,255,.18);}
+.sa-check-title{font-weight:700;font-size:1.05rem;line-height:1.25;color:rgba(255,255,255,.98);margin:0;}
+.sa-check-desc{margin:.55rem 0 0;color:rgba(255,255,255,.88);line-height:1.75;}
+</style><style id="fp-map-overview-fix">/* Fix FlowPlan Mapping overview block layout (ensure 2-col + card spacing even if Tailwind build is incomplete) */
+.fp-map-overview-grid{
+  display:grid;
+  gap:3.75rem;
+  align-items:start;
+}
+@media (min-width: 1024px){
+  .fp-map-overview-grid{
+    grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  }
+}
+.fp-map-overview-left{
+  max-width: 32rem;
+}
+.fp-map-overview-cards{
+  display:flex;
+  flex-direction:column;
+  gap:1.35rem;
+  max-width: 34rem;
+  margin-left: auto;
+}
+.fp-map-overview-card{
+  border:1px solid rgba(255,255,255,.14);
+  border-radius: 12px;
+  padding: 1.15rem 1.25rem;
+  background: rgba(0,0,0,.12);
+  box-shadow: 0 10px 28px rgba(0,0,0,.12);
+}
+.fp-map-overview-card .title{
+  font-weight: 700;
+  font-size: 1.02rem;
+  line-height: 1.25;
+  color: rgba(255,255,255,.95);
+}
+.fp-map-overview-card .desc{
+  margin-top: .6rem;
+  font-size: .95rem;
+  line-height: 1.65;
+  color: rgba(255,255,255,.82);
+}
+</style>
+<style id="fp-snapshot-ink-css">
+  /* --- Module Engagement Snapshot: compact horizontal (3-panel) engagement map --- */
+  #module-snapshot{
+    background:
+      radial-gradient(900px 420px at 12% 18%, rgba(85,160,146,.22), transparent 60%),
+      radial-gradient(700px 360px at 88% 12%, rgba(255,255,255,.10), transparent 55%),
+      linear-gradient(180deg, #0b1512 0%, #081210 100%) !important;
+    color:#f3f5f4;
+    border-top: 1px solid rgba(255,255,255,.10) !important;
+  }
+
+  /* Layout */
+  #module-snapshot .ms-layout{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+    align-items: stretch;
+  }
+  #module-snapshot .ms-layout > *{ min-width:0; }
+  #module-snapshot .ms-panel{ min-width:0; }
+  #module-snapshot{ overflow-x: clip; }
+  @media (max-width: 980px){
+    #module-snapshot .ms-layout{ grid-template-columns: 1fr; }
+  }
+
+  /* Panels */
+  #module-snapshot .ms-panel{
+    min-width:0;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.05);
+    border-radius: 12px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.22);
+    overflow: hidden;
+  }
+
+  /* Left panel */
+  #module-snapshot .ms-left-head{
+    padding: 16px 16px 12px;
+    border-bottom: 1px solid rgba(255,255,255,.10);
+  }
+  #module-snapshot .ms-kicker{
+    margin: 0 0 10px;
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: rgba(255,255,255,.74);
+  }
+
+  #module-snapshot .ms-colhead{
+    margin: 0 0 10px;
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.62);
+    font-weight: 800;
+  }
+  #module-snapshot .ms-subhead{
+    margin: 14px 0 6px;
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.62);
+    font-weight: 800;
+  }
+  #module-snapshot .ms-tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 8px;
+  }
+  #module-snapshot .ms-family{
+    appearance:none;
+    border: 1px solid rgba(255,255,255,.14);
+    background: rgba(255,255,255,.04);
+    color: rgba(255,255,255,.86);
+    border-radius: 999px;
+    padding: 7px 12px;
+    font-weight: 650;
+    font-size: 13px;
+    line-height: 1;
+    cursor:pointer;
+    transition: background .15s ease, border-color .15s ease, transform .05s ease;
+  }
+  #module-snapshot .ms-family:hover{ border-color: rgba(85,160,146,.55); }
+  #module-snapshot .ms-family:active{ transform: translateY(1px); }
+  #module-snapshot .ms-family.is-active{
+    background: rgba(85,160,146,.22);
+    border-color: rgba(85,160,146,.60);
+    color: #ffffff;
+  }
+
+  #module-snapshot .ms-list{
+    padding: 12px;
+    max-height: none;
+    overflow: visible;
+  }
+  #module-snapshot .ms-mod{
+    width:100%;
+    text-align:left;
+    display:block;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(0,0,0,.06);
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    cursor:pointer;
+    transition: border-color .15s ease, background .15s ease, box-shadow .15s ease;
+  }
+  #module-snapshot .ms-mod:hover{
+    border-color: rgba(85,160,146,.55);
+    background: rgba(255,255,255,.05);
+  }
+  #module-snapshot .ms-mod.is-active{
+    border-color: rgba(85,160,146,.80);
+    box-shadow: 0 0 0 2px rgba(85,160,146,.22);
+  }
+  #module-snapshot .ms-mod-name{
+    font-weight: 750;
+    font-size: 14.5px;
+    color: #ffffff;
+  }
+  #module-snapshot .ms-mod-role{
+    margin-top: 2px;
+    font-size: 12px;
+    color: rgba(255,255,255,.68);
+  }
+  #module-snapshot .ms-hint{
+    padding: 0 16px 16px;
+    font-size: 12px;
+    color: rgba(255,255,255,.62);
+  }
+
+  /* Middle + right panels (scrollable) */
+  #module-snapshot .ms-mid,
+  #module-snapshot .ms-right{
+    padding: 16px;
+    max-height: none;
+    overflow: visible;
+  }
+
+  #module-snapshot .ms-title{
+    margin: 0;
+    font-family: "Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1.1;
+    letter-spacing: -0.2px;
+    color: #ffffff;
+  }
+  #module-snapshot .ms-roleline{
+    margin: 8px 0 14px;
+    font-size: 13px;
+    color: rgba(255,255,255,.74);
+  }
+  #module-snapshot .ms-bigger{
+    font-size: 14px;
+    line-height: 1.65;
+    color: rgba(255,255,255,.80);
+  }
+  #module-snapshot .ms-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  #module-snapshot .ms-tag{
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(85,160,146,.16);
+    border: 1px solid rgba(85,160,146,.38);
+    color: rgba(235,255,251,.95);
+    white-space: nowrap;
+  }
+
+  #module-snapshot .ms-action{
+    margin-top: 14px;
+    display:inline-flex;
+    gap: 10px;
+    align-items:center;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(85,160,146,.90);
+    border: 1px solid rgba(255,255,255,.14);
+    color: #ffffff;
+    font-weight: 750;
+    text-decoration: none;
+  }
+  #module-snapshot .ms-action:hover{ filter: brightness(1.05); }
+  #module-snapshot .ms-action:active{ transform: translateY(1px); }
+
+  /* Right panel blocks */
+  #module-snapshot .ms-block{
+    margin-top: 14px;
+    padding: 12px;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(0,0,0,.10);
+    border-radius: 12px;
+  }
+  #module-snapshot .ms-h4{
+    margin: 0 0 8px;
+    font-size: 13px;
+    font-weight: 800;
+    color: rgba(255,255,255,.92);
+    letter-spacing: .2px;
+  }
+  #module-snapshot .ms-list-ul{
+    margin: 0;
+    padding-left: 16px;
+    color: rgba(255,255,255,.80);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  #module-snapshot .ms-recipes{
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  #module-snapshot .ms-recipe{
+    padding: 10px 10px 12px;
+    border-radius: 12px;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.10);
+  }
+  #module-snapshot .ms-recipe-title{
+    font-weight: 800;
+    font-size: 13px;
+    color: #ffffff;
+    margin: 0;
+  }
+  #module-snapshot .ms-recipe-focus{
+    margin: 6px 0 10px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,.74);
+    line-height: 1.4;
+  }
+  #module-snapshot .ms-chips{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  #module-snapshot .ms-chip{
+    display:inline-flex;
+    align-items:center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.14);
+    background: rgba(255,255,255,.04);
+    color: rgba(255,255,255,.88);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 650;
+  }
+  #module-snapshot .ms-chip:hover{ border-color: rgba(85,160,146,.55); }
+
+  /* Scrollbar (subtle) */
+  #module-snapshot .ms-list::-webkit-scrollbar,
+  #module-snapshot .ms-mid::-webkit-scrollbar,
+  #module-snapshot .ms-right::-webkit-scrollbar{
+    width: 10px;
+  }
+  #module-snapshot .ms-list::-webkit-scrollbar-thumb,
+  #module-snapshot .ms-mid::-webkit-scrollbar-thumb,
+  #module-snapshot .ms-right::-webkit-scrollbar-thumb{
+    background: rgba(255,255,255,.14);
+    border-radius: 999px;
+  }
+
+  /* Highlight target card when jumped */
+  .ms-hl{
+    outline: 2px solid rgba(85,160,146,.95);
+    box-shadow: 0 0 0 6px rgba(85,160,146,.18);
+    transition: box-shadow .2s ease;
+  }
+
+  @media print{
+    body *{ visibility: hidden !important; }
+    #module-snapshot, #module-snapshot *{ visibility: visible !important; }
+    #module-snapshot{ position: absolute; left:0; top:0; width:100%; }
+  }
+
+  #module-snapshot .btn{
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-weight: 750;
+    border: 1px solid rgba(255,255,255,.14);
+    background: rgba(255,255,255,.04);
+    color:#ffffff;
+  }
+  #module-snapshot .btn:hover{ border-color: rgba(85,160,146,.55); }
+  #module-snapshot .btn-outline{ background: rgba(0,0,0,.10); }
+  #module-snapshot .btn-accent{
+    background: rgba(85,160,146,.90);
+    border-color: rgba(255,255,255,.14);
+  }
+
+
+/* Icons in Module Engagement Snapshot domain pills */
+#module-snapshot .ms-family{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+#module-snapshot .ms-family-ico{
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  opacity: .95;
+}
+</style>
+<style id="flowplan-snapshot-print-button-contrast-v1">
+#module-snapshot #msPrint{background:#f4f2ec!important;color:#14302a!important;border-color:rgba(20,48,42,.20)!important;box-shadow:0 12px 24px rgba(0,0,0,.18)!important;}
+#module-snapshot #msPrint:hover{background:#ffffff!important;color:#0f2f2b!important;border-color:#55a092!important;}
+
+/* FlowPlan snapshot controls readability fix. */
+#module-snapshot button#msPrint{
+  background:#f4f2ec!important;
+  color:#14302a!important;
+  border-color:rgba(20,48,42,.22)!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+#module-snapshot button#msPrint:hover,
+#module-snapshot button#msPrint:focus{
+  background:#ffffff!important;
+  color:#0f2f2b!important;
+  border-color:#55a092!important;
+}
+
+</style>
+<style id="anchor-offset-fix">
+/* Anchor offset so section headings don't stay under the sticky nav */
+section[id], div[id] { scroll-margin-top: 96px; }
+</style><style>/* Capability callouts - forest styling to match FlowPlan Mapping band */
+.capability-forest{
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(36,63,56,0.96), rgba(31,55,49,0.96)) !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  box-shadow: 0 14px 34px rgba(0,0,0,0.22);
+  transition: background .18s ease, border-color .18s ease, transform .18s ease;
+}
+.capability-forest::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity: .95;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255,255,255,.07) 0, rgba(255,255,255,.07) 2px, transparent 2px),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,.06) 0, rgba(255,255,255,.06) 2px, transparent 2px);
+  background-size: 48px 48px, 64px 64px;
+}
+.capability-forest > *{position:relative; z-index:1;}
+
+.capability-forest:hover{
+  background: linear-gradient(180deg, rgba(44,77,67,0.98), rgba(36,64,57,0.98)) !important;
+  border-color: rgba(255,255,255,0.18) !important;
+}
+
+.capability-forest .text-slate-500,
+.capability-forest .text-slate-600,
+.capability-forest .text-gray-500,
+.capability-forest .text-gray-400{
+  color: rgba(255,255,255,0.82) !important;
+}
+.capability-forest .text-slate-700,
+.capability-forest .text-gray-700,
+.capability-forest .text-slate-800,
+.capability-forest .text-gray-800{
+  color: rgba(255,255,255,0.90) !important;
+}
+.capability-forest .text-gray-900,
+.capability-forest .text-gray-950{
+  color: rgba(255,255,255,0.98) !important;
+}
+.capability-forest .font-semibold,
+.capability-forest strong{
+  color: rgba(230,245,239,0.98) !important;
+}
+.capability-forest a{
+  color: rgba(170, 232, 216, 1) !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.capability-forest a:hover{ color: rgba(200, 248, 236, 1) !important; }
+</style>
+<style id="added-spacing-utilities">
+/* Added spacing + layout utilities missing from the generated CSS subset.
+   These were already used in markup (Tailwind-style classes) but had no definitions,
+   causing edge-hugging and cramped layouts (hero + forest strip in particular). */
+.pt-1{padding-top:.25rem}
+.pt-6{padding-top:1.5rem}
+.pt-16{padding-top:4rem}
+.pt-20{padding-top:5rem}
+.pt-24{padding-top:6rem}
+.pt-28{padding-top:7rem}
+
+.pb-12{padding-bottom:3rem}
+.pb-14{padding-bottom:3.5rem}
+.pb-20{padding-bottom:5rem}
+.pb-24{padding-bottom:6rem}
+
+.mt-2{margin-top:.5rem}
+.mt-3{margin-top:.75rem}
+.mt-4{margin-top:1rem}
+.mt-5{margin-top:1.25rem}
+.mt-6{margin-top:1.5rem}
+.mt-8{margin-top:2rem}
+.mt-10{margin-top:2.5rem}
+
+.gap-3{gap:.75rem}
+.gap-10{gap:2.5rem}
+
+@media (min-width: 768px){
+  .md\:pt-20{padding-top:5rem}
+  .md\:pt-28{padding-top:7rem}
+  .md\:pb-12{padding-bottom:3rem}
+  .md\:pb-24{padding-bottom:6rem}
+}
+</style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.right-0{right:0px}.right-6{right:1.5rem}.top-0{top:0px}.top-10{top:2.5rem}.top-4{top:1rem}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-0{margin-bottom:0px}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-auto{margin-left:auto}.mr-2{margin-right:0.5rem}.mr-3{margin-right:0.75rem}.mt-1\.5{margin-top:0.375rem}.mt-10{margin-top:2.5rem}.mt-2{margin-top:0.5rem}.mt-24{margin-top:6rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-14{height:3.5rem}.h-2\.5{height:0.625rem}.h-28{height:7rem}.h-36{height:9rem}.h-4{height:1rem}.h-5{height:1.25rem}.w-10{width:2.5rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-52{width:13rem}.w-\[320px\]{width:320px}.w-full{width:100%}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.max-w-6xl{max-width:72rem}.max-w-sm{max-width:24rem}.max-w-xl{max-width:36rem}.shrink-0{flex-shrink:0}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.list-disc{list-style-type:disc}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-12{gap:3rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.rounded-full{border-radius:9999px}.rounded-sm{border-radius:0.125rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-emerald-100{--tw-border-opacity:1;border-color:rgb(209 250 229 / var(--tw-border-opacity, 1))}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-gray-900\/20{border-color:rgb(17 24 39 / 0.2)}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.border-white\/15{border-color:rgb(255 255 255 / 0.15)}.bg-\[color\:var\(--accent\)\]{background-color:var(--accent)}.bg-\[color\:var\(--cream\)\]{background-color:var(--cream)}.bg-\[color\:var\(--forest\)\]{background-color:var(--forest)}.bg-emerald-50{--tw-bg-opacity:1;background-color:rgb(236 253 245 / var(--tw-bg-opacity, 1))}.bg-gray-200{--tw-bg-opacity:1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/55{background-color:rgb(255 255 255 / 0.55)}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-14{padding-top:3.5rem;padding-bottom:3.5rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pb-12{padding-bottom:3rem}.pb-14{padding-bottom:3.5rem}.pb-28{padding-bottom:7rem}.pb-4{padding-bottom:1rem}.pl-5{padding-left:1.25rem}.pt-1{padding-top:0.25rem}.pt-14{padding-top:3.5rem}.pt-16{padding-top:4rem}.pt-20{padding-top:5rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-center{text-align:center}.align-middle{vertical-align:middle}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-\[0\.95\]{line-height:0.95}.leading-relaxed{line-height:1.625}.tracking-wide{letter-spacing:0.025em}.text-blue-700{--tw-text-opacity:1;color:rgb(29 78 216 / var(--tw-text-opacity, 1))}.text-emerald-800{--tw-text-opacity:1;color:rgb(6 95 70 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-950{--tw-text-opacity:1;color:rgb(3 7 18 / var(--tw-text-opacity, 1))}.text-green-700{--tw-text-opacity:1;color:rgb(21 128 61 / var(--tw-text-opacity, 1))}.text-red-700{--tw-text-opacity:1;color:rgb(185 28 28 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/55{color:rgb(255 255 255 / 0.55)}.text-white\/70{color:rgb(255 255 255 / 0.7)}.text-white\/80{color:rgb(255 255 255 / 0.8)}.text-white\/85{color:rgb(255 255 255 / 0.85)}.text-white\/90{color:rgb(255 255 255 / 0.9)}.text-yellow-700{--tw-text-opacity:1;color:rgb(161 98 7 / var(--tw-text-opacity, 1))}.opacity-70{opacity:0.7}.opacity-80{opacity:0.8}.opacity-90{opacity:0.9}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-200{transition-duration:200ms}.hover\:z-10:hover{z-index:10}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:border-2:hover{border-width:2px}.hover\:border-blue-700:hover{--tw-border-opacity:1;border-color:rgb(29 78 216 / var(--tw-border-opacity, 1))}.hover\:border-green-700:hover{--tw-border-opacity:1;border-color:rgb(21 128 61 / var(--tw-border-opacity, 1))}.hover\:border-red-700:hover{--tw-border-opacity:1;border-color:rgb(185 28 28 / var(--tw-border-opacity, 1))}.hover\:border-yellow-700:hover{--tw-border-opacity:1;border-color:rgb(161 98 7 / var(--tw-border-opacity, 1))}.hover\:bg-\[color\:var\(--accent2\)\]:hover{background-color:var(--accent2)}.hover\:bg-blue-200:hover{--tw-bg-opacity:1;background-color:rgb(191 219 254 / var(--tw-bg-opacity, 1))}.hover\:bg-green-200:hover{--tw-bg-opacity:1;background-color:rgb(187 247 208 / var(--tw-bg-opacity, 1))}.hover\:bg-red-200:hover{--tw-bg-opacity:1;background-color:rgb(254 202 202 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/50:hover{background-color:rgb(255 255 255 / 0.5)}.hover\:bg-yellow-200:hover{--tw-bg-opacity:1;background-color:rgb(254 240 138 / var(--tw-bg-opacity, 1))}.hover\:text-blue-800:hover{--tw-text-opacity:1;color:rgb(30 64 175 / var(--tw-text-opacity, 1))}.hover\:text-green-800:hover{--tw-text-opacity:1;color:rgb(22 101 52 / var(--tw-text-opacity, 1))}.hover\:text-red-800:hover{--tw-text-opacity:1;color:rgb(153 27 27 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:text-yellow-800:hover{--tw-text-opacity:1;color:rgb(133 77 14 / var(--tw-text-opacity, 1))}.hover\:opacity-95:hover{opacity:0.95}.hover\:shadow-lg:hover{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}@media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 768px){.md\:col-span-5{grid-column:span 5 / span 5}.md\:col-span-7{grid-column:span 7 / span 7}.md\:mt-0{margin-top:0px}.md\:flex{display:flex}.md\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-end{align-items:flex-end}.md\:items-center{align-items:center}.md\:justify-between{justify-content:space-between}.md\:p-6{padding:1.5rem}.md\:py-16{padding-top:4rem;padding-bottom:4rem}.md\:pb-12{padding-bottom:3rem}.md\:pt-2{padding-top:0.5rem}.md\:pt-20{padding-top:5rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}.md\:text-5xl{font-size:3rem;line-height:1}.md\:text-6xl{font-size:3.75rem;line-height:1}}@media (min-width: 1024px){.lg\:block{display:block}.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}}</style>
+
+
+
+<style id="aqua-solution-design-polish">
+/* --- Section polish only: zero HTML/content/font-size/font-family changes --- */
+:root{
+  --ad-paper:#fbfaf6;
+  --ad-paper-2:#f8f6f1;
+  --ad-card-border:rgba(27,31,30,.10);
+  --ad-card-shadow:0 16px 36px rgba(24,34,31,.08);
+  --ad-card-shadow-hover:0 22px 44px rgba(24,34,31,.12);
+  --ad-card-inset:inset 0 1px 0 rgba(255,255,255,.72);
+}
+
+/* Hero */
+#hero{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(760px 300px at 88% 8%, rgba(85,160,146,.12), transparent 62%),
+    radial-gradient(640px 240px at 12% 0%, rgba(255,255,255,.62), transparent 72%),
+    var(--cream);
+}
+#hero::after{
+  content:"";
+  position:absolute;
+  inset:auto 0 0 0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(27,31,30,.14), transparent);
+  pointer-events:none;
+}
+#hero .relative.overflow-hidden.rounded-2xl.border.border-gray-900\/20.soft-shadow.bg-white{
+  position:relative;
+  border-color:rgba(27,31,30,.10) !important;
+  box-shadow:0 24px 46px rgba(21,31,28,.10), inset 0 1px 0 rgba(255,255,255,.75);
+  background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(248,246,241,.98));
+}
+#hero .relative.overflow-hidden.rounded-2xl.border.border-gray-900\/20.soft-shadow.bg-white::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.45);
+  z-index:2;
+}
+#hero .relative.overflow-hidden.rounded-2xl.border.border-gray-900\/20.soft-shadow.bg-white img{
+  filter:saturate(1.02) contrast(1.01);
+}
+#hero .border.hairline.bg-cream.soft-shadow.p-5,
+#hero .border.hairline.bg-cream.soft-shadow.p-5.md\:p-6{
+  position:relative;
+  overflow:hidden;
+  border-color:var(--ad-card-border);
+  background:linear-gradient(180deg, rgba(251,250,246,.98), rgba(245,242,236,.98));
+  box-shadow:var(--ad-card-shadow), var(--ad-card-inset);
+}
+#hero .border.hairline.bg-cream.soft-shadow.p-5::before,
+#hero .border.hairline.bg-cream.soft-shadow.p-5.md\:p-6::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height:3px;
+  background:linear-gradient(90deg, rgba(85,160,146,.9), rgba(85,160,146,.28));
+}
+
+/* Forest introduction strip */
+section.bg-forest.text-white{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(880px 360px at 12% 10%, rgba(85,160,146,.17), transparent 62%),
+    radial-gradient(680px 280px at 90% 6%, rgba(255,255,255,.06), transparent 54%),
+    linear-gradient(180deg, rgba(36,63,56,.985), rgba(31,55,49,.995)) !important;
+}
+section.bg-forest.text-white::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255,255,255,.06) 0, rgba(255,255,255,.06) 2px, transparent 2px),
+    radial-gradient(circle at 72% 58%, rgba(255,255,255,.05) 0, rgba(255,255,255,.05) 2px, transparent 2px);
+  background-size:54px 54px, 70px 70px;
+  opacity:.55;
+}
+section.bg-forest.text-white > div{ position:relative; z-index:1; }
+section.bg-forest.text-white [data-acc]{
+  border-color:rgba(255,255,255,.16) !important;
+  background:rgba(255,255,255,.05);
+  box-shadow:0 14px 34px rgba(0,0,0,.16);
+  backdrop-filter:blur(4px);
+}
+section.bg-forest.text-white [data-acc] + [data-acc]{ margin-top:1rem; }
+section.bg-forest.text-white [data-acc] button{
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+}
+section.bg-forest.text-white .acc-panel{
+  background:rgba(0,0,0,.08);
+}
+
+/* Snapshot */
+#module-snapshot .ms-panel{
+  border-color:rgba(255,255,255,.14);
+  box-shadow:0 18px 38px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.08);
+}
+#module-snapshot .ms-mod,
+#module-snapshot .ms-block,
+#module-snapshot .ms-recipe{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+}
+#module-snapshot .ms-mod.is-active{
+  box-shadow:0 0 0 2px rgba(85,160,146,.20), 0 12px 24px rgba(0,0,0,.18);
+}
+
+/* Module section chips */
+#modules .flex.flex-wrap.justify-center.gap-4.mb-8 a{
+  border:1px solid rgba(27,31,30,.10);
+  background:linear-gradient(180deg, rgba(255,255,255,.94), rgba(246,244,238,.98));
+  box-shadow:0 8px 18px rgba(26,32,29,.05), inset 0 1px 0 rgba(255,255,255,.78);
+}
+#modules .flex.flex-wrap.justify-center.gap-4.mb-8 a:hover{
+  transform:translateY(-1px);
+  box-shadow:0 12px 22px rgba(26,32,29,.09), inset 0 1px 0 rgba(255,255,255,.82);
+}
+
+/* Raised-paper cards across module area */
+.soft-card{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(180deg, rgba(251,250,246,.98), rgba(245,242,236,.98)) !important;
+  border-color:var(--ad-card-border) !important;
+  box-shadow:var(--ad-card-shadow), var(--ad-card-inset) !important;
+}
+.soft-card::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height:3px;
+  background:linear-gradient(90deg, rgba(85,160,146,.92), rgba(85,160,146,.20));
+  pointer-events:none;
+}
+.soft-card:hover{
+  background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(247,244,239,.98)) !important;
+  box-shadow:var(--ad-card-shadow-hover), var(--ad-card-inset) !important;
+  transform:translateY(-2px) scale(1.01) !important;
+}
+
+/* Keep forest capability cards in family while improving finish */
+.capability-forest.soft-card,
+.soft-card.capability-forest{
+  background:
+    radial-gradient(540px 220px at 10% 0%, rgba(85,160,146,.16), transparent 62%),
+    linear-gradient(180deg, rgba(36,63,56,.97), rgba(31,55,49,.985)) !important;
+  box-shadow:0 18px 36px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.06) !important;
+}
+.soft-card.capability-forest::before,
+.capability-forest.soft-card::before{
+  background:linear-gradient(90deg, rgba(168,231,214,.96), rgba(168,231,214,.24));
+}
+
+/* Contact section */
+#contact{
+  position:relative;
+  background:
+    radial-gradient(620px 240px at 12% 0%, rgba(85,160,146,.08), transparent 66%),
+    var(--cream);
+}
+#contact form,
+#contact .border.hairline.bg-white.p-5,
+#contact .border.hairline.bg-white.p-5.md\:p-6{
+  border-color:var(--ad-card-border) !important;
+  background:linear-gradient(180deg, rgba(251,250,246,.98), rgba(246,244,238,.98));
+  box-shadow:var(--ad-card-shadow), var(--ad-card-inset);
+}
+#contact input,
+#contact select,
+#contact textarea{
+  border-color:rgba(27,31,30,.12) !important;
+  background:rgba(255,255,255,.92) !important;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.03);
+}
+#contact input:focus,
+#contact select:focus,
+#contact textarea:focus{
+  outline:none;
+  border-color:rgba(85,160,146,.6) !important;
+  box-shadow:0 0 0 3px rgba(85,160,146,.12), inset 0 1px 2px rgba(0,0,0,.03);
+}
+
+/* Explore more cards */
+#explore-more article{
+  position:relative;
+  background:rgba(255,255,255,.06);
+  border-color:rgba(255,255,255,.12) !important;
+  box-shadow:0 16px 30px rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.05);
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+}
+#explore-more article::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height:3px;
+  background:linear-gradient(90deg, rgba(168,231,214,.94), rgba(168,231,214,.18));
+}
+#explore-more article:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.08);
+  border-color:rgba(255,255,255,.18) !important;
+  box-shadow:0 22px 38px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.06);
+}
+#explore-more article .h-36{
+  background:linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.04)) !important;
+}
+
+/* Buttons and links: finish only, no type changes */
+a.bg-accent,
+button.bg-accent,
+a.bg-\[color\:var\(--accent\)\],
+button.bg-\[color\:var\(--accent\)\]{
+  box-shadow:0 10px 18px rgba(85,160,146,.18);
+}
+</style>
+
+<style id="enwater-logo-refinement-v1">
+.brand-logo,.nav-logo,.nav-brand-logo{height:38px!important;width:auto!important;max-width:66px!important;object-fit:contain!important;background:transparent!important;border-radius:0!important;padding:0!important;box-shadow:none!important;}
+.brand span,.nav-brand span{white-space:nowrap;}
+.footer-logo{height:34px;width:auto;max-width:60px;object-fit:contain;background:transparent;border-radius:0;padding:0;box-shadow:none;display:block;}
+.footer-brand,.foot-brand{display:flex;align-items:center;gap:10px;}
+</style>
+
+
+<style id="flowplan-explore-more-contextual-v5">
+/* Contextual FlowPlan Explore More cards: readable, page-specific project links. */
+#explore-more .fp-related-grid{
+  display:grid!important;
+  gap:28px!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  margin-top:2.25rem!important;
+  align-items:stretch!important;
+}
+#explore-more .fp-related-card{
+  background:#f4f2ec!important;
+  color:#0f2520!important;
+  border:1px solid rgba(255,255,255,.50)!important;
+  border-radius:16px!important;
+  overflow:hidden!important;
+  box-shadow:0 18px 36px rgba(0,0,0,.22)!important;
+  min-height:100%!important;
+  display:flex!important;
+  flex-direction:column!important;
+  transform:none!important;
+  transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease!important;
+}
+#explore-more .fp-related-card::after{display:none!important;content:none!important;}
+#explore-more .fp-related-card:hover,
+#explore-more .fp-related-card:focus-within{
+  background:#f4f2ec!important;
+  transform:translateY(-4px)!important;
+  border-color:rgba(85,160,146,.72)!important;
+  box-shadow:0 24px 44px rgba(0,0,0,.26)!important;
+}
+#explore-more .fp-related-card .fp-card-top{
+  position:relative!important;
+  height:124px!important;
+  background:linear-gradient(135deg,rgba(85,160,146,.16),rgba(255,255,255,.80))!important;
+  border-bottom:1px solid rgba(20,48,42,.12)!important;
+  flex:0 0 auto!important;
+}
+#explore-more .fp-related-card .fp-card-top::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.50;
+  background-image:radial-gradient(rgba(85,160,146,.22) 1.4px,transparent 1.4px);
+  background-size:24px 24px;
+}
+#explore-more .fp-related-card .fp-card-body{
+  padding:24px 26px 26px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  gap:13px!important;
+  flex:1!important;
+  background:#f4f2ec!important;
+}
+#explore-more .fp-related-card .fp-card-kicker{
+  color:#147164!important;
+  font-size:12px!important;
+  line-height:1.35!important;
+  font-weight:850!important;
+  letter-spacing:.09em!important;
+  text-transform:uppercase!important;
+  margin:0!important;
+}
+#explore-more .fp-related-card h3{
+  color:#071a16!important;
+  font-family:ui-serif,Georgia,Cambria,"Times New Roman",serif!important;
+  font-size:21px!important;
+  line-height:1.25!important;
+  font-weight:760!important;
+  margin:0!important;
+}
+#explore-more .fp-related-card .fp-card-text{
+  color:#102822!important;
+  font-size:14.5px!important;
+  line-height:1.58!important;
+  margin:8px 0 0!important;
+}
+#explore-more .fp-related-card a{
+  color:#00685d!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:8px!important;
+  margin-top:auto!important;
+  font-size:14px!important;
+  font-weight:760!important;
+  text-decoration:none!important;
+}
+#explore-more .fp-related-card a::after{content:"↗";font-size:13px;line-height:1;opacity:.8;}
+#explore-more .fp-related-card a:hover,
+#explore-more .fp-related-card a:focus{color:#004d44!important;text-decoration:underline!important;text-underline-offset:5px!important;}
+@media(max-width:980px){#explore-more .fp-related-grid{grid-template-columns:1fr!important;}}
+</style>
+<link href="../exported-ui-styles.css" rel="stylesheet"/><link rel="icon" type="image/png" href="../assets/images/enwater-design-logo-nav.png" />
+</head>
+<body class="fp-sans"><header class="site-topnav">
+<div class="wrap">
+<a aria-label="EnWater Design home" class="brand" href="../home.html">
+<img alt="EnWater Design logo" class="nav-logo" src="../assets/images/enwater-design-logo.png"/>
+<span>EnWater Design</span>
+</a>
+<nav class="desktop-nav">
+<ul>
+<li><a class="rootlink" href="../home.html">Home</a></li>
+<li>
+            <a class="rootlink " href="../About/about.html">About</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a class="" href="../About/about.html">About Us</a>
+              <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+            </div>
+          </li>
+<li>
+<a class="rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink active" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Projects/index.html">Projects</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</li>
+<li><a class="rootlink nav-login" href="../login.html">Login</a></li>
+<li><a class="rootlink nav-cta" href="../get-in-touch.html">Get in touch</a></li>
+</ul>
+</nav>
+<button aria-expanded="false" aria-label="Toggle menu" class="mobile-nav-toggle" type="button">
+<span class="hamburger-line line-1"></span>
+<span class="hamburger-line line-2"></span>
+<span class="hamburger-line line-3"></span>
+</button>
+</div>
+<div class="mobile-nav-panel">
+<div class="mobile-nav-content">
+<div class="mobile-nav-item">
+<a class="mobile-rootlink" href="../home.html">Home</a>
+</div>
+<div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink " href="../About/about.html">About</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a class="" href="../About/about.html">About Us</a>
+            <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+          </div>
+        </div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage Overview</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink active" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Projects/index.html">Projects</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<a class="mobile-login-btn" href="../login.html">Login</a>
+</div>
+<div class="mobile-nav-item no-border">
+<a class="mobile-cta-btn" href="../get-in-touch.html">Get in touch</a>
+</div>
+</div>
+</div>
+</header><nav aria-label="FlowPlan" class="flowplan-subnav"><div class="fp-wrap"><span class="fp-kicker">FlowPlan</span><a href="flowplan-framework.html">Framework</a><a href="flowplan-systems-planning.html">Systems Planning</a><a href="flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a><a href="treatment-reuse-planning.html">Reuse Planning</a><a aria-current="page" class="active" href="flowplan-solution-design.html">Solution Design</a><a href="flowplan-process-mapping.html">Process Mapping</a><a class="fp-support" href="flowplan-planning-delivery.html">Planning &amp; Delivery</a></div></nav>
+<main><section class="bg-cream border-b hairline" id="hero">
+<div class="max-w-6xl mx-auto px-6 pt-16 pb-12 md:pt-20 md:pb-12">
+<div class="grid lg:grid-cols-2 gap-10 items-start">
+<div>
+<p class="text-xs text-gray-500">Solutions  ›  FlowPlan Mapping</p>
+<h1 class="fp-serif mt-3 text-5xl md:text-6xl leading-[0.95] text-gray-950">Solution Design</h1>
+<p class="mt-5 text-gray-700 leading-relaxed max-w-xl">The building blocks of a treatment system determine whether a plant reaches stable, verified performance - or spends its operational life fighting design decisions that were never properly resolved. This section shows how FlowPlan structures those decisions: translating reuse, compliance, and recovery intent into sequenced treatment operations, each defined by what it achieves and what must be proven before handover.</p>
+</div>
+<div class="hidden lg:block">
+<div class="relative overflow-hidden rounded-2xl border border-gray-900/20 soft-shadow bg-white">
+<img alt="" class="w-full object-cover" src="pexels-david-nestorov-2153481354-34676215.jpg" style="height:320px;"/>
+<div class="absolute inset-0" style="background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.14));"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-6xl mx-auto px-6 pb-14 mt-6"><div class="border hairline bg-cream soft-shadow p-5 md:p-6"><p class="fp-serif text-xl text-gray-950">Overview</p><p class="mt-3 text-sm text-gray-700 leading-relaxed max-w-4xl">Solution Design starts with the purpose and target quality, then builds the minimum necessary sequence of treatment stages to achieve it - with coordination points, controls intent, and validation checks set before procurement begins. The sequence matters: a module placed in the wrong position, or sized against the wrong basis, creates a problem that compounds through every stage downstream. Getting this right the first time is what separates a plant that commissions cleanly from one that needs repeated redesign.</p><div class="mt-4 flex flex-wrap gap-2"><a class="inline-flex items-center gap-2 bg-accent text-white px-4 py-2 text-sm rounded-sm hover:bg-[color:var(--accent2)]" href="#modules">
+    Explore the mapping <span class="opacity-90"><svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg></span>
+</a><a class="inline-flex items-center gap-2 border border-gray-900/20 px-4 py-2 text-sm rounded-sm hover:bg-white/50" href="../get-in-touch.html">
+    Get in touch <span class="text-gray-700"><svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg></span>
+</a></div></div></div>
+</section><section class="bg-forest text-white">
+<div class="pattern">
+<div class="max-w-6xl mx-auto px-6 py-14 md:py-16">
+<div class="grid lg:grid-cols-2 gap-10 items-start">
+<!-- Left: statement -->
+<div>
+<h2 class="fp-serif text-4xl md:text-5xl leading-[0.95]">Environmental Engineering Design Services - From Process Planning to Control &amp; Operations</h2>
+<p class="mt-6 text-white/85 leading-relaxed max-w-xl">Solution Design translates feasibility work - design basis, constraints, KPIs, and end-use obligations - into a sequenced, implementation-ready module configuration. Each stage is connected to the next: what it receives, what it produces, and what must be confirmed at commissioning. Review the stage shortlist and module families, then engage to align connections and validation requirements before vendor conversations begin.</p>
+<ul class="mt-6 space-y-2 text-sm text-white/85 leading-relaxed max-w-xl">
+<li class="flex gap-3">
+<span class="inline-flex w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] mt-1.5 shrink-0"></span>
+<span><span class="font-semibold">Stage shortlist</span> (what belongs in the sequence)</span>
+</li>
+<li class="flex gap-3">
+<span class="inline-flex w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] mt-1.5 shrink-0"></span>
+<span><span class="font-semibold">Technology options</span> (representative, not exhaustive)</span>
+</li>
+<li class="flex gap-3">
+<span class="inline-flex w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] mt-1.5 shrink-0"></span>
+<span><span class="font-semibold">Diagnostics plan</span> (what confirms the basis)</span>
+</li>
+<li class="flex gap-3">
+<span class="inline-flex w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] mt-1.5 shrink-0"></span>
+<span><span class="font-semibold">Validation &amp; connections</span> (how performance is verified)</span>
+</li>
+<li class="flex gap-3">
+<span class="inline-flex w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] mt-1.5 shrink-0"></span>
+<span><span class="font-semibold">Bid-ready scope</span> (bid-comparable clarity)</span>
+</li>
+</ul>
+</div>
+<!-- Right: accordions -->
+<div class="space-y-4">
+<div class="border border-white/15 rounded-sm acc-open" data-acc="">
+<button class="w-full flex items-center justify-between px-4 py-4 text-left">
+<span class="font-semibold">Stage shortlist (sequence map)</span>
+<svg aria-hidden="true" class="acc-icon w-4 h-4 opacity-80" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z" fill-rule="evenodd"></path>
+</svg>
+</button>
+<div class="acc-panel px-4 pb-4 text-white/80" style="max-height: 284px;">
+<p class="text-sm leading-relaxed">
+                Start with the minimum set of stages required to achieve your outcome. Additional stages are added only when the design basis and site risks justify them - every addition must earn its place in the sequence.
+              </p>
+<ul class="mt-3 space-y-2 list-disc pl-5 text-sm">
+<li><span class="font-semibold">Protection &amp; pretreatment</span> (screens, equalisation, source control, oil/grease)</li>
+<li><span class="font-semibold">Core conversion</span> (biological/chemical step that does the “heavy lifting”)</li>
+<li><span class="font-semibold">Separation &amp; polishing</span> (clarification/filtration to stabilise quality)</li>
+<li><span class="font-semibold">Barrier / reuse assurance</span> (pathogen control, salinity control, final polishing)</li>
+<li><span class="font-semibold">Residuals routing</span> (sludge handling to a stable, manageable endpoint)</li>
+<li><span class="font-semibold">Odour &amp; septicity control</span> (capture, dosing, final polishing)</li>
+<li><span class="font-semibold">Utilities &amp; heat integration</span> (energy/heat recovery, operating resilience)</li>
+</ul>
+</div>
+</div>
+<div class="border border-white/15 rounded-sm" data-acc="">
+<button class="w-full flex items-center justify-between px-4 py-4 text-left">
+<span class="font-semibold">Technology options (representative, not exhaustive)</span>
+<svg aria-hidden="true" class="acc-icon w-4 h-4 opacity-80" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z" fill-rule="evenodd"></path>
+</svg>
+</button>
+<div class="acc-panel px-4 pb-4 text-white/80" style="">
+<p class="text-sm leading-relaxed">
+                Once stages are defined, a focused set of technology options is shortlisted against the design basis and site constraints. The families below are representative of established configurations - the final shortlist is determined by your specific diagnostics, footprint, and risk profile.
+              </p>
+<ul class="mt-3 space-y-2 list-disc pl-5 text-sm">
+<li><span class="font-semibold">Core conversion:</span> MBBR (and common hybrid arrangements where needed)</li>
+<li><span class="font-semibold">Polishing:</span> DAF / disc or cloth media filtration / oxidation‑polishing where appropriate</li>
+<li><span class="font-semibold">Reuse assurance:</span> UF and/or RO where salinity or high‑assurance reuse requires barriers</li>
+<li><span class="font-semibold">Brine control:</span> MVR‑based concentration where ZLD‑readiness is required</li>
+<li><span class="font-semibold">Residuals:</span> decanter centrifuge / screw press; drying beds or thermal drying where justified</li>
+<li><span class="font-semibold">Odour:</span> scrubbers and/or biofilters depending on load and footprint</li>
+<li><span class="font-semibold">Heat integration:</span> plate / shell‑and‑tube heat exchangers for recovery and stability</li>
+</ul>
+</div>
+</div>
+<div class="border border-white/15 rounded-sm" data-acc="">
+<button class="w-full flex items-center justify-between px-4 py-4 text-left">
+<span class="font-semibold">Diagnostics &amp; sampling plan</span>
+<svg aria-hidden="true" class="acc-icon w-4 h-4 opacity-80" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z" fill-rule="evenodd"></path>
+</svg>
+</button>
+<div class="acc-panel px-4 pb-4 text-white/80">
+<ul class="space-y-2 list-disc pl-5 text-sm">
+<li>Define what must be measured to confirm the design basis (including variability and “bad days”).</li>
+<li>Specify sampling locations, frequency, and duration so results are decision‑grade for technology selection.</li>
+<li>Convert data into design‑usable constraints (loads, fouling/scaling risk, toxicity, odour drivers, residuals mass balance).</li>
+</ul>
+</div>
+</div>
+<div class="border border-white/15 rounded-sm" data-acc="">
+<button class="w-full flex items-center justify-between px-4 py-4 text-left">
+<span class="font-semibold">Validation &amp; criteria</span>
+<svg aria-hidden="true" class="acc-icon w-4 h-4 opacity-80" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z" fill-rule="evenodd"></path>
+</svg>
+</button>
+<div class="acc-panel px-4 pb-4 text-white/80">
+<ul class="space-y-2 list-disc pl-5 text-sm">
+<li>Set the critical connections: hydraulics, chemical points, controls and monitoring intent, bypasses, cleaning regimes, residuals routing.</li>
+<li>Set validation checks that match the outcome: performance tests, stability periods, and KPI verification at commissioning.</li>
+<li>Keep validation requirements aligned to actual operations (not lab‑perfect conditions).</li>
+</ul>
+</div>
+</div>
+<div class="border border-white/15 rounded-sm" data-acc="">
+<button class="w-full flex items-center justify-between px-4 py-4 text-left">
+<span class="font-semibold">Scope seed &amp; vendor evaluation support</span>
+<svg aria-hidden="true" class="acc-icon w-4 h-4 opacity-80" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z" fill-rule="evenodd"></path>
+</svg>
+</button>
+<div class="acc-panel px-4 pb-4 text-white/80" style="">
+<ul class="space-y-2 list-disc pl-5 text-sm">
+<li>Translate the shortlist into vendor‑readable scope: required outcomes, design basis, connections, exclusions, and validation basis.</li>
+<li>Request the right vendor information (references, guarantees, utilities, consumables, maintainability, spares).</li>
+<li>Compare bids on a like‑for‑like basis, with evaluation against the agreed validation requirements.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section class="py-16 border-t hairline" id="module-snapshot">
+<div class="max-w-6xl mx-auto px-6 py-12">
+<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+<div>
+<h2 class="fp-serif text-3xl font-semibold" style="color:#ffffff">Module Engagement Snapshot</h2>
+<p class="text-muted mt-2 max-w-3xl" style="color:rgba(255,255,255,.78)">
+        Each module is a building block with a defined role in the treatment sequence. Select one to see the end-uses it serves, the diagnostics that confirm its design basis, and the configurations it typically forms with other modules.
+      </p>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-2 rounded-sm border text-sm font-semibold" id="msPrint">Print snapshot</button>
+<a class="px-3 py-2 rounded-sm bg-accent text-white text-sm font-semibold hover:opacity-95" href="#modules">Jump to module library →</a>
+</div>
+</div>
+<div class="ms-layout"><div class="ms-panel ms-left"><div class="ms-left-head"><p class="ms-colhead">Solution family</p><p class="ms-kicker">Select a solution family, then a module. The middle column describes what the module is in treatment and the role it plays, while the right column shows the configuration pathways it can support.</p><div class="ms-tabs" id="msFamilyBar"><button class="ms-family is-active" data-family="water" type="button"><img alt="" class="ms-family-ico" src="assets/heading-icons/water-reuse.png"/><span>Water &amp; Reuse</span></button><button class="ms-family" data-family="industrial" type="button"><img alt="" class="ms-family-ico" src="assets/heading-icons/industrial-brine.png"/><span>Industrial Conditioning &amp; Brine</span></button><button class="ms-family" data-family="odor" type="button"><img alt="" class="ms-family-ico" src="assets/heading-icons/odor-septicity.png"/><span>Odor &amp; Septicity</span></button><button class="ms-family" data-family="energy" type="button"><img alt="" class="ms-family-ico" src="assets/heading-icons/energy-heat.png"/><span>Energy &amp; Heat</span></button><button class="ms-family" data-family="sludge" type="button"><img alt="" class="ms-family-ico" src="assets/heading-icons/sludge-reuse.png"/><span>Sludge &amp; Biosolids</span></button></div></div><div class="ms-list" id="msModuleList"><button class="ms-mod" data-module="fp-mbbr" type="button"><div class="ms-mod-name">MBBR+</div><div class="ms-mod-role">Biological BOD/COD removal for reuse or discharge</div></button><button class="ms-mod" data-module="fp-clari" type="button"><div class="ms-mod-name">Clari+</div><div class="ms-mod-role">Clarification &amp; filtration</div></button><button class="ms-mod is-active" data-module="fp-micra" type="button"><div class="ms-mod-name">Micra+</div><div class="ms-mod-role">UF/MF barrier for particles and pathogens</div></button><button class="ms-mod" data-module="fp-micraro" type="button"><div class="ms-mod-name">MicraRO+</div><div class="ms-mod-role">Simple-pass RO for moderate salinity reduction</div></button><button class="ms-mod" data-module="oxiclear" type="button"><div class="ms-mod-name">OxiClear+</div><div class="ms-mod-role">Oxidation-based polishing</div></button></div><div class="ms-hint">Select any module to jump to its full card in the library below.</div></div><div class="ms-panel ms-mid" id="msMid"><p class="ms-colhead">Selected module</p><h3 class="ms-title">Micra+</h3><div class="ms-roleline">UF/MF barrier for particles and pathogens</div><p class="ms-subhead">What it is in treatment</p><div class="ms-bigger">Micra+ is selected where solids, turbidity, and pathogen control must be established before direct reuse or upstream of RO. It protects downstream membranes and reuse outcomes, but dissolved-solids reduction is handled separately by MicraRO+ or ROCore+.</div><p class="ms-subhead">Common reasons it gets selected</p><div class="ms-tags"><span class="ms-tag">TSE-grade reuse</span><span class="ms-tag">Barrier assurance</span><span class="ms-tag">Protect downstream RO</span></div><a class="ms-action" data-jump="fp-micra" href="#fp-micra">Open module card <span aria-hidden="true">→</span></a></div><div class="ms-panel ms-right" id="msRight"><p class="ms-colhead">Configuration pathways</p><div class="ms-block"><p class="ms-h4">Solution configurations</p><div class="ms-recipes"><div class="ms-recipe"><p class="ms-recipe-title">TSE reuse line</p><p class="ms-recipe-focus">Clarify first, then set barrier assurance.</p><div class="ms-chips"><a class="ms-chip" data-jump="fp-clari" href="#fp-clari">● Clari+</a><a class="ms-chip" data-jump="fp-micra" href="#fp-micra">● Micra+</a><a class="ms-chip" data-jump="oxiclear" href="#oxiclear">● OxiClear+</a></div></div><div class="ms-recipe"><p class="ms-recipe-title">High-assurance reuse</p><p class="ms-recipe-focus">Barrier + RO where quality intent requires it.</p><div class="ms-chips"><a class="ms-chip" data-jump="fp-clari" href="#fp-clari">● Clari+</a><a class="ms-chip" data-jump="fp-micra" href="#fp-micra">● Micra+</a><a class="ms-chip" data-jump="fp-rocore" href="#fp-rocore">● ROCore+</a><a class="ms-chip" data-jump="oxiclear" href="#oxiclear">● OxiClear+</a></div></div></div></div><div class="ms-block"><p class="ms-h4">Key checks</p><ul class="ms-list-ul"><li>Fouling/scaling potential</li><li>Pre-treatment adequacy (solids &amp; oils)</li><li>Cleaning strategy &amp; downtime tolerance</li></ul></div><div class="ms-block"><p class="ms-h4">Validation &amp; connections</p><ul class="ms-list-ul"><li>Flux/throughput range</li><li>CIP triggers &amp; chemical plan</li><li>Concentrate/solids handling connection</li></ul></div></div></div>
+</div>
+</section><section class="bg-cream border-t hairline" id="modules" style="scroll-margin-top:80px;">
+<!-- Water & Reuse Treatment -->
+<!-- Sludge & Biosolids -->
+<!-- Odor & Septicity Control -->
+<!-- Energy & Heat Systems -->
+<div class="max-w-6xl mx-auto px-6 py-14"><h2 class="fp-serif text-3xl font-bold mb-8 text-center"> FlowPlan Modules by Solution Area</h2><div class="flex flex-wrap justify-center gap-4 mb-8"><a class="px-4 py-2 rounded-full bg-gray-200 hover:bg-blue-200 font-semibold text-sm transition" href="#mod-water"><img alt="" class="inline-block w-5 h-5 mr-2 align-middle shrink-0" src="assets/heading-icons/water-reuse.png"/> Water &amp; Reuse Treatment</a><a class="px-4 py-2 rounded-full bg-gray-200 hover:bg-slate-100 font-semibold text-sm transition" href="#mod-industrial"><img alt="" class="inline-block w-5 h-5 mr-2 align-middle shrink-0" src="assets/heading-icons/industrial-brine.png"/> Industrial Conditioning &amp; Brine</a><a class="px-4 py-2 rounded-full bg-gray-200 hover:bg-green-200 font-semibold text-sm transition" href="#mod-sludge-mod"><img alt="" class="inline-block w-5 h-5 mr-2 align-middle shrink-0" src="assets/heading-icons/sludge-reuse.png"/> Sludge Management &amp; Reuse</a><a class="px-4 py-2 rounded-full bg-gray-200 hover:bg-yellow-200 font-semibold text-sm transition" href="#mod-odor"><img alt="" class="inline-block w-5 h-5 mr-2 align-middle shrink-0" src="assets/heading-icons/odor-septicity.png"/> Odor &amp; Septicity Control</a><a class="px-4 py-2 rounded-full bg-gray-200 hover:bg-red-200 font-semibold text-sm transition" href="#mod-energy"><img alt="" class="inline-block w-5 h-5 mr-2 align-middle shrink-0" src="assets/heading-icons/energy-heat.png"/> Energy &amp; Heat Systems</a></div><div class="mb-16">
+<h3 class="fp-serif text-2xl font-semibold mb-6" id="mod-water" style="scroll-margin-top:64px;"><img alt="Water Icon" class="inline-block w-10 h-10 mr-2 align-middle" src="assets/heading-icons/water-reuse.png"/> Water &amp; Reuse Treatment</h3><div class="grid md:grid-cols-12 gap-6 items-start mb-6"><div class="md:col-span-7"><div class="text-sm uppercase tracking-wide text-gray-500 mb-2">Designed outcomes &amp; treatment operations</div><p class="text-gray-700 leading-relaxed">Water and reuse systems are built as sequences of unit operations - separation and clarification, biological conversion, polishing, barrier treatment, and (where needed) desalination or brine control. FlowPlan diagnostics define the design basis (flows/loads, variability, salinity/chemistry, space and connections, and the intended end-use). From there we define the connections, controls intent, and validation requirements needed to confirm performance at commissioning.</p></div><div class="md:col-span-5"><div class="rounded-sm p-5 border hairline soft-card capability-forest"><div class="text-sm uppercase tracking-wide text-gray-500 mb-2">Capability levels (quality outcomes)</div>
+<p class="text-sm text-gray-700 leading-relaxed mb-3">These are outcome tiers expressed in plain quality terms. The diagnostic outputs determine which tier is required, then set the viable configuration (design basis, chemistry, and constraints).</p><ul class="space-y-2 text-sm text-gray-700"><li class="leading-relaxed"><span class="font-semibold text-gray-950">Polish &amp; stabilise:</span><span> Tertiary filtration and disinfection where the biological stage is performing but effluent consistency or reuse quality needs a reliable final guardrail.</span></li><li class="leading-relaxed"><span class="font-semibold text-gray-950">Strengthen biology:</span><span> MBBR hybrid configurations where the existing biological stage cannot reliably meet BOD or nitrogen targets - applied within footprint, connection, and operability constraints rather than requiring a full rebuild.</span></li><li class="leading-relaxed"><span class="font-semibold text-gray-950">Assure reuse:</span><span> Membrane barrier sequences where the end-use, permit, or lender requirement demands consistent, repeatable quality - not just a single passing result.</span></li><li class="leading-relaxed"><span class="font-semibold text-gray-950">Manage salinity:</span><span> Recovery-optimised RO configurations, brine segregation, and ZLD-readiness preparation for sites where salt concentration drives operational cost, scaling risk, or discharge compliance.</span></li></ul></div></div></div>
+<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+<div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-blue-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card fp-module-card" data-fp-module="clari" id="fp-clari">
+<h4 class="text-lg font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">Clari+</h4>
+<p class="text-sm text-gray-600 mb-2">Clarification &amp; Filtration</p>
+<p class="text-sm">Introduced where solids carryover or unstable polishing begins to affect downstream filtration, reuse quality, or final discharge consistency. It improves suspended-solids control and gives later barrier or recovery stages a cleaner, more predictable feed.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 1 - 2</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Solids control / cleaner downstream feed</span></div></div>
+<div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-blue-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card fp-module-card" data-fp-module="mbbr" id="fp-mbbr">
+<h4 class="text-lg font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">MBBR+</h4>
+<p class="text-sm text-gray-600 mb-2">Biological BOD/COD and ammonia removal</p>
+<p class="text-sm">Selected where biological treatment needs more stability, stronger loading resilience, or added capacity under tighter discharge or reuse targets. Applied as pure MBBR or IFAS, it supports BOD/COD reduction and nitrification, and can also contribute to nitrogen removal where the configuration is set up for it.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 1 - 2</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Pure MBBR / IFAS + process strengthening</span></div></div>
+<div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-blue-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card fp-module-card" data-fp-module="micra" id="fp-micra">
+<h4 class="text-lg font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">Micra+</h4>
+<p class="text-sm text-gray-600 mb-2">UF/MF barrier for particles and pathogens</p>
+<p class="text-sm">Applied where suspended solids, turbidity, and pathogens must be controlled before direct reuse or upstream of RO. It provides a defined membrane barrier, protects downstream RO, and improves reuse assurance, while dissolved-solids reduction is handled separately by MicraRO+ or ROCore+.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 2 - 3</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">UF/MF barrier / reuse assurance</span></div></div>
+<div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-blue-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card fp-module-card" data-fp-module="micraro" id="fp-micraro">
+<h4 class="text-lg font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">MicraRO+</h4>
+<p class="text-sm text-gray-600 mb-2">Simple-pass RO for moderate salinity reduction</p>
+<p class="text-sm">Chosen when reuse needs go beyond barrier polishing and require moderate dissolved-solids reduction without moving straight into a heavier RO-led recovery route. It often suits cooling tower make-up, process wash, and lower-salinity reuse where full ROCore+ recovery is not yet justified.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 2 - 3</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Simple-pass RO / moderate TDS reduction</span></div></div>
+<div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-blue-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card" id="oxiclear">
+<h4 class="text-lg font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">OxiClear+</h4>
+<p class="text-sm text-gray-600 mb-2">Oxidation-based polishing and disinfection</p>
+<p class="text-sm">Applied where final colour, odour, pathogen assurance, or trace-organic reduction still needs a stronger finish after the main solids and barrier steps are set. Depending on the target, it may take the form of UV, ozone, hydrogen peroxide, or advanced oxidation rather than a single fixed technology.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 2 - 3</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">UV / ozone / peroxide / AOP</span></div></div>
+</div>
+</div><div class="mb-16">
+<h3 class="fp-serif text-2xl font-semibold mb-6" id="mod-industrial" style="scroll-margin-top:64px;"><img alt="Industrial Icon" class="inline-block w-10 h-10 mr-2 align-middle" src="assets/heading-icons/industrial-brine.png"/> Industrial Conditioning &amp; Brine</h3><div class="grid md:grid-cols-12 gap-6 items-start mb-6"><div class="md:col-span-7"><div class="text-sm uppercase tracking-wide text-gray-500 mb-2">Chemistry control, recovery, and brine routing</div><p class="text-gray-700 leading-relaxed">Industrial conditioning and brine routes begin where chemistry, salinity, and reject handling become design drivers. Batch treatment stabilises difficult feeds, recovery RO concentrates the route around water recovery and reject management, and ZLD+Prep+ prepares concentrate for what may follow next. The point is not to force a thermal route too early, but to define when the chemistry and brine pathway make it unavoidable.</p></div><div class="md:col-span-5"><div class="rounded-sm p-5 border hairline soft-card capability-forest"><div class="text-sm uppercase tracking-wide text-gray-500 mb-2">How the route develops</div><p class="text-sm text-gray-700 leading-relaxed mb-3">Industrial and brine schemes usually build in stages: first making the feed controllable, then concentrating recovery around a defined RO route, and only then preparing a concentrate for thermal work where the chemistry and disposal position justify it.</p><ul class="space-y-2 text-sm text-gray-700"><li class="leading-relaxed"><span class="font-semibold text-gray-950">Condition:</span><span> Reset feed chemistry, metals behaviour, and solids response before later recovery stages.</span></li><li class="leading-relaxed"><span class="font-semibold text-gray-950">Recover:</span><span> Pull water quality and recovery performance into a defined RO route with a reject plan.</span></li><li class="leading-relaxed"><span class="font-semibold text-gray-950">Prepare brine:</span><span> Set scaling control, solids handling, and thermal readiness before evaporation or crystallisation are considered.</span></li></ul></div></div></div><div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"><div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-blue-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card fp-module-card" data-fp-module="batch" id="fp-batch">
+<h4 class="text-lg font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">Batch+</h4>
+<p class="text-sm text-gray-600 mb-2">Controlled chemistry conditioning</p>
+<p class="text-sm">Introduced where industrial side streams need pH reset, metals precipitation, or targeted coagulation and flocculation before clarification, RO, or brine routing can be stabilised. It is the chemistry block that turns difficult feed water into something the rest of the route can handle with less risk.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 1 - 2</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Chemistry conditioning / metals-pH control</span></div></div><div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-blue-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card fp-module-card" data-fp-module="rocore" id="fp-rocore">
+<h4 class="text-lg font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">ROCore+</h4>
+<p class="text-sm text-gray-600 mb-2">Recovery-centred reverse osmosis</p>
+<p class="text-sm">Brought in where salinity, conductivity, and end-use quality become central design drivers and water recovery must be paired with a defined reject route. In industrial pathways it often becomes the bridge between conditioned feed water and brine concentration or ZLD readiness.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 2 - 3</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Recovery RO / reject route</span></div></div><div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-blue-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card fp-module-card" data-fp-module="zldprep" id="fp-zldprep">
+<h4 class="text-lg font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">ZLD+Prep+</h4>
+<p class="text-sm text-gray-600 mb-2">Brine / thermal feed readiness</p>
+<p class="text-sm">Introduced where concentrate streams need scaling control, solids strategy, and thermal-feed discipline before evaporation or crystallisation are considered. It defines whether the brine can move forward and on what chemistry and handling basis.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 3</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Brine conditioning / thermal readiness</span></div></div></div><div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-6"><div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-blue-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card fp-module-card" data-fp-module="zld" id="fp-zld">
+<h4 class="text-lg font-semibold text-blue-700 hover:text-blue-800 transition-colors duration-200">ZLD+</h4>
+<p class="text-gray-500 mb-2">Evaporation and crystallisation</p>
+<p class="text-sm">A final brine-management stage for routes that must move to near-zero liquid discharge. It takes a prepared concentrate, produces a distillate stream for reuse or discharge, and leaves a salt, slurry, or cake stream that has to be handled through the defined outlet route.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 3</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Evaporation / crystallisation end route</span></div></div></div></div><div class="mb-16">
+<h3 class="fp-serif text-2xl font-semibold mb-6" id="mod-sludge-mod" style="scroll-margin-top:64px;"><img alt="Sludge Icon" class="inline-block w-10 h-10 mr-2 align-middle" src="assets/heading-icons/sludge-reuse.png"/> Sludge Management &amp; Reuse</h3><div class="grid md:grid-cols-12 gap-6 items-start mb-6"><div class="md:col-span-7"><div class="text-sm uppercase tracking-wide text-slate-500 mb-2">Turn residuals into a defined pathway</div><p class="text-slate-700 leading-relaxed">Residuals are where OPEX, risk, and public perception accumulate fastest - and where under-specified design decisions cause the most persistent operational problems. These modules define practical, implementable pathways: reducing hauling burden, reaching Class A standards where required, and creating market-ready products where the offtake and regulatory context supports it. Selection is practical in solids mass balance, centrate and loadback impacts, storage and odour constraints, and realistic end-market routes - not aspirational outputs that the site cannot actually sustain.</p></div><div class="md:col-span-5"><div class="rounded-sm p-5 border hairline soft-card capability-forest"><div class="text-sm uppercase tracking-wide text-slate-500 mb-2">Typical pathway depth</div><p class="text-sm text-slate-700 leading-relaxed mb-3">Sludge routes usually develop in practical steps: first making solids safer and easier to handle, then improving stability and dryness, and finally moving into reuse or thermal outlets only where the standard, logistics, and market route are all workable.</p><ul class="space-y-2 text-sm text-slate-700"><li class="leading-relaxed"><span class="font-semibold text-slate-900">Level 1: </span><span>Stabilise + dewater for safe handling and transport.</span></li><li class="leading-relaxed"><span class="font-semibold text-slate-900">Level 2: </span><span>Dry/compost to reach Class A reuse pathways.</span></li><li class="leading-relaxed"><span class="font-semibold text-slate-900">Level 3: </span><span>Value recovery through fertilizer, biofertilizer, or mono-incineration where the outlet route supports it.</span></li></ul></div></div></div>
+<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+<div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-green-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card fp-module-card" data-fp-module="sludge-dewater" id="fp-sludge-dewater">
+<h4 class="text-lg font-semibold text-green-700 hover:text-green-800 transition-colors duration-200">Sludge+Dewater</h4>
+<p class="text-sm text-gray-600 mb-2">Mechanical dewatering</p>
+<p class="text-sm">The first solids-handling step for reducing sludge volume and turning a liquid residual into a cake that can be stored, hauled, dried, composted, or routed onward. It is where hauling burden, polymer demand, and downstream solids logic start to come into focus.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 1</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Handling + hauling reduction</span></div></div>
+<div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-green-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card fp-module-card" data-fp-module="sludge-dry" id="fp-sludge-dry">
+<h4 class="text-lg font-semibold text-green-700 hover:text-green-800 transition-colors duration-200">Sludge+Dry</h4>
+<p class="text-sm text-gray-600 mb-2">Thermal or bed drying</p>
+<p class="text-sm">Introduced after dewatering where mass reduction, Class A readiness, or a drier feed for reuse and thermal routes is required. Bed drying or thermal drying is selected against heat availability, footprint, odour control, and the target outlet.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 2</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Class A pathway</span></div></div>
+<div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-green-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card fp-module-card" data-fp-module="sludge-compost" id="fp-sludge-compost">
+<h4 class="text-lg font-semibold text-green-700 hover:text-green-800 transition-colors duration-200">Sludge+Compost</h4>
+<p class="text-sm text-gray-600 mb-2">ASP/Windrow composting</p>
+<p class="text-sm">A Class A route where dewatered biosolids are blended and matured into compost for reuse. It suits programmes that can support bulking supply, curing space, odour management, and a realistic outlet rather than storage-led accumulation.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 2</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Class A compost outputs</span></div></div>
+<div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-green-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card fp-module-card" data-fp-module="sludge-fert" id="fp-sludge-fert">
+<h4 class="text-lg font-semibold text-green-700 hover:text-green-800 transition-colors duration-200">Sludge+Fert</h4>
+<p class="text-sm text-gray-600 mb-2">Organo-mineral fertilizer</p>
+<p class="text-sm">A value-recovery route that converts stabilised solids into an organo-mineral fertilizer product with more deliberate nutrient formulation and product handling than standard compost routes. It depends on outlet quality, market logic, and consistent feed preparation.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 3</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Market‑ready fertilizer processing</span></div></div>
+<div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-green-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card fp-module-card" data-fp-module="sludge-bio" id="fp-sludge-bio">
+<h4 class="text-lg font-semibold text-green-700 hover:text-green-800 transition-colors duration-200">Sludge+Bio</h4>
+<p class="text-sm text-gray-600 mb-2">Enhanced biofertilizer</p>
+<p class="text-sm">An enriched product route where stabilised solids are blended with biological or nutrient additives to create a higher-value amendment for Class A reuse markets. It is chosen where agronomic positioning and product differentiation matter, not only disposal reduction.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 3</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Bio‑enhanced product</span></div></div>
+<div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-green-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card fp-module-card" data-fp-module="sludge-reuseplan" id="fp-sludge-reuseplan">
+<h4 class="text-lg font-semibold text-green-700 hover:text-green-800 transition-colors duration-200">Sludge+ReusePlan</h4>
+<p class="text-sm text-gray-600 mb-2">Reuse market planning</p>
+<p class="text-sm">The planning element that aligns product targets, compliance needs, logistics, and offtake routes before a reuse path is committed. It turns compost, fertilizer, or biofertilizer from an aspiration into a defined pathway with realistic outlets and quality expectations.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 2 - 3</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Market + compliance planning</span></div></div>
+<div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-green-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card fp-module-card" data-fp-module="incineration" id="fp-incineration">
+<h4 class="text-lg font-semibold text-green-700 hover:text-green-800 transition-colors duration-200">Incineration+</h4>
+<p class="text-sm text-gray-600 mb-2">Mono-incineration + recovery</p>
+<p class="text-sm">A dedicated thermal route for solids where volume reduction, risk control, and ash-based recovery justify moving beyond land application pathways. It is considered where feed stability, permitting, ash handling, and the recovery route can be defined as part of the overall solids strategy.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 3</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Mono‑incineration + recovery</span></div></div>
+</div>
+</div><div class="mb-16">
+<h3 class="fp-serif text-2xl font-semibold mb-6" id="mod-odor" style="scroll-margin-top:64px;"><img alt="Odor Icon" class="inline-block w-10 h-10 mr-2 align-middle" src="assets/heading-icons/odor-septicity.png"/> Odor &amp; Septicity Control</h3><div class="grid md:grid-cols-12 gap-6 items-start mb-6"><div class="md:col-span-7"><div class="text-sm uppercase tracking-wide text-slate-500 mb-2">Protect assets, people, and community</div><p class="text-slate-700 leading-relaxed">Odour and septicity escalate faster than most clients expect: H₂S corrosion damages assets, complaints create community and regulatory exposure, and process upsets compound through the treatment sequence. These modules are applied at headworks, tanks, buildings, and collection networks - beginning with source control and local capture, then moving into higher-duty air treatment only where the discharge point, airflow, or receptor sensitivity demands more. The approach treats odour as a corrosion and safety problem first, a nuisance second - which changes both where the intervention is placed and how it is sized.</p></div><div class="md:col-span-5"><div class="rounded-sm p-5 border hairline soft-card capability-forest"><div class="text-sm uppercase tracking-wide text-slate-500 mb-2">How the response usually builds</div><p class="text-sm text-slate-700 leading-relaxed mb-3">Odour and septicity work rarely starts with a single silver-bullet unit. The sequence usually begins by locating the source and defining the air or liquid risk, then controlling formation and treating release locally, and only adding a higher-duty air-treatment step where the discharge point, airflow, or nearby receptors demand more than source capture alone.</p><ul class="space-y-2 text-sm text-slate-700"><li class="leading-relaxed"><span class="font-semibold text-slate-900">Diagnose:</span><span> Map the source, confirm H₂S and septicity drivers, and decide where intervention will actually change the problem.</span></li><li class="leading-relaxed"><span class="font-semibold text-slate-900">Prevent &amp; capture:</span><span> Use dosing and/or local carbon capture to control formation, corrosion risk, and release from headworks, tanks, vents, or networks.</span></li><li class="leading-relaxed"><span class="font-semibold text-slate-900">Polish:</span><span> Add scrubbers, biofilters, specialist media, or other advanced methods where the captured stream still needs a stronger air-treatment step before discharge.</span></li></ul></div></div></div>
+<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+<div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-yellow-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card" id="odor-capture">
+<h4 class="text-lg font-semibold text-yellow-700 hover:text-yellow-800 transition-colors duration-200">Odor+Capture</h4>
+<p class="text-sm text-gray-600 mb-2">Local carbon capture &amp; adsorption</p>
+<p class="text-sm">Applied at wet wells, headworks, tank vents, and enclosed handling points where odour must be contained and treated locally rather than simply extracted. Activated-carbon or similar adsorption media capture the odour close to source, reducing release into work areas and lowering the load that any larger downstream air-treatment step must handle.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 2</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Source capture / carbon adsorption</span></div></div>
+<div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-yellow-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card" id="odor-dose">
+<h4 class="text-lg font-semibold text-yellow-700 hover:text-yellow-800 transition-colors duration-200">Odor+Dose</h4>
+<p class="text-sm text-gray-600 mb-2">Chemical/biological dosing</p>
+<p class="text-sm">Targets septicity, dissolved sulfide formation, and corrosion risk within rising mains, wet wells, tanks, and upstream process zones before those drivers transfer into the air phase. It works best when the dose point, monitoring points, and expected response are set together.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 2</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Septicity &amp; H₂S prevention</span></div></div>
+<div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-yellow-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card" id="odor-polish">
+<h4 class="text-lg font-semibold text-yellow-700 hover:text-yellow-800 transition-colors duration-200">Odor+Polish</h4>
+<p class="text-sm text-gray-600 mb-2">Higher-duty air treatment</p>
+<p class="text-sm">Used where a captured air stream needs more than local adsorption, or where discharge conditions, airflow volume, or receptor sensitivity require a stronger treatment step. It can be configured as a scrubber, biofilter, specialist media bed, or another advanced method, selected against the actual loading, peaks, and discharge requirement.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 3</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Scrubber / bio / specialist media</span></div></div>
+</div>
+</div><div>
+<h3 class="fp-serif text-2xl font-semibold mb-6" id="mod-energy" style="scroll-margin-top:64px;"><img alt="Energy Icon" class="inline-block w-10 h-10 mr-2 align-middle" src="assets/heading-icons/energy-heat.png"/> Energy &amp; Heat Systems</h3><div class="grid md:grid-cols-12 gap-6 items-start mb-6"><div class="md:col-span-7"><div class="text-sm uppercase tracking-wide text-slate-500 mb-2">Enable stable performance with practical heat loops</div><p class="text-slate-700 leading-relaxed">Heat integration affects both operating cost and biological stability - and is often overlooked until it becomes a constraint. These modules are scoped as defined utility loops with clear connections, fouling and scaling risk assessed upfront, and performance ranges confirmed against plant operating conditions rather than theoretical heat balances.</p></div><div class="md:col-span-5"><div class="rounded-sm p-5 border hairline soft-card capability-forest"><div class="text-sm uppercase tracking-wide text-slate-500 mb-2">Where heat work usually starts</div><p class="text-sm text-slate-700 leading-relaxed mb-3">Heat work often begins with one clear duty rather than a site-wide energy masterplan. These levels reflect that progression: first controlling a temperature problem, then supporting a defined plant duty, and only then moving into wider recovery where the source and sink genuinely line up.</p><ul class="space-y-2 text-sm text-slate-700"><li class="leading-relaxed"><span class="font-semibold text-slate-900">Level 1: </span><span>Heat exchange to manage cooling or heating duties that already exist in the process.</span></li><li class="leading-relaxed"><span class="font-semibold text-slate-900">Level 2: </span><span>Sludge, digestion, or conditioning temperature support where a defined plant loop benefits from recovered heat.</span></li><li class="leading-relaxed"><span class="font-semibold text-slate-900">Level 3: </span><span>Wider waste-heat recovery across site loops where the source, sink, and integration effort make practical sense.</span></li></ul></div></div></div>
+<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+<div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-red-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card" id="cooling-loop">
+<h4 class="text-lg font-semibold text-red-700 hover:text-red-800 transition-colors duration-200">Thermo+Cooling Loop</h4>
+<p class="text-sm text-gray-600 mb-2">Effluent cooling before treatment</p>
+<p class="text-sm">Cooling of hot wastewater or effluent before biological treatment, membrane systems, chemical treatment, reuse polishing, or discharge. A heat exchanger and secondary cooling loop remove heat so the stream enters downstream units within an acceptable temperature band.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 1</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Temperature control before treatment</span></div></div>
+<div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-red-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card" id="heating-loop">
+<h4 class="text-lg font-semibold text-red-700 hover:text-red-800 transition-colors duration-200">Thermo+Heating Loop</h4>
+<p class="text-sm text-gray-600 mb-2">Recovered heat for a defined plant duty</p>
+<p class="text-sm">Recovery of useful heat from warm wastewater or effluent to support a defined heating duty such as boiler feed preheat, process water heating, digester heating, or other plant heating requirements. Heat is transferred through an exchanger into a dedicated heating loop serving the selected duty.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 2</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Recovered heat for plant use</span></div></div>
+<div class="rounded-sm shadow-md p-5 border border-gray-200 hover:border-red-700 hover:border-2 transform transition duration-200 hover:scale-105 hover:z-10 hover:shadow-lg hairline soft-card" id="heat-recovery">
+<h4 class="text-lg font-semibold text-red-700 hover:text-red-800 transition-colors duration-200">Thermo+Heat Recovery Screening</h4>
+<p class="text-sm text-gray-600 mb-2">Low-grade heat screening + upgrade pathways</p>
+<p class="text-sm">Screening and integration of low-grade thermal recovery opportunities from wastewater, including heat-pump-ready pathways where technically and commercially justified. Applied where a site may benefit from thermal reuse beyond direct heat exchange, but requires feasibility-led assessment before moving forward.</p>
+<div class="mt-3 flex flex-wrap gap-2" data-chips="true"><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Level 3</span><span class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-100">Screening + heat-pump-ready pathways</span></div></div>
+</div>
+</div></div></section><section class="bg-[color:var(--cream)] border-t hairline mt-24 mb-0" id="contact">
+<div class="max-w-6xl mx-auto px-6 pt-20 pb-28">
+<div class="grid md:grid-cols-2 gap-12 items-start">
+<div>
+<h2 class="fp-serif text-3xl md:text-4xl text-gray-950">Get In Touch</h2>
+<p class="mt-4 text-gray-700 max-w-xl leading-relaxed">
+          Share your outcome target and the constraints affecting delivery. We will define the right FlowPlan module configuration - with the diagnostics, validation requirements, and connections that make the solution implementation-ready, not just technically selected.
+        </p>
+<div class="mt-6 text-sm text-gray-700 leading-relaxed max-w-xl">
+<ul class="space-y-2">
+<li>
+<span class="flex gap-3">
+<span class="inline-flex w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] mt-1.5 shrink-0"></span>
+<span>Your outcome target (compliance / reuse end-use / recovery / odour / brine control)</span>
+</span>
+</li>
+<li>
+<span class="flex gap-3">
+<span class="inline-flex w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] mt-1.5 shrink-0"></span>
+<span>Feed context (flows &amp; loads, variability, salinity/chemistry, “known pain points”)</span>
+</span>
+</li>
+<li>
+<span class="flex gap-3">
+<span class="inline-flex w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] mt-1.5 shrink-0"></span>
+<span>Constraints &amp; connections (space, utilities/heat, shutdown periods, operator capacity)</span>
+</span>
+</li>
+<li>
+<span class="flex gap-3">
+<span class="inline-flex w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] mt-1.5 shrink-0"></span>
+<span>Module focus (polishing, brine management, sludge routing, odor capture/dosing, heat integration)</span>
+</span>
+</li>
+<li>
+<span class="flex gap-3">
+<span class="inline-flex w-2.5 h-2.5 rounded-full bg-[color:var(--accent)] mt-1.5 shrink-0"></span>
+<span>Verification expectations (sampling plan, commissioning KPIs, monitoring approach, stakeholder approvals)</span>
+</span>
+</li>
+</ul>
+</div>
+<a class="mt-6 inline-flex items-center gap-2 bg-[color:var(--accent)] text-white px-4 py-2 text-sm rounded-sm hover:bg-[color:var(--accent2)]" href="../get-in-touch.html">
+          Open enquiry form
+          <span class="opacity-90">
+<svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</span>
+</a>
+</div>
+<div class="bg-white/55 rounded-sm border hairline p-6 md:pt-2 md:mt-0" id="enquiry-form">
+<p class="text-sm text-gray-700 mb-4">Fill in the below form and we’ll get you to the right place.</p>
+<form action="/thank-you.html" class="grid gap-3" data-netlify="true" data-static-form-name="enwater-enquiry" id="enquiryForm" method="POST" name="enwater-enquiry" netlify-honeypot="bot-field">
+<input name="form-name" type="hidden" value="enwater-enquiry"/>
+<input name="source_page" type="hidden" value="FlowPlan/flowplan-solution-design.html"/>
+<p style="display:none"><label>Do not fill this out: <input name="bot-field"/></label></p>
+<input class="w-full rounded-sm border hairline bg-white px-3 py-2 text-sm" id="enqName" name="name" placeholder="Name*" required=""/>
+<input class="w-full rounded-sm border hairline bg-white px-3 py-2 text-sm" id="enqEmail" name="email" placeholder="Email*" required="" type="email"/>
+<input class="w-full rounded-sm border hairline bg-white px-3 py-2 text-sm" id="enqCompany" name="company" placeholder="Company"/>
+<select class="w-full rounded-sm border hairline bg-white px-3 py-2 text-sm" id="enqRegion" name="region" required="">
+<option disabled="" selected="" value="">Region*</option>
+<option value="UAE">UAE</option>
+<option value="GCC">GCC</option>
+<option value="Global">Global</option>
+</select>
+<select class="w-full rounded-sm border hairline bg-white px-3 py-2 text-sm" id="enqType" name="enquiry_type" required="">
+<option disabled="" selected="" value="">Enquiry Type*</option>
+<option>Module mapping &amp; shortlist</option>
+<option>Stack / sequence configuration review</option>
+<option>Diagnostics &amp; sampling plan (design basis)</option>
+<option>Validation &amp; commissioning checks</option>
+<option>Scope seed for vendors (ToR / spec direction)</option>
+<option>Procurement / vendor evaluation support</option>
+<option>General enquiry - not sure where to start</option>
+</select>
+<textarea class="w-full rounded-sm border hairline bg-white px-3 py-2 text-sm" id="enqMsg" name="message" placeholder="Your message." rows="4"></textarea>
+<div class="flex flex-wrap items-center gap-3 pt-1">
+<button class="inline-flex items-center gap-2 bg-[color:var(--accent)] text-white px-4 py-2 text-sm rounded-sm hover:bg-[color:var(--accent2)]" type="submit">
+              Send enquiry
+              <span class="opacity-90">
+<svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</span>
+</button>
+<p class="text-xs text-gray-600"></p>
+</div>
+<p class="text-xs text-red-700 hidden" id="enquiryStatus"></p>
+</form>
+</div>
+</div>
+</div>
+</section><style id="flowplan-explore-more-context-cards-v1">
+#explore-more .fp-related-grid{display:grid;gap:26px;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:2rem;}
+#explore-more .fp-related-card{background:#f4f2ec;color:#142c27;border:1px solid rgba(255,255,255,.42);border-radius:16px;overflow:hidden;box-shadow:0 18px 34px rgba(0,0,0,.22);min-height:100%;display:flex;flex-direction:column;}
+#explore-more .fp-related-card .fp-card-top{height:120px;background:linear-gradient(135deg,rgba(85,160,146,.16),rgba(20,48,42,.06));border-bottom:1px solid rgba(20,48,42,.10);}
+#explore-more .fp-related-card .fp-card-body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:12px;flex:1;}
+#explore-more .fp-related-card .fp-card-kicker{font-size:12.5px;line-height:1.45;color:#31534c;margin:0;}
+#explore-more .fp-related-card h3{font-family:ui-serif,Georgia,Cambria,"Times New Roman",serif;font-size:20px;line-height:1.28;color:#102822;margin:0;}
+#explore-more .fp-related-card .fp-card-text{font-size:14.5px;line-height:1.55;color:#1f3732;margin:0;}
+#explore-more .fp-related-card a{margin-top:auto;color:#14302a;text-decoration:underline;text-underline-offset:5px;text-decoration-color:rgba(20,48,42,.35);font-size:14px;}
+#explore-more .fp-related-card a:hover{text-decoration-color:#55a092;color:#0f2f2b;}
+@media(max-width:900px){#explore-more .fp-related-grid{grid-template-columns:1fr;}}
+/* FlowPlan contextual Explore More hover fix: keep cards readable on dark section. */
+#explore-more .fp-related-card{
+  position:relative!important;
+  isolation:isolate!important;
+  background:#f7f3ea!important;
+  color:#132c27!important;
+  border:1px solid rgba(219,226,218,.96)!important;
+  box-shadow:0 18px 36px rgba(0,0,0,.24)!important;
+  transform:none!important;
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease,background .18s ease!important;
+}
+#explore-more .fp-related-card::after{
+  display:none!important;
+  content:none!important;
+}
+#explore-more .fp-related-card:hover,
+#explore-more .fp-related-card:focus-within{
+  background:#fffaf1!important;
+  color:#102822!important;
+  transform:translateY(-4px)!important;
+  border-color:rgba(85,160,146,.82)!important;
+  box-shadow:0 26px 48px rgba(0,0,0,.30),0 0 0 1px rgba(85,160,146,.18) inset!important;
+}
+#explore-more .fp-related-card .fp-card-top{
+  background:
+    radial-gradient(circle at 78% 18%,rgba(85,160,146,.18),transparent 34%),
+    linear-gradient(135deg,rgba(85,160,146,.12),rgba(244,242,236,.92))!important;
+}
+#explore-more .fp-related-card:hover .fp-card-top,
+#explore-more .fp-related-card:focus-within .fp-card-top{
+  background:
+    radial-gradient(circle at 74% 14%,rgba(85,160,146,.30),transparent 32%),
+    linear-gradient(135deg,rgba(85,160,146,.22),rgba(255,250,241,.96))!important;
+}
+#explore-more .fp-related-card .fp-card-kicker,
+#explore-more .fp-related-card h3,
+#explore-more .fp-related-card .fp-card-text,
+#explore-more .fp-related-card a{
+  color:inherit!important;
+}
+#explore-more .fp-related-card .fp-card-kicker{color:#31534c!important;}
+#explore-more .fp-related-card .fp-card-text{color:#1f3732!important;}
+#explore-more .fp-related-card a{
+  color:#14302a!important;
+  text-decoration-thickness:1px!important;
+  text-decoration-color:rgba(20,48,42,.42)!important;
+}
+#explore-more .fp-related-card a:hover,
+#explore-more .fp-related-card a:focus{
+  color:#0f2f2b!important;
+  text-decoration-color:#55a092!important;
+}
+
+</style>
+<section class="bg-[color:var(--forest)] text-white" id="explore-more">
+<div class="pattern">
+<div class="max-w-6xl mx-auto px-6 pt-14 pb-28">
+<div class="flex items-baseline justify-between gap-6">
+<h2 class="fp-serif text-3xl md:text-4xl text-white">Explore More</h2>
+<a class="text-sm text-white/85 hover:text-white inline-flex items-center gap-2" href="../Projects/project-pathways.html">
+          View configurations
+          <span class="opacity-90">
+<svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</span>
+</a>
+</div>
+<div class="fp-related-grid">
+<article class="fp-related-card">
+<div class="fp-card-top"></div>
+<div class="fp-card-body">
+<p class="fp-card-kicker">Recovery-optimised RO</p>
+<h3>ROCore+</h3>
+<p class="fp-card-text">Use this module when salinity, conductivity or high-assurance reuse needs RO selection with pretreatment, recovery targets and reject handling checked before supplier pricing.</p>
+<a href="#fp-rocore">Open ROCore+ module</a>
+</div></article>
+<article class="fp-related-card">
+<div class="fp-card-top"></div>
+<div class="fp-card-body">
+<p class="fp-card-kicker">Brine readiness before concentration</p>
+<h3>ZLD Prep +</h3>
+<p class="fp-card-text">Use this route to confirm feed quality, fouling and scaling risk, segregation needs and pretreatment before evaporator or brine concentration selection.</p>
+<a href="#fp-zldprep">Open ZLD Prep + module</a>
+</div></article>
+<article class="fp-related-card">
+<div class="fp-card-top"></div>
+<div class="fp-card-body">
+<p class="fp-card-kicker">Heat, cooling and conditioning</p>
+<h3>Thermal Treatment</h3>
+<p class="fp-card-text">Review cooling loops, heating loops and heat recovery options where temperature affects biology, membranes, sludge conditioning or reuse reliability.</p>
+<a href="#cooling-loop">Open thermal modules</a>
+</div></article>
+</div>
+</div>
+</div>
+</section></main>
+<style id="enwater-flowplan-footer-standard-v4">
+.enwater-flowplan-footer{background:#173d35;color:rgba(255,255,255,.88);position:relative;border-top:1px solid rgba(255,255,255,.10);margin-top:0;}
+.enwater-flowplan-footer::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.18;background-image:linear-gradient(rgba(255,255,255,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.10) 1px,transparent 1px);background-size:18px 18px;}
+.enwater-flowplan-footer .eff-inner{position:relative;max-width:1180px;margin:0 auto;padding:44px 24px 26px;}
+.enwater-flowplan-footer .eff-grid{display:grid;gap:34px;grid-template-columns:1.4fr 1.1fr 1fr;align-items:start;}
+.enwater-flowplan-footer .eff-brand{display:flex;align-items:center;gap:12px;font-weight:750;color:#fff;font-size:16px;margin-bottom:12px;}
+.enwater-flowplan-footer .eff-logo{height:34px;width:auto;max-width:58px;object-fit:contain;background:#fff;border-radius:6px;padding:4px;box-shadow:0 1px 4px rgba(0,0,0,.16);}
+.enwater-flowplan-footer .eff-desc{max-width:440px;color:rgba(255,255,255,.72);font-size:14px;line-height:1.7;margin:0;}
+.enwater-flowplan-footer .eff-heading{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.62);font-weight:750;margin-bottom:14px;}
+.enwater-flowplan-footer a{display:block;color:rgba(255,255,255,.78);text-decoration:none;font-size:14px;line-height:1.55;margin:8px 0;}
+.enwater-flowplan-footer a:hover{color:#fff;}
+.enwater-flowplan-footer .eff-line{color:rgba(255,255,255,.78);font-size:14px;line-height:1.55;margin:8px 0;}
+.enwater-flowplan-footer .eff-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:34px;padding-top:18px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:rgba(255,255,255,.58);font-size:13px;}
+@media(max-width:780px){.enwater-flowplan-footer .eff-grid{grid-template-columns:1fr}.enwater-flowplan-footer .eff-inner{padding:38px 20px 24px}}
+</style>
+<footer class="footer">
+<div class="wrap">
+<div class="footer-top">
+<div>
+<div class="footer-brand"><img alt="EnWater Design logo" class="footer-logo" src="../assets/images/enwater-design-logo-transparent-mark.png"/><span class="footer-name">EnWater Design</span></div>
+<p class="footer-desc">Independent water, wastewater treatment and reuse consulting, helping owners and operators turn complex challenges into clear decisions and practical outcomes.</p>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<a href="../home.html">Home</a>
+<a href="../About/about.html">About</a>
+<a href="../About/BlogList.html">Our Blog</a>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+</div>
+<div class="footer-col">
+<h4>Services</h4>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing</a>
+<a href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<a href="../Projects/index.html">Projects</a>
+<a href="../Sectors/index.html">Sectors</a>
+</div>
+<div class="footer-col">
+<h4>Pathways</h4>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../Sectors/index.html">Sector Pathways</a>
+</div>
+<div class="footer-col">
+<h4>Get in touch</h4>
+<a href="../get-in-touch.html">Contact form</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">Industrial / CETP</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© <span id="yr"></span> EnWater Design</div>
+<div>Clear systems planning for practical project delivery</div>
+</div>
+</div>
+<script>
+  (function() {
+    const yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+  })();
+</script>
+</footer>
+<script>
+(function(){
+  const root = document.getElementById('module-snapshot');
+  if(!root) return;
+
+  const familyBar = root.querySelector('#msFamilyBar');
+  const listEl = root.querySelector('#msModuleList');
+  const midEl  = root.querySelector('#msMid');
+  const rightEl= root.querySelector('#msRight');
+  const btnPrint = root.querySelector('#msPrint');
+
+  const esc = (s)=>String(s||"").replace(/[&<>"]/g, c=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+  const byId = (id)=>document.getElementById(id);
+
+  const MS = {
+    families: {
+      water: {
+        title:"Water & Reuse",
+        modules:["fp-mbbr","fp-clari","fp-micra","fp-micraro","oxiclear"]
+      },
+      industrial: {
+        title:"Industrial Conditioning & Brine",
+        modules:["fp-batch","fp-rocore","fp-zldprep","fp-zld"]
+      },
+      odor: {
+        title:"Odor & Septicity",
+        modules:["odor-capture","odor-dose","odor-polish"]
+      },
+      energy: {
+        title:"Energy & Heat",
+        modules:["cooling-loop","heating-loop","heat-recovery"]
+      },
+      sludge: {
+        title:"Sludge & Biosolids",
+        modules:["fp-sludge-dewater","fp-sludge-dry","fp-sludge-compost","fp-sludge-fert","fp-sludge-bio","fp-sludge-reuseplan","fp-incineration"]
+      }
+    },
+    modules: {
+      "fp-clari": {
+        name:"Clari+",
+        role:"Clarification and polishing before downstream treatment",
+        biggerPicture:"A clarification and polishing stage for suspended-solids reduction and cleaner water quality before discharge, reuse, or later filtration steps. It helps settle the sequence when carryover starts to affect final quality, filter performance, or polishing consistency.",
+        usedFor:["Reduce suspended solids","Protect downstream stages","Improve polishing reliability"],
+        diagnostics:["TSS/particle load trends","Peak flow & carryover risk","Filter backwash/waste routing"],
+        recipes:[
+          {title:"Reuse polishing line", focus:"Stabilise solids first, then add the barrier and finishing steps needed for the reuse target.", stack:["fp-clari","fp-micra","oxiclear"]},
+          {title:"Effluent compliance uplift", focus:"Tighten solids and turbidity to reduce downstream upsets.", stack:["fp-clari","oxiclear"]}
+        ],
+        checks:["Achieved TSS/turbidity range","Backwash handling connection","Headloss/cleaning strategy"]
+      },
+
+      "fp-mbbr": {
+        name:"MBBR+",
+        role:"Attached-growth biological treatment for stronger secondary performance",
+        biggerPicture:"An attached-growth biological stage for stronger carbon removal, ammonia control, and more stable secondary treatment under variable loads. Applied as pure MBBR or IFAS, it suits sequences that need added nitrification capacity, steadier biology, or a more resilient compliance route.",
+        usedFor:["More stable biological stage","No sludge return loop","Process strengthening"],
+        diagnostics:["Load & hydraulics check (peaks/seasonality)","Oxygen transfer & blower capacity","Reactor space / media volume constraints"],
+        recipes:[
+          {title:"STP compliance uplift", focus:"Improve stability first, then add reuse barriers only where needed.", stack:["fp-mbbr","fp-clari","fp-micra"]},
+          {title:"Industrial reuse pathway", focus:"Build a stable biological stage before barrier polishing and moderate salinity reduction where required.", stack:["fp-mbbr","fp-clari","fp-micra","fp-micraro"]}
+        ],
+        checks:["Target effluent band (BOD/COD/NH₃ as needed)","Start-up / stabilisation plan","Controls intent (DO, recycles, alarms)"]
+      },
+
+      "fp-micra": {
+        name:"Micra+",
+        role:"UF/MF membrane barrier for solids and pathogens",
+        biggerPicture:"A UF/MF membrane barrier for turbidity, fine solids, and pathogen control ahead of direct reuse or downstream recovery. It adds a defined physical barrier and gives later RO stages a cleaner, more stable feed, while dissolved-solids reduction is handled elsewhere in the route.",
+        usedFor:["Barrier assurance","Protect downstream RO","Tighter reuse quality"],
+        diagnostics:["Feed TSS, turbidity, SDI, oil & grease","Membrane fouling propensity vs selected flux","Cleaning strategy and downtime tolerance"],
+        recipes:[
+          {title:"TSE reuse line", focus:"Clarify first, then set UF/MF barrier assurance.", stack:["fp-clari","fp-micra","oxiclear"]},
+          {title:"High-assurance reuse", focus:"Use UF/MF to protect the later salt-reduction step where dissolved-solids removal is also needed.", stack:["fp-clari","fp-micra","fp-micraro","oxiclear"]}
+        ],
+        checks:["Permeate turbidity / SDI target range","Integrity testing and pass criteria","CEB / CIP triggers and waste routing"]
+      },
+
+      "fp-micraro": {
+        name:"MicraRO+",
+        role:"Simple-pass RO for moderate salinity reduction",
+        biggerPicture:"A lighter RO step for reuse cases that need moderate dissolved-solids reduction without moving straight into a heavier recovery sequence. It falls between membrane polishing and full recovery RO where water quality demands are rising but the route is still comparatively simple.",
+        usedFor:["Moderate TDS reduction","Bridge to stronger reuse","Reduce load on downstream recovery"],
+        diagnostics:["Feed TDS and target permeate conductivity","Scaling potential and anti-scalant basis","Concentrate destination and cleaning tolerance"],
+        recipes:[
+          {title:"Cooling reuse line", focus:"Set the barrier first, then add simple-pass RO where moderate salt reduction is needed.", stack:["fp-clari","fp-micra","fp-micraro","oxiclear"]},
+          {title:"Intermediate reuse uplift", focus:"Use MicraRO+ where moderate salt reduction is needed without moving into a fuller industrial recovery route.", stack:["fp-clari","fp-micra","fp-micraro"]}
+        ],
+        checks:["Permeate conductivity / salinity range","Recovery target and concentrate route","Anti-scalant plan and CIP triggers"]
+      },
+
+      "fp-rocore": {
+        name:"ROCore+",
+        role:"Recovery-centred reverse osmosis for defined brine routes",
+        biggerPicture:"A recovery-centred RO stage used where salinity, conductivity, and end-use quality become central design drivers. In industrial routes it often falls between conditioned feed water and a defined brine pathway, concentrating the route around water recovery, reject handling, and what must happen next to the concentrate.",
+        usedFor:["Water recovery + reject handling","Industrial reuse and brine concentration","Precursor to ZLD readiness"],
+        diagnostics:["Feed salinity & scaling risk","Pre-treatment sufficiency (turbidity/SDI)","Brine destination and concentration limits"],
+        recipes:[
+          {title:"Condition → recover → prepare brine", focus:"Set feed chemistry first, then recover water and define the concentrate route.", stack:["fp-batch","fp-rocore","fp-zldprep"]},
+          {title:"Industrial reuse pathway", focus:"Barrier first where needed, then RO with a defined reject plan.", stack:["fp-clari","fp-micra","fp-rocore"]}
+        ],
+        checks:["Recovery/flux range & salt rejection","Chemical clean regime","Brine management connection"]
+      },
+
+      "fp-batch": {
+        name:"Batch+",
+        role:"Factory wastewater conditioning (ETP)",
+        biggerPicture:"A controlled chemistry stage for industrial and factory streams that need pH reset, metals precipitation, or targeted coagulation and flocculation before clarification, RO, or brine routing can be stabilised. It is the point where difficult feed chemistry is turned into something the rest of the route can handle with less risk.",
+        usedFor:["Factory/industrial effluent conditioning","Metals control / pH correction","Pre-filtration / pre-RO conditioning"],
+        diagnostics:["Industrial effluent diagnostic (metals/toxicity)","Jar testing / treatability","Sludge yield + disposal route"],
+        recipes:[
+          {title:"Factory wastewater → recovery route", focus:"Condition first, then decide whether the route turns toward reuse, RO, or brine handling.", stack:["fp-batch","fp-clari","fp-micra","fp-rocore"]},
+          {title:"Brine/ZLD readiness", focus:"Reduce scaling and protect downstream recovery or thermal stages.", stack:["fp-batch","fp-rocore","fp-zldprep"]}
+        ],
+        checks:["Chemical consumption & dosing control","Settling/filtration performance","Resulting sludge quantity/quality"]
+      },
+
+      "fp-zldprep": {
+        name:"ZLD+Prep+",
+        role:"Brine / thermal feed readiness",
+        biggerPicture:"A brine-conditioning and readiness stage used where concentrate streams need scaling control, solids strategy, and thermal-feed discipline before evaporation or crystallisation are considered. It defines whether the brine can move forward, on what chemistry basis, and with what solids-handling expectations.",
+        usedFor:["Post-RO brine conditioning","High scaling/fouling risk streams","Thermal viability preparation"],
+        diagnostics:["Brine composition & scaling risk","Heat source & thermal viability check","Solids handling pathway"],
+        recipes:[
+          {title:"RO brine pathway", focus:"Recover first, then prepare the concentrate for what follows.", stack:["fp-rocore","fp-zldprep","fp-zld"]},
+          {title:"Complex factory brine", focus:"Condition first, then Set the brine-handling and thermal-readiness basis.", stack:["fp-batch","fp-rocore","fp-zldprep","fp-zld"]}
+        ],
+        checks:["Scaling control strategy","Solids handling connection","Thermal KPI basis (if applicable)"]
+      },
+
+      "fp-zld": {
+        name:"ZLD+",
+        role:"Evaporation and crystallisation for near-zero liquid discharge",
+        biggerPicture:"A final brine-management stage used where the liquid route has to be driven to near-zero discharge through evaporation and crystallisation. It receives a prepared concentrate, separates out distillate for reuse or discharge, and leaves a salt, slurry, or cake stream that has to be managed through the defined outlet route.",
+        usedFor:["Near-zero liquid discharge","Evaporation + crystallisation","Distillate and solids separation"],
+        diagnostics:["Prepared brine composition and scaling residuals","Heat source / MVR viability and energy basis","Salt or slurry handling route"],
+        recipes:[
+          {title:"Prepared brine to final concentration", focus:"Use ZLD+ only after chemistry, scaling control, and solids expectations are already defined.", stack:["fp-batch","fp-rocore","fp-zldprep","fp-zld"]},
+          {title:"RO brine to distillate + solids", focus:"Recover water first, then move the remaining concentrate into the thermal end route.", stack:["fp-rocore","fp-zldprep","fp-zld"]}
+        ],
+        checks:["Distillate quality band","Energy consumption / recovery basis","Salt, slurry, or cake handling connection"]
+      },
+
+      "oxiclear": {
+        name:"OxiClear+",
+        role:"Oxidation-based polishing and disinfection",
+        biggerPicture:"A defined oxidation and disinfection step used after solids-control and barrier treatment where final colour, odour, pathogen assurance, or trace-organic reduction still need a stronger finish. Depending on the target, it can take the form of UV, ozone, hydrogen peroxide, or advanced oxidation rather than one fixed technology.",
+        usedFor:["Final disinfection assurance","Colour/odour and trace-organic polishing","UV / ozone / peroxide / AOP routes"],
+        diagnostics:["Residual oxidant demand","Byproduct risk (where relevant)","Contact time, UVT, or dosing control basis"],
+        recipes:[
+          {title:"TSE reuse line", focus:"Add oxidation once the main solids and barrier steps are already doing their job.", stack:["fp-clari","fp-micra","oxiclear"]},
+          {title:"Compliance finishing", focus:"Use the final oxidation step to tighten nuisance, disinfection, or persistent-contaminant outcomes.", stack:["fp-clari","oxiclear"]}
+        ],
+        checks:["Residual control & monitoring plan","Contact system connections","Boundary targets (micro + nuisance)"]
+      },
+
+      "odor-capture": {
+        name:"Odor+Capture",
+        role:"Local carbon capture & adsorption",
+        biggerPicture:"Capture is the local source-control step that contains and treats odour close to where it forms. It uses activated-carbon or similar adsorption media at wet wells, headworks, vents, and enclosed handling points so the release is controlled before it becomes a larger site-wide air-treatment problem.",
+        usedFor:["Wet wells, headworks & vents","Local carbon-media adsorption","Source-point odour containment"],
+        diagnostics:["Source mapping + monitoring plan","Capture duty, vent rates & access constraints","Media selection and breakthrough risk"],
+        recipes:[
+          {title:"Contain → prevent → polish", focus:"Capture first, then add dosing and polishing only where needed.", stack:["odor-capture","odor-dose","odor-polish"]}
+        ],
+        checks:["Capture coverage and airflow balance","Media selection, breakthrough and changeout","Operational access and safe replacement"]
+      },
+
+      "odor-dose": {
+        name:"Odor+Dose",
+        role:"Chemical/biological dosing",
+        biggerPicture:"Dosing is the prevention step in the odor route: it works upstream on H₂S formation, septicity, and corrosion risk before foul air grows into a larger control problem. The value is not just adding chemistry, but placing it at the right point and proving response at the parts of the system that actually drive complaints or asset damage.",
+        usedFor:["Rising mains","Small plants & tanks","Septicity control"],
+        diagnostics:["H₂S profiling (gas/liquid)","Septicity drivers & residence time","Chemical logistics & safety"],
+        recipes:[
+          {title:"Rising main control", focus:"Monitor, then dose at the right point and verify response.", stack:["odor-dose","odor-polish"]}
+        ],
+        checks:["Dose-response check","Chemical storage and safety connections","Control logic (feed-forward/feedback)"]
+      },
+
+      "odor-polish": {
+        name:"Odor+Polish",
+        role:"Higher-duty air treatment for captured streams",
+        biggerPicture:"Polish is the higher-duty air-treatment route used where local capture alone is not enough, or where discharge limits, airflow volume, or receptor sensitivity demand more than adsorption at source. It is selected as a scrubber, biofilter, specialist media bed, or another advanced method against the actual captured-air duty.",
+        usedFor:["Higher-duty captured-air treatment","Boundary-sensitive locations","Stronger discharge control"],
+        diagnostics:["Captured-air loading and peaks","Media / chemistry / process selection","Boundary monitoring plan"],
+        recipes:[
+          {title:"Advanced air-treatment route", focus:"Add a stronger treatment step once source capture and prevention are defined.", stack:["odor-capture","odor-polish"]}
+        ],
+        checks:["Treatment duty against captured airflow","Service and maintenance strategy","Boundary monitoring checks"]
+      },
+
+      "cooling-loop": {
+        name:"Thermo+Cooling Loop",
+        role:"Effluent cooling before treatment",
+        biggerPicture:"This module is for cooling hot wastewater or effluent before downstream treatment, reuse polishing, or discharge. The objective is temperature control of the water stream itself so biology, membranes, chemistry, and compliance are not compromised.",
+        usedFor:["Protect biological treatment","Cool influent before membranes/chemistry","Meet discharge temperature limits"],
+        diagnostics:["Influent temperature profile","Cooling duty and target band","Fouling/scaling risk in exchanger loop"],
+        recipes:[
+          {title:"Effluent cooling loop", focus:"Define the cooling duty and acceptable inlet temperature before fixing the loop.", stack:["cooling-loop"]}
+        ],
+        checks:["Target outlet temperature range","Cooling-loop controls + alarms","Cleaning / maintenance access"]
+      },
+
+      "heating-loop": {
+        name:"Thermo+Heating Loop",
+        role:"Recovered heat for a defined plant duty",
+        biggerPicture:"This module recovers useful heat from warm wastewater or effluent and transfers it into a dedicated heating loop. It is used where the stream carries enough thermal value to support one clearly defined heating duty inside the facility.",
+        usedFor:["Boiler feed preheat","Process water heating","Digester or sludge heating"],
+        diagnostics:["Available source temperature and flow","Heat sink demand and duty stability","Materials compatibility, fouling, and connections"],
+        recipes:[
+          {title:"Recovered heat loop", focus:"Set the receiving duty first, then size the recovery loop around it.", stack:["heating-loop"]}
+        ],
+        checks:["Recovered duty target range","Controls + alarms","Connection and maintenance plan"]
+      },
+
+      "heat-recovery": {
+        name:"Thermo+Heat Recovery Screening",
+        role:"Low-grade heat screening + upgrade pathways",
+        biggerPicture:"This module screens and structures low-grade thermal recovery opportunities from wastewater, including heat-pump-ready pathways where technically and commercially justified. It is used where a site may benefit from broader thermal integration, but the opportunity must first be tested for source stability, temperature lift, economics, and delivery fit.",
+        usedFor:["Upgrade low-grade wastewater heat","Supply usable plant heating loads","Improve whole-site energy performance"],
+        diagnostics:["Source temperature profile and seasonal stability","Target duty, temperature lift, and economics","Integration, fouling, delivery scope, and specialist connections"],
+        recipes:[
+          {title:"Heat recovery screening", focus:"Confirm low-grade heat availability, target duty, and whether direct exchange or a heat-pump-ready pathway is justified.", stack:["heat-recovery"]}
+        ],
+        checks:["Delivered temperature and duty basis","connection definition and specialist scope","Feasibility-led decision note"]
+      },
+
+      "fp-sludge-dewater": {
+        name:"Sludge+Dewater",
+        role:"Volume reduction & logistics",
+        biggerPicture:"Dewatering is the gateway to every downstream solids route - transport, drying, composting, thermal treatment, or disposal. It is the point where a slurry becomes a handled product, and where hauling burden, polymer demand, storage, and onward route viability start to become active design constraints.",
+        usedFor:["Reduce hauling volume","Prepare for drying/compost","Stabilise handling"],
+        diagnostics:["Solids mass balance & yield","Polymer conditioning needs","Haul routes & storage constraints"],
+        recipes:[
+          {title:"Handling → Class A pathway", focus:"Dewater first, then choose drying or compost based on practical conditions (space, odour, offtake).", stack:["fp-sludge-dewater","fp-sludge-dry","fp-sludge-compost"]}
+        ],
+        checks:["Cake %DS target range","Odour and leachate connections","Operator workflow & safe access"]
+      },
+
+      "fp-sludge-dry": {
+        name:"Sludge+Dry",
+        role:"Thermal or bed drying",
+        biggerPicture:"Drying is the solids-upgrading step used where lower mass, better storage behaviour, or a Class A route is needed before reuse or thermal handling can work. Its feasibility depends less on the dryer alone and more on heat source, odour control, cake behaviour, and how the dried product will move onward.",
+        usedFor:["Class A pathway","Mass reduction","Fuel/compost preparation"],
+        diagnostics:["Heat source availability","Odour constraints & containment","Dryer type fit (bed vs thermal)"],
+        recipes:[
+          {title:"Dewater → dry → product", focus:"Define the offtake conditions and control odour connections.", stack:["fp-sludge-dewater","fp-sludge-dry","fp-sludge-reuseplan"]}
+        ],
+        checks:["Moisture target range","Odour capture connections","Energy KPI basis"]
+      },
+
+      "fp-sludge-compost": {
+        name:"Sludge+Compost",
+        role:"ASP / windrow composting",
+        biggerPicture:"Composting is a biological stabilisation route that turns dewatered solids into a Class A soil-product pathway where space, odour tolerance, and bulking supply are workable. The route is defined as much by site management, maturation time, and product handling as by the composting hardware itself.",
+        usedFor:["Class A compost outputs","Reuse programmes","Hauling reduction"],
+        diagnostics:["Bulking agent supply","Odour setback constraints","Throughput and maturation time"],
+        recipes:[
+          {title:"Dewater → compost → reuse", focus:"Compost works when space, odour tolerance, and offtake are practical.", stack:["fp-sludge-dewater","fp-sludge-compost","fp-sludge-reuseplan"]}
+        ],
+        checks:["Pathogen/quality criteria basis","Odour control plan","Offtake target ranges"]
+      },
+
+      "fp-sludge-fert": {
+        name:"Sludge+Fert",
+        role:"Organo-mineral fertilizer",
+        biggerPicture:"Fertilizer production is a dedicated product-manufacturing route rather than a simple outlet for dried solids. It depends on consistent feed quality, nutrient positioning, and whether the finished product can meet an actual market expectation for handling, storage, transport, and application.",
+        usedFor:["Market-ready fertilizer output","Value recovery","Enhanced reuse"],
+        diagnostics:["Market specification fit","Nutrient content and blending","Regulatory route (handled with specialists as needed)"],
+        recipes:[
+          {title:"Dry → process → sell", focus:"set product spec early and design for offtake.", stack:["fp-sludge-dry","fp-sludge-fert","fp-sludge-reuseplan"]}
+        ],
+        checks:["Product spec + validation checks","Packaging and logistics connections","Quality monitoring plan"]
+      },
+
+      "fp-sludge-bio": {
+        name:"Sludge+Bio",
+        role:"Bio-enhanced product",
+        biggerPicture:"Biofertilizer production upgrades stabilised dried material with biological or nutrient-rich additions to create a more agronomically attractive product. The route is about product value and performance criteria as much as treatment, so consistency, stability, and realistic distribution matter from the outset.",
+        usedFor:["Bio-enhanced reuse products","Market differentiation","Agronomic value uplift"],
+        diagnostics:["Additive supply chain","Quality & stability checks","ESG/market fit screening"],
+        recipes:[
+          {title:"Dry → enhance → distribute", focus:"Design the product and distribution pathway as part of the process.", stack:["fp-sludge-dry","fp-sludge-bio","fp-sludge-reuseplan"]}
+        ],
+        checks:["Stability/odour criteria","Additive dosing/handling","Batch QA/QC plan"]
+      },
+
+      "fp-sludge-reuseplan": {
+        name:"Sludge+ReusePlan",
+        role:"Market + compliance planning",
+        biggerPicture:"Reuse planning is the bridge between treatment output and a route that can actually hold in practice. It aligns product targets with market routes, logistics, handling expectations, and the checks needed to avoid a technology route that looks workable on paper but fails at the receiving end.",
+        usedFor:["Offtake readiness","Reuse KPIs and target ranges","Program planning"],
+        diagnostics:["Offtake conditions check","Stakeholder alignment needs","KPIs for outputs (compost/fert)"],
+        recipes:[
+          {title:"Market-ready pathway", focus:"Plan reuse alongside processing - not after.", stack:["fp-sludge-reuseplan","fp-sludge-compost","fp-sludge-fert"]}
+        ],
+        checks:["KPIs and target ranges","Sampling/testing plan","Roles + handover points"]
+      },
+
+      "fp-incineration": {
+        name:"Incineration+",
+        role:"Thermal solids + recovery",
+        biggerPicture:"Mono-incineration is the dedicated thermal route where extreme volume reduction, tighter risk control, and ash-based recovery justify moving away from a direct biosolids outlet. It changes the design problem from handling wet solids to managing combustion, ash quality, energy balance, and the recovery route that follows the burn.",
+        usedFor:["High-risk solids control","Volume reduction","Recovery-ready ash route"],
+        diagnostics:["Solids characteristics & energy balance","Ash handling and recovery route","Permitting and stakeholder constraints"],
+        recipes:[
+          {title:"Dewater → incinerate → recover", focus:"Define ash connections and recovery intent early.", stack:["fp-sludge-dewater","fp-incineration"]}
+        ],
+        checks:["Stable feed criteria","Ash quality and handling connection","Recovery KPI basis"]
+      }
+    }
+  };
+
+  function labelFor(id){
+    const m = MS.modules[id];
+    if(m && m.name) return m.name;
+    const el = byId(id);
+    const h = el ? el.querySelector('h4, h3') : null;
+    return (h && h.textContent.trim()) || id;
+  }
+
+  function roleFor(id){
+    const m = MS.modules[id];
+    return (m && m.role) || "Module";
+  }
+
+  function chip(id, title){
+    return `<a class="ms-chip" href="#${esc(id)}" data-jump="${esc(id)}">● ${esc(title)}</a>`;
+  }
+
+  function renderModuleList(familyKey){
+    const fam = MS.families[familyKey];
+    if(!fam) return;
+
+    listEl.innerHTML = fam.modules.map(id=>{
+      return `<button type="button" class="ms-mod" data-module="${esc(id)}">
+        <div class="ms-mod-name">${esc(labelFor(id))}</div>
+        <div class="ms-mod-role">${esc(roleFor(id))}</div>
+      </button>`;
+    }).join("");
+  }
+
+  function renderPanels(id){
+    const m = MS.modules[id] || {};
+    const name = m.name || labelFor(id);
+
+    const used = (m.usedFor||[]).map(x=>`<span class="ms-tag">${esc(x)}</span>`).join("");
+    midEl.innerHTML = `
+      <p class="ms-colhead">Selected module</p>
+      <h3 class="ms-title">${esc(name)}</h3>
+      <div class="ms-roleline">${esc(m.role||"")}</div>
+      <p class="ms-subhead">What it is in treatment</p>
+      <div class="ms-bigger">${esc(m.biggerPicture||"")}</div>
+      ${used ? `<p class="ms-subhead">Common reasons it gets selected</p><div class="ms-tags">${used}</div>` : ``}
+      <a class="ms-action" href="#${esc(id)}" data-jump="${esc(id)}">Open module card <span aria-hidden="true">→</span></a>
+    `;
+
+    const diags = (m.diagnostics||[]).map(x=>`<li>${esc(x)}</li>`).join("") || `<li> - </li>`;
+    const checks = (m.checks||[]).map(x=>`<li>${esc(x)}</li>`).join("") || `<li> - </li>`;
+
+    const recipes = (m.recipes||[]).map(r=>{
+      const stack = (r.stack||[]).map(mid=>chip(mid, labelFor(mid))).join("");
+      return `<div class="ms-recipe">
+        <p class="ms-recipe-title">${esc(r.title||"Typical stack")}</p>
+        ${r.focus ? `<p class="ms-recipe-focus">${esc(r.focus)}</p>` : ``}
+        <div class="ms-chips">${stack || ""}</div>
+      </div>`;
+    }).join("");
+
+    rightEl.innerHTML = `
+      <p class="ms-colhead">Configuration pathways</p>
+      <div class="ms-block">
+        <p class="ms-h4">Solution configurations</p>
+        <div class="ms-recipes">${recipes || `<div style="color:rgba(255,255,255,.70);font-size:13px;"> - </div>`}</div>
+      </div>
+
+      <div class="ms-block">
+        <p class="ms-h4">Key checks</p>
+        <ul class="ms-list-ul">${diags}</ul>
+      </div>
+
+      <div class="ms-block">
+        <p class="ms-h4">Validation & connections</p>
+        <ul class="ms-list-ul">${checks}</ul>
+      </div>
+    `;
+  }
+
+  function setActiveFamilyButton(familyKey){
+    Array.from(familyBar.querySelectorAll('.ms-family')).forEach(b=>{
+      b.classList.toggle('is-active', b.getAttribute('data-family') === familyKey);
+    });
+  }
+
+  function setActiveModuleButton(id){
+    Array.from(listEl.querySelectorAll('.ms-mod')).forEach(b=>{
+      b.classList.toggle('is-active', b.getAttribute('data-module') === id);
+    });
+  }
+
+  function jumpAndHighlight(id){
+    const el = byId(id);
+    if(!el) return;
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+    el.classList.add('ms-hl');
+    window.setTimeout(()=>el.classList.remove('ms-hl'), 1400);
+  }
+
+  function selectModule(id){
+    setActiveModuleButton(id);
+    renderPanels(id);
+  }
+
+  function selectFamily(familyKey){
+    setActiveFamilyButton(familyKey);
+    renderModuleList(familyKey);
+
+    const first = MS.families[familyKey].modules[0];
+    if(first) selectModule(first);
+  }
+
+  familyBar.addEventListener('click', (e)=>{
+    const b = e.target.closest('.ms-family');
+    if(!b) return;
+    selectFamily(b.getAttribute('data-family'));
+  });
+
+  listEl.addEventListener('click', (e)=>{
+    const b = e.target.closest('.ms-mod');
+    if(!b) return;
+    selectModule(b.getAttribute('data-module'));
+  });
+
+  root.addEventListener('click', (e)=>{
+    const a = e.target.closest('[data-jump]');
+    if(!a) return;
+    e.preventDefault();
+    jumpAndHighlight(a.getAttribute('data-jump'));
+  });
+
+  if(btnPrint){
+    btnPrint.addEventListener('click', ()=>{
+      window.print();
+    });
+  }
+
+  // init
+  selectFamily('water');
+  selectModule('fp-mbbr');
+})();
+</script><script>(function(){
+  const form = document.getElementById('enquiryForm');
+  if(!form) return;
+
+  const status = document.getElementById('enquiryStatus');
+  function setStatus(msg){
+    if(!status) return;
+    status.textContent = msg || '';
+    status.classList.toggle('hidden', !msg);
+  }
+
+  document.querySelectorAll('a[href="../get-in-touch.html"]').forEach(a=>{
+    a.addEventListener('click', function(){
+      setTimeout(()=> document.getElementById('enqName')?.focus(), 150);
+    });
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const data = new FormData(form);
+
+    const name = (data.get('name') || '').toString().trim();
+    const email = (data.get('email') || '').toString().trim();
+    const region = (data.get('region') || '').toString().trim();
+    const type = (data.get('enquiry_type') || '').toString().trim();
+    const company = (data.get('company') || '').toString().trim();
+    const message = (data.get('message') || '').toString().trim();
+
+    if(!name || !email || !region || !type){
+      setStatus('Please complete the required fields.');
+      return;
+    }
+    setStatus('');
+
+    const lines = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Company: ${company}`,
+      `Region: ${region}`,
+      `Enquiry type: ${type}`,
+      '',
+      message
+    ];
+
+    const subject = encodeURIComponent(`FlowPlan Solution Design enquiry - ${type}`);
+    const body = encodeURIComponent(lines.join('\n'));
+    const to = 'hello@yourdomain.com'; // update as needed
+    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+  });
+})();</script><script>
+(function(){
+  const items = Array.from(document.querySelectorAll('[data-acc]'));
+  if(!items.length) return;
+
+  function syncOpenHeights(){
+    items.forEach(item=>{
+      const panel = item.querySelector('.acc-panel');
+      if(!panel) return;
+      if(item.classList.contains('acc-open')){
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      } else {
+        panel.style.maxHeight = null;
+      }
+    });
+  }
+
+  items.forEach(item=>{
+    const btn = item.querySelector('button');
+    if(!btn) return;
+    btn.addEventListener('click', ()=>{
+      const wasOpen = item.classList.contains('acc-open');
+      // Close others for a cleaner UX
+      items.forEach(i=> i.classList.remove('acc-open'));
+      item.classList.toggle('acc-open', !wasOpen);
+      syncOpenHeights();
+    });
+  });
+
+  window.addEventListener('resize', syncOpenHeights);
+  // Initial
+  syncOpenHeights();
+})();
+</script>
+<script src="../exported-ui-effects.js"></script></body></html>

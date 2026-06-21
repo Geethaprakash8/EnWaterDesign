@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>EnWater Design</title>
+<meta content="EnWater Design — advisory, FlowPlan projects, and specialist design for water, wastewater, reuse and biosolids systems." name="description"/>
+<style>
+:root{--accent:#55a092}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{background:#000;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;overflow:hidden}
+    .wrap{position:fixed;inset:0}
+    video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
+    /* UI only on hover (mobile always visible) */
+    .ui{
+      position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:space-between;
+      gap:14px;padding:18px;opacity:0;transition:opacity .25s ease;
+    }
+    .wrap:hover .ui{opacity:1}
+    @media (max-width: 768px){.ui{opacity:1}}
+    .brand{
+      display:inline-flex;align-items:center;gap:10px;color:#fff;text-decoration:none;
+      font-weight:800;letter-spacing:.01em;text-shadow:0 2px 18px rgba(0,0,0,.55)
+    }
+    .dot{width:12px;height:12px;border-radius:999px;background:var(--accent);box-shadow:0 0 0 6px rgba(85,160,146,0.14)}
+    .btns{display:flex;gap:10px;align-items:center}
+    .btn{
+      appearance:none;border:1px solid rgba(255,255,255,0.24);background:rgba(0,0,0,0.18);
+      color:#fff;border-radius:999px;padding:10px 14px;font-weight:650;font-size:14px;cursor:pointer;
+      backdrop-filter: blur(10px);text-shadow:0 2px 18px rgba(0,0,0,.55)
+    }
+    .btn:hover{background:rgba(0,0,0,0.28);border-color:rgba(255,255,255,0.28)}
+    .btn.primary{border-color:rgba(85,160,146,0.55);background:rgba(85,160,146,0.22)}
+    .btn.primary:hover{background:rgba(85,160,146,0.28)}
+    /* Autoplay fallback (no dimming overlay over the video; just a centered panel) */
+    .fallback{
+      position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+      display:none;flex-direction:column;gap:14px;align-items:center;justify-content:center;
+      padding:18px 18px 16px;border-radius:18px;border:1px solid rgba(255,255,255,0.22);
+      background:rgba(0,0,0,0.22);backdrop-filter: blur(10px);
+      color:#fff;text-align:center;max-width:min(560px, calc(100vw - 28px));
+    }
+    .fallback.show{display:flex}
+    .fallback .hint{opacity:.9;line-height:1.35}
+    @media (prefers-reduced-motion: reduce){
+      video{display:none}
+      body{background: linear-gradient(160deg, #0e1726, #0b1220)}
+      .fallback{display:flex}
+      .ui{opacity:1}
+    }
+</style>
+<style id="global-nav-style">
+/* Global top nav — single line, dropdowns not clipped by overflow */
+.site-topnav{
+  position:sticky; top:0; z-index:9999;
+  background:#0f2f2b; color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.10);
+}
+.site-topnav .wrap{
+  max-width:1200px; margin:0 auto; padding:10px 18px;
+  display:flex; align-items:center; gap:14px;
+}
+.site-topnav .brand{
+  display:inline-flex; align-items:center; gap:10px;
+  color:#fff; text-decoration:none; font-weight:800;
+  padding:8px 10px; border-radius:999px;
+}
+.site-topnav .brand:hover{ background:rgba(255,255,255,.08); }
+
+/* keep nav on one line; allow horizontal scroll */
+.site-topnav .nav-scroll{
+  flex:1; min-width:0;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.site-topnav .nav-scroll::-webkit-scrollbar{ display:none; }
+
+.site-topnav ul{
+  list-style:none; margin:0; padding:0;
+  display:flex; align-items:center; gap:10px;
+  flex-wrap:nowrap; white-space:nowrap;
+}
+.site-topnav li{ position:relative; display:flex; align-items:center; gap:6px; }
+.site-topnav a.rootlink{
+  color:#fff; text-decoration:none; font-weight:650;
+  padding:8px 10px; border-radius:999px;
+}
+.site-topnav a.rootlink:hover{ background:rgba(255,255,255,.08); }
+
+.site-topnav .nav-toggle{
+  width:34px; height:34px; border-radius:999px;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.16);
+  color:#fff; cursor:pointer; line-height:1;
+  display:inline-flex; align-items:center; justify-content:center;
+}
+.site-topnav .nav-toggle:hover{ background:rgba(255,255,255,.14); }
+
+/* Dropdown rendered as FIXED to escape any overflow clipping */
+.site-topnav .drop{
+  display:none;
+  position:fixed;
+  left:0; top:0; /* positioned by JS */
+  min-width:300px;
+  max-width:min(420px, calc(100vw - 24px));
+  max-height:min(70vh, 560px);
+  overflow:auto;
+
+  background:#ffffff; color:#0f172a;
+  border:1px solid rgba(15,23,42,.12);
+  border-radius:14px;
+  padding:10px;
+  box-shadow:0 18px 44px rgba(0,0,0,.18);
+}
+.site-topnav .drop .section{
+  font-size:11px; text-transform:uppercase;
+  letter-spacing:.08em; opacity:.6;
+  margin:4px 8px 8px;
+}
+.site-topnav .drop a{
+  display:block;
+  padding:10px 10px;
+  border-radius:10px;
+  text-decoration:none;
+  color:#0f172a;
+}
+.site-topnav .drop a:hover{ background:rgba(15,47,43,.08); }
+
+.site-topnav li.open > .drop{ display:block; }
+
+body{ scroll-padding-top:90px; }
+</style>
+<style>
+      .home-pill{position:fixed;top:16px;left:16px;z-index:9999;
+        background:rgba(15,47,43,.92);color:#fff;padding:10px 14px;border-radius:999px;
+        font:600 14px/1.1 system-ui,-apple-system,Segoe UI,Roboto,Arial; text-decoration:none;
+        box-shadow:0 10px 30px rgba(0,0,0,.18); backdrop-filter: blur(6px);}
+      .home-pill:hover{transform:translateY(-1px); box-shadow:0 14px 36px rgba(0,0,0,.22);}
+    </style>
+<style>
+/* === NAV_SLEEK_OVERRIDE (v25) - compact topnav + stable clickable dropdowns === */
+:root{
+  --nav-bg:#0f3b36;
+  --nav-fg:rgba(255,255,255,.92);
+  --nav-fg-strong:#ffffff;
+  --nav-fg-muted:rgba(255,255,255,.70);
+  --nav-border:rgba(255,255,255,.10);
+  --nav-shadow:0 10px 24px rgba(0,0,0,.10);
+  --nav-font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  --drop-bg:#0d332f;
+  --drop-border:rgba(255,255,255,.10);
+  --drop-shadow:0 18px 32px rgba(0,0,0,.22);
+}
+
+header.site-topnav{
+  background: var(--nav-bg) !important;
+  color: var(--nav-fg) !important;
+  border-bottom: 1px solid var(--nav-border) !important;
+  box-shadow: var(--nav-shadow) !important;
+  font-family: var(--nav-font) !important;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+header.site-topnav .wrap{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 22px;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 18px;
+}
+header.site-topnav a.brand{
+  color: var(--nav-fg-strong) !important;
+  text-decoration:none !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  letter-spacing: .2px;
+  display:flex;
+  align-items:center;
+  gap: 10px;
+}
+header.site-topnav a.brand::before{
+  content:"";
+  width:10px; height:10px; border-radius:999px;
+  background:#6ad0b8;
+  box-shadow: 0 0 0 3px rgba(106,208,184,.18);
+  display:inline-block;
+}
+
+header.site-topnav ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  align-items:center;
+  gap: 14px;
+}
+header.site-topnav li{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap: 8px;
+}
+
+header.site-topnav a.rootlink{
+  color: var(--nav-fg) !important;
+  text-decoration:none !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  letter-spacing: .2px;
+  padding: 9px 10px;
+  border-radius: 999px;
+  transition: background .15s ease, color .15s ease;
+  white-space: nowrap;
+}
+header.site-topnav a.rootlink:hover{
+  color: var(--nav-fg-strong) !important;
+  background: rgba(255,255,255,.08) !important;
+}
+header.site-topnav a.rootlink[aria-current="page"],
+header.site-topnav a.rootlink.active{
+  background: rgba(255,255,255,.12) !important;
+  color: var(--nav-fg-strong) !important;
+}
+
+header.site-topnav button.nav-toggle{
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--nav-fg) !important;
+  padding: 6px 7px !important;
+  border-radius: 999px !important;
+  font-size: 14px !important;
+  line-height: 1 !important;
+  cursor:pointer;
+}
+header.site-topnav button.nav-toggle:hover{
+  background: rgba(255,255,255,.10) !important;
+}
+
+/* dropdown base: hidden; JS positions it + shows it */
+header.site-topnav .drop{
+  position: fixed;
+  min-width: 280px;
+  background: var(--drop-bg) !important;
+  border: 1px solid var(--drop-border) !important;
+  box-shadow: var(--drop-shadow) !important;
+  border-radius: 14px !important;
+  padding: 10px !important;
+  z-index: 10000;
+  display:none;
+  pointer-events:auto;
+}
+header.site-topnav li.open .drop{ display:block; }
+
+header.site-topnav .drop .section{
+  font-size: 11px !important;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--nav-fg-muted) !important;
+  padding: 2px 8px 8px;
+}
+header.site-topnav .drop a{
+  display:block;
+  padding: 10px 10px !important;
+  border-radius: 12px !important;
+  color: var(--nav-fg) !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  text-decoration:none !important;
+}
+header.site-topnav .drop a:hover{
+  background: rgba(255,255,255,.10) !important;
+  color: var(--nav-fg-strong) !important;
+}
+
+@media (max-width: 960px){
+  header.site-topnav .wrap{ padding: 10px 14px; }
+  header.site-topnav a.rootlink{ font-size: 13px !important; padding: 8px 9px; }
+  header.site-topnav ul{ gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+  header.site-topnav .drop{ min-width: 240px; }
+}
+/* === end NAV_SLEEK_OVERRIDE === */
+
+    .splash-logo{height:38px;width:auto;display:block;border-radius:4px;background:#fff;}
+    .ui .brand::before{display:none !important;}
+  </style>
+<style id="enwater-logo-refinement-v1">
+.brand-logo,.nav-logo,.nav-brand-logo{height:38px!important;width:auto!important;max-width:66px!important;object-fit:contain!important;background:transparent!important;border-radius:0!important;padding:0!important;box-shadow:none!important;}
+.brand span,.nav-brand span{white-space:nowrap;}
+.footer-logo{height:34px;width:auto;max-width:60px;object-fit:contain;background:transparent;border-radius:0;padding:0;box-shadow:none;display:block;}
+.footer-brand,.foot-brand{display:flex;align-items:center;gap:10px;}
+</style>
+
+<style id="enwater-logo-visible-badge-v2">
+/* EnWater controlled logo visibility fix: keeps existing header layout and only gives the transparent mark a white field so it reads on dark nav bars. */
+.topnav .brand img.brand-logo,
+.site-topnav .brand img.brand-logo,
+.site-topnav .brand img.nav-logo,
+.nav .nav-brand img.nav-logo,
+.nav .nav-brand img.nav-brand-logo {
+  height: 34px !important;
+  width: auto !important;
+  max-width: 58px !important;
+  object-fit: contain !important;
+  background: #ffffff !important;
+  border-radius: 6px !important;
+  padding: 4px !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,.14) !important;
+  flex-shrink: 0 !important;
+}
+.topnav .brand span,
+.site-topnav .brand span,
+.nav .nav-brand span {
+  display: inline-block;
+  color: inherit;
+  white-space: nowrap;
+}
+</style>
+
+<link rel="stylesheet" href="exported-ui-styles.css"/>
+<link rel="icon" type="image/png" href="assets/images/enwater-design-logo-nav.png" />
+</head>
+<body>
+<div class="wrap">
+<video autoplay="" id="intro" muted="" playsinline="" poster="assets/media/intro_poster.jpg" preload="auto">
+<source src="assets/media/intro.mp4" type="video/mp4"/>
+</video>
+<div aria-live="polite" class="fallback" id="autoplayFallback">
+<div class="hint">
+        Your browser blocked autoplay. Tap <strong>Play</strong> to view the intro, or choose <strong>Enter site</strong>.
+      </div>
+<div class="btns">
+<button class="btn primary" id="playBtn" type="button">Play</button>
+<a class="btn" href="home.html">Enter site</a>
+</div>
+</div>
+<div class="ui">
+<a aria-label="Enter site" class="brand" href="home.html">
+<span aria-hidden="true" class="dot"></span>
+<span>EnWater Design</span>
+</a>
+<div class="btns">
+<button class="btn" id="skip" type="button">Skip</button>
+</div>
+</div>
+</div>
+<script>
+    const video = document.getElementById('intro');
+    const skipBtn = document.getElementById('skip');
+    const fallback = document.getElementById('autoplayFallback');
+    const playBtn = document.getElementById('playBtn');
+
+    const go = () => { window.location.href = 'home.html'; };
+
+    // Redirect when the video ends.
+    video.addEventListener('ended', go);
+
+    // Skip button.
+    skipBtn.addEventListener('click', () => { try{ video.pause(); }catch(e){} go(); });
+
+    // Autoplay detection: if it doesn't start playing quickly, show fallback UI.
+    let started = false;
+    video.addEventListener('playing', () => { started = true; });
+    setTimeout(() => {
+      if (!started) fallback.classList.add('show');
+    }, 900);
+
+    // Manual play for fallback.
+    playBtn?.addEventListener('click', async () => {
+      try {
+        await video.play();
+        fallback.classList.remove('show');
+      } catch (e) {
+        // If play fails, user can still click Enter site.
+      }
+    });
+  </script>
+<script id="aquad-nav-v25">
+/* EnWater Design: stable clickable dropdown nav (no hover-close) */
+(function(){
+  const nav = document.querySelector('header.site-topnav');
+  if(!nav) return;
+
+  const items = Array.from(nav.querySelectorAll('li')).filter(li => li.querySelector('.drop') && li.querySelector('.nav-toggle'));
+  if(!items.length) return;
+
+  function hide(li){
+    li.classList.remove('open');
+    const btn = li.querySelector('.nav-toggle');
+    const drop = li.querySelector('.drop');
+    if(btn) btn.setAttribute('aria-expanded','false');
+    if(drop) drop.style.display = 'none';
+  }
+
+  function closeAll(except){
+    items.forEach(li => { if(li !== except) hide(li); });
+  }
+
+  function position(li){
+    const anchor = li.querySelector('.nav-toggle') || li.querySelector('.rootlink') || li;
+    const drop = li.querySelector('.drop');
+    if(!drop) return;
+
+    // show for measurement
+    li.classList.add('open');
+    drop.style.display = 'block';
+    drop.style.position = 'fixed';
+    drop.style.zIndex = '10000';
+
+    const rect = anchor.getBoundingClientRect();
+    const dropRect = drop.getBoundingClientRect();
+    const pad = 10;
+
+    let left = rect.left;
+    if(left + dropRect.width > window.innerWidth - pad){
+      left = window.innerWidth - pad - dropRect.width;
+    }
+    if(left < pad) left = pad;
+
+    let top = rect.bottom + 10;
+    if(top + dropRect.height > window.innerHeight - pad){
+      const alt = rect.top - dropRect.height - 10;
+      if(alt > pad) top = alt;
+    }
+
+    drop.style.left = left + 'px';
+    drop.style.top  = top + 'px';
+  }
+
+  function open(li){
+    closeAll(li);
+    li.classList.add('open');
+    const btn = li.querySelector('.nav-toggle');
+    const drop = li.querySelector('.drop');
+    if(btn) btn.setAttribute('aria-expanded','true');
+    if(drop) drop.style.display = 'block';
+    position(li);
+  }
+
+  function toggle(li){
+    if(li.classList.contains('open')) hide(li);
+    else open(li);
+  }
+
+  items.forEach(li => {
+    const btn  = li.querySelector('.nav-toggle');
+    const drop = li.querySelector('.drop');
+    if(!btn) return;
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggle(li);
+    });
+
+    btn.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        e.stopPropagation();
+        toggle(li);
+      }
+    });
+
+    if(drop){
+      drop.addEventListener('click', (e) => {
+        // allow clicking links; just prevent outside-close handler
+        e.stopPropagation();
+      });
+    }
+  });
+
+  document.addEventListener('click', () => closeAll(null));
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeAll(null); });
+
+  function reposition(){
+    const openLi = items.find(li => li.classList.contains('open'));
+    if(openLi) position(openLi);
+  }
+  window.addEventListener('resize', reposition);
+  window.addEventListener('scroll', reposition, true);
+})();
+</script>
+<script src="exported-ui-effects.js"></script>
+</body>
+</html>

@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>EnWater Design - Implementation &amp; Applied Support</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<script>
+ tailwind.config = {
+ theme: {
+ extend: {
+ colors: {
+ cream: "#f4f2ec",
+ forest: "#243f38",
+ forest2: "#1f3731",
+ accent: "#55a092"
+ }
+ }
+ }
+ }
+ </script>
+<style>
+ :root{
+ --cream:#f4f2ec;
+ --ink:#1b1f1e;
+ --muted:#5a6561;
+ --forest:#243f38;
+ --forest2:#1f3731;
+ --accent:#55a092;
+ --line:rgba(27,31,30,.14);
+ }
+ html{scroll-behavior:smooth;}
+ body{
+ background:var(--cream);
+ color:var(--ink);
+ }
+ .ewd-serif{
+ font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+ }
+ .ewd-sans{
+ font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+ }
+ .hairline{border-color: var(--line);}
+ .soft-shadow{box-shadow: 0 16px 40px rgba(0,0,0,.08);}
+ :focus-visible{
+ outline: 3px solid rgba(85,160,146,.45);
+ outline-offset: 3px;
+ }
+ .text-ink{color:var(--ink);}
+ .text-ink-soft{color:var(--muted);}
+ .bg-ink{background:var(--ink);}
+ .pattern-card{margin:0.75rem 0;}
+ @media (min-width:768px){
+ .pattern-card{margin:0.75rem;}
+ }
+
+ /* Stage hero - match integration page */
+ .ewd-focus-hero{
+ background: var(--forest2);
+ color:#fff;
+ border-radius:0;
+ box-shadow:0 18px 40px rgba(0,0,0,.25);
+ }
+ .ewd-focus-hero-inner{
+ max-width:100%;
+ margin:0;
+ padding:2.5rem 2.25rem 3rem;
+ }
+ @media (min-width:1024px){
+ .ewd-focus-hero-inner{ padding:2.9rem 2.75rem 3.25rem; }
+ }
+ .ewd-focus-grid{
+ display:grid;
+ grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
+ gap:2.5rem;
+ align-items:center;
+ }
+ @media (max-width:900px){
+ .ewd-focus-grid{
+ grid-template-columns:minmax(0,1fr);
+ gap:2rem;
+ }
+ }
+ .ewd-focus-kicker{
+ font-size:.72rem;
+ letter-spacing:.22em;
+ text-transform:uppercase;
+ color:rgba(255,255,255,.7);
+ }
+ .ewd-focus-title{
+ font-family: var(--ewd-serif, "Iowan Old Style", "Palatino", "Book Antiqua", Georgia, serif);
+ font-size:1.9rem;
+ line-height:1.2;
+ margin-top:.6rem;
+ margin-bottom:.75rem;
+ }
+ @media (min-width:1024px){
+ .ewd-focus-title{ font-size:2.1rem; }
+ }
+ .ewd-focus-body{
+ font-size:.97rem;
+ max-width:32rem;
+ color:rgba(255,255,255,.85);
+ line-height:1.7;
+ margin:0;
+ }
+ .ewd-focus-panel{
+ border-radius:26px;
+ padding:1.75rem 1.9rem 1.9rem;
+ background:
+ radial-gradient(160% 220% at 0% 0%, rgba(255,255,255,.06), transparent 40%),
+ rgba(0,0,0,.38);
+ box-shadow:0 18px 40px rgba(0,0,0,.55);
+ border:1px solid rgba(255,255,255,.18);
+ }
+ .ewd-focus-panel h3{
+ font-size:.72rem;
+ letter-spacing:.22em;
+ text-transform:uppercase;
+ margin:0 0 .8rem;
+ color:rgba(255,255,255,.7);
+ }
+ .ewd-focus-panel ul{
+ list-style:none;
+ margin:0 0 1.5rem;
+ padding:0;
+ font-size:.92rem;
+ color:rgba(255,255,255,.9);
+ }
+ .ewd-focus-panel li + li{
+ margin-top:.55rem;
+ }
+ .ewd-focus-panel li span{
+ font-weight:600;
+ }
+ .ewd-focus-next-btn{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ border-radius:999px;
+ padding:.6rem 1.8rem;
+ font-size:.86rem;
+ text-decoration:none;
+ border:1px solid rgba(255,255,255,.35);
+ background:rgba(0,0,0,.18);
+ color:#fff;
+ white-space:nowrap;
+ }
+ .ewd-focus-next-btn:hover{
+ background:rgba(255,255,255,.16);
+ border-color:rgba(255,255,255,.6);
+ }
+ 
+ .ink-card{
+ background:rgba(255,255,255,0.75);
+ border:1px solid var(--line);
+ border-radius:0.125rem;
+ padding:1.25rem 1.4rem;
+ font-size:0.88rem;
+ line-height:1.6;
+ color:var(--ink);
+ }
+ .ink-card h3{
+ margin:0 0 .45rem;
+ font-size:0.9rem;
+ font-weight:600;
+ color:var(--ink);
+ }
+ .ink-card p{
+ margin:0;
+ color:var(--muted);
+ }
+
+
+/* --- Scroll arrows for overflowing chip rows (Stage A/B focus areas) --- */
+.scroll-wrap{position:relative}
+.scroll-row{
+ display:flex;
+ flex-wrap:nowrap;
+ gap:.6rem;
+ overflow-x:auto;
+ overflow-y:hidden;
+ scroll-behavior:smooth;
+ -webkit-overflow-scrolling:touch;
+ padding:.15rem 2.75rem;
+ scrollbar-width:none;
+}
+.scroll-row::-webkit-scrollbar{display:none}
+.scroll-arrow{
+ position:absolute;
+ top:50%;
+ transform:translateY(-50%);
+ width:34px;height:34px;
+ border-radius:9999px;
+ border:1px solid rgba(15,23,42,.14);
+ background:rgba(255,255,255,.92);
+ box-shadow:0 10px 30px rgba(2,6,23,.10);
+ display:flex;align-items:center;justify-content:center;
+ cursor:pointer;
+ z-index:20;
+}
+.scroll-arrow:hover{background:rgba(255,255,255,.98)}
+.scroll-arrow:disabled{opacity:.35;cursor:default}
+.scroll-arrow.left{left:10px}
+.scroll-arrow.right{right:10px}
+.scroll-fade{
+ position:absolute;top:0;bottom:0;width:52px;
+ pointer-events:none;
+ z-index:15;
+}
+.scroll-fade.left{left:0;background:linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0))}
+.scroll-fade.right{right:0;background:linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0))}
+
+</style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}[type='text'],input:where(:not([type])),[type='email'],[type='url'],[type='password'],[type='number'],[type='date'],[type='datetime-local'],[type='month'],[type='search'],[type='tel'],[type='time'],[type='week'],[multiple],textarea,select{-webkit-appearance:none;appearance:none;background-color:#fff;border-color:#6b7280;border-width:1px;border-radius:0px;padding-top:0.5rem;padding-right:0.75rem;padding-bottom:0.5rem;padding-left:0.75rem;font-size:1rem;line-height:1.5rem;--tw-shadow:0 0 #0000;}[type='text']:focus, input:where(:not([type])):focus, [type='email']:focus, [type='url']:focus, [type='password']:focus, [type='number']:focus, [type='date']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='week']:focus, [multiple]:focus, textarea:focus, select:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);border-color:#2563eb}input::placeholder,textarea::placeholder{color:#6b7280;opacity:1}::-webkit-datetime-edit-fields-wrapper{padding:0}::-webkit-date-and-time-value{min-height:1.5em;text-align:inherit}::-webkit-datetime-edit{display:inline-flex}::-webkit-datetime-edit,::-webkit-datetime-edit-year-field,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute-field,::-webkit-datetime-edit-second-field,::-webkit-datetime-edit-millisecond-field,::-webkit-datetime-edit-meridiem-field{padding-top:0;padding-bottom:0}select{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");background-position:right 0.5rem center;background-repeat:no-repeat;background-size:1.5em 1.5em;padding-right:2.5rem;print-color-adjust:exact}[multiple],[size]:where(select:not([size="1"])){background-image:initial;background-position:initial;background-repeat:unset;background-size:initial;padding-right:0.75rem;print-color-adjust:unset}[type='checkbox'],[type='radio']{-webkit-appearance:none;appearance:none;padding:0;print-color-adjust:exact;display:inline-block;vertical-align:middle;background-origin:border-box;-webkit-user-select:none;user-select:none;flex-shrink:0;height:1rem;width:1rem;color:#2563eb;background-color:#fff;border-color:#6b7280;border-width:1px;--tw-shadow:0 0 #0000}[type='checkbox']{border-radius:0px}[type='radio']{border-radius:100%}[type='checkbox']:focus,[type='radio']:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:2px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)}[type='checkbox']:checked,[type='radio']:checked{border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:center;background-repeat:no-repeat}[type='checkbox']:checked{background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");}@media (forced-colors: active) {[type='checkbox']:checked{-webkit-appearance:auto;appearance:auto}}[type='radio']:checked{background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");}@media (forced-colors: active) {[type='radio']:checked{-webkit-appearance:auto;appearance:auto}}[type='checkbox']:checked:hover,[type='checkbox']:checked:focus,[type='radio']:checked:hover,[type='radio']:checked:focus{border-color:transparent;background-color:currentColor}[type='checkbox']:indeterminate{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16'%3e%3cpath stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8h8'/%3e%3c/svg%3e");border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:center;background-repeat:no-repeat;}@media (forced-colors: active) {[type='checkbox']:indeterminate{-webkit-appearance:auto;appearance:auto}}[type='checkbox']:indeterminate:hover,[type='checkbox']:indeterminate:focus{border-color:transparent;background-color:currentColor}[type='file']{background:unset;border-color:inherit;border-width:0;border-radius:0;padding:0;font-size:unset;line-height:inherit}[type='file']:focus{outline:1px solid ButtonText;outline:1px auto -webkit-focus-ring-color}.sticky{position:sticky}.top-0{top:0px}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mt-0{margin-top:0px}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-14{height:3.5rem}.h-2\.5{height:0.625rem}.h-4{height:1rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-6xl{max-width:72rem}.max-w-xl{max-width:36rem}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.items-stretch{align-items:stretch}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.375rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-sm{border-radius:0.125rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-emerald-500\/40{border-color:rgb(16 185 129 / 0.4)}.border-emerald-500\/70{border-color:rgb(16 185 129 / 0.7)}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.border-white\/15{border-color:rgb(255 255 255 / 0.15)}.border-white\/40{border-color:rgb(255 255 255 / 0.4)}.bg-accent{--tw-bg-opacity:1;background-color:rgb(85 160 146 / var(--tw-bg-opacity, 1))}.bg-cream{--tw-bg-opacity:1;background-color:rgb(244 242 236 / var(--tw-bg-opacity, 1))}.bg-emerald-900\/10{background-color:rgb(6 78 59 / 0.1)}.bg-forest2{--tw-bg-opacity:1;background-color:rgb(31 55 49 / var(--tw-bg-opacity, 1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.bg-transparent{background-color:transparent}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/5{background-color:rgb(255 255 255 / 0.05)}.bg-white\/55{background-color:rgb(255 255 255 / 0.55)}.bg-white\/70{background-color:rgb(255 255 255 / 0.7)}.bg-white\/80{background-color:rgb(255 255 255 / 0.8)}.p-6{padding:1.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[11px\]{font-size:11px}.text-\[13px\]{font-size:13px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-\[0\.95\]{line-height:0.95}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-wide{letter-spacing:0.025em}.text-emerald-200{--tw-text-opacity:1;color:rgb(167 243 208 / var(--tw-text-opacity, 1))}.text-emerald-900{--tw-text-opacity:1;color:rgb(6 78 59 / var(--tw-text-opacity, 1))}.text-forest2{--tw-text-opacity:1;color:rgb(31 55 49 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-gray-950{--tw-text-opacity:1;color:rgb(3 7 18 / var(--tw-text-opacity, 1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/70{color:rgb(255 255 255 / 0.7)}.text-white\/80{color:rgb(255 255 255 / 0.8)}.text-white\/85{color:rgb(255 255 255 / 0.85)}.text-white\/90{color:rgb(255 255 255 / 0.9)}.opacity-80{opacity:0.8}.hover\:bg-white:hover{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/10:hover{background-color:rgb(255 255 255 / 0.1)}.hover\:bg-white\/15:hover{background-color:rgb(255 255 255 / 0.15)}.hover\:bg-white\/90:hover{background-color:rgb(255 255 255 / 0.9)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:opacity-95:hover{opacity:0.95}@media (min-width: 640px){.sm\:text-sm{font-size:0.875rem;line-height:1.25rem}.sm\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width: 768px){.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:px-10{padding-left:2.5rem;padding-right:2.5rem}.md\:px-6{padding-left:1.5rem;padding-right:1.5rem}.md\:py-12{padding-top:3rem;padding-bottom:3rem}.md\:py-14{padding-top:3.5rem;padding-bottom:3.5rem}.md\:py-6{padding-top:1.5rem;padding-bottom:1.5rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}.md\:text-6xl{font-size:3.75rem;line-height:1}.md\:text-base{font-size:1rem;line-height:1.5rem}}@media (min-width: 1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:text-5xl{font-size:3rem;line-height:1}}</style><style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}[type='text'],input:where(:not([type])),[type='email'],[type='url'],[type='password'],[type='number'],[type='date'],[type='datetime-local'],[type='month'],[type='search'],[type='tel'],[type='time'],[type='week'],[multiple],textarea,select{-webkit-appearance:none;appearance:none;background-color:#fff;border-color:#6b7280;border-width:1px;border-radius:0px;padding-top:0.5rem;padding-right:0.75rem;padding-bottom:0.5rem;padding-left:0.75rem;font-size:1rem;line-height:1.5rem;--tw-shadow:0 0 #0000;}[type='text']:focus, input:where(:not([type])):focus, [type='email']:focus, [type='url']:focus, [type='password']:focus, [type='number']:focus, [type='date']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='week']:focus, [multiple]:focus, textarea:focus, select:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);border-color:#2563eb}input::placeholder,textarea::placeholder{color:#6b7280;opacity:1}::-webkit-datetime-edit-fields-wrapper{padding:0}::-webkit-date-and-time-value{min-height:1.5em;text-align:inherit}::-webkit-datetime-edit{display:inline-flex}::-webkit-datetime-edit,::-webkit-datetime-edit-year-field,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute-field,::-webkit-datetime-edit-second-field,::-webkit-datetime-edit-millisecond-field,::-webkit-datetime-edit-meridiem-field{padding-top:0;padding-bottom:0}select{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");background-position:right 0.5rem center;background-repeat:no-repeat;background-size:1.5em 1.5em;padding-right:2.5rem;print-color-adjust:exact}[multiple],[size]:where(select:not([size="1"])){background-image:initial;background-position:initial;background-repeat:unset;background-size:initial;padding-right:0.75rem;print-color-adjust:unset}[type='checkbox'],[type='radio']{-webkit-appearance:none;appearance:none;padding:0;print-color-adjust:exact;display:inline-block;vertical-align:middle;background-origin:border-box;-webkit-user-select:none;user-select:none;flex-shrink:0;height:1rem;width:1rem;color:#2563eb;background-color:#fff;border-color:#6b7280;border-width:1px;--tw-shadow:0 0 #0000}[type='checkbox']{border-radius:0px}[type='radio']{border-radius:100%}[type='checkbox']:focus,[type='radio']:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:2px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)}[type='checkbox']:checked,[type='radio']:checked{border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:center;background-repeat:no-repeat}[type='checkbox']:checked{background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");}@media (forced-colors: active) {[type='checkbox']:checked{-webkit-appearance:auto;appearance:auto}}[type='radio']:checked{background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");}@media (forced-colors: active) {[type='radio']:checked{-webkit-appearance:auto;appearance:auto}}[type='checkbox']:checked:hover,[type='checkbox']:checked:focus,[type='radio']:checked:hover,[type='radio']:checked:focus{border-color:transparent;background-color:currentColor}[type='checkbox']:indeterminate{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16'%3e%3cpath stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8h8'/%3e%3c/svg%3e");border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:center;background-repeat:no-repeat;}@media (forced-colors: active) {[type='checkbox']:indeterminate{-webkit-appearance:auto;appearance:auto}}[type='checkbox']:indeterminate:hover,[type='checkbox']:indeterminate:focus{border-color:transparent;background-color:currentColor}[type='file']{background:unset;border-color:inherit;border-width:0;border-radius:0;padding:0;font-size:unset;line-height:inherit}[type='file']:focus{outline:1px solid ButtonText;outline:1px auto -webkit-focus-ring-color}.sticky{position:sticky}.top-0{top:0px}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mt-0{margin-top:0px}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-14{height:3.5rem}.h-2\.5{height:0.625rem}.h-4{height:1rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-6xl{max-width:72rem}.max-w-xl{max-width:36rem}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.items-stretch{align-items:stretch}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.375rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-sm{border-radius:0.125rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-emerald-500\/40{border-color:rgb(16 185 129 / 0.4)}.border-emerald-500\/70{border-color:rgb(16 185 129 / 0.7)}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.border-white\/15{border-color:rgb(255 255 255 / 0.15)}.border-white\/40{border-color:rgb(255 255 255 / 0.4)}.bg-accent{--tw-bg-opacity:1;background-color:rgb(85 160 146 / var(--tw-bg-opacity, 1))}.bg-cream{--tw-bg-opacity:1;background-color:rgb(244 242 236 / var(--tw-bg-opacity, 1))}.bg-emerald-900\/10{background-color:rgb(6 78 59 / 0.1)}.bg-forest2{--tw-bg-opacity:1;background-color:rgb(31 55 49 / var(--tw-bg-opacity, 1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.bg-transparent{background-color:transparent}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/5{background-color:rgb(255 255 255 / 0.05)}.bg-white\/55{background-color:rgb(255 255 255 / 0.55)}.bg-white\/70{background-color:rgb(255 255 255 / 0.7)}.bg-white\/80{background-color:rgb(255 255 255 / 0.8)}.p-6{padding:1.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[11px\]{font-size:11px}.text-\[13px\]{font-size:13px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-\[0\.95\]{line-height:0.95}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-wide{letter-spacing:0.025em}.text-emerald-200{--tw-text-opacity:1;color:rgb(167 243 208 / var(--tw-text-opacity, 1))}.text-emerald-900{--tw-text-opacity:1;color:rgb(6 78 59 / var(--tw-text-opacity, 1))}.text-forest2{--tw-text-opacity:1;color:rgb(31 55 49 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-gray-950{--tw-text-opacity:1;color:rgb(3 7 18 / var(--tw-text-opacity, 1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/70{color:rgb(255 255 255 / 0.7)}.text-white\/80{color:rgb(255 255 255 / 0.8)}.text-white\/85{color:rgb(255 255 255 / 0.85)}.text-white\/90{color:rgb(255 255 255 / 0.9)}.opacity-80{opacity:0.8}.hover\:bg-white:hover{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/10:hover{background-color:rgb(255 255 255 / 0.1)}.hover\:bg-white\/15:hover{background-color:rgb(255 255 255 / 0.15)}.hover\:bg-white\/90:hover{background-color:rgb(255 255 255 / 0.9)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:opacity-95:hover{opacity:0.95}@media (min-width: 640px){.sm\:text-sm{font-size:0.875rem;line-height:1.25rem}.sm\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width: 768px){.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:px-10{padding-left:2.5rem;padding-right:2.5rem}.md\:px-6{padding-left:1.5rem;padding-right:1.5rem}.md\:py-12{padding-top:3rem;padding-bottom:3rem}.md\:py-14{padding-top:3.5rem;padding-bottom:3.5rem}.md\:py-6{padding-top:1.5rem;padding-bottom:1.5rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}.md\:text-6xl{font-size:3.75rem;line-height:1}.md\:text-base{font-size:1rem;line-height:1.5rem}}@media (min-width: 1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:text-5xl{font-size:3rem;line-height:1}}</style><style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}[type='text'],input:where(:not([type])),[type='email'],[type='url'],[type='password'],[type='number'],[type='date'],[type='datetime-local'],[type='month'],[type='search'],[type='tel'],[type='time'],[type='week'],[multiple],textarea,select{-webkit-appearance:none;appearance:none;background-color:#fff;border-color:#6b7280;border-width:1px;border-radius:0px;padding-top:0.5rem;padding-right:0.75rem;padding-bottom:0.5rem;padding-left:0.75rem;font-size:1rem;line-height:1.5rem;--tw-shadow:0 0 #0000;}[type='text']:focus, input:where(:not([type])):focus, [type='email']:focus, [type='url']:focus, [type='password']:focus, [type='number']:focus, [type='date']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='week']:focus, [multiple]:focus, textarea:focus, select:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);border-color:#2563eb}input::placeholder,textarea::placeholder{color:#6b7280;opacity:1}::-webkit-datetime-edit-fields-wrapper{padding:0}::-webkit-date-and-time-value{min-height:1.5em;text-align:inherit}::-webkit-datetime-edit{display:inline-flex}::-webkit-datetime-edit,::-webkit-datetime-edit-year-field,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute-field,::-webkit-datetime-edit-second-field,::-webkit-datetime-edit-millisecond-field,::-webkit-datetime-edit-meridiem-field{padding-top:0;padding-bottom:0}select{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");background-position:right 0.5rem center;background-repeat:no-repeat;background-size:1.5em 1.5em;padding-right:2.5rem;print-color-adjust:exact}[multiple],[size]:where(select:not([size="1"])){background-image:initial;background-position:initial;background-repeat:unset;background-size:initial;padding-right:0.75rem;print-color-adjust:unset}[type='checkbox'],[type='radio']{-webkit-appearance:none;appearance:none;padding:0;print-color-adjust:exact;display:inline-block;vertical-align:middle;background-origin:border-box;-webkit-user-select:none;user-select:none;flex-shrink:0;height:1rem;width:1rem;color:#2563eb;background-color:#fff;border-color:#6b7280;border-width:1px;--tw-shadow:0 0 #0000}[type='checkbox']{border-radius:0px}[type='radio']{border-radius:100%}[type='checkbox']:focus,[type='radio']:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:2px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)}[type='checkbox']:checked,[type='radio']:checked{border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:center;background-repeat:no-repeat}[type='checkbox']:checked{background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");}@media (forced-colors: active) {[type='checkbox']:checked{-webkit-appearance:auto;appearance:auto}}[type='radio']:checked{background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");}@media (forced-colors: active) {[type='radio']:checked{-webkit-appearance:auto;appearance:auto}}[type='checkbox']:checked:hover,[type='checkbox']:checked:focus,[type='radio']:checked:hover,[type='radio']:checked:focus{border-color:transparent;background-color:currentColor}[type='checkbox']:indeterminate{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16'%3e%3cpath stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8h8'/%3e%3c/svg%3e");border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:center;background-repeat:no-repeat;}@media (forced-colors: active) {[type='checkbox']:indeterminate{-webkit-appearance:auto;appearance:auto}}[type='checkbox']:indeterminate:hover,[type='checkbox']:indeterminate:focus{border-color:transparent;background-color:currentColor}[type='file']{background:unset;border-color:inherit;border-width:0;border-radius:0;padding:0;font-size:unset;line-height:inherit}[type='file']:focus{outline:1px solid ButtonText;outline:1px auto -webkit-focus-ring-color}.sticky{position:sticky}.top-0{top:0px}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mt-0{margin-top:0px}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-14{height:3.5rem}.h-2\.5{height:0.625rem}.h-4{height:1rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-6xl{max-width:72rem}.max-w-xl{max-width:36rem}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.items-stretch{align-items:stretch}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.375rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-sm{border-radius:0.125rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-emerald-500\/40{border-color:rgb(16 185 129 / 0.4)}.border-emerald-500\/70{border-color:rgb(16 185 129 / 0.7)}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.border-white\/15{border-color:rgb(255 255 255 / 0.15)}.border-white\/40{border-color:rgb(255 255 255 / 0.4)}.bg-accent{--tw-bg-opacity:1;background-color:rgb(85 160 146 / var(--tw-bg-opacity, 1))}.bg-cream{--tw-bg-opacity:1;background-color:rgb(244 242 236 / var(--tw-bg-opacity, 1))}.bg-emerald-900\/10{background-color:rgb(6 78 59 / 0.1)}.bg-forest2{--tw-bg-opacity:1;background-color:rgb(31 55 49 / var(--tw-bg-opacity, 1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.bg-transparent{background-color:transparent}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/5{background-color:rgb(255 255 255 / 0.05)}.bg-white\/55{background-color:rgb(255 255 255 / 0.55)}.bg-white\/70{background-color:rgb(255 255 255 / 0.7)}.bg-white\/80{background-color:rgb(255 255 255 / 0.8)}.p-6{padding:1.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[11px\]{font-size:11px}.text-\[13px\]{font-size:13px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-\[0\.95\]{line-height:0.95}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-wide{letter-spacing:0.025em}.text-emerald-200{--tw-text-opacity:1;color:rgb(167 243 208 / var(--tw-text-opacity, 1))}.text-emerald-900{--tw-text-opacity:1;color:rgb(6 78 59 / var(--tw-text-opacity, 1))}.text-forest2{--tw-text-opacity:1;color:rgb(31 55 49 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-gray-950{--tw-text-opacity:1;color:rgb(3 7 18 / var(--tw-text-opacity, 1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/70{color:rgb(255 255 255 / 0.7)}.text-white\/80{color:rgb(255 255 255 / 0.8)}.text-white\/85{color:rgb(255 255 255 / 0.85)}.text-white\/90{color:rgb(255 255 255 / 0.9)}.opacity-80{opacity:0.8}.hover\:bg-white:hover{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/10:hover{background-color:rgb(255 255 255 / 0.1)}.hover\:bg-white\/15:hover{background-color:rgb(255 255 255 / 0.15)}.hover\:bg-white\/90:hover{background-color:rgb(255 255 255 / 0.9)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:opacity-95:hover{opacity:0.95}@media (min-width: 640px){.sm\:text-sm{font-size:0.875rem;line-height:1.25rem}.sm\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width: 768px){.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:px-10{padding-left:2.5rem;padding-right:2.5rem}.md\:px-6{padding-left:1.5rem;padding-right:1.5rem}.md\:py-12{padding-top:3rem;padding-bottom:3rem}.md\:py-14{padding-top:3.5rem;padding-bottom:3.5rem}.md\:py-6{padding-top:1.5rem;padding-bottom:1.5rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}.md\:text-6xl{font-size:3.75rem;line-height:1}.md\:text-base{font-size:1rem;line-height:1.5rem}}@media (min-width: 1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:text-5xl{font-size:3rem;line-height:1}}</style><style>
+/* --- Interactive view (no icons) --- */
+.focus-btn{transition:transform .12s ease, box-shadow .12s ease, background-color .12s ease;}
+.focus-btn[aria-selected="true"]{
+ background: rgba(85,160,146,.12);
+ border-color: rgba(85,160,146,.45);
+ box-shadow: 0 10px 24px rgba(27,31,30,.08);
+}
+.focus-btn:hover{transform: translateY(-1px);}
+.focus-panel{box-shadow: 0 12px 28px rgba(27,31,30,.06);}
+</style>
+<style>
+
+/* ==== Stage A/B focus panels (matches sourcing lens compact UI) ==== */
+/* Compact Stage A/B layout (conserve vertical space) */
+.stage-layout{
+ display:flex;
+ flex-direction:column;
+ gap: 1.1rem;
+}
+.stage-btn-row{
+ display:flex;
+ gap:.6rem;
+ overflow-x:auto;
+ padding-bottom:.25rem;
+ -webkit-overflow-scrolling: touch;
+ scrollbar-width: none;
+}
+.stage-btn-row::-webkit-scrollbar{ display:none; }
+.stage-btn-row .stage-btn{
+ width:auto;
+ padding:.7rem .85rem;
+ border-radius: 9999px;
+ white-space: nowrap;
+ background:#ffffff;
+}
+.stage-btn-row .stage-btn:hover{ transform: translateY(-1px); }
+.stage-btn-row .stage-btn-desc{ display:none; }
+.stage-btn-row .stage-btn-title{
+ font-size: .95rem;
+ font-weight: 650;
+}
+
+/* Stage A/B focus panels, light scheme */
+.stage-panel{
+ background:#ffffff;
+ color:#0f172a;
+ border:1px solid rgba(15,23,42,.10);
+ box-shadow: 0 10px 28px rgba(15,23,42,.08);
+}
+.stage-kicker{
+ color: rgba(15,23,42,.55);
+ text-transform: uppercase;
+ letter-spacing: .14em;
+ font-size: .72rem;
+}
+.stage-btn{
+ text-align:left;
+ border:1px solid rgba(15,23,42,.10);
+ background:#ffffff;
+ transition: background .15s ease, border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+.stage-btn.is-active{
+ background: rgba(85,160,146,.14);
+ border-color: rgba(85,160,146,.55);
+ box-shadow: 0 0 0 2px rgba(85,160,146,.18) inset;
+}
+.stage-btn-title{
+ font-weight: 700;
+ color:#0f172a;
+}
+.stage-btn-desc{
+ margin-top:.25rem;
+ font-size: .78rem;
+ color: rgba(15,23,42,.60);
+ line-height: 1.35;
+}
+.stage-block{
+ border-radius: 1.25rem;
+ border:1px solid rgba(15,23,42,.10);
+ background: rgba(15,23,42,.03);
+ padding: 1.2rem 1.2rem;
+}
+.stage-block-placeholder{
+ font-size: .95rem;
+ color: rgba(15,23,42,.60);
+}
+.stage-block-label{
+ font-size: .72rem;
+ letter-spacing: .14em;
+ text-transform: uppercase;
+ color: rgba(15,23,42,.55);
+}
+.stage-block-title{
+ margin-top:.25rem;
+ font-size: 1.15rem;
+ font-weight: 800;
+ color:#0f172a;
+}
+.stage-block ul{
+ margin-top: .95rem;
+ padding:0;
+ list-style:none;
+}
+.stage-block li{
+ display:flex;
+ gap:.55rem;
+ margin-top:.55rem;
+ color: rgba(15,23,42,.78);
+ line-height: 1.45;
+}
+.stage-dot{
+ width:.38rem;
+ height:.38rem;
+ border-radius:9999px;
+ background: var(--accent, #55a092);
+ margin-top:.38rem;
+ flex:none;
+}
+
+</style>
+<style>
+/* ===== EnWater Design: Unified Top UI patch (V16) ===== */
+.ewd-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.8rem 1.1rem;border-radius:9999px;font-weight:700;letter-spacing:.01em;transition:transform .12s ease, filter .12s ease, box-shadow .12s ease;}
+.ewd-btn.primary{background:rgba(255,255,255,.94);color:var(--ink);box-shadow:0 10px 30px rgba(0,0,0,.22);}
+.ewd-btn.primary:hover{transform:translateY(-1px);filter:brightness(1.02);}
+
+/* Hero side panel */
+.leave-card{background:var(--forest) !important;color:rgba(255,255,255,.94) !important;}
+.leave-card .leave-title{color:rgba(255,255,255,.96) !important;}
+.leave-split{display:grid;grid-template-columns:1fr;border:1px solid rgba(255,255,255,.12);border-radius:18px;overflow:hidden;}
+@media(min-width:768px){.leave-split{grid-template-columns:1.25fr .75fr;}}
+.leave-col{min-height:100%;}
+.leave-col--outputs{background:var(--forest2) !important;padding:18px 18px 16px;}
+.leave-col--triggers{background:rgba(85,160,146,.22) !important;padding:18px;}
+.leave-kicker{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;opacity:.9;}
+.leave-list{margin:.55rem 0 0 0;padding-left:1.15rem;list-style:disc;}
+.leave-list li{margin:.28rem 0;}
+.leave-text{margin-top:.55rem;opacity:.95;}
+
+/* Lens spacing */
+.focus-panel{padding-left:1.35rem !important;padding-right:1.35rem !important;}
+@media(min-width:768px){.focus-panel{padding-left:1.55rem !important;padding-right:1.55rem !important;}}
+</style>
+<style>
+ /* ===== EnWater Design: Typography normalisation patch (V18) ===== */
+ /* Ensure consistent readable base without huge jumps */
+ .chip{font-size: 12px;}
+ @media(min-width:768px){ .chip{font-size: 12px;} }
+ /* Reduce overly-tight hero tracking and keep line-height comfortable */
+ .section-hero p{font-size: 1.05rem;}
+ @media(min-width:768px){ .section-hero p{font-size: 1.08rem;} }
+</style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.sticky{position:sticky}.top-0{top:0px}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mt-0{margin-top:0px}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-7{margin-top:1.75rem}.mt-8{margin-top:2rem}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-14{height:3.5rem}.h-2\.5{height:0.625rem}.h-4{height:1rem}.h-full{height:100%}.w-2\.5{width:0.625rem}.w-4{width:1rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-6xl{max-width:72rem}.max-w-xl{max-width:36rem}.list-disc{list-style-type:disc}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.items-stretch{align-items:stretch}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.375rem * var(--tw-space-y-reverse))}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-sm{border-radius:0.125rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.border-white\/15{border-color:rgb(255 255 255 / 0.15)}.border-white\/40{border-color:rgb(255 255 255 / 0.4)}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.bg-transparent{background-color:transparent}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/5{background-color:rgb(255 255 255 / 0.05)}.bg-white\/55{background-color:rgb(255 255 255 / 0.55)}.bg-white\/70{background-color:rgb(255 255 255 / 0.7)}.bg-white\/80{background-color:rgb(255 255 255 / 0.8)}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-7{padding:1.75rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.pl-5{padding-left:1.25rem}.text-left{text-align:left}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-\[1\.05\]{line-height:1.05}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-wide{letter-spacing:0.025em}.text-emerald-200{--tw-text-opacity:1;color:rgb(167 243 208 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-gray-950{--tw-text-opacity:1;color:rgb(3 7 18 / var(--tw-text-opacity, 1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/70{color:rgb(255 255 255 / 0.7)}.text-white\/80{color:rgb(255 255 255 / 0.8)}.text-white\/85{color:rgb(255 255 255 / 0.85)}.text-white\/90{color:rgb(255 255 255 / 0.9)}.opacity-80{opacity:0.8}.opacity-90{opacity:0.9}.opacity-95{opacity:0.95}.shadow-\[0_24px_60px_rgba\(0\2c 0\2c 0\2c 0\.25\)\]{--tw-shadow:0 24px 60px rgba(0,0,0,0.25);--tw-shadow-colored:0 24px 60px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.hover\:bg-white:hover{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/10:hover{background-color:rgb(255 255 255 / 0.1)}.hover\:bg-white\/15:hover{background-color:rgb(255 255 255 / 0.15)}.hover\:bg-white\/90:hover{background-color:rgb(255 255 255 / 0.9)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:opacity-95:hover{opacity:0.95}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}@media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:items-start{align-items:flex-start}.sm\:justify-between{justify-content:space-between}.sm\:p-5{padding:1.25rem}.sm\:text-sm{font-size:0.875rem;line-height:1.25rem}.sm\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width: 768px){.md\:col-span-4{grid-column:span 4 / span 4}.md\:col-span-8{grid-column:span 8 / span 8}.md\:flex{display:flex}.md\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-end{align-items:flex-end}.md\:justify-between{justify-content:space-between}.md\:p-6{padding:1.5rem}.md\:p-8{padding:2rem}.md\:px-10{padding-left:2.5rem;padding-right:2.5rem}.md\:px-6{padding-left:1.5rem;padding-right:1.5rem}.md\:py-12{padding-top:3rem;padding-bottom:3rem}.md\:py-14{padding-top:3.5rem;padding-bottom:3.5rem}.md\:py-6{padding-top:1.5rem;padding-bottom:1.5rem}.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}.md\:text-5xl{font-size:3rem;line-height:1}.md\:text-base{font-size:1rem;line-height:1.5rem}}@media (min-width: 1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:text-5xl{font-size:3rem;line-height:1}}</style>
+<style>
+ .stage-template{display:none !important;}
+ .stage-block{min-height:280px;}
+</style>
+
+
+
+<style id="implementation-applied-support-highlight-dynamics-v1">
+/* ===== Dynamic highlight polish: CSS only, no body edits ===== */
+@media (prefers-reduced-motion: no-preference){
+  @keyframes ewd-highlight-sweep {
+    0% { transform: translateX(-135%); }
+    100% { transform: translateX(135%); }
+  }
+  @keyframes ewd-highlight-breathe {
+    0%, 100% { box-shadow: 0 18px 36px rgba(27,31,30,.06); }
+    50% { box-shadow: 0 24px 44px rgba(27,31,30,.10); }
+  }
+}
+
+/* Offer highlight cards */
+#enwater-design-implementation-applied-support-html-offer .rounded-2xl{
+  position: relative;
+  overflow: hidden;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background-color .22s ease;
+}
+#enwater-design-implementation-applied-support-html-offer .mt-7.grid.md\:grid-cols-3.gap-3 > .rounded-2xl::before,
+#enwater-design-implementation-applied-support-html-offer .mt-5.rounded-2xl::before{
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 -65%;
+  width: 52%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.16), transparent);
+  transform: skewX(-18deg);
+  opacity: .75;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference){
+  #enwater-design-implementation-applied-support-html-offer .mt-7.grid.md\:grid-cols-3.gap-3 > .rounded-2xl:nth-child(1)::before{ animation: ewd-highlight-sweep 7.5s linear infinite; animation-delay: .2s; }
+  #enwater-design-implementation-applied-support-html-offer .mt-7.grid.md\:grid-cols-3.gap-3 > .rounded-2xl:nth-child(2)::before{ animation: ewd-highlight-sweep 7.5s linear infinite; animation-delay: 1.8s; }
+  #enwater-design-implementation-applied-support-html-offer .mt-7.grid.md\:grid-cols-3.gap-3 > .rounded-2xl:nth-child(3)::before{ animation: ewd-highlight-sweep 7.5s linear infinite; animation-delay: 3.4s; }
+  #enwater-design-implementation-applied-support-html-offer .mt-5.rounded-2xl::before{ animation: ewd-highlight-sweep 8s linear infinite; animation-delay: 2.4s; }
+}
+#enwater-design-implementation-applied-support-html-offer .rounded-2xl:hover{
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,.22) !important;
+  box-shadow: 0 22px 42px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.06);
+}
+#enwater-design-implementation-applied-support-html-offer .ewd-chip{
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background-color .18s ease;
+}
+#enwater-design-implementation-applied-support-html-offer .ewd-chip:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(0,0,0,.18);
+}
+
+/* Interactive lens */
+#implementation-focus .focus-btn{
+  position: relative;
+  overflow: hidden;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background-color .18s ease;
+}
+#implementation-focus .focus-btn::after{
+  content:"";
+  position:absolute;
+  inset:auto 0 0 0;
+  height:0;
+  background: linear-gradient(90deg, rgba(85,160,146,.95), rgba(85,160,146,.35));
+  transition: height .18s ease;
+}
+#implementation-focus .focus-btn:hover::after,
+#implementation-focus .focus-btn[aria-selected="true"]::after{ height:3px; }
+#implementation-focus .focus-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(27,31,30,.08);
+}
+@media (prefers-reduced-motion: no-preference){
+  #implementation-focus .focus-btn[aria-selected="true"]{ animation: ewd-highlight-breathe 3.2s ease-in-out infinite; }
+}
+#implementation-focus .focus-panel .rounded-2xl.border.border-ink\/10.bg-white\/80,
+#implementation-focus .focus-panel .rounded-2xl.border.border-ink\/10.bg-cream{
+  position: relative;
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+#implementation-focus .focus-panel .rounded-2xl.border.border-ink\/10.bg-white\/80::after,
+#implementation-focus .focus-panel .rounded-2xl.border.border-ink\/10.bg-cream::after{
+  content:"";
+  position:absolute;
+  inset:0 0 auto 0;
+  height:2px;
+  background: linear-gradient(90deg, rgba(85,160,146,.92), rgba(85,160,146,.18));
+}
+#implementation-focus .focus-panel .rounded-2xl.border.border-ink\/10.bg-white\/80:hover,
+#implementation-focus .focus-panel .rounded-2xl.border.border-ink\/10.bg-cream:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(27,31,30,.09);
+  border-color: rgba(85,160,146,.28) !important;
+}
+
+/* Stage A / B chooser polish */
+.stage-btn{
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background-color .18s ease;
+}
+.stage-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(27,31,30,.07);
+}
+.stage-btn.is-active{
+  box-shadow: 0 18px 34px rgba(85,160,146,.12), inset 0 0 0 2px rgba(85,160,146,.14);
+}
+@media (prefers-reduced-motion: no-preference){
+  .stage-btn.is-active{ animation: ewd-highlight-breathe 3.2s ease-in-out infinite; }
+}
+.stage-block{
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.stage-block:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(27,31,30,.08);
+  border-color: rgba(85,160,146,.24) !important;
+}
+.stage-block::after{
+  content:"";
+  display:block;
+  height:2px;
+  margin-top:1rem;
+  background: linear-gradient(90deg, rgba(85,160,146,.92), rgba(85,160,146,.12));
+}
+
+/* Pattern cards and output grids */
+#impl-patterns .pattern-card,
+#impl-outputs .bg-white\/55.border.hairline.rounded-sm.p-6,
+#engage-strip article.bg-white\/5.border.border-white\/15.rounded-2xl,
+#impl-insight .ewd-focus-panel{
+  position: relative;
+  overflow: hidden;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+#impl-patterns .pattern-card:hover,
+#impl-outputs .bg-white\/55.border.hairline.rounded-sm.p-6:hover,
+#engage-strip article.bg-white\/5.border.border-white\/15.rounded-2xl:hover,
+#impl-insight .ewd-focus-panel:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 22px 42px rgba(27,31,30,.10);
+}
+#impl-patterns .pattern-card::after,
+#impl-outputs .bg-white\/55.border.hairline.rounded-sm.p-6::after,
+#engage-strip article.bg-white\/5.border.border-white\/15.rounded-2xl::after,
+#impl-insight .ewd-focus-panel::after{
+  content:"";
+  position:absolute;
+  inset:auto 0 0 0;
+  height:0;
+  background: linear-gradient(90deg, rgba(85,160,146,.92), rgba(85,160,146,.18));
+  transition: height .18s ease;
+}
+#impl-patterns .pattern-card:hover::after,
+#impl-outputs .bg-white\/55.border.hairline.rounded-sm.p-6:hover::after,
+#engage-strip article.bg-white\/5.border.border-white\/15.rounded-2xl:hover::after,
+#impl-insight .ewd-focus-panel:hover::after{ height:3px; }
+
+/* Insight list items feel more active */
+#impl-insight .ewd-focus-panel li{
+  transition: transform .18s ease, color .18s ease;
+}
+#impl-insight .ewd-focus-panel li:hover{
+  transform: translateX(4px);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  #enwater-design-implementation-applied-support-html-offer .rounded-2xl::before,
+  #implementation-focus .focus-btn,
+  .stage-btn,
+  .stage-block,
+  #impl-patterns .pattern-card,
+  #impl-outputs .bg-white\/55.border.hairline.rounded-sm.p-6,
+  #engage-strip article.bg-white\/5.border.border-white\/15.rounded-2xl,
+  #impl-insight .ewd-focus-panel{
+    animation: none !important;
+    transition: none !important;
+  }
+}
+</style>
+<style>
+/* Additional section polish: overview, useful-when, and outputs */
+main > section.py-12.md\:py-14{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,0) 38%),
+    var(--cream);
+}
+main > section.py-12.md\:py-14 .lg\:col-span-7 > p.text-xs,
+#impl-when .lg\:col-span-5 > h2 + p::before,
+#impl-outputs .lg\:col-span-5 > h2 + p::before{
+  --unused: 0;
+}
+main > section.py-12.md\:py-14 .lg\:col-span-7 > p.text-xs{
+  color: rgba(85,160,146,.95) !important;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+}
+main > section.py-12.md\:py-14 .lg\:col-span-7,
+#impl-when .lg\:col-span-5,
+#impl-outputs .lg\:col-span-5{
+  position: relative;
+}
+main > section.py-12.md\:py-14 .lg\:col-span-7::after,
+#impl-when .lg\:col-span-5::after,
+#impl-outputs .lg\:col-span-5::after{
+  content: "";
+  display: block;
+  width: 108px;
+  height: 2px;
+  margin-top: 1.15rem;
+  background: linear-gradient(90deg, rgba(85,160,146,.95), rgba(85,160,146,.18));
+}
+
+main > section.py-12.md\:py-14 .ink-card,
+#impl-when .bg-white\/55.border.hairline.rounded-sm.p-6,
+#impl-outputs .bg-white\/55.border.hairline.rounded-sm.p-6{
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(27,31,30,.10) !important;
+  background:
+    radial-gradient(140% 140% at 100% 0%, rgba(85,160,146,.08), rgba(85,160,146,0) 42%),
+    rgba(255,255,255,.76) !important;
+  box-shadow: 0 16px 34px rgba(27,31,30,.06);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background-color .22s ease;
+}
+main > section.py-12.md\:py-14 .ink-card::before,
+#impl-when .bg-white\/55.border.hairline.rounded-sm.p-6::before,
+#impl-outputs .bg-white\/55.border.hairline.rounded-sm.p-6::before{
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(180deg, rgba(85,160,146,.92), rgba(85,160,146,.18));
+  opacity: .9;
+}
+main > section.py-12.md\:py-14 .ink-card::after,
+#impl-when .bg-white\/55.border.hairline.rounded-sm.p-6::after,
+#impl-outputs .bg-white\/55.border.hairline.rounded-sm.p-6::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 0%, transparent 42%, rgba(255,255,255,.36) 50%, transparent 58%, transparent 100%);
+  transform: translateX(-135%);
+  transition: transform .85s ease;
+  pointer-events: none;
+}
+main > section.py-12.md\:py-14 .ink-card:hover,
+#impl-when .bg-white\/55.border.hairline.rounded-sm.p-6:hover,
+#impl-outputs .bg-white\/55.border.hairline.rounded-sm.p-6:hover{
+  transform: translateY(-3px);
+  border-color: rgba(85,160,146,.24) !important;
+  box-shadow: 0 22px 44px rgba(27,31,30,.10);
+}
+main > section.py-12.md\:py-14 .ink-card:hover::after,
+#impl-when .bg-white\/55.border.hairline.rounded-sm.p-6:hover::after,
+#impl-outputs .bg-white\/55.border.hairline.rounded-sm.p-6:hover::after{
+  transform: translateX(135%);
+}
+
+#impl-when,
+#impl-outputs{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,0) 36%),
+    var(--cream);
+}
+#impl-when .grid.md\:grid-cols-3.gap-4,
+#impl-outputs .grid.md\:grid-cols-3.gap-4{
+  align-items: stretch;
+}
+#impl-when .bg-white\/55.border.hairline.rounded-sm.p-6 h3,
+#impl-outputs .bg-white\/55.border.hairline.rounded-sm.p-6 .text-sm.font-semibold.text-gray-900{
+  color: var(--ink) !important;
+}
+#impl-when .bg-white\/55.border.hairline.rounded-sm.p-6 ul li,
+#impl-outputs .bg-white\/55.border.hairline.rounded-sm.p-6 ul li{
+  transition: transform .18s ease, color .18s ease;
+}
+#impl-when .bg-white\/55.border.hairline.rounded-sm.p-6:hover ul li,
+#impl-outputs .bg-white\/55.border.hairline.rounded-sm.p-6:hover ul li{
+  transform: translateX(2px);
+}
+
+@media (prefers-reduced-motion: reduce){
+  main > section.py-12.md\:py-14 .ink-card,
+  #impl-when .bg-white\/55.border.hairline.rounded-sm.p-6,
+  #impl-outputs .bg-white\/55.border.hairline.rounded-sm.p-6{
+    transition: none !important;
+  }
+  main > section.py-12.md\:py-14 .ink-card::after,
+  #impl-when .bg-white\/55.border.hairline.rounded-sm.p-6::after,
+  #impl-outputs .bg-white\/55.border.hairline.rounded-sm.p-6::after{
+    display:none !important;
+  }
+}
+</style>
+
+<style id="enwater-logo-refinement-v1">
+.brand-logo,.nav-logo,.nav-brand-logo{height:38px!important;width:auto!important;max-width:66px!important;object-fit:contain!important;background:transparent!important;border-radius:0!important;padding:0!important;box-shadow:none!important;}
+.brand span,.nav-brand span{white-space:nowrap;}
+.footer-logo{height:34px;width:auto;max-width:60px;object-fit:contain;background:transparent;border-radius:0;padding:0;box-shadow:none;display:block;}
+.footer-brand,.foot-brand{display:flex;align-items:center;gap:10px;}
+</style>
+
+
+
+
+<script id="design-sourcing-active-chip-visible-v42">
+(function(){
+  function showActiveChip(){
+    var nav = document.querySelector('.design-sourcing-section-nav .inner');
+    var active = nav && nav.querySelector('a.is-active');
+    if(!nav || !active) return;
+    var navRect = nav.getBoundingClientRect();
+    var activeRect = active.getBoundingClientRect();
+    if(activeRect.right > navRect.right || activeRect.left < navRect.left){
+      active.scrollIntoView({block:'nearest', inline:'center'});
+    }
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', showActiveChip);
+  else showActiveChip();
+})();
+</script>
+<link href="../exported-ui-styles.css" rel="stylesheet"/><link rel="icon" type="image/png" href="../assets/images/enwater-design-logo-nav.png" />
+</head>
+<body class="ewd-sans"><header class="site-topnav">
+<div class="wrap">
+<a aria-label="EnWater Design home" class="brand" href="../home.html">
+<img alt="EnWater Design logo" class="nav-logo" src="../assets/images/enwater-design-logo.png"/>
+<span>EnWater Design</span>
+</a>
+<nav class="desktop-nav">
+<ul>
+<li><a class="rootlink" href="../home.html">Home</a></li>
+<li>
+            <a class="rootlink " href="../About/about.html">About</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a class="" href="../About/about.html">About Us</a>
+              <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+            </div>
+          </li>
+<li>
+<a class="rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink active" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Projects/index.html">Projects</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</li>
+<li><a class="rootlink nav-login" href="../login.html">Login</a></li>
+<li><a class="rootlink nav-cta" href="../get-in-touch.html">Get in touch</a></li>
+</ul>
+</nav>
+<button aria-expanded="false" aria-label="Toggle menu" class="mobile-nav-toggle" type="button">
+<span class="hamburger-line line-1"></span>
+<span class="hamburger-line line-2"></span>
+<span class="hamburger-line line-3"></span>
+</button>
+</div>
+<div class="mobile-nav-panel">
+<div class="mobile-nav-content">
+<div class="mobile-nav-item">
+<a class="mobile-rootlink" href="../home.html">Home</a>
+</div>
+<div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink " href="../About/about.html">About</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a class="" href="../About/about.html">About Us</a>
+            <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+          </div>
+        </div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage Overview</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink active" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Projects/index.html">Projects</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<a class="mobile-login-btn" href="../login.html">Login</a>
+</div>
+<div class="mobile-nav-item no-border">
+<a class="mobile-cta-btn" href="../get-in-touch.html">Get in touch</a>
+</div>
+</div>
+</div>
+</header><nav aria-label="Design &amp; Sourcing section navigation" class="design-sourcing-section-nav"><div class="inner"><span class="section-name">Design &amp; Sourcing</span><a class="" href="index.html">Design &amp; Sourcing Pathways</a><a class="" href="specialist-support.html">Specialist Support</a><a class="" href="baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a><a class="" href="requirements-reuse-savings.html">Requirements, reuse &amp; savings</a><a class="" href="technology-equipment-fit.html">Technology &amp; equipment fit</a><a class="" href="system-integration-automation-de-risking.html">System integration</a><a class="" href="sourcing-advisory.html">Sourcing advisory</a><a class="is-active" href="implementation-applied-support.html">Implementation</a></div></nav>
+<main>
+<!-- HERO -->
+<section class="bg-cream border-b hairline section-hero">
+<div class="max-w-6xl mx-auto px-6 py-12 md:py-14">
+<div class="grid lg:grid-cols-12 gap-10 items-stretch">
+<div class="lg:col-span-7">
+<div class="text-sm tracking-wide text-ink/60">Consulting &amp; Design › Implementation &amp; applied support</div>
+<h1 class="ewd-serif mt-3 text-4xl md:text-5xl leading-[1.05] text-ink">Implementation &amp; applied support</h1>
+<p class="mt-3 text-sm font-semibold tracking-wide text-ink/70">Consulting &amp; design · Baseline → Requirements → Fit → Procurement → Delivery support</p>
+<p class="mt-5 max-w-xl text-ink/80 leading-relaxed">Implementation is where the chosen scheme has to move through drawings, submittals, procurement coordination, installation, and start-up while staying aligned with what was agreed.</p>
+<p class="mt-4 max-w-xl text-ink/80 leading-relaxed">Submittals, RFIs, and proposed changes can pull the job away from the agreed basis if responsibilities, operating ranges, and commissioning checks are not kept clear.</p>
+<p class="mt-4 max-w-xl text-ink/80 leading-relaxed">We stay engaged through delivery to review key changes, follow critical constraints through site work, and structure start-up and early operation around the duties the plant must meet in operation.</p>
+<div class="mt-7 flex flex-wrap gap-2"><span class="chip">Connection control</span><span class="chip">Commissioning checks</span><span class="chip">Performance tracking</span><span class="chip">Operator readiness</span><span class="chip">Optimisation</span></div>
+<div class="mt-7 flex flex-wrap gap-3">
+<a class="inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-6 py-3 text-sm font-medium shadow-soft hover:opacity-95" href="#implementation-focus">Explore the interactive view →</a>
+<a class="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white/70 text-ink px-6 py-3 text-sm font-medium hover:bg-white" href="../get-in-touch.html">Open an enquiry →</a>
+</div>
+</div>
+<div class="lg:col-span-5">
+<div class="leave-card rounded-2xl shadow-soft h-full flex flex-col p-7 md:p-8"><div class="leave-split"><div class="leave-col leave-col--outputs"><div class="leave-kicker">Key outputs</div><ul class="leave-list"><li>Implementation scope + connection notes</li><li>Commissioning test plan + KPI checks</li><li>Performance tracking pack for early operation</li><li>Optimisation roadmap from start-up to handover</li></ul></div><div class="leave-col leave-col--triggers"><div class="leave-kicker">Typical triggers</div><ul class="leave-list"><li>Awarded project under tight shutdown periods</li><li>Several packages meeting at one site</li><li>Commissioning checks still unclear</li><li>High risk of scope drift during delivery</li></ul></div></div></div>
+</div>
+</div>
+</div>
+</section><section class="border-b hairline bg-cream" id="enwater-design-implementation-applied-support-html-offer">
+<div class="max-w-6xl mx-auto px-6 py-10"><div class="bg-forest2 text-white rounded-3xl border border-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.25)] px-8 py-10">
+<div class="text-xs tracking-wide uppercase opacity-80">OFFER</div>
+<h2 class="ewd-serif mt-2 text-2xl md:text-3xl font-semibold leading-tight">Protect delivery through commissioning and early operation</h2>
+<p class="mt-4 text-lg leading-relaxed opacity-90 max-w-3xl">We support the awarded project through connections, commissioning, verification and early optimisation, keeping targets, checks and handover aligned.</p>
+<div class="mt-6 flex flex-wrap gap-3">
+<span class="ewd-chip req"><span class="tag">SET</span> constraints that matter</span>
+<span class="ewd-chip req"><span class="tag">SET</span> connections + working range</span>
+<span class="ewd-chip req"><span class="tag">CHECK</span> commissioning logic</span>
+<span class="ewd-chip req"><span class="tag">REDUCE</span> handover gaps</span>
+</div>
+<div class="mt-7 grid md:grid-cols-3 gap-3">
+<div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+<div class="text-xs tracking-wide opacity-80">Where projects fail</div>
+<p class="mt-2 text-sm leading-relaxed opacity-95">Projects treat commissioning as a checklist. Data and operator readiness are not aligned with the original basis.</p>
+</div>
+<div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+<div class="text-xs tracking-wide opacity-80">What we set</div>
+<ul class="mt-2 text-sm leading-relaxed opacity-95 list-disc pl-5 space-y-1"><li>Connections + responsibilities across packages.</li><li>Commissioning checks, KPI duration and sampling.</li><li>Operating readiness for spares, SOPs, training and handover.</li></ul>
+</div>
+<div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+<div class="text-xs tracking-wide opacity-80">How this changes delivery</div>
+<p class="mt-2 text-sm leading-relaxed opacity-95">Commissioning becomes clearer and more repeatable. Early performance is easier to track, and optimisation starts sooner with fewer disputes.</p>
+</div>
+</div>
+<div class="mt-5 rounded-2xl bg-white/5 border border-white/10 p-4">
+<div class="text-xs tracking-wide opacity-80">Scope boundary</div>
+<p class="mt-2 text-sm leading-relaxed opacity-95">
+ We support the <strong>process-side delivery and verification basis</strong> that carries the original intent through site execution, commissioning, performance review, and early operation, so changes are checked against agreed duties rather than absorbed informally.
+ </p>
+</div>
+<div class="mt-6 flex flex-wrap items-center gap-3">
+<a class="ewd-btn primary" href="../get-in-touch.html" style="background:var(--accent);">Open an enquiry</a>
+<a class="ewd-btn" href="#implementation-focus">See the interactive view</a>
+</div>
+</div></div>
+</section><section class="bg-cream border-b hairline" id="implementation-focus"><div class="max-w-6xl mx-auto px-6 py-10 md:py-12"><div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6"><div><div class="text-sm tracking-wide text-ink/60">Interactive view</div><h2 class="ewd-serif mt-2 text-2xl md:text-3xl leading-tight text-ink">Pick a delivery phase, see what keeps the work controlled</h2><p class="mt-3 max-w-2xl text-ink/80 leading-relaxed">After award, risk moves from paper to site. This view shows the practical controls we use at each phase, so delivery stays within the agreed scope and commissioning is led by clear checks.</p></div><div class="text-xs text-ink/60">Click a card to preview how the work changes.</div></div><div class="mt-6 grid md:grid-cols-12 gap-6"><div class="md:col-span-4"><button aria-selected="false" class="focus-btn w-full text-left rounded-2xl border border-ink/15 bg-white/70 px-4 py-3 mb-2 hover:bg-white focus:outline-none" data-focus="setup" type="button"><div class="font-medium text-ink">Delivery setup</div><div class="mt-1 text-sm text-ink/70">Roles, coordination points, hold points, control plan.</div></button><button aria-selected="false" class="focus-btn w-full text-left rounded-2xl border border-ink/15 bg-white/70 px-4 py-3 mb-2 hover:bg-white focus:outline-none" data-focus="workshop" type="button"><div class="font-medium text-ink">Workshop verification</div><div class="mt-1 text-sm text-ink/70">Records before it ships, so site surprises are reduced.</div></button><button aria-selected="false" class="focus-btn w-full text-left rounded-2xl border border-ink/15 bg-white/70 px-4 py-3 mb-2 hover:bg-white focus:outline-none" data-focus="install" type="button"><div class="font-medium text-ink">Installation &amp; connections</div><div class="mt-1 text-sm text-ink/70">Shutdown periods, QA, coordination control.</div></button><button aria-selected="true" class="focus-btn w-full text-left rounded-2xl border border-ink/15 bg-white/70 px-4 py-3 mb-2 hover:bg-white focus:outline-none" data-focus="comm" type="button"><div class="font-medium text-ink">Commissioning &amp; completion</div><div class="mt-1 text-sm text-ink/70">KPIs judged through clear checks.</div></button><button aria-selected="false" class="focus-btn w-full text-left rounded-2xl border border-ink/15 bg-white/70 px-4 py-3 mb-2 hover:bg-white focus:outline-none" data-focus="early" type="button"><div class="font-medium text-ink">Early optimisation</div><div class="mt-1 text-sm text-ink/70">Stabilise performance and embed operations.</div></button></div><div class="md:col-span-8"><div class="focus-panel rounded-2xl border border-ink/15 bg-white/70 p-5 md:p-6" data-focus="setup" hidden=""><div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3"><div><div class="text-sm tracking-wide text-ink/60">Preview</div><div class="mt-1 font-semibold text-ink text-xl">Delivery set-up &amp; integration control</div><div class="mt-2 flex flex-wrap gap-2"><span class="inline-flex items-center rounded-full border border-ink/15 bg-white px-3 py-1 text-[11px] text-ink/80">RACI</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-white px-3 py-1 text-[11px] text-ink/80">Coordination points</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-white px-3 py-1 text-[11px] text-ink/80">Hold points</span></div></div></div><div class="mt-5 grid sm:grid-cols-2 gap-4"><div class="rounded-2xl border border-ink/10 bg-white/80 p-4"><div class="text-sm font-semibold text-ink">What we focus on</div><ul class="mt-2 space-y-1 text-sm text-ink/80"><li>• Establish roles and responsibilities</li><li>• Settle coordination boundaries and decision rules</li><li>• Set hold points for changes and deviations</li><li>• Align documentation depth and check plan</li></ul></div><div class="rounded-2xl border border-ink/10 bg-white/80 p-4"><div class="text-sm font-semibold text-ink">Checks / control emphasis</div><ul class="mt-2 space-y-1 text-sm text-ink/80"><li>• Change control discipline</li><li>• Risk register tied to actions</li><li>• Completion plan traceability</li><li>• Delivery dashboard basics</li></ul></div></div><div class="mt-4 rounded-2xl border border-ink/10 bg-cream px-4 py-3"><div class="text-sm tracking-wide text-ink/60">Typical outputs</div><div class="mt-1 text-sm text-ink/80">Delivery setup pack: coordination point map, RACI, hold points, and an records-led completion plan.</div></div></div><div class="focus-panel rounded-2xl border border-ink/15 bg-white/70 p-5 md:p-6" data-focus="workshop" hidden=""><div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3"><div><div class="text-sm tracking-wide text-ink/60">Preview</div><div class="mt-1 font-semibold text-ink text-xl">Workshop verification &amp; documentation</div><div class="mt-2 flex flex-wrap gap-2"><span class="inline-flex items-center rounded-full border border-ink/15 bg-white px-3 py-1 text-[11px] text-ink/80">Verification plan</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-white px-3 py-1 text-[11px] text-ink/80">Results pack</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-white px-3 py-1 text-[11px] text-ink/80">Non-conformance</span></div></div></div><div class="mt-5 grid sm:grid-cols-2 gap-4"><div class="rounded-2xl border border-ink/10 bg-white/80 p-4"><div class="text-sm font-semibold text-ink">What we focus on</div><ul class="mt-2 space-y-1 text-sm text-ink/80"><li>• Define what must be shown before shipping</li><li>• Specify records format and traceability</li><li>• Capture non-conformance handling</li><li>• Align with site completion ranges</li></ul></div><div class="rounded-2xl border border-ink/10 bg-white/80 p-4"><div class="text-sm font-semibold text-ink">Checks / control emphasis</div><ul class="mt-2 space-y-1 text-sm text-ink/80"><li>• Audit-ready commissioning records</li><li>• Clear pass/fail criteria</li><li>• De-risked installation readiness</li><li>• Reduced commissioning churn</li></ul></div></div><div class="mt-4 rounded-2xl border border-ink/10 bg-cream px-4 py-3"><div class="text-sm tracking-wide text-ink/60">Typical outputs</div><div class="mt-1 text-sm text-ink/80">Commissioning checklist + record requirements that protect site commissioning.</div></div></div><div class="focus-panel rounded-2xl border border-ink/15 bg-white/70 p-5 md:p-6" data-focus="install" hidden=""><div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3"><div><div class="text-sm tracking-wide text-ink/60">Preview</div><div class="mt-1 font-semibold text-ink text-xl">Installation, connections &amp; QA/QC</div><div class="mt-2 flex flex-wrap gap-2"><span class="inline-flex items-center rounded-full border border-ink/15 bg-white px-3 py-1 text-[11px] text-ink/80">Connections</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-white px-3 py-1 text-[11px] text-ink/80">QA/QC</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-white px-3 py-1 text-[11px] text-ink/80">Safety</span></div></div></div><div class="mt-5 grid sm:grid-cols-2 gap-4"><div class="rounded-2xl border border-ink/10 bg-white/80 p-4"><div class="text-sm font-semibold text-ink">What we focus on</div><ul class="mt-2 space-y-1 text-sm text-ink/80"><li>• Plan shutdown periods and sequencing</li><li>• Define QA checks for installation quality</li><li>• Control utilities and temporary bypasses</li><li>• Protect safety and access requirements</li></ul></div><div class="rounded-2xl border border-ink/10 bg-white/80 p-4"><div class="text-sm font-semibold text-ink">Checks / control emphasis</div><ul class="mt-2 space-y-1 text-sm text-ink/80"><li>• Hold points for inspections</li><li>• Commissioning readiness checks</li><li>• Records for civil/mech/electrical completion</li><li>• Reduced rework</li></ul></div></div><div class="mt-4 rounded-2xl border border-ink/10 bg-cream px-4 py-3"><div class="text-sm tracking-wide text-ink/60">Typical outputs</div><div class="mt-1 text-sm text-ink/80">Installation QA checklist + readiness checks so commissioning starts clean.</div></div></div><div class="focus-panel rounded-2xl border border-ink/15 bg-white/70 p-5 md:p-6" data-focus="comm"><div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3"><div><div class="text-sm tracking-wide text-ink/60">Preview</div><div class="mt-1 font-semibold text-ink text-xl">Commissioning, completion &amp; check</div><div class="mt-2 flex flex-wrap gap-2"><span class="inline-flex items-center rounded-full border border-ink/15 bg-white px-3 py-1 text-[11px] text-ink/80">KPIs</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-white px-3 py-1 text-[11px] text-ink/80">Sampling</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-white px-3 py-1 text-[11px] text-ink/80">Completion</span></div></div></div><div class="mt-5 grid sm:grid-cols-2 gap-4"><div class="rounded-2xl border border-ink/10 bg-white/80 p-4"><div class="text-sm font-semibold text-ink">What we focus on</div><ul class="mt-2 space-y-1 text-sm text-ink/80"><li>• Run commissioning to KPI ranges</li><li>• Define sampling cadence and check logic</li><li>• Handle excursions with agreed rules</li><li>• Settle handover records requirements</li></ul></div><div class="rounded-2xl border border-ink/10 bg-white/80 p-4"><div class="text-sm font-semibold text-ink">Checks / control emphasis</div><ul class="mt-2 space-y-1 text-sm text-ink/80"><li>• Dispute-resistant completion checks</li><li>• Performance verification format</li><li>• Handover readiness criteria</li><li>• Operator training confirmation</li></ul></div></div><div class="mt-4 rounded-2xl border border-ink/10 bg-cream px-4 py-3"><div class="text-sm tracking-wide text-ink/60">Typical outputs</div><div class="mt-1 text-sm text-ink/80">Commissioning records plan + completion checks so ‘works’ is measurable.</div></div></div><div class="focus-panel rounded-2xl border border-ink/15 bg-white/70 p-5 md:p-6" data-focus="early" hidden=""><div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3"><div><div class="text-sm tracking-wide text-ink/60">Preview</div><div class="mt-1 font-semibold text-ink text-xl">Early optimisation &amp; stabilisation</div><div class="mt-2 flex flex-wrap gap-2"><span class="inline-flex items-center rounded-full border border-ink/15 bg-white px-3 py-1 text-[11px] text-ink/80">Stability</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-white px-3 py-1 text-[11px] text-ink/80">Monitoring</span><span class="inline-flex items-center rounded-full border border-ink/15 bg-white px-3 py-1 text-[11px] text-ink/80">Operations</span></div></div></div><div class="mt-5 grid sm:grid-cols-2 gap-4"><div class="rounded-2xl border border-ink/10 bg-white/80 p-4"><div class="text-sm font-semibold text-ink">What we focus on</div><ul class="mt-2 space-y-1 text-sm text-ink/80"><li>• Stabilise under actual load variability</li><li>• Tune controls and alarms</li><li>• Confirm operator routines and spares</li><li>• Capture optimisation recommendations</li></ul></div><div class="rounded-2xl border border-ink/10 bg-white/80 p-4"><div class="text-sm font-semibold text-ink">Checks / control emphasis</div><ul class="mt-2 space-y-1 text-sm text-ink/80"><li>• Trend-based check over time</li><li>• Monitoring that operators can run</li><li>• Final final approval readiness</li><li>• Documented learnings</li></ul></div></div><div class="mt-4 rounded-2xl border border-ink/10 bg-cream px-4 py-3"><div class="text-sm tracking-wide text-ink/60">Typical outputs</div><div class="mt-1 text-sm text-ink/80">Early optimisation review + recommendations pack tied to actual performance trends.</div></div></div></div></div></div></section>
+<!-- INSIGHT VIEW 1 -->
+<section class="border-b bg-cream hairline" id="impl-focus">
+<div class="max-w-6xl mx-auto px-6 py-10">
+<div class="ewd-focus-hero">
+<div class="ewd-focus-hero-inner">
+<div class="ewd-focus-grid">
+<div class="ewd-focus-copy">
+<div class="ewd-focus-kicker">IMPLEMENTATION VIEW</div>
+<h2 class="ewd-focus-title">Award is not the finish line, it is where risk becomes actual</h2>
+<p class="ewd-focus-body">Most project slippage happens when the delivery team loses sight of the original design basis and decisions start to drift. We keep operating ranges, coordination points and records visible so choices stay consistent from paper to commissioning.</p>
+</div>
+<aside aria-label="What this stage shows" class="ewd-focus-panel">
+<h3>WHAT THIS STAGE SHOWS</h3>
+<ul>
+<li>Which assumptions about flows, loads, reuse and sludge handling must not change without explicit review.</li><li>How proposed changes shift performance, OPEX, recovery potential or risk.</li><li>Which tests, baselines and documents will ultimately prove the plant is doing what was promised.</li></ul>
+<a class="ewd-focus-next-btn" href="#impl-stage-a">Next: Stage A - Delivery setup &amp; integration</a>
+</aside>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- MAIN SECTION: Overview left, ink cards right -->
+<section class="py-12 md:py-14">
+<div class="max-w-6xl mx-auto px-6">
+<div class="grid lg:grid-cols-12 gap-10 items-start">
+<!-- Left column: explanatory overview -->
+<div class="lg:col-span-7">
+<p class="text-xs tracking-wide text-gray-500 mb-2">IMPLEMENTATION FOCUS · OWNER-SIDE SUPPORT</p>
+<h2 class="ewd-serif text-4xl text-gray-950 mb-4">Keep the chosen scheme aligned through delivery, not reworked on site.</h2>
+<p class="text-base leading-relaxed text-gray-700">Implementation is where the chosen scheme has to move through drawings, submittals, procurement coordination, installation, and start-up while staying aligned with what was agreed.</p>
+<p class="text-base leading-relaxed text-gray-700 mt-3">Submittals can be approved without being checked against the agreed basis. RFIs can shift responsibility boundaries that were deliberately set earlier. Proposed cost-saving changes can alter performance, OPEX, or risk. And by the time commissioning begins, the tests being run do not always match the duties the plant is expected to meet in operation.</p>
+<p class="text-base leading-relaxed text-gray-700 mt-3">Our role here is owner-side support through delivery. We help carry the chosen scheme into site work, review key submissions, follow critical constraints through installation, and make sure start-up checks are tied to the duties the plant must meet in operation.</p>
+<p class="text-base leading-relaxed text-gray-700 mt-3">At this stage we focus on:</p>
+<ul class="text-sm leading-relaxed text-gray-700 mt-3" style="padding-left:1.1rem; list-style:disc;">
+<li>What must not change without explicit review: operating ranges, performance targets, and responsibility boundaries.</li>
+<li>How proposed changes affect performance, OPEX, or risk, so decisions are made with visibility rather than absorbed quietly.</li>
+<li>Which tests and baseline records will show whether the plant is doing what was agreed.</li>
+<li>What the operator needs at handover: documentation, training, spares, and a baseline they can manage against.</li>
+</ul>
+<p class="text-base leading-relaxed text-gray-700 mt-3">This gives your project team, lenders, and auditors a clear link between what was agreed and what was built, tested, and handed over.</p>
+</div>
+<!-- Right column: individual ink cards (not a grid) -->
+<div class="lg:col-span-5">
+<div class="ink-card">
+<h3>Stage 1 · From award to aligned kickoff</h3>
+<p>Translate award notes, schedules and responsibilities into a concise kickoff summary. We make sure scope, coordination points, operating ranges and KPIs are understood the same way before delivery gathers pace on drawings, procurement and civil works.</p>
+</div>
+<div class="ink-card" style="margin-top:1rem;">
+<h3>Stage 2 · Design, submittals &amp; integration reviews</h3>
+<p>Use submittals and design reviews to support process logic and operability, not to create paperwork. We check P&amp;IDs, GAs and key equipment selections against flows, loads, hydraulics and access so the plant remains buildable and operable on the chosen site.</p>
+</div>
+<div class="ink-card" style="margin-top:1rem;">
+<h3>Stage 3 · Commissioning, start-up checks &amp; handover records</h3>
+<p>Agree which tests matter, how data will be captured and how completion will be documented. Commissioning and early performance data is structured so it becomes an operating baseline and results pack, not a set of disconnected spreadsheets.</p>
+</div>
+<div class="ink-card" style="margin-top:1rem;">
+<h3>Stage 4 · Early operation, troubleshooting &amp; optimisation</h3>
+<p>Support the first months of operation with light-touch reviews focused on stability, recovery and operator effort. We help separate design issues from controllable operational tuning, and use short campaigns to settle better setpoints and practices.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- WHEN THIS SUPPORT IS USEFUL -->
+<section class="bg-cream border-b hairline" id="impl-when">
+<div class="max-w-6xl mx-auto px-6 py-12">
+<div class="grid lg:grid-cols-12 gap-10 items-start">
+<div class="lg:col-span-5">
+<h2 class="ewd-serif text-2xl md:text-3xl text-gray-950">When our implementation support is useful</h2>
+<p class="mt-3 text-gray-700 leading-relaxed">This part is for owners and operators who want an independent process and systems partner to stay engaged through implementation, so that what was agreed on paper is actually what is built, tested and operated.</p>
+<p class="mt-3 text-gray-700 leading-relaxed">We are most useful where the project already has a chosen solution family (for example an MBBR-based line with known pretreatment and sludge handling) and the risk now lies in how that solution is executed, integrated with existing assets and proven in operation.</p>
+</div>
+<div class="lg:col-span-7">
+<div class="grid md:grid-cols-3 gap-4 text-xs sm:text-sm text-gray-700">
+<div class="bg-white/55 border hairline rounded-sm p-6">
+<h3 class="mt-0 font-semibold text-gray-900">
+ Typical situations
+ </h3>
+<ul class="mt-2 space-y-1.5">
+<li>Awarded project with tight shutdown periods or constrained site access.</li>
+<li>Multi-package delivery where coordination ownership is unclear.</li>
+<li>Commissioning milestones approaching with completion criteria not yet defined.</li>
+</ul>
+</div>
+<div class="bg-white/55 border hairline rounded-sm p-6">
+<h3 class="mt-0 font-semibold text-gray-900">
+ What you may already have
+ </h3>
+<ul class="mt-2 space-y-1.5">
+<li>A signed contract and a delivery partner on site or mobilising.</li>
+<li>A design basis and agreed KPIs carried forward from the earlier design and procurement work.</li>
+<li>A project team focused on programme and cost.</li>
+</ul>
+</div>
+<div class="bg-white/55 border hairline rounded-sm p-6">
+<h3 class="mt-0 font-semibold text-gray-900">
+ What you still need
+ </h3>
+<ul class="mt-2 space-y-1.5">
+<li>An independent process view to keep the original design intent visible.</li>
+<li>Structured commissioning and completion records, not just a closing sheet.</li>
+<li>A clear record of what was built and tested for operators and auditors.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- STAGE A -->
+<section class="bg-cream border-b hairline" id="impl-stage-a">
+<div class="max-w-6xl mx-auto px-6 py-12">
+<div class="grid lg:grid-cols-12 gap-10 items-start">
+<div class="lg:col-span-5">
+<div class="flex flex-wrap items-center gap-2 text-xs text-gray-700">
+<span class="inline-flex items-center rounded-full bg-slate-900 text-white px-3 py-1 text-xs font-semibold">Stage A</span>
+<h2 class="text-lg sm:text-xl font-semibold text-slate-900">Delivery setup &amp; integration control</h2>
+</div>
+<p class="mt-3 text-gray-700 leading-relaxed">Here we translate the agreed design and procurement decisions into a delivery-ready basis. We clarify how the contractor will show performance, how changes will be handled, and how coordination with existing assets will be managed.</p>
+<p class="mt-3 text-gray-700 leading-relaxed">Stage A sets up delivery so the project does not quietly reopen fundamental design debates. We create simple structures for reviews, change control and coordination management that keep operating ranges, KPIs and risk ownership in view.</p>
+</div>
+<div class="lg:col-span-7">
+<div class="rounded-3xl p-4 sm:p-5 md:p-6 stage-panel">
+<div class="stage-layout">
+<div>
+<div class="stage-kicker">Pick a focus area</div>
+<div class="scroll-wrap"><div class="stage-btn-row mt-4 scroll-row" data-scroll-enhanced="1">
+<button aria-pressed="true" class="stage-btn is-active" data-a-item="" data-a-target="stageA-scope" type="button">
+<div class="stage-btn-title">Scope &amp; coordination</div>
+<div class="stage-btn-desc">Define boundaries, connections and responsibilities.</div>
+</button>
+<button aria-pressed="false" class="stage-btn" data-a-item="" data-a-target="stageA-check" type="button">
+<div class="stage-btn-title">Commissioning plan</div>
+<div class="stage-btn-desc">What records are required, and when.</div>
+</button>
+<button aria-pressed="false" class="stage-btn" data-a-item="" data-a-target="stageA-change" type="button">
+<div class="stage-btn-title">Change control</div>
+<div class="stage-btn-desc">How deviations and RFIs are handled.</div>
+</button>
+<button aria-pressed="false" class="stage-btn" data-a-item="" data-a-target="stageA-controls" type="button">
+<div class="stage-btn-title">Controls &amp; data</div>
+<div class="stage-btn-desc">Instrumentation, trending and reporting basics.</div>
+</button>
+<button aria-pressed="false" class="stage-btn" data-a-item="" data-a-target="stageA-outputs" type="button">
+<div class="stage-btn-title">Typical outputs</div>
+<div class="stage-btn-desc">The pack we assemble for the team.</div>
+</button>
+</div><div class="scroll-fade left" style="opacity: 0;"></div><div class="scroll-fade right" style="opacity: 1;"></div><button aria-label="Scroll left" class="scroll-arrow left" disabled="" type="button"><svg aria-hidden="true" fill="none" height="16" viewbox="0 0 24 24" width="16"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button><button aria-label="Scroll right" class="scroll-arrow right" type="button"><svg aria-hidden="true" fill="none" height="16" viewbox="0 0 24 24" width="16"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button></div>
+</div>
+<div aria-live="polite" class="stage-block" id="stageA-block"><div class="stage-block-label">STAGE A · SCOPE</div><div class="stage-block-title">Scope &amp; coordination</div><p style="margin-top:.55rem;color:rgba(15,23,42,.74);line-height:1.55;">Define boundaries, connections and responsibilities so implementation does not drift.</p><ul>
+<li><span class="stage-dot"></span><span>Coordination point matrix (civil / electrical / controls / O&amp;M), who owns what.</span></li>
+<li><span class="stage-dot"></span><span>Connection points, shutdown periods and access constraints.</span></li>
+<li><span class="stage-dot"></span><span>Utility &amp; chemical requirements (power, air, dosing, drains).</span></li>
+<li><span class="stage-dot"></span><span>Feed and operating limit assumptions that must hold for performance.</span></li>
+<li><span class="stage-dot"></span><span>Site readiness checklist to spot issues early, before they become late surprises.</span></li>
+</ul></div>
+</div>
+<div class="stage-template" id="stageA-scope"><div class="stage-block-label">STAGE A · SCOPE</div><div class="stage-block-title">Scope &amp; coordination</div><p style="margin-top:.55rem;color:rgba(15,23,42,.74);line-height:1.55;">Define boundaries, connections and responsibilities so implementation does not drift.</p><ul>
+<li><span class="stage-dot"></span><span>Coordination point matrix (civil / electrical / controls / O&amp;M), who owns what.</span></li>
+<li><span class="stage-dot"></span><span>Connection points, shutdown periods and access constraints.</span></li>
+<li><span class="stage-dot"></span><span>Utility &amp; chemical requirements (power, air, dosing, drains).</span></li>
+<li><span class="stage-dot"></span><span>Feed and operating limit assumptions that must hold for performance.</span></li>
+<li><span class="stage-dot"></span><span>Site readiness checklist to spot issues early, before they become late surprises.</span></li>
+</ul></div>
+<div class="stage-template" id="stageA-check"><div class="stage-block-label">STAGE A · CHECKS</div><div class="stage-block-title">Commissioning plan</div><p style="margin-top:.55rem;color:rgba(15,23,42,.74);line-height:1.55;">Make completion checks clear: what is measured, how, and when.</p><ul>
+<li><span class="stage-dot"></span><span>Performance KPIs and pass/fail criteria (quality, flow, stability).</span></li>
+<li><span class="stage-dot"></span><span>Sampling / lab verification plan (methods, frequency, custody).</span></li>
+<li><span class="stage-dot"></span><span>Trend capture requirements (critical tags, intervals, reporting).</span></li>
+<li><span class="stage-dot"></span><span>Hold points for review (commissioning, performance verification runs).</span></li>
+<li><span class="stage-dot"></span><span>Results pack structure so the decision trail is clean.</span></li>
+</ul></div>
+<div class="stage-template" id="stageA-change"><div class="stage-block-label">STAGE A · CONTROL</div><div class="stage-block-title">Change control</div><p style="margin-top:.55rem;color:rgba(15,23,42,.74);line-height:1.55;">Keep RFIs, deviations and optimisations inside a controlled process.</p><ul>
+<li><span class="stage-dot"></span><span>RFI / NCR / variation register with response SLAs and owners.</span></li>
+<li><span class="stage-dot"></span><span>Deviation format (what changed, why, risk, mitigation and records).</span></li>
+<li><span class="stage-dot"></span><span>Approval thresholds (cost / time / risk) and escalation path.</span></li>
+<li><span class="stage-dot"></span><span>Document control rules (revisioning, as-builts, redlines).</span></li>
+<li><span class="stage-dot"></span><span>Risk review required before any ‘equivalent’ is accepted.</span></li>
+</ul></div>
+<div class="stage-template" id="stageA-controls"><div class="stage-block-label">STAGE A · DATA</div><div class="stage-block-title">Controls &amp; data</div><p style="margin-top:.55rem;color:rgba(15,23,42,.74);line-height:1.55;">Define the minimum instrumentation, trending and reporting needed for performance visibility.</p><ul>
+<li><span class="stage-dot"></span><span>I/O list and instrument minimums for process-critical points.</span></li>
+<li><span class="stage-dot"></span><span>Alarm philosophy and interlocks that protect the plant.</span></li>
+<li><span class="stage-dot"></span><span>Trending requirements for KPI checks (setpoints, states and totals).</span></li>
+<li><span class="stage-dot"></span><span>Reporting template (daily/weekly) aligned with completion KPIs.</span></li>
+<li><span class="stage-dot"></span><span>Remote monitoring / dashboard expectations (if applicable).</span></li>
+</ul></div>
+<div class="stage-template" id="stageA-outputs"><div class="stage-block-label">STAGE A · OUTPUTS</div><div class="stage-block-title">Typical outputs</div><p style="margin-top:.55rem;color:rgba(15,23,42,.74);line-height:1.55;">What you receive from this stage, ready to guide installation and completion.</p><ul>
+<li><span class="stage-dot"></span><span>Implementation scope + coordination matrix and connection notes.</span></li>
+<li><span class="stage-dot"></span><span>Commissioning plan with KPI definitions and check points.</span></li>
+<li><span class="stage-dot"></span><span>Change control pack (logs, deviation format, approval workflow).</span></li>
+<li><span class="stage-dot"></span><span>Controls &amp; data minimums (I/O, trending, reporting expectations).</span></li>
+<li><span class="stage-dot"></span><span>Stage checklist to move confidently into delivery.</span></li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- TYPICAL SOURCING PATTERNS - INK BOXES -->
+<section class="bg-cream border-b hairline" id="impl-patterns">
+<div class="max-w-6xl mx-auto px-6 py-12">
+<h2 class="ewd-serif text-2xl md:text-3xl text-gray-950">Typical implementation situations we support</h2>
+<p class="mt-3 max-w-3xl text-gray-700 leading-relaxed">Every project and site is different, but some implementation situations repeat. We use them as working templates to structure reviews, tests and optimisation, then adapt them to your specific plants, networks and commercial context.</p>
+<div class="mt-6 grid md:grid-cols-3 gap-8">
+<article class="pattern-card bg-ink text-white border border-white/10 rounded-sm p-6">
+<p class="text-xs font-semibold tracking-wide text-emerald-200" style="color:var(--accent);">Keeping design duties, guarantees and record requirements visible from award through final approval, especially where reuse, recovery or emissions KPIs are part of the permit.</p>
+<h3 class="mt-2 font-semibold text-white">New plant delivery with tight approval timelines</h3>
+<p class="mt-2 text-sm text-white/80 leading-relaxed">
+ Once the project is awarded, the priority is to carry the agreed process intent through submittals, package coordination and early site decisions. We keep scope, review points and performance records aligned so delivery does not drift away from what was selected and approved.
+ </p>
+</article>
+<article class="pattern-card bg-ink text-white border border-white/10 rounded-sm p-6">
+<p class="text-xs font-semibold tracking-wide text-emerald-200" style="color:var(--accent);">Making sure new treatment lines, filters and sludge systems integrate cleanly with existing assets and operations, without creating hidden bottlenecks or control conflicts.</p>
+<h3 class="mt-2 font-semibold text-white">Plant upgrades and constrained retrofits</h3>
+<p class="mt-2 text-sm text-white/80 leading-relaxed">
+ For upgrades inside operating plants, we focus on cutovers, temporary arrangements, controls changes and connections that have to work around live operations. The aim is to keep installation practical and to make sure the new system can be brought into service without creating hidden constraints elsewhere on the plant.
+ </p>
+</article>
+<article class="pattern-card bg-ink text-white border border-white/10 rounded-sm p-6">
+<p class="text-xs font-semibold tracking-wide text-emerald-200" style="color:var(--accent);">Using implementation-style reviews and short campaigns to understand why a plant is underperforming, then structuring practical, testable improvements.</p>
+<h3 class="mt-2 font-semibold text-white">Performance audits &amp; operational turnarounds</h3>
+<p class="mt-2 text-sm text-white/80 leading-relaxed">
+ Where performance has stalled or early results are unclear, we use targeted reviews and short operating campaigns to separate design drift, controls issues and operating gaps. That gives the owner a practical route to recovery, with checks that can be repeated and tracked rather than broad fault-finding.
+ </p>
+</article>
+</div>
+</div>
+</section>
+<!-- INSIGHT 2 -->
+<section class="border-b bg-cream hairline" id="impl-insight">
+<div class="max-w-6xl mx-auto px-6 py-10">
+<div class="ewd-focus-hero">
+<div class="ewd-focus-hero-inner">
+<div class="ewd-focus-grid">
+<div class="ewd-focus-copy">
+<div class="ewd-focus-kicker">INSIGHT</div>
+<h2 class="ewd-focus-title">Commissioning succeeds when performance is judged by clear checks, not opinion</h2>
+<p class="ewd-focus-body">We want performance to rest on a clear trail of tests, baselines and operating ranges, not on who argued hardest in the last meeting.</p>
+</div>
+<aside aria-label="What this stage shows" class="ewd-focus-panel">
+<h3>WHAT THIS STAGE SHOWS</h3>
+<ul>
+<li>Defined performance periods for key KPIs (flows, loads, reuse, emissions, sludge).</li><li>Commissioning plans that tie each test back to those ranges and to agreed risk points.</li><li>A compact results pack that plant managers, lenders and auditors can all understand.</li></ul>
+<a class="ewd-focus-next-btn" href="#impl-stage-b">Next: Stage B - Commissioning &amp; optimisation</a>
+</aside>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- STAGE B -->
+<section class="bg-cream border-b hairline" id="impl-stage-b">
+<div class="max-w-6xl mx-auto px-6 py-12">
+<div class="grid lg:grid-cols-12 gap-10 items-start">
+<div class="lg:col-span-5">
+<div class="flex flex-wrap items-center gap-2 text-xs text-gray-700">
+<span class="inline-flex items-center rounded-full bg-slate-900 text-white px-3 py-1 text-xs font-semibold">Stage B</span>
+<h2 class="text-lg sm:text-xl font-semibold text-slate-900">Commissioning, performance checks &amp; early optimisation</h2>
+</div>
+<p class="mt-3 text-gray-700 leading-relaxed">Once the plant is mechanically complete, we focus on proving that it can actually deliver the agreed performance. We help structure commissioning and performance verification, commissioning runs and early operation reviews so you get results you can rely on, and practical insight into where optimisation should start.</p>
+<p class="mt-3 text-gray-700 leading-relaxed">This stage is where hidden assumptions appear in practice. We help identify whether issues are commissioning variables or design gaps, agree what must be re-tested, and capture the records you will rely on later.</p>
+</div>
+<div class="lg:col-span-7">
+<div class="rounded-3xl p-4 sm:p-5 md:p-6 stage-panel">
+<div class="stage-layout">
+<div>
+<div class="stage-kicker">Pick a focus area</div>
+<div class="scroll-wrap"><div class="stage-btn-row mt-4 scroll-row" data-scroll-enhanced="1">
+<button aria-pressed="true" class="stage-btn is-active" data-b-item="" data-b-target="stageB-check" type="button">
+<div class="stage-btn-title">Workshop verification</div>
+<div class="stage-btn-desc">Records before it ships; reduce surprises.</div>
+</button>
+<button aria-pressed="false" class="stage-btn" data-b-item="" data-b-target="stageB-install" type="button">
+<div class="stage-btn-title">Installation &amp; connections</div>
+<div class="stage-btn-desc">QA, coordination point control, readiness.</div>
+</button>
+<button aria-pressed="false" class="stage-btn" data-b-item="" data-b-target="stageB-commission" type="button">
+<div class="stage-btn-title">Commissioning &amp; completion</div>
+<div class="stage-btn-desc">KPIs judged through clear checks.</div>
+</button>
+<button aria-pressed="false" class="stage-btn" data-b-item="" data-b-target="stageB-optimise" type="button">
+<div class="stage-btn-title">Early optimisation</div>
+<div class="stage-btn-desc">Stabilise performance and embed operations.</div>
+</button>
+<button aria-pressed="false" class="stage-btn" data-b-item="" data-b-target="stageB-handover" type="button">
+<div class="stage-btn-title">Handover readiness</div>
+<div class="stage-btn-desc">Operator capacity, SOPs, spares.</div>
+</button>
+</div><div class="scroll-fade left" style="opacity: 0;"></div><div class="scroll-fade right" style="opacity: 1;"></div><button aria-label="Scroll left" class="scroll-arrow left" disabled="" type="button"><svg aria-hidden="true" fill="none" height="16" viewbox="0 0 24 24" width="16"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button><button aria-label="Scroll right" class="scroll-arrow right" type="button"><svg aria-hidden="true" fill="none" height="16" viewbox="0 0 24 24" width="16"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button></div>
+</div>
+<div aria-live="polite" class="stage-block" id="stageB-block"><div class="stage-block-label">STAGE B · DELIVERY</div><div class="stage-block-title">commissioning and performance verification readiness</div><p style="margin-top:.55rem;color:rgba(15,23,42,.74);line-height:1.55;">Prepare workshop/site checks so issues appear early, not on site.</p><ul>
+<li><span class="stage-dot"></span><span>Commissioning scripts aligned to the check plan and required records.</span></li>
+<li><span class="stage-dot"></span><span>Calibration certificates and instrument verification checks.</span></li>
+<li><span class="stage-dot"></span><span>Controls overview review (states, alarms, interlocks).</span></li>
+<li><span class="stage-dot"></span><span>Spare parts and criticality confirmation before shipment.</span></li>
+<li><span class="stage-dot"></span><span>Site completion checklist and prerequisites to avoid delays.</span></li>
+</ul></div>
+</div>
+<div class="stage-template" id="stageB-check"><div class="stage-block-label">STAGE B · DELIVERY</div><div class="stage-block-title">commissioning and performance verification readiness</div><p style="margin-top:.55rem;color:rgba(15,23,42,.74);line-height:1.55;">Prepare workshop/site checks so issues appear early, not on site.</p><ul>
+<li><span class="stage-dot"></span><span>Commissioning scripts aligned to the check plan and required records.</span></li>
+<li><span class="stage-dot"></span><span>Calibration certificates and instrument verification checks.</span></li>
+<li><span class="stage-dot"></span><span>Controls overview review (states, alarms, interlocks).</span></li>
+<li><span class="stage-dot"></span><span>Spare parts and criticality confirmation before shipment.</span></li>
+<li><span class="stage-dot"></span><span>Site completion checklist and prerequisites to avoid delays.</span></li>
+</ul></div>
+<div class="stage-template" id="stageB-install"><div class="stage-block-label">STAGE B · DELIVERY</div><div class="stage-block-title">Installation &amp; connections</div><p style="margin-top:.55rem;color:rgba(15,23,42,.74);line-height:1.55;">Control coordination points: method statements, QA and readiness.</p><ul>
+<li><span class="stage-dot"></span><span>Installation method statements + lift plans for major equipment.</span></li>
+<li><span class="stage-dot"></span><span>Connection markups (P&amp;IDs / layouts) and coordination log.</span></li>
+<li><span class="stage-dot"></span><span>QA / ITP checkpoints and punch-list process.</span></li>
+<li><span class="stage-dot"></span><span>Utility readiness (power, air, chemicals) verified before commissioning.</span></li>
+<li><span class="stage-dot"></span><span>Pre-start safety and access / isolation plan for connections.</span></li>
+</ul></div>
+<div class="stage-template" id="stageB-commission"><div class="stage-block-label">STAGE B · CHECKS</div><div class="stage-block-title">Commissioning &amp; completion</div><p style="margin-top:.55rem;color:rgba(15,23,42,.74);line-height:1.55;">KPIs judged through clear checks, define ramp-up, stabilisation and formal final approval.</p><ul>
+<li><span class="stage-dot"></span><span>Commissioning sequence and ramp-up plan (stepwise, controlled).</span></li>
+<li><span class="stage-dot"></span><span>Completion test protocol with pass/fail criteria and durations.</span></li>
+<li><span class="stage-dot"></span><span>Troubleshooting decision tree for common failure modes.</span></li>
+<li><span class="stage-dot"></span><span>Performance run results pack (trends, lab results, logs).</span></li>
+<li><span class="stage-dot"></span><span>Formal final approval trail, who signs what, and when.</span></li>
+</ul></div>
+<div class="stage-template" id="stageB-optimise"><div class="stage-block-label">STAGE B · STABILISE</div><div class="stage-block-title">Early optimisation</div><p style="margin-top:.55rem;color:rgba(15,23,42,.74);line-height:1.55;">Stabilise performance and embed operations for the first months.</p><ul>
+<li><span class="stage-dot"></span><span>Operating limit + tuning log (chemicals, DO, recycle rates, etc.).</span></li>
+<li><span class="stage-dot"></span><span>OPEX baseline and optimisation priorities (energy, chemicals, sludge).</span></li>
+<li><span class="stage-dot"></span><span>Operator coaching plan and shift handover routines.</span></li>
+<li><span class="stage-dot"></span><span>Monitoring plan for the first 60-90 days (KPIs, alerts, reviews).</span></li>
+<li><span class="stage-dot"></span><span>Close-out actions list to settle-in performance before warranty clock runs.</span></li>
+</ul></div>
+<div class="stage-template" id="stageB-handover"><div class="stage-block-label">STAGE B · HANDOVER</div><div class="stage-block-title">Handover readiness</div><p style="margin-top:.55rem;color:rgba(15,23,42,.74);line-height:1.55;">Ensure the operator can run it: documentation, training, spares and records.</p><ul>
+<li><span class="stage-dot"></span><span>As-built drawings, O&amp;M manuals and controls documentation.</span></li>
+<li><span class="stage-dot"></span><span>SOPs and training records (operators + maintenance).</span></li>
+<li><span class="stage-dot"></span><span>Spares / consumables list + warranty register.</span></li>
+<li><span class="stage-dot"></span><span>Baseline performance report for ongoing monitoring.</span></li>
+<li><span class="stage-dot"></span><span>Commissioning close-out and punch-list completion check.</span></li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- TYPICAL OUTPUTS -->
+<section class="bg-cream border-b hairline" id="impl-outputs">
+<div class="max-w-6xl mx-auto px-6 py-12">
+<div class="grid lg:grid-cols-12 gap-10 items-start">
+<div class="lg:col-span-5">
+<h2 class="ewd-serif text-2xl md:text-3xl text-gray-950">Typical outputs from implementation &amp; applied support</h2>
+<p class="mt-3 text-gray-700 leading-relaxed">The aim is not more paperwork, it is a small set of records that explain how the plant was delivered, what was tested and what performance was achieved.</p>
+<p class="mt-3 text-gray-700 leading-relaxed">Each working document is designed to be reused on future projects so implementation maturity builds over time, instead of being buried in emails and ad-hoc files.</p>
+</div>
+<div class="lg:col-span-7">
+<div class="grid md:grid-cols-3 gap-4 text-xs sm:text-sm text-gray-700">
+<div class="bg-white/55 border hairline rounded-sm p-6">
+<div class="text-sm font-semibold text-gray-900">Implementation summary &amp; coordination pack</div>
+<ul class="mt-2 space-y-1.5">
+<li>Concise summary of scope, operating ranges, KPIs and key constraints for the delivery team.</li><li>Coordination point map across civil, mechanical, E&amp;I, controls and operations.</li><li>Kickoff agenda and review rhythm focused on performance, not just progress.</li></ul>
+</div>
+<div class="bg-white/55 border hairline rounded-sm p-6">
+<div class="text-sm font-semibold text-gray-900">Design, change &amp; records log</div>
+<ul class="mt-2 space-y-1.5">
+<li>Linked record of submittals, RFIs, design decisions and associated tests.</li><li>Notes on how each change affects performance, OPEX, recovery potential or risk.</li><li>Single place to see what must be re-tested before handover.</li></ul>
+</div>
+<div class="bg-white/55 border hairline rounded-sm p-6">
+<div class="text-sm font-semibold text-gray-900">Commissioning &amp; performance results pack</div>
+<ul class="mt-2 space-y-1.5">
+<li>Structured summary of commissioning and performance verification runs.</li><li>Initial operating baselines for key KPIs, including reuse and sludge/biosolids outputs where relevant.</li><li>Short overview and visuals suitable for internal sponsors, lenders and regulators.</li></ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- NEXT STEP STRIP -->
+<section class="bg-cream border-t hairline" id="engage-strip">
+<div class="max-w-6xl mx-auto px-6 py-12">
+<div class="rounded-3xl bg-forest2 text-white soft-shadow px-6 md:px-10 py-10 md:py-12">
+<h2 class="ewd-serif text-3xl md:text-4xl lg:text-5xl leading-tight">
+ Choose how you want to engage
+ </h2>
+<p class="mt-3 max-w-2xl text-sm md:text-base text-white/85 leading-relaxed">Pick a pack based on where you are in delivery. Each one ends with a clear set of implementation notes, records and next actions you can plug straight into your project.</p>
+<div class="mt-8 grid md:grid-cols-3 gap-4 text-xs sm:text-sm">
+<article class="bg-white/5 border border-white/15 rounded-2xl px-5 py-5 md:px-6 md:py-6">
+<p class="text-[11px] font-semibold tracking-wide text-white/70 uppercase">Pack 1</p>
+<h3 class="mt-1 text-sm font-semibold text-white">Kickoff &amp; delivery setup</h3>
+<p class="mt-2 text-white/85 leading-relaxed">Award-to-kickoff support: translate the decision trail into a practical implementation summary, coordination map and early risk register.</p>
+</article>
+<article class="bg-white/5 border border-white/15 rounded-2xl px-5 py-5 md:px-6 md:py-6">
+<p class="text-[11px] font-semibold tracking-wide text-white/70 uppercase">Pack 2</p>
+<h3 class="mt-1 text-sm font-semibold text-white">Design, change &amp; integration support</h3>
+<p class="mt-2 text-white/85 leading-relaxed">Ongoing owner-side reviews for design, change control and integration so the plant that gets built still matches the agreed basis.</p>
+</article>
+<article class="bg-white/5 border border-white/15 rounded-2xl px-5 py-5 md:px-6 md:py-6">
+<p class="text-[11px] font-semibold tracking-wide text-white/70 uppercase">Pack 3</p>
+<h3 class="mt-1 text-sm font-semibold text-white">Commissioning &amp; performance proving</h3>
+<p class="mt-2 text-white/85 leading-relaxed">Support through commissioning, proving runs and early optimisation, culminating in a concise results pack and operating baseline.</p>
+</article>
+</div>
+<div class="mt-8 flex flex-wrap gap-3">
+<a class="inline-flex items-center gap-2 rounded-full bg-white text-forest2 px-6 py-3 text-sm font-semibold hover:bg-white/90" href="../get-in-touch.html">
+ Start an enquiry
+ <svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</a>
+<a class="inline-flex items-center gap-2 rounded-full border border-white/40 bg-transparent px-6 py-3 text-sm font-semibold text-white hover:bg-white/10" href="#impl-stage-a">Jump to Stage A (delivery setup)</a>
+<a class="inline-flex items-center gap-2 rounded-full border border-white/40 bg-transparent px-6 py-3 text-sm font-semibold text-white hover:bg-white/10" href="#impl-stage-b">Jump to Stage B (commissioning &amp; optimisation)</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<style id="design-sourcing-footer-add-v2">
+.ds-footer{background:#1f3731;color:rgba(255,255,255,.86);border-top:1px solid rgba(255,255,255,.10);margin-top:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+.ds-footer *{box-sizing:border-box;}
+.ds-footer-pattern{background-image:radial-gradient(circle at 10% 20%,rgba(255,255,255,.07) 0,rgba(255,255,255,.07) 2px,transparent 2px),radial-gradient(circle at 70% 60%,rgba(255,255,255,.06) 0,rgba(255,255,255,.06) 2px,transparent 2px);background-size:48px 48px,64px 64px;}
+.ds-footer-inner{max-width:72rem;margin:0 auto;padding:3.5rem 1.5rem 2rem;}
+.ds-footer-grid{display:grid;gap:2.5rem;}
+@media(min-width:768px){.ds-footer-grid{grid-template-columns:repeat(3,minmax(0,1fr));}.ds-footer-bottom{flex-direction:row;align-items:center;justify-content:space-between;}}
+.ds-footer-brand{display:flex;align-items:center;gap:.55rem;color:#fff;font-weight:700;letter-spacing:.01em;}
+.ds-footer-dot{width:.625rem;height:.625rem;border-radius:999px;background:#55a092;display:inline-flex;flex:0 0 auto;}
+.ds-footer-text{margin-top:.75rem;color:rgba(255,255,255,.70);font-size:.875rem;line-height:1.65;max-width:24rem;}
+.ds-footer-links{display:grid;gap:.5rem;font-size:.875rem;align-content:start;}
+.ds-footer-links p{font-weight:700;color:#fff;margin:0 0 .15rem;}
+.ds-footer-links a{color:rgba(255,255,255,.84);text-decoration:none;}
+.ds-footer-links a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px;}
+.ds-footer-location{color:rgba(255,255,255,.70);margin:0;}
+.ds-footer-bottom{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.10);display:flex;flex-direction:column;gap:.75rem;color:rgba(255,255,255,.56);font-size:.75rem;}
+.ds-footer-bottom p{margin:0;}
+</style>
+<footer class="footer">
+<div class="wrap">
+<div class="footer-top">
+<div>
+<div class="footer-brand"><img alt="EnWater Design logo" class="footer-logo" src="../assets/images/enwater-design-logo-transparent-mark.png"/><span class="footer-name">EnWater Design</span></div>
+<p class="footer-desc">Independent water, wastewater treatment and reuse consulting, helping owners and operators turn complex challenges into clear decisions and practical outcomes.</p>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<a href="../home.html">Home</a>
+<a href="../About/about.html">About</a>
+<a href="../About/BlogList.html">Our Blog</a>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+</div>
+<div class="footer-col">
+<h4>Services</h4>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing</a>
+<a href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<a href="../Projects/index.html">Projects</a>
+<a href="../Sectors/index.html">Sectors</a>
+</div>
+<div class="footer-col">
+<h4>Pathways</h4>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../Sectors/index.html">Sector Pathways</a>
+</div>
+<div class="footer-col">
+<h4>Get in touch</h4>
+<a href="../get-in-touch.html">Contact form</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">Industrial / CETP</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© <span id="yr"></span> EnWater Design</div>
+<div>Clear systems planning for practical project delivery</div>
+</div>
+</div>
+<script>
+  (function() {
+    const yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+  })();
+</script>
+</footer>
+<script>
+(() => {
+ const root = document.getElementById("implementation-focus");
+ if(!root) return;
+ const btns = Array.from(root.querySelectorAll('.focus-btn'));
+ const panels = Array.from(root.querySelectorAll('.focus-panel'));
+ function show(key){
+ btns.forEach(b => b.setAttribute('aria-selected', b.dataset.focus === key ? 'true' : 'false'));
+ panels.forEach(p => {
+ if(p.dataset.focus === key) p.removeAttribute('hidden');
+ else p.setAttribute('hidden','');
+ });
+ }
+ btns.forEach(b => b.addEventListener('click', () => show(b.dataset.focus)));
+})();
+</script>
+<script>
+/* Stage A window switcher */
+(() => {
+ const section = document.getElementById('impl-stage-a');
+ if (!section) return;
+
+ const buttons = section.querySelectorAll('[data-a-item]');
+ const win = section.querySelector('#stageA-block');
+ if (!buttons.length || !win) return;
+
+ const setActive = (btn) => {
+ buttons.forEach((b) => {
+ b.classList.remove('is-active');
+ b.setAttribute('aria-pressed','false');
+ });
+ btn.classList.add('is-active');
+ btn.setAttribute('aria-pressed','true');
+ };
+
+ const render = (btn) => {
+ const id = btn.getAttribute('data-a-target');
+ const tpl = section.querySelector('#' + (globalThis.CSS && CSS.escape ? CSS.escape(id) : id)) || document.getElementById(id);
+ const html = (tpl && tpl.innerHTML) ? tpl.innerHTML.trim() : '';
+ if (!html) {
+ win.innerHTML = '<div class="stage-block-placeholder">Select an item to view the details.</div>';
+ return;
+ }
+ win.innerHTML = html;
+ };
+
+ buttons.forEach((btn) => {
+ btn.setAttribute('aria-pressed','false');
+ btn.addEventListener('click', () => {
+ setActive(btn);
+ render(btn);
+ });
+ });
+
+ buttons[0].click();
+})();
+
+/* Stage B window switcher */
+(() => {
+ const section = document.getElementById('impl-stage-b');
+ if (!section) return;
+
+ const buttons = section.querySelectorAll('[data-b-item]');
+ const win = section.querySelector('#stageB-block');
+ if (!buttons.length || !win) return;
+
+ const setActive = (btn) => {
+ buttons.forEach((b) => {
+ b.classList.remove('is-active');
+ b.setAttribute('aria-pressed','false');
+ });
+ btn.classList.add('is-active');
+ btn.setAttribute('aria-pressed','true');
+ };
+
+ const render = (btn) => {
+ const id = btn.getAttribute('data-b-target');
+ const tpl = section.querySelector('#' + (globalThis.CSS && CSS.escape ? CSS.escape(id) : id)) || document.getElementById(id);
+ const html = (tpl && tpl.innerHTML) ? tpl.innerHTML.trim() : '';
+ if (!html) {
+ win.innerHTML = '<div class="stage-block-placeholder">Select an item to view the details.</div>';
+ return;
+ }
+ win.innerHTML = html;
+ };
+
+ buttons.forEach((btn) => {
+ btn.setAttribute('aria-pressed','false');
+ btn.addEventListener('click', () => {
+ setActive(btn);
+ render(btn);
+ });
+ });
+
+ buttons[0].click();
+})();
+</script>
+<script>
+/* --- scroll arrows: convert overflowing rows into scrollable rows with chevrons --- */
+(function(){
+ function svgChevron(dir){
+ return (dir==='left')
+ ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+ : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+ }
+
+ function enhanceRow(row){
+ if(!row || row.dataset.scrollEnhanced) return;
+ row.dataset.scrollEnhanced = "1";
+ row.classList.add('scroll-row');
+
+ var wrap = document.createElement('div');
+ wrap.className = 'scroll-wrap';
+ row.parentNode.insertBefore(wrap, row);
+ wrap.appendChild(row);
+
+ var fadeL = document.createElement('div');
+ fadeL.className = 'scroll-fade left';
+ var fadeR = document.createElement('div');
+ fadeR.className = 'scroll-fade right';
+
+ var left = document.createElement('button');
+ left.type = 'button';
+ left.className = 'scroll-arrow left';
+ left.setAttribute('aria-label','Scroll left');
+ left.innerHTML = svgChevron('left');
+
+ var right = document.createElement('button');
+ right.type = 'button';
+ right.className = 'scroll-arrow right';
+ right.setAttribute('aria-label','Scroll right');
+ right.innerHTML = svgChevron('right');
+
+ wrap.appendChild(fadeL);
+ wrap.appendChild(fadeR);
+ wrap.appendChild(left);
+ wrap.appendChild(right);
+
+ function update(){
+ var hasOverflow = row.scrollWidth > row.clientWidth + 2;
+ left.style.display = right.style.display = hasOverflow ? '' : 'none';
+ fadeL.style.display = fadeR.style.display = hasOverflow ? '' : 'none';
+
+ if(!hasOverflow) return;
+
+ left.disabled = row.scrollLeft <= 1;
+ right.disabled = (row.scrollLeft + row.clientWidth) >= (row.scrollWidth - 1);
+
+ fadeL.style.opacity = left.disabled ? 0 : 1;
+ fadeR.style.opacity = right.disabled ? 0 : 1;
+ }
+
+ left.addEventListener('click', function(){ row.scrollBy({left:-280, behavior:'smooth'}); });
+ right.addEventListener('click', function(){ row.scrollBy({left:280, behavior:'smooth'}); });
+
+ row.addEventListener('scroll', function(){ globalThis.requestAnimationFrame(update); });
+ globalThis.addEventListener('resize', function(){ globalThis.requestAnimationFrame(update); });
+
+ // initial
+ setTimeout(update, 50);
+ }
+
+ function init(){
+ document.querySelectorAll('.stage-btn-row').forEach(enhanceRow);
+ }
+
+ if(document.readyState === 'loading'){
+ document.addEventListener('DOMContentLoaded', init);
+ } else {
+ init();
+ }
+})();
+</script>
+<style id="design-sourcing-anchor-scroll-fix-v39">
+/* Design & Sourcing anchor landing fix: keeps hero/internal links from stopping above the target under the two sticky navigation bars. */
+html{scroll-padding-top:120px!important;}
+[id]{scroll-margin-top:120px!important;}
+</style>
+<script id="design-sourcing-anchor-scroll-fix-v39-script">
+(function(){
+  function anchorTarget(hash){
+    if(!hash || hash === '#') return null;
+    try { return document.getElementById(decodeURIComponent(hash.slice(1))); }
+    catch(e){ return document.getElementById(hash.slice(1)); }
+  }
+  function navOffset(){
+    var total = 14;
+    var top = document.querySelector('header.site-topnav, .topnav');
+    var sub = document.querySelector('.design-sourcing-section-nav');
+    if(top){ total += Math.ceil(top.getBoundingClientRect().height || 0); }
+    if(sub){ total += Math.ceil(sub.getBoundingClientRect().height || 0); }
+    return Math.max(96, total);
+  }
+  function scrollToHash(hash, behavior){
+    var target = anchorTarget(hash);
+    if(!target) return false;
+    var y = target.getBoundingClientRect().top + window.pageYOffset - navOffset();
+    window.scrollTo({top: Math.max(0, y), behavior: behavior || 'smooth'});
+    return true;
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var hash = a.getAttribute('href');
+    if(!hash || hash === '#') return;
+    if(!anchorTarget(hash)) return;
+    e.preventDefault();
+    scrollToHash(hash, 'smooth');
+    if(history && history.pushState){ history.pushState(null, '', hash); }
+    else { window.location.hash = hash; }
+  });
+  window.addEventListener('load', function(){
+    if(!window.location.hash) return;
+    [60, 250, 650].forEach(function(delay){
+      window.setTimeout(function(){ scrollToHash(window.location.hash, 'auto'); }, delay);
+    });
+  });
+})();
+</script>
+<script src="../exported-ui-effects.js"></script></body></html>

@@ -1,0 +1,2881 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Diagnostics &amp; Tools | EnWater Design</title>
+<link href="https://fonts.googleapis.com/" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="#" rel="stylesheet"/>
+<style>
+/* ── Tokens ─────────────────────────────────────────────────────── */
+:root{
+  --forest:#1a3d34; --forest2:#0f2820; --mid:#2a5c4e;
+  --accent:#55a092; --accent2:#7dc4b4;
+  --cream:#f5f2eb; --ink:#111815; --charcoal:#3D4447; --muted:#5a6e68; --line:rgba(26,61,52,.13);
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --r:16px; --shadow:0 10px 36px rgba(0,0,0,.07); --shadow2:0 18px 52px rgba(0,0,0,.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:72px;}
+body{background:var(--cream);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+
+/* ── Nav ─────────────────────────────────────────────────────────── */
+.nav{position:sticky;top:0;z-index:9999;background:var(--forest2);border-bottom:1px solid rgba(255,255,255,.07);box-shadow:0 2px 20px rgba(0,0,0,.22);}
+.nav-wrap{max-width:1200px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.nav-brand{display:flex;align-items:center;gap:9px;color:#fff;font-weight:700;font-size:14.5px;}
+.nav-dot{width:9px;height:9px;border-radius:50%;background:var(--accent2);box-shadow:0 0 0 3px rgba(125,196,180,.18);}
+.nav-links{display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none;}
+.nav-links::-webkit-scrollbar{display:none;}
+.nav-a{color:rgba(255,255,255,.75);font-size:13px;font-weight:600;padding:7px 11px;border-radius:999px;white-space:nowrap;transition:background .14s,color .14s;}
+.nav-a:hover{color:#fff;background:rgba(255,255,255,.09);}
+.nav-a.active{color:#fff;background:rgba(255,255,255,.12);}
+.nav-cta{background:var(--accent);color:#fff!important;padding:7px 15px;border-radius:999px;font-weight:700;font-size:13px;transition:background .15s;}
+.nav-cta:hover{background:var(--accent2);}
+
+/* ── Breadcrumb ──────────────────────────────────────────────────── */
+.bc{max-width:1200px;margin:0 auto;padding:18px 24px 0;font-size:12px;color:var(--muted);display:flex;gap:6px;align-items:center;}
+.bc a{color:var(--accent);}
+.bc span{opacity:.45;}
+
+/* ── Hero ────────────────────────────────────────────────────────── */
+.hero{background:linear-gradient(rgba(11,20,20,.82), rgba(11,20,20,.84)), url('blue-2480926_1280.jpg') center/cover no-repeat, var(--charcoal);padding:52px 24px 64px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 30%,rgba(85,160,146,.18),transparent 55%);pointer-events:none;}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:18px;}
+.hero-title{font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.9rem);line-height:1.08;color:#fff;margin-bottom:18px;}
+.hero-title em{font-style:italic;color:var(--accent2);}
+.hero-lead{font-size:.97rem;color:rgba(255,255,255,.65);line-height:1.68;margin-bottom:24px;}
+.hero-lead strong{color:rgba(255,255,255,.9);}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
+.hero-pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:5px 12px;font-size:12px;color:rgba(255,255,255,.7);font-weight:600;}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-white{display:inline-flex;align-items:center;gap:7px;background:#fff;color:var(--forest);padding:12px 20px;border-radius:999px;font-weight:700;font-size:13.5px;transition:background .15s,transform .15s;}
+.btn-white:hover{background:var(--cream);transform:translateY(-1px);}
+.btn-outline{display:inline-flex;align-items:center;gap:7px;border:1.5px solid rgba(255,255,255,.28);color:rgba(255,255,255,.85);padding:11px 18px;border-radius:999px;font-weight:600;font-size:13.5px;transition:border-color .15s,background .15s;}
+.btn-outline:hover{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.07);}
+
+/* ── Hero right: tip card ───────────────────────────────────────── */
+.tip-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:24px;}
+.tip-kicker{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent2);margin-bottom:14px;}
+.tip-title{font-family:var(--serif);font-size:1.2rem;color:#fff;line-height:1.25;margin-bottom:8px;}
+.tip-body{font-size:13px;color:rgba(255,255,255,.58);line-height:1.6;margin-bottom:18px;}
+.tip-steps{display:flex;flex-direction:column;gap:9px;}
+.tip-step{display:flex;align-items:flex-start;gap:10px;}
+.tip-num{width:24px;height:24px;border-radius:7px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px;}
+.tip-step-text{font-size:13px;color:rgba(255,255,255,.72);line-height:1.45;}
+.tip-step-text strong{color:#fff;display:block;margin-bottom:1px;}
+
+/* ── Section shell ───────────────────────────────────────────────── */
+.section{padding:64px 24px;}
+.si{max-width:1200px;margin:0 auto;}
+.s-kicker{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:9px;}
+.s-title{font-family:var(--serif);font-size:clamp(1.6rem,2.6vw,2.2rem);color:var(--forest);line-height:1.1;margin-bottom:12px;}
+.s-lead{font-size:.96rem;color:var(--muted);max-width:620px;line-height:1.65;margin-bottom:36px;}
+hr.div{border:none;border-top:1px solid var(--line);}
+
+/* ── How diagnostics work: 3-step ───────────────────────────────── */
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px;}
+.how-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow);}
+.how-num{font-family:var(--serif);font-size:2.4rem;color:rgba(85,160,146,.18);line-height:1;margin-bottom:10px;}
+.how-title{font-weight:700;font-size:15px;color:var(--forest);margin-bottom:7px;}
+.how-desc{font-size:13px;color:var(--muted);line-height:1.6;}
+.how-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;}
+.how-tag{background:rgba(85,160,146,.08);border:1px solid rgba(85,160,146,.18);border-radius:6px;padding:3px 8px;font-size:11px;color:var(--accent);font-weight:600;}
+
+/* ── Diagnostic library ──────────────────────────────────────────── */
+
+#library.section{background:linear-gradient(180deg, rgba(26,61,52,.08) 0%, rgba(26,61,52,0) 320px);} 
+.lib-sidebar{background:rgba(26,61,52,.035);border:1px solid rgba(26,61,52,.13);border-radius:14px;padding:14px;}
+.lib-shell{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start;}
+
+/* Filter sidebar */
+.lib-sidebar{}
+.filter-group{margin-bottom:6px;}
+.filter-btn{
+  width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between;
+  background:#fff;border:1px solid var(--line);border-radius:10px;
+  padding:10px 14px;font-size:13px;font-weight:600;color:var(--forest);
+  cursor:pointer;transition:background .14s,border-color .14s;
+}
+.filter-btn:hover{border-color:var(--accent);background:rgba(85,160,146,.04);}
+.filter-btn.active{background:var(--forest);color:#fff;border-color:var(--forest);}
+.filter-btn.active .filter-count{background:rgba(255,255,255,.18);color:#fff;}
+.filter-count{background:rgba(85,160,146,.1);color:var(--accent);font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;}
+.filter-btn.active .filter-count{background:rgba(255,255,255,.2);}
+
+/* Search */
+.search-wrap{position:relative;margin-bottom:12px;}
+.search-input{
+  width:100%;background:#fff;border:1px solid var(--line);border-radius:10px;
+  padding:10px 14px 10px 36px;font-size:13px;color:var(--ink);font-family:var(--sans);
+  transition:border-color .15s;
+}
+.search-input:focus{outline:none;border-color:var(--accent);}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px;}
+
+.filter-tip{
+  background:rgba(85,160,146,.07);border:1px solid rgba(85,160,146,.15);
+  border-radius:10px;padding:12px 14px;font-size:12.5px;color:var(--muted);
+  line-height:1.5;margin-top:14px;
+}
+.filter-tip strong{color:var(--forest);}
+
+/* Diagnostic cards */
+.diag-grid{display:flex;flex-direction:column;gap:12px;}
+.diag-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--r);
+  padding:20px 22px;box-shadow:var(--shadow);
+  cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s;
+  position:relative;
+}
+.diag-card:hover{border-color:rgba(85,160,146,.3);box-shadow:var(--shadow2);transform:translateY(-1px);}
+.diag-card.expanded{border-color:var(--accent);border-width:1.5px;}
+.diag-card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
+.diag-card-left{}
+.diag-card-cat{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--accent);margin-bottom:5px;}
+.diag-card-name{font-weight:700;font-size:15px;color:var(--forest);margin-bottom:4px;line-height:1.3;}
+.diag-card-desc{font-size:13px;color:var(--muted);line-height:1.5;}
+.diag-card-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.diag-expand{
+  width:28px;height:28px;border-radius:8px;
+  background:rgba(85,160,146,.08);border:1px solid rgba(85,160,146,.18);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--accent);font-size:14px;
+  transition:background .15s,transform .3s;
+  flex-shrink:0;
+}
+.diag-card.expanded .diag-expand{background:var(--accent);color:#fff;transform:rotate(45deg);}
+
+/* Expanded detail */
+.diag-detail{
+  display:none;margin-top:18px;padding-top:18px;
+  border-top:1px solid var(--line);
+}
+.diag-card.expanded .diag-detail{display:block;}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;}
+.detail-col{}
+.detail-col-kicker{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px;}
+.detail-col ul{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.detail-col li{font-size:13px;color:var(--ink);line-height:1.4;padding-left:12px;position:relative;}
+.detail-col li::before{content:'·';position:absolute;left:0;color:var(--accent);font-size:16px;line-height:1.1;}
+.detail-kpis{background:rgba(85,160,146,.06);border:1px solid rgba(85,160,146,.15);border-radius:10px;padding:14px 16px;margin-bottom:14px;}
+.detail-kpis-kicker{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:8px;}
+.kpi-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.kpi-tag{background:#fff;border:1px solid rgba(85,160,146,.25);border-radius:6px;padding:3px 9px;font-size:12px;color:var(--forest);font-weight:500;}
+.detail-links{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.detail-link-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--forest);color:#fff;
+  padding:9px 16px;border-radius:999px;font-size:13px;font-weight:600;
+  transition:background .15s;
+}
+.detail-link-btn:hover{background:var(--mid);}
+.detail-link-ghost{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1.5px solid var(--line);color:var(--forest);
+  padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;
+  transition:border-color .15s;
+}
+.detail-link-ghost:hover{border-color:var(--accent);}
+.modules-row{display:flex;flex-wrap:wrap;gap:6px;}
+.mod-chip{
+  background:var(--forest2);color:rgba(255,255,255,.8);
+  border-radius:7px;padding:4px 10px;font-size:12px;font-weight:600;
+}
+
+/* ── KPI tools ───────────────────────────────────────────────────── */
+.kpi-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px;}
+.kpi-tab{
+  background:#fff;border:1px solid var(--line);border-radius:999px;
+  padding:7px 14px;font-size:13px;font-weight:600;color:var(--muted);
+  cursor:pointer;transition:background .14s,border-color .14s,color .14s;
+}
+.kpi-tab:hover{border-color:var(--accent);color:var(--forest);}
+.kpi-tab.active{background:var(--forest);color:#fff;border-color:var(--forest);}
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.kpi-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--r);
+  padding:20px;box-shadow:var(--shadow);
+  transition:transform .17s,box-shadow .17s,border-color .17s;
+  cursor:pointer;
+}
+.kpi-card:hover{transform:translateY(-2px);box-shadow:var(--shadow2);border-color:rgba(85,160,146,.25);}
+.kpi-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;}
+.kpi-card-name{font-weight:700;font-size:14px;color:var(--forest);line-height:1.3;}
+.kpi-type-badge{
+  background:rgba(85,160,146,.08);border:1px solid rgba(85,160,146,.18);
+  border-radius:6px;padding:2px 8px;font-size:10.5px;color:var(--accent);font-weight:700;
+  white-space:nowrap;flex-shrink:0;
+}
+.kpi-card-desc{font-size:12.5px;color:var(--muted);line-height:1.55;margin-bottom:12px;}
+.kpi-meta{display:flex;gap:6px;flex-wrap:wrap;}
+.kpi-meta-tag{background:rgba(26,61,52,.06);border:1px solid var(--line);border-radius:5px;padding:2px 7px;font-size:11px;color:var(--muted);font-weight:600;}
+.kpi-hidden{display:none;}
+
+/* ── Connect strip ───────────────────────────────────────────────── */
+.connect-strip{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:40px 24px;}
+.connect-inner{max-width:1200px;margin:0 auto;}
+.connect-title{font-family:var(--serif);font-size:1.35rem;color:var(--forest);margin-bottom:8px;}
+.connect-desc{font-size:.93rem;color:var(--muted);line-height:1.6;max-width:680px;margin-bottom:24px;}
+.connect-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.connect-card{
+  background:var(--cream);border:1px solid var(--line);border-radius:14px;
+  padding:16px;transition:transform .17s,border-color .17s;
+  text-decoration:none;display:block;
+}
+.connect-card:hover{transform:translateY(-2px);border-color:var(--accent);}
+.connect-card-kicker{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:5px;}
+.connect-card-title{font-weight:700;font-size:13.5px;color:var(--forest);margin-bottom:4px;}
+.connect-card-desc{font-size:12px;color:var(--muted);line-height:1.45;}
+
+/* ── Enquiry ─────────────────────────────────────────────────────── */
+.enquiry{background:var(--forest);padding:64px 24px;position:relative;overflow:hidden;}
+.enquiry::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 70%,rgba(85,160,146,.18),transparent 50%);pointer-events:none;}
+.enquiry-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.enq-kicker{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent2);margin-bottom:12px;}
+.enq-title{font-family:var(--serif);font-size:clamp(1.5rem,2.4vw,2rem);color:#fff;line-height:1.15;margin-bottom:14px;}
+.enq-title em{font-style:italic;color:var(--accent2);}
+.enq-desc{font-size:.93rem;color:rgba(255,255,255,.58);line-height:1.65;margin-bottom:24px;}
+.enq-list{display:flex;flex-direction:column;gap:8px;}
+.enq-item{display:flex;align-items:flex-start;gap:9px;font-size:13.5px;color:rgba(255,255,255,.7);line-height:1.5;}
+.enq-check{width:18px;height:18px;border-radius:5px;background:rgba(85,160,146,.25);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--accent2);flex-shrink:0;margin-top:2px;}
+
+/* Form */
+.enq-form{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:26px;}
+.form-title{font-weight:700;font-size:15px;color:#fff;margin-bottom:4px;}
+.form-sub{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:20px;}
+.form-group{margin-bottom:14px;}
+.form-kicker{display:block;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.5);margin-bottom:6px;}
+.form-select,.form-textarea{
+  width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);
+  border-radius:10px;padding:11px 14px;color:#fff;font-size:13.5px;font-family:var(--sans);
+  appearance:none;transition:border-color .15s;
+}
+.form-select:focus,.form-textarea:focus{outline:none;border-color:var(--accent);}
+.form-select option{background:var(--forest2);}
+.form-textarea{resize:vertical;min-height:80px;}
+.form-textarea::placeholder{color:rgba(255,255,255,.28);}
+.form-btn{
+  width:100%;background:var(--accent);color:#fff;border:none;border-radius:12px;
+  padding:13px;font-size:14.5px;font-weight:700;font-family:var(--sans);
+  cursor:pointer;transition:background .15s;
+  display:flex;align-items:center;justify-content:center;gap:7px;
+}
+.form-btn:hover{background:var(--accent2);}
+.form-note{text-align:center;margin-top:9px;font-size:12px;color:rgba(255,255,255,.3);}
+
+/* ── Footer ──────────────────────────────────────────────────────── */
+.footer{background:var(--forest2);padding:44px 24px;}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.07);}
+.footer-brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:14.5px;color:#fff;margin-bottom:5px;}
+.footer-tagline{font-size:12.5px;color:rgba(255,255,255,.32);max-width:300px;line-height:1.5;}
+.footer-links{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.48);transition:color .14s;}
+.footer-links a:hover{color:#fff;}
+.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding-top:18px;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.28);}
+.footer-legal{display:flex;gap:14px;}
+.footer-legal a{font-size:12px;color:rgba(255,255,255,.28);transition:color .14s;}
+.footer-legal a:hover{color:rgba(255,255,255,.6);}
+
+/* ── Responsive ──────────────────────────────────────────────────── */
+@media(max-width:960px){
+  .hero-inner{grid-template-columns:1fr;gap:32px;}
+  .lib-shell{grid-template-columns:1fr;}
+  .lib-sidebar{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;}
+  .filter-tip{grid-column:1/-1;}
+  .how-grid{grid-template-columns:1fr 1fr;}
+  .detail-grid{grid-template-columns:1fr 1fr;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .connect-grid{grid-template-columns:repeat(2,1fr);}
+  .enquiry-inner{grid-template-columns:1fr;gap:36px;}
+}
+@media(max-width:600px){
+  .hero{padding:36px 20px 48px;}
+  .section{padding:48px 20px;}
+  .how-grid{grid-template-columns:1fr;}
+  .detail-grid{grid-template-columns:1fr;}
+  .kpi-grid{grid-template-columns:1fr;}
+  .connect-grid{grid-template-columns:1fr;}
+  .lib-sidebar{grid-template-columns:1fr;}
+}
+
+/* ── Pitfalls (longitudinal) ───────────────────────────────────── */
+.detail-pitfalls{margin:12px 0 2px;padding:12px 12px;background:rgba(26,61,52,.05);border:1px solid var(--line);border-radius:14px}
+.detail-pitfalls ul{margin:8px 0 0 18px;color:var(--ink)}
+.detail-pitfalls li{margin:6px 0}
+
+
+.flowplan-subnav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(16,20,19,.08)}
+.flowplan-subnav .fp-wrap{max-width:72rem;margin:0 auto;padding:10px 24px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.flowplan-subnav .fp-kicker{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#5a6760;font-weight:700;margin-right:4px}
+.flowplan-subnav a{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;border:1px solid rgba(16,20,19,.10);background:#fff;color:#1f2a25;text-decoration:none;font-size:14px;line-height:1.2;font-weight:600;transition:all .18s ease}
+.flowplan-subnav a:hover{border-color:rgba(85,160,146,.45);background:rgba(85,160,146,.08)}
+.flowplan-subnav a.active{background:#123f3a;color:#fff;border-color:#123f3a;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+@media (max-width: 720px){.flowplan-subnav .fp-wrap{padding:10px 16px;gap:8px}.flowplan-subnav a{font-size:13px;padding:7px 10px}}
+</style>
+
+<style id="oai-diagnostics-depth-style">
+/* === Diagnostics & Tools: style-only enhancement, no text or typography changes === */
+
+/* Section mood */
+body{
+  background:
+    radial-gradient(1200px 420px at 50% -120px, rgba(85,160,146,.08), transparent 62%),
+    linear-gradient(180deg, rgba(26,61,52,.03), transparent 260px),
+    var(--cream);
+}
+
+/* Top hero */
+.hero{
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  box-shadow: inset 0 -80px 140px rgba(0,0,0,.16);
+}
+.hero::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(to right, rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size: 44px 44px;
+  opacity:.32;
+}
+.hero-inner{position:relative; z-index:1;}
+.hero > *{position:relative; z-index:1;}
+
+.hero-eyebrow{
+  box-shadow: 0 10px 28px rgba(0,0,0,.14);
+  backdrop-filter: blur(6px);
+}
+.hero-title{
+  text-shadow: 0 8px 28px rgba(0,0,0,.24);
+}
+.hero-pills{
+  align-items:center;
+}
+.hero-pill{
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+  backdrop-filter: blur(4px);
+}
+.btn-white,
+.btn-outline{
+  box-shadow: 0 10px 26px rgba(0,0,0,.14);
+}
+.btn-outline{
+  background: rgba(255,255,255,.04);
+}
+.tip-card{
+  position:relative;
+  overflow:hidden;
+  box-shadow: 0 24px 54px rgba(0,0,0,.24);
+  backdrop-filter: blur(10px);
+}
+.tip-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(125,196,180,.18), transparent 34%),
+    linear-gradient(to right, rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: auto, 28px 28px, 28px 28px;
+  opacity:.55;
+}
+.tip-card > *{position:relative; z-index:1;}
+.tip-step{
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.035);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.tip-num{
+  box-shadow: 0 0 0 5px rgba(85,160,146,.16);
+}
+
+/* Section headings */
+.section{
+  position:relative;
+}
+.section > .si{
+  position:relative;
+  z-index:1;
+}
+.section > .si::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:-8px;
+  width:72px;
+  height:2px;
+  background: linear-gradient(90deg, var(--accent), rgba(85,160,146,0));
+  opacity:.7;
+}
+.s-title{
+  text-wrap: balance;
+}
+
+/* "How diagnostics work" cards */
+.how-grid{
+  position:relative;
+}
+.how-grid::before{
+  content:'';
+  position:absolute;
+  left: 24px;
+  right: 24px;
+  top: 32px;
+  height:1px;
+  background: linear-gradient(90deg, rgba(85,160,146,.22), rgba(85,160,146,.42), rgba(85,160,146,.22));
+  z-index:0;
+}
+.how-card{
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.98), rgba(252,250,245,.96));
+  box-shadow: 0 18px 38px rgba(20,32,28,.08);
+}
+.how-card::before{
+  content:'';
+  position:absolute;
+  inset:0 0 auto 0;
+  height:4px;
+  background: linear-gradient(90deg, var(--accent), rgba(125,196,180,.45));
+}
+.how-card::after{
+  content:'';
+  position:absolute;
+  right:18px;
+  top:18px;
+  width:14px;
+  height:14px;
+  border-radius:999px;
+  background: rgba(85,160,146,.16);
+  box-shadow: 0 0 0 6px rgba(85,160,146,.08);
+}
+.how-card:nth-child(1){z-index:3;}
+.how-card:nth-child(2){z-index:2;}
+.how-card:nth-child(3){z-index:1;}
+.how-card:hover{
+  transform: translateY(-4px);
+  border-color: rgba(85,160,146,.28);
+}
+
+/* Library band */
+#library.section{
+  position:relative;
+  overflow:hidden;
+}
+#library.section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(900px 300px at 12% 0%, rgba(85,160,146,.07), transparent 56%),
+    linear-gradient(to right, rgba(26,61,52,.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(26,61,52,.03) 1px, transparent 1px);
+  background-size: auto, 34px 34px, 34px 34px;
+  opacity:.42;
+}
+.lib-shell{
+  position:relative;
+  z-index:1;
+}
+.lib-sidebar{
+  position: sticky;
+  top: 120px;
+  box-shadow: 0 18px 40px rgba(20,32,28,.08);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.76), rgba(255,255,255,.6));
+  backdrop-filter: blur(10px);
+}
+.search-input,
+.filter-btn{
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+}
+.filter-btn{
+  position:relative;
+  overflow:hidden;
+}
+.filter-btn::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:3px;
+  background: transparent;
+  transition: background .14s ease;
+}
+.filter-btn:hover::before,
+.filter-btn.active::before{
+  background: var(--accent);
+}
+.filter-tip{
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.56);
+}
+
+/* Diagnostic cards */
+.diag-grid{
+  gap:16px;
+}
+.diag-card{
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.99), rgba(250,248,242,.98));
+  box-shadow: 0 16px 38px rgba(18,34,28,.08);
+}
+.diag-card::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:5px;
+  background: linear-gradient(180deg, rgba(85,160,146,.9), rgba(125,196,180,.45));
+  opacity:.85;
+}
+.diag-card::after{
+  content:'';
+  position:absolute;
+  right:-30px;
+  top:-28px;
+  width:120px;
+  height:120px;
+  border-radius:999px;
+  background: radial-gradient(circle, rgba(85,160,146,.11), rgba(85,160,146,0) 68%);
+  pointer-events:none;
+}
+.diag-card:hover{
+  transform: translateY(-3px);
+}
+.diag-card.expanded{
+  box-shadow: 0 22px 54px rgba(18,34,28,.12);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,1), rgba(248,247,241,.99));
+}
+.diag-card-header{
+  position:relative;
+  z-index:1;
+}
+.diag-card-cat{
+  letter-spacing:.11em;
+}
+.diag-expand{
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.72);
+}
+.diag-detail{
+  position:relative;
+  z-index:1;
+}
+.detail-grid{
+  gap:18px;
+}
+.detail-col{
+  background: rgba(26,61,52,.03);
+  border: 1px solid rgba(26,61,52,.08);
+  border-radius: 12px;
+  padding: 14px 14px 12px;
+}
+.detail-col-kicker{
+  color: var(--forest);
+}
+.detail-kpis{
+  background:
+    linear-gradient(180deg, rgba(85,160,146,.085), rgba(85,160,146,.05));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+}
+.kpi-tag{
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.78);
+}
+.modules-row{
+  padding: 10px 0 0;
+  border-top: 1px dashed rgba(26,61,52,.12);
+}
+.mod-chip{
+  background:
+    linear-gradient(180deg, rgba(15,40,32,.96), rgba(26,61,52,.92));
+  box-shadow: 0 8px 18px rgba(15,40,32,.16);
+}
+.detail-link-btn,
+.detail-link-ghost{
+  box-shadow: 0 10px 24px rgba(20,32,28,.08);
+}
+
+/* KPI tools section */
+#kpi-tools.section{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.95), rgba(248,246,241,.95)) !important;
+}
+.kpi-tabs{
+  margin-bottom: 28px;
+}
+.kpi-tab{
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.72);
+}
+.kpi-grid{
+  gap:16px;
+}
+.kpi-card{
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.99), rgba(252,250,245,.96));
+}
+.kpi-card::before{
+  content:'';
+  position:absolute;
+  inset:0 0 auto 0;
+  height:3px;
+  background: linear-gradient(90deg, var(--accent), rgba(125,196,180,.45));
+}
+.kpi-card::after{
+  content:'';
+  position:absolute;
+  right:16px;
+  top:14px;
+  width:10px;
+  height:10px;
+  border-radius:999px;
+  background: rgba(85,160,146,.16);
+  box-shadow: 0 0 0 4px rgba(85,160,146,.08);
+}
+.kpi-meta-tag,
+.kpi-type-badge{
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.74);
+}
+
+/* Connect strip */
+.connect-strip{
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.98), rgba(249,247,242,.98));
+}
+.connect-strip::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background: radial-gradient(700px 180px at 50% 100%, rgba(85,160,146,.08), transparent 62%);
+}
+.connect-inner{
+  position:relative;
+  z-index:1;
+}
+.connect-grid{
+  position:relative;
+}
+.connect-grid::before{
+  content:'';
+  position:absolute;
+  left:40px;
+  right:40px;
+  top:26px;
+  height:1px;
+  background: linear-gradient(90deg, rgba(85,160,146,.18), rgba(85,160,146,.42), rgba(85,160,146,.18));
+  z-index:0;
+}
+.connect-card{
+  position:relative;
+  z-index:1;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.88), rgba(244,242,235,.95));
+  box-shadow: 0 14px 32px rgba(18,34,28,.07);
+}
+.connect-card::before{
+  content:'';
+  position:absolute;
+  left:18px;
+  top:18px;
+  width:10px;
+  height:10px;
+  border-radius:999px;
+  background: rgba(85,160,146,.26);
+  box-shadow: 0 0 0 6px rgba(85,160,146,.08);
+}
+.connect-card:hover{
+  background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(247,246,241,.98));
+}
+
+/* Enquiry block */
+.enquiry{
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+}
+.enquiry::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  opacity:.22;
+}
+.enquiry-inner{
+  position:relative;
+  z-index:1;
+}
+.enq-form{
+  box-shadow: 0 24px 60px rgba(0,0,0,.22);
+  backdrop-filter: blur(10px);
+}
+.enq-form::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:20px;
+  pointer-events:none;
+  background: radial-gradient(circle at 100% 0%, rgba(125,196,180,.12), transparent 36%);
+}
+.form-select,
+.form-textarea{
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+}
+.form-btn{
+  box-shadow: 0 16px 34px rgba(0,0,0,.18);
+}
+
+/* Footer polish */
+.footer{
+  position:relative;
+  overflow:hidden;
+}
+.footer::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background: radial-gradient(640px 220px at 50% -20%, rgba(85,160,146,.08), transparent 70%);
+}
+.footer-inner{
+  position:relative;
+  z-index:1;
+}
+
+/* Responsive refinements */
+@media (max-width: 960px){
+  .lib-sidebar{position:relative; top:auto;}
+  .how-grid::before,
+  .connect-grid::before{display:none;}
+}
+</style>
+
+<style id="enwater-logo-refinement-v1">
+.brand-logo,.nav-logo,.nav-brand-logo{height:38px!important;width:auto!important;max-width:66px!important;object-fit:contain!important;background:transparent!important;border-radius:0!important;padding:0!important;box-shadow:none!important;}
+.brand span,.nav-brand span{white-space:nowrap;}
+.footer-logo{height:34px;width:auto;max-width:60px;object-fit:contain;background:transparent;border-radius:0;padding:0;box-shadow:none;display:block;}
+.footer-brand,.foot-brand{display:flex;align-items:center;gap:10px;}
+</style>
+
+
+<link href="../exported-ui-styles.css" rel="stylesheet"/><link rel="icon" type="image/png" href="../assets/images/enwater-design-logo-nav.png" />
+</head>
+<body>
+<header class="site-topnav">
+<div class="wrap">
+<a aria-label="EnWater Design home" class="brand" href="../home.html">
+<img alt="EnWater Design logo" class="nav-logo" src="../assets/images/enwater-design-logo.png"/>
+<span>EnWater Design</span>
+</a>
+<nav class="desktop-nav">
+<ul>
+<li><a class="rootlink" href="../home.html">Home</a></li>
+<li>
+            <a class="rootlink " href="../About/about.html">About</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a class="" href="../About/about.html">About Us</a>
+              <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+            </div>
+          </li>
+<li>
+<a class="rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink active" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Projects/index.html">Projects</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</li>
+<li><a class="rootlink nav-login" href="../login.html">Login</a></li>
+<li><a class="rootlink nav-cta" href="../get-in-touch.html">Get in touch</a></li>
+</ul>
+</nav>
+<button aria-expanded="false" aria-label="Toggle menu" class="mobile-nav-toggle" type="button">
+<span class="hamburger-line line-1"></span>
+<span class="hamburger-line line-2"></span>
+<span class="hamburger-line line-3"></span>
+</button>
+</div>
+<div class="mobile-nav-panel">
+<div class="mobile-nav-content">
+<div class="mobile-nav-item">
+<a class="mobile-rootlink" href="../home.html">Home</a>
+</div>
+<div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink " href="../About/about.html">About</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a class="" href="../About/about.html">About Us</a>
+            <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+          </div>
+        </div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage Overview</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink active" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Projects/index.html">Projects</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<a class="mobile-login-btn" href="../login.html">Login</a>
+</div>
+<div class="mobile-nav-item no-border">
+<a class="mobile-cta-btn" href="../get-in-touch.html">Get in touch</a>
+</div>
+</div>
+</div>
+</header><nav aria-label="FlowPlan" class="flowplan-subnav"><div class="fp-wrap"><span class="fp-kicker">FlowPlan</span><a href="flowplan-framework.html">Framework</a><a href="flowplan-systems-planning.html">Systems Planning</a><a aria-current="page" class="active" href="flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a><a href="treatment-reuse-planning.html">Reuse Planning</a><a href="flowplan-solution-design.html">Solution Design</a><a href="flowplan-process-mapping.html">Process Mapping</a><a class="fp-support" href="flowplan-planning-delivery.html">Planning &amp; Delivery</a></div></nav>
+<!-- Breadcrumb -->
+<div class="bc">
+<a href="flowplan-systems-planning.html">Systems Planning</a><span>›</span>
+<span>Diagnostics &amp; Tools</span>
+</div>
+<!-- Hero -->
+<section class="hero">
+<div class="hero-inner">
+<div>
+<div class="hero-eyebrow">Diagnostics &amp; Tools</div>
+<h1 class="hero-title">
+        Turn site data into<br/>
+<em>a vendor-ready scope.</em>
+</h1>
+<p class="hero-lead">
+        A decision-support library that <strong>links diagnostic outputs directly to FlowPlan module families</strong>  -  so scope, coordination points, and performance checks are defined before you go to market, not after.
+      </p>
+<div class="hero-pills">
+<span class="hero-pill">Site-data based</span>
+<span class="hero-pill">Performance &amp; verification requirements</span>
+<span class="hero-pill">Reuse &amp; retrofit routing</span>
+<span class="hero-pill">Comparable vendor quotes</span>
+</div>
+<div class="hero-btns">
+<a class="btn-white" href="#library">Browse diagnostic library →</a>
+<a class="btn-outline" href="#kpi-tools">Explore KPI tools</a>
+</div>
+</div>
+<div class="tip-card">
+<div class="tip-kicker">How this section helps</div>
+<div class="tip-title">Make the scope clear.<br/>Keep implementation testable.</div>
+<div class="tip-body">Start with a Smart Intake if you want a clean "inputs pack" first  -  then move into reuse, retrofit, or specialist diagnostics as needed.</div>
+<div class="tip-steps">
+<div class="tip-step">
+<div class="tip-num">1</div>
+<div class="tip-step-text">
+<strong>Choose the right diagnostic</strong>
+            Identify what's driving complexity  -  capacity, reuse intent, effluent risk, brine, residuals  -  and avoid symptom fixes.
+          </div>
+</div>
+<div class="tip-step">
+<div class="tip-num">2</div>
+<div class="tip-step-text">
+<strong>Produce vendor-ready outputs</strong>
+            Define the inputs pack, data gaps, KPI targets, and verification requirements so suppliers price and verify on the same basis.
+          </div>
+</div>
+<div class="tip-step">
+<div class="tip-num">3</div>
+<div class="tip-step-text">
+<strong>Link results to FlowPlan routes</strong>
+            Translate diagnostic outputs into module families, coordination notes, controls and monitoring approach, and the next documentation step.
+          </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- How diagnostics work -->
+<section class="section">
+<div class="si">
+<div class="s-kicker">What diagnostics do</div>
+<h2 class="s-title">Diagnostics that change decisions  -  not just fill reports.</h2>
+<p class="s-lead">We run the smallest useful set of diagnostics  -  only tests that will actually alter scope, technology selection, or performance criteria. Every diagnostic links to a deliverable and a module path.</p>
+<div class="how-grid">
+<div class="how-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.45s, transform 0.45s;">
+<div class="how-title">Bound the scope</div>
+<div class="how-desc">Define what is in, what is out, and what the operating range actually is  -  so vendors design to the same scope basis and bids stay comparable.</div>
+<div class="how-tags">
+<span class="how-tag">Scope &amp; coordination</span>
+<span class="how-tag">Operating range</span>
+</div>
+</div>
+<div class="how-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.45s, transform 0.45s;">
+<div class="how-title">Define checks &amp; performance</div>
+<div class="how-desc">Set the KPIs, monitoring points, and commissioning checks before procurement  -  so performance is measurable at handover, not debated afterwards.</div>
+<div class="how-tags">
+<span class="how-tag">KPI ranges</span>
+<span class="how-tag">Commissioning checks</span>
+</div>
+</div>
+<div class="how-card" style="opacity: 1; transform: translateY(0px); transition: opacity 0.45s, transform 0.45s;">
+<div class="how-title">Enable comparable quotes</div>
+<div class="how-desc">Define coordination points, verification requirements, and exclusions so supplier bids reflect the same scope  -  and evaluation stays aligned to the agreed performance basis.</div>
+<div class="how-tags">
+<span class="how-tag">Bid comparability</span>
+<span class="how-tag">Monitoring points</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<hr class="div"/>
+<!-- Diagnostic library -->
+<section class="section" id="library">
+<div class="si">
+<div class="s-kicker">Diagnostic services library</div>
+<h2 class="s-title">Select a diagnostic. See what it leads to.</h2>
+<p class="s-lead">Each card shows when to use it, what inputs are needed, the deliverables you will receive, and which FlowPlan modules it links to. Click any card to expand.</p>
+<div class="lib-shell">
+<!-- Sidebar filters -->
+<div class="lib-sidebar">
+<div class="search-wrap">
+<span class="search-icon"><svg aria-hidden="true" fill="none" height="16" viewbox="0 0 24 24" width="16"><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"></path><path d="M16.5 16.5 21 21" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg></span>
+<input class="search-input" id="diagSearch" placeholder="Search diagnostics…" type="text"/>
+</div>
+<div class="filter-group"><button class="filter-btn active" onclick="filterDiag(this,'smart')">Smart Intakes </button><button class="filter-btn" onclick="filterDiag(this,'health')">Process Health &amp; Retrofit </button><button class="filter-btn" onclick="filterDiag(this,'special')">Specialist Diagnostics </button><button class="filter-btn" onclick="filterDiag(this,'reuse')">Planning &amp; Reuse </button><button class="filter-btn" onclick="filterDiag(this,'strategy')">Strategic Screens </button></div>
+<div class="filter-tip">
+<strong>Where to start:</strong> Begin with a <em>Design Intake</em> or <em>Technical Intake</em> to establish the inputs pack  -  then move to reuse, retrofit, or specialist diagnostics as needed.
+        </div>
+</div>
+<!-- Diagnostic cards -->
+<div class="diag-grid" id="diagGrid">
+<div class="diag-card" data-cat="smart" data-id="area_footprint_diagnostic" onclick="toggleDiag(this)">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Smart Intakes  -  Start here · Space-constrained · upgrade scoping</div>
+<div class="diag-card-name">Area Footprint Diagnostic</div>
+<div class="diag-card-desc">Fast screen for space-binding upgrades when the site is footprint-limited.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>You’re footprint‑limited and need a fast, space‑realistic shortlist before detailed design.</li>
+<li>Retrofit constraints dominate (connections, access, headloss, limited outage periods).</li>
+<li>You want to test whether targets are achievable within the available space.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>Available footprint / access zones, hydraulic headloss constraints, connection points and outage periods.</li>
+<li>Current flows and basic quality drivers (TSS/COD/FOG/surfactants, variability notes).</li>
+<li>Utilities and practical constraints (power, chemical handling space, operator access).</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>Space‑efficient pathway shortlist with connection logic and layout assumptions (what must be moved/retained).</li>
+<li>Key constraints that govern feasibility (headloss, access, staging, bypass needs).</li>
+<li>Next-step data list to confirm the shortlist (minimum testing / trend review).</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Selecting ‘compact’ modules without connection and maintenance clearance conditions.</li>
+<li>Ignoring hydraulics/headloss and creating hidden pumping/energy penalties.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">Footprint per m³/d (or per ML/d), headloss budget, and staging/outage feasibility.</span>
+<span class="kpi-tag">Expected operability burden (cleaning/backwash frequency, access needs).</span>
+<span class="kpi-tag">Risk flags: bypass exposure, odour hotspots, solids handling pinch points.</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">MBBR+ hybrids</span>
+<span class="mod-chip">Clari+ high-rate</span>
+<span class="mod-chip">Micra+ tertiary</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="smart" data-id="design_intake" onclick="toggleDiag(this)">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Smart Intakes  -  Start here · Objectives · performance limits</div>
+<div class="diag-card-name">Design Intake</div>
+<div class="diag-card-desc">Establish objective, constraints and reuse intent; align on KPIs and performance limits.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>You need a clean starting point: clarify the decision, constraints and verification expectations.</li>
+<li>Stakeholders are misaligned (reuse intent vs budget vs operability).</li>
+<li>You want the minimum diagnostic set that de‑risks implementation.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>Decision focus (reuse, retrofit, residuals, compliance, brine) and timeline/decision deadline.</li>
+<li>Constraints (space, shutdown periods, utilities, operator capacity, approvals).</li>
+<li>Data available (sampling, SCADA logs, drawings, O&amp;M history) and data gaps.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>A bounded scope statement: objective + performance requirements + what must be proven.</li>
+<li>A routed diagnostic plan (minimum tools first) and a short data checklist.</li>
+<li>A ‘what vendors must assume’ note to prevent scope drift in quotes.</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Starting technology conversations before setting the objective and performance requirements.</li>
+<li>Letting verification and monitoring expectations be implied instead of defined.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">Target capability level (e.g., reuse class / compliance margin) and verification approach (what can be measured).</span>
+<span class="kpi-tag">Data completeness score and uncertainty flags.</span>
+<span class="kpi-tag">Coordination clarity score (connections, bypass, residuals responsibilities).</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">Site Snapshot</span>
+<span class="mod-chip">Next-step diagnostics</span>
+<span class="mod-chip">Module pathways</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="smart" data-id="technical_intake" onclick="toggleDiag(this)">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Smart Intakes  -  Start here · Data coverage · vendor-ready</div>
+<div class="diag-card-name">Technical Intake</div>
+<div class="diag-card-desc">Structure inputs for flows, loads, inlet characteristics, duty cycles and connections.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>You need an inputs pack that vendors can price reliably (and comparably).</li>
+<li>The site has variability and you must define the operating range beyond averages.</li>
+<li>Retrofit connections and utility constraints must be made explicit.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>Flows (avg/peak), load ranges, duty cycles, shock events, and seasonal variation notes.</li>
+<li>Quality drivers and constraints (TSS/COD/FOG/surfactants, metals/salinity if relevant).</li>
+<li>Hydraulics/as‑builts, utilities, access and connections, operations and maintenance constraints.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>Vendor-ready inputs pack + data list + assumptions note for missing data.</li>
+<li>Operating range limits (must‑handle events) and what must be monitored.</li>
+<li>A shortlist of data closures (sampling, trend pulls, inspections) to reduce risk fastest.</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Issuing specs based on one‑off samples or averages.</li>
+<li>Leaving connection and utility constraints implicit  -  vendors then price different scopes.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">Data coverage (% of operating range represented), variability ranges, confidence grading.</span>
+<span class="kpi-tag">Connection feasibility flags and utility readiness checks.</span>
+<span class="kpi-tag">Monitoring feasibility (what can be measured vs what would be assumed).</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">Data templates</span>
+<span class="mod-chip">Hydraulics</span>
+<span class="mod-chip">Quality ranges</span>
+<span class="mod-chip">Utilities</span>
+<span class="mod-chip">Operations</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="health" data-id="system_healthcheck" onclick="toggleDiag(this)" style="display: none;">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Process Health &amp; Retrofit · Process stability &amp; drift review</div>
+<div class="diag-card-name">System Healthcheck</div>
+<div class="diag-card-desc">Rapid triage of capacity, compliance and operability issues with a retrofit view.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>Effluent drift, process instability, rising energy or recurrent alarms are observed.</li>
+<li>You need quick triage before committing to a major retrofit scope.</li>
+<li>You suspect constraints are operational/control‑related rather than ‘more equipment’.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>Recent performance trends (SCADA/alarms), lab history, energy profile, and maintenance backlog.</li>
+<li>Process configuration, setpoints, operator routines, and any recent changes.</li>
+<li>Hydraulics/layout constraints and known pinch points (filters, aeration, solids handling).</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>Failure‑mode list (root causes) and ranked corrective actions (quick wins vs capital items).</li>
+<li>Retrofit options with control/monitoring implications and coordination notes.</li>
+<li>A short verification plan (what to trend/measure to confirm improvements).</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Treating symptoms (e.g., chemical over‑dosing) instead of root causes.</li>
+<li>Missing control loop / instrumentation issues that drive instability.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">Compliance pass rate, alarm frequency, energy intensity, downtime/bypass events.</span>
+<span class="kpi-tag">Throughput vs capacity limits, headloss trends, backwash/cleaning frequency.</span>
+<span class="kpi-tag">Solids handling stability indicators (cake %TS variability, haulage frequency).</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">FlowPlan(STP+Retrofit)</span>
+<span class="mod-chip">FlowPlan(ETP+Retrofit)</span>
+<span class="mod-chip">Odor Capture</span>
+<span class="mod-chip">Odor Polish</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="health" data-id="retrofit_readiness" onclick="toggleDiag(this)" style="display: none;">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Process Health &amp; Retrofit · Capacity/compliance upgrade planning</div>
+<div class="diag-card-name">Retrofit Readiness Tool</div>
+<div class="diag-card-desc">De-risk connections and phasing; check footprint and utilities early.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>Capacity/compliance upgrades are planned under tight footprint and downtime constraints.</li>
+<li>You need to define what can be retained vs what must be replaced  -  and in what sequence.</li>
+<li>Connections, bypass strategy, and construction phasing are the main risks.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>As‑builts/hydraulics, connection points, outage periods, bypass options and temporary works feasibility.</li>
+<li>Utilities readiness (power, air, chemical storage, drains), access and lifting constraints.</li>
+<li>Odour/off‑gas points and any regulatory/permit constraints affecting construction.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>Phased retrofit plan + sequencing note (what happens when, and how compliance is protected).</li>
+<li>Coordination map (connections, bypass, temporary works) and ‘must‑protect’ performance requirements.</li>
+<li>Risk register items that must be closed before procurement.</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>No bypass plan / temporary works assumptions left to vendors.</li>
+<li>Utilities not checked early  -  causes late scope changes and cost creep.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">Outage feasibility (days), bypass exposure risk, tie‑in complexity score.</span>
+<span class="kpi-tag">Utility readiness score, access/maintenance clearance flags.</span>
+<span class="kpi-tag">Commissioning performance checkpoints per stage.</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">FlowPlan(ETP+Retrofit)</span>
+<span class="mod-chip">FlowPlan(STP+Retrofit)</span>
+<span class="mod-chip">MBBR+</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="health" data-id="bottleneck_checklist" onclick="toggleDiag(this)" style="display: none;">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Process Health &amp; Retrofit · Throughput &amp; failure-mode optimization</div>
+<div class="diag-card-name">Bottleneck Checklist</div>
+<div class="diag-card-desc">Find quick-win process constraints and control gaps.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>The plant is broadly stable but throughput is constrained or micro‑failures recur.</li>
+<li>You want targeted upgrades (controls, hydraulics, filtration) rather than a full rebuild.</li>
+<li>You need a ranked list of ‘what limits performance’ with verification checks.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>Mass balance, SCADA trends, blower/pump curves, headloss/backwash records.</li>
+<li>Operator logs (where pain occurs), maintenance history and recurring alarms.</li>
+<li>Quality/flow variability notes and any critical shutdown and turnaround periods.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>Ranked bottleneck list with corrective actions and expected benefit mechanisms.</li>
+<li>Control/monitoring tweaks that improve stability (setpoints, alarms, sequencing).</li>
+<li>Shortlist of upgrades with minimal coordination disruption.</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Chasing a single bottleneck while ignoring upstream/downstream interactions.</li>
+<li>Assuming equipment change fixes what is actually a control/operability issue.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">Throughput uplift potential, headloss reduction, energy intensity change.</span>
+<span class="kpi-tag">Backwash/cleaning frequency reduction, alarm rate reduction.</span>
+<span class="kpi-tag">Compliance pass rate stability (less variance).</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">Targeted optimisation</span>
+<span class="mod-chip">Controls upgrades</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="health" data-id="industrial_effluent_risk" onclick="toggleDiag(this)" style="display: none;">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Process Health &amp; Retrofit · Variability &amp; shock load control</div>
+<div class="diag-card-name">Industrial Effluent Risk Diagnostic</div>
+<div class="diag-card-desc">Identify contributors and variability that break treatment stability and reuse plans.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>Industrial contributors, cleaning cycles or shock loads drive instability/non‑compliance.</li>
+<li>You need to protect biological stability and downstream reuse modules.</li>
+<li>You suspect inhibitors, surfactants, FOG, metals or salinity spikes are present.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>Source inventory (contributors), variability pattern, equalisation and segregation conditions.</li>
+<li>Pollutant fingerprint: organics profile, surfactants, FOG, metals, salinity (as relevant).</li>
+<li>Event logs: batch dumps, CIP discharges, tanker discharges, storm flows.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>Source risk map + recommended controls (segregation, equalisation, batch treatment triggers).</li>
+<li>Pretreatment intent and monitoring points to protect the main process line.</li>
+<li>A ‘must-handle events range for vendor specs.</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Treating variability as an end‑of‑pipe polishing problem.</li>
+<li>Assuming RO fixes everything; missing upstream control and segregation.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">Variability indices, inhibitor markers, equalisation adequacy, event frequency.</span>
+<span class="kpi-tag">Pass/fail triggers for pretreatment diversion, recovery time after shocks.</span>
+<span class="kpi-tag">Downstream protection indicators (SDI, toxicity proxies, surfactant markers).</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">Source control</span>
+<span class="mod-chip">Batch+</span>
+<span class="mod-chip">Micra+</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="special" data-id="odour_h2s_diagnostic" onclick="toggleDiag(this)" style="display: none;">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Specialist Diagnostics · Source mapping · measurement plan · control routing</div>
+<div class="diag-card-name">Odour &amp; H₂S Diagnostic</div>
+<div class="diag-card-desc">Locate odour and H₂S generation/release points across liquid and solids handling, then define the most practical control route (prevent, capture, polish) with verification requirements.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>Odour complaints occur (intermittent or persistent) and you need a clear source picture.</li>
+<li>H₂S is suspected at headworks, wet wells, equalisation, sludge handling, or solids storage/transfer points.</li>
+<li>Corrosion and safety risk are rising (confined spaces, ventilation points, near-field releases).</li>
+<li>You need to choose between dosing, capture &amp; treatment, or upstream process changes - and avoid over-building.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>Site layout + ventilation/capture points; wet-well/headworks configuration; sludge/solids routing and storage details.</li>
+<li>Operator/event notes: when/where odour occurs; weather/rainfall patterns; maintenance and cleaning cycles.</li>
+<li>Any available data: DO/ORP, sulphide (or surrogate), pH, temperature, ammonia, COD, flow patterns and retention times.</li>
+<li>If available: spot H₂S readings, complaint log, corrosion observations, confined-space monitoring procedures.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>Odour/H₂S source map (generation vs release points) across liquid and solids lines.</li>
+<li>Measurement plan (what to test, where, and at what cadence) aligned to access and safety constraints.</li>
+<li>Control-route shortlist: prevent/suppress (liquid), capture/treat (air), and solids-handling controls - with duty assumptions made explicit.</li>
+<li>Vendor scope basis: boundaries, duty points, seasonal patterns, and performance and verification requirements.</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Treating odour as only an air-treatment problem (often starts with liquid conditions and residence time).</li>
+<li>Measuring at the wrong points/times and missing episodic peaks (storm events, shutdowns, cleaning cycles).</li>
+<li>Jumping to scrubbers/biofilters before confirming source strength, duty cycle and capture integrity.</li>
+<li>Ignoring the solids line (dewatering, storage, blending) where odour can dominate.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">Defines the indicator set and monitoring cadence needed to confirm improvements (peaks, duration, event frequency, response to interventions).</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">Odor+Dose</span>
+<span class="mod-chip">Odor+Capture</span>
+<span class="mod-chip">Odor+Polish</span>
+<span class="mod-chip">Sludge+Dewatering</span>
+<span class="mod-chip">Sludge+Drying</span>
+<span class="mod-chip">Compost+</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="special" data-id="source_control_pretreatment" onclick="toggleDiag(this)" style="display: none;">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Specialist Diagnostics · Upstream segregation &amp; risk control</div>
+<div class="diag-card-name">Source Control &amp; Pretreatment</div>
+<div class="diag-card-desc">Upstream segregation, oil/grease, heavy metals and surfactants  -  to protect the core process line and reuse plan.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>Non‑domestic inputs drive instability or you need upstream protection for MBBR+/Micra+/ROCore+.</li>
+<li>You suspect FOG/surfactants/metals/inhibitors or uncontrolled batch dumps.</li>
+<li>You want clear triggers for diversion/batch treatment and monitoring points.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>Source inventory and discharge patterns; equalisation/segregation options.</li>
+<li>Pollutant fingerprint and variability (metals/organics/surfactants/FOG/salinity as relevant).</li>
+<li>Current monitoring capability (grab vs composite vs online) and response constraints.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>Source control plan + pretreatment intent + trigger framework (what to divert, when).</li>
+<li>Monitoring points (what to measure) and response actions aligned to operability.</li>
+<li>Coordination notes for vendor specs (what upstream controls are assumed).</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Forcing downstream modules onto uncontrolled feeds.</li>
+<li>No trigger framework  -  operators cannot act consistently during events.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">Trigger compliance (% events correctly captured), variability reduction indicators.</span>
+<span class="kpi-tag">Downstream protection indicators (SDI/scaling indices, toxicity proxies, surfactant markers).</span>
+<span class="kpi-tag">Equalisation adequacy and event capture rate.</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">MBBR+</span>
+<span class="mod-chip">Clari+</span>
+<span class="mod-chip">Micra+</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="special" data-id="pretreatment_diagnostic" onclick="toggleDiag(this)" style="display: none;">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Specialist Diagnostics · Scaling/fouling root-cause &amp; pretreatment</div>
+<div class="diag-card-name">Pretreatment Diagnostic</div>
+<div class="diag-card-desc">Confirm the upstream conditioning route that protects downstream modules.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>Scaling/fouling or contaminant risk threatens downstream performance and OPEX.</li>
+<li>You need to confirm the upstream conditioning route before committing to RO/membranes/high‑rate polishing.</li>
+<li>You want clear ‘do / don’t’ rules for feeds that should bypass RO.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>Chemistry split (organics vs metals), salinity/TDS, scaling/fouling indices, particle load.</li>
+<li>Variability patterns and event discharges; equalisation and segregation conditions.</li>
+<li>Existing pretreatment (screens/DAF/chem), chemical history and performance issues.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>Pretreatment pathway: what must be removed/conditioned and where (and why).</li>
+<li>RO‑suitability decision logic (what should go to RO vs bypass to alternative routes).</li>
+<li>Monitoring and performance requirements to carry into ToR and commissioning.</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Assuming RO solves non‑RO‑able feeds; ignoring upstream control.</li>
+<li>Chasing symptoms (fouling) without resolving root cause drivers.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">SDI/turbidity proxies, scaling indices, residual oxidant compatibility indicators.</span>
+<span class="kpi-tag">Removal targets for key drivers (metals/FOG/surfactants/organics).</span>
+<span class="kpi-tag">Stability indicators (variance reduction, event capture rate).</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">Batch+</span>
+<span class="mod-chip">MBBR+</span>
+<span class="mod-chip">Micra+</span>
+<span class="mod-chip">ROCore+</span>
+<span class="mod-chip">OxiClear+</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="special" data-id="thermal_integration" onclick="toggleDiag(this)" style="display: none;">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Specialist Diagnostics · Heat integration &amp; energy recovery</div>
+<div class="diag-card-name">Thermal Integration Tool</div>
+<div class="diag-card-desc">Capture heat synergies that shift OPEX and stability.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>Heat can shift feasibility/OPEX (drying, digestion conditioning, pasteurisation, heat recovery).</li>
+<li>Thermal options are being considered and you need realistic duty-cycle and fouling assumptions.</li>
+<li>You need integration notes for controls, materials, and scaling risk.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>Heat sources/sinks, temperatures, duty cycles, materials limits and fouling history.</li>
+<li>Process streams: solids moisture targets, digestion/pasteurisation requirements (if applicable).</li>
+<li>Utilities and control constraints (pumps, valves, instrumentation, shutdown periods).</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>Heat integration options with coordination and control notes and feasibility flags.</li>
+<li>OPEX impact factors (energy intensity, heat recovered, pumping penalties).</li>
+<li>A monitoring and maintenance approach (fouling checks, cleaning strategy).</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Ignoring scaling/material compatibility; underestimating cleaning burden.</li>
+<li>No control strategy  -  thermal systems drift and lose performance.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">Heat recovered (kW), ΔT approach, fouling rate proxy, energy offset.</span>
+<span class="kpi-tag">System availability impact and maintenance burden indicators.</span>
+<span class="kpi-tag">Cost per unit heat delivered/recovered (optional).</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">Thermo+</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="special" data-id="industrial_brine_zld" onclick="toggleDiag(this)" style="display: none;">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Specialist Diagnostics · Brine readiness &amp; solids conditions</div>
+<div class="diag-card-name">Industrial Brine &amp; ZLD</div>
+<div class="diag-card-desc">TDS/TSS split, metals/organics split, heat source and energy KPIs  -  to confirm if post-RO ZLD is viable.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>Brine disposal constraints exist and you need a credible post‑RO / non‑RO brine route.</li>
+<li>You need to separate brine character (high organics vs high metals) and decide RO vs bypass.</li>
+<li>Heat source availability and solids handling are major viability factors.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>Brine source(s) and chemistry split (organics vs metals), scaling/fouling indices, solids conditions.</li>
+<li>Heat availability (temperature, continuity), utilities and footprint constraints.</li>
+<li>Residuals handling constraints and performance targets (what ‘success’ means).</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>ZLD readiness view: what can go to RO vs what must bypass to thermal/brine management.</li>
+<li>Viability flags: heat/energy intensity, solids handling and coordination responsibilities.</li>
+<li>ToR-ready assumptions and KPIs for vendor comparability.</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Assuming all brine is RO reject; ignoring non‑RO‑able feeds.</li>
+<li>Skipping solids conditions checks and heat strategy  -  leads to unimplementable scope.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">TDS, scaling/fouling indices, energy intensity indicators (kWh/m³ brine).</span>
+<span class="kpi-tag">Solids spec and handling losses, availability assumptions.</span>
+<span class="kpi-tag">Recovery split (RO vs thermal segment) and disposal residual fraction.</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">ROCore+</span>
+<span class="mod-chip">ZLD+</span>
+<span class="mod-chip">ZLD+Prep+</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="special" data-id="thermal_process_ash" onclick="toggleDiag(this)" style="display: none;">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Specialist Diagnostics · Ash recovery pathway &amp; coordination points</div>
+<div class="diag-card-name">Thermal Process Ash Diagnostic</div>
+<div class="diag-card-desc">Confirm ash handling and recovery coordination points (P + metals) before setting mono-incineration pathways.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>Mono‑incineration is being considered and ash recovery coordination points must be set early.</li>
+<li>You need clarity on what is ‘thermal scope’ vs ‘ash recovery scope’ (responsibility split).</li>
+<li>You want performance metrics for ash handling, losses and recovery yields.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>Ash characteristics, handling logistics, recovery intent (P + metals), storage/transport constraints.</li>
+<li>Vendor coordination assumptions and required verification and performance requirements.</li>
+<li>Integration constraints: upstream drying/dewatering specs that influence ash quality.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>Ash pathway definition + coordination points/responsibilities + performance clauses for post‑processing.</li>
+<li>Handling and storage plan details (dust, losses, safety) and monitoring points.</li>
+<li>A risk map for recovery viability and logistics.</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Setting thermal scope without ash recovery coordination points.</li>
+<li>Unclear responsibility split leading to late scope gaps and disputes.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">Recovery yield allowances, handling loss allowances, coordination response times.</span>
+<span class="kpi-tag">Ash quality consistency indicators and storage loss proxies.</span>
+<span class="kpi-tag">Throughput/availability assumptions for the ash recovery segment.</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">Incineration+AshRec</span>
+<span class="mod-chip">Sludge+Dry</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="reuse" data-id="reuse_planner" onclick="toggleDiag(this)" style="display: none;">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Planning &amp; Reuse · Tertiary reuse feasibility &amp; route</div>
+<div class="diag-card-name">Reuse Planner</div>
+<div class="diag-card-desc">Map water types to reuse classes and identify the barrier intent that fits the target.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>You need to pick a reuse route (cooling, landscape, agriculture, process) and set the verification approach.</li>
+<li>Reuse demand is seasonal or intermittent and storage/turnover will govern feasibility.</li>
+<li>You want to align barrier intent with what can realistically be monitored and maintained.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>End‑use targets and exposure assumptions, demand pattern, storage volume/turnover.</li>
+<li>Effluent quality ranges and constraints (turbidity, organics, salinity, pathogens).</li>
+<li>Site limits: monitoring capability, operator capacity, chemical handling constraints.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>Reuse class definition + minimum barrier intent + monitoring/verification requirements.</li>
+<li>A feasibility map: what caps reuse (storage, demand, salinity build‑up, by‑products).</li>
+<li>Next‑step testing and instrumentation list aligned to performance checks.</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Setting targets without a verification plan or storage and hydraulics conditions.</li>
+<li>Ignoring salinity/nutrient build‑up in recycle loops.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">Net recovery (%), reuse fraction, demand met (%), storage turnover days.</span>
+<span class="kpi-tag">Key performance indicators by end‑use (turbidity, E. coli proxy, residual control as relevant).</span>
+<span class="kpi-tag">Operational stability indicators (alarm rate, cleaning frequency).</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">Micra+</span>
+<span class="mod-chip">Clari+</span>
+<span class="mod-chip">ROCore+</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="reuse" data-id="compliance_tool" onclick="toggleDiag(this)" style="display: none;">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Planning &amp; Reuse · Limits alignment &amp; ToR drafting</div>
+<div class="diag-card-name">Compliance Tool</div>
+<div class="diag-card-desc">Align module choices to limits and QA/QC requirements.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>Limits tighten, a new consent applies, or you need ToR clauses that define verification obligations.</li>
+<li>You need a clear performance framework for commissioning and steady-state verification.</li>
+<li>You want to make vendor proposals comparable (scope, coordination points, verification).</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>Target limits and sampling regime, variance allowances and reporting requirements.</li>
+<li>Site operating range and any mixing/receiving constraints.</li>
+<li>Monitoring capabilities (online vs lab), QA/QC expectations and response obligations.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>Compliance route options (what needs to change and why) with performance requirements.</li>
+<li>ToR-ready clauses: verification, sampling, QA/QC, alarms and response times.</li>
+<li>Commissioning performance checklist aligned to the limits.</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Over‑specifying without a monitoring plan; KPIs become non‑verifiable.</li>
+<li>Leaving verification obligations implicit  -  vendors then exclude them.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">% limits met, pass rate by parameter, response time to upsets.</span>
+<span class="kpi-tag">Downtime/bypass events and their compliance exposure.</span>
+<span class="kpi-tag">Monitoring uptime and data quality metrics.</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">ToR clauses</span>
+<span class="mod-chip">Sampling plan</span>
+<span class="mod-chip">QA/QC</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="reuse" data-id="biosolids_reuse_planning" onclick="toggleDiag(this)" style="display: none;">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Planning &amp; Reuse · Solids outlet selection &amp; logistics</div>
+<div class="diag-card-name">Biosolids Reuse Planning</div>
+<div class="diag-card-desc">Stabilisation route and market/outlet planning (compost, organo-mineral, biofertilizer).</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>You must choose a solids outlet (dewater-only, drying, compost, organo‑mineral, biofertilizer).</li>
+<li>Logistics, odour, storage and market fit are as important as the treatment step.</li>
+<li>You need to plan for Class A readiness and a credible product route.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>Stabilisation status, cake %TS targets, space/energy availability, odour constraints.</li>
+<li>Outlet rules/market realities, transport constraints, seasonal demand considerations.</li>
+<li>Side streams and residues (screenings/grit/scum/centrate) and handling constraints.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>Class‑A route definition + logistics plan (storage, haulage, odour controls).</li>
+<li>Outlet readiness plan: QA/QC, performance checks, and product positioning options.</li>
+<li>Integration notes: how solids choices change liquid process line and OPEX.</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Weak market linkage; assuming outlets exist without data.</li>
+<li>Under‑sized drying/storage leading to odour and seasonal bottlenecks.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">Cake %TS and variability, haulage frequency, storage days of autonomy.</span>
+<span class="kpi-tag">Product spec pass rate (pathogens/nutrients/metals) where applicable.</span>
+<span class="kpi-tag">Diversion to beneficial use (tDS basis) vs disposal.</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">Dewatering</span>
+<span class="mod-chip">Thermal drying</span>
+<span class="mod-chip">Compost</span>
+<span class="mod-chip">Sludge+Fert</span>
+<span class="mod-chip">Sludge+Bio</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="reuse" data-id="biofertilizer_matchmaking" onclick="toggleDiag(this)" style="display: none;">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Planning &amp; Reuse · Market fit &amp; verification requirements</div>
+<div class="diag-card-name">Biofertilizer ESG Matchmaking</div>
+<div class="diag-card-desc">Align biosolids processing with market fit and verification requirements for a saleable Class-A product.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>You want a saleable Class‑A biofertilizer positioning (not generic ‘reuse’).</li>
+<li>Additives/conditioning are being considered to improve soil value and market fit.</li>
+<li>You need verification requirements and QA/QC that support a product claim.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>Stabilised solids profile, target markets and performance criteria, additive options.</li>
+<li>Storage/odour constraints, packaging/logistics considerations.</li>
+<li>Verification expectations: consistency, QA/QC cadence, spec limits.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>Market‑fit route and product positioning (biofertilizer vs organo‑mineral vs compost).</li>
+<li>QA/QC + performance and verification requirements (what must be tested and declared).</li>
+<li>Coordination notes for processing steps (drying, blending, conditioning).</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Skipping performance and verification planning and market constraints; product becomes a disposal route.</li>
+<li>Ignoring storage/odour logistics that undermine social fit.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">Product consistency indicators, QA/QC pass rate, moisture/TS stability.</span>
+<span class="kpi-tag">Performance checks (pathogens/metals/nutrients), customer claim readiness.</span>
+<span class="kpi-tag">Diversion and logistics intensity metrics (haulage, storage).</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">Sludge+Bio</span>
+<span class="mod-chip">Sludge+Fert</span>
+<span class="mod-chip">Compost+</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="reuse" data-id="tse_use_feasibility" onclick="toggleDiag(this)" style="display: none;">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Planning &amp; Reuse · End-use fit · verification requirements</div>
+<div class="diag-card-name">TSE Use Feasibility</div>
+<div class="diag-card-desc">Confirm whether treated effluent can reliably meet a specific end-use (cooling, irrigation, landscaping, recharge) and what barriers, monitoring, and performance verification are needed.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>You have (or plan) a TSE source and need to validate an end-use before procurement.</li>
+<li>Seasonal demand or storage/distribution constraints may change feasibility.</li>
+<li>Stakeholders need clear performance criteria and verification requirements (not just a concept).</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>Target end-use(s) and operating range (demand profile, storage, distribution).</li>
+<li>Current or expected effluent baseline + variability (key parameters and peaks).</li>
+<li>Local reuse constraints (site rules, client risk approach, performance limits).</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>End-use feasibility statement with required barriers (treatment + operational controls).</li>
+<li>Monitoring &amp; sampling plan (what proves compliance and reliability).</li>
+<li>Vendor-ready scope notes for polishing, disinfection, storage, and distribution coordination points.</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Choosing an end-use without checking demand seasonality and storage needs.</li>
+<li>Ignoring distribution hydraulics, dosing contact time, or residual control.</li>
+<li>Under-specifying monitoring (verification requirements) so performance review becomes subjective later.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">End-use compliance band</span>
+<span class="kpi-tag">Availability vs demand</span>
+<span class="kpi-tag">OPEX per m³</span>
+<span class="kpi-tag">Verification and performance tests</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">FlowPlan(TSE+)™</span>
+<span class="mod-chip">FlowPlan(Dual+Reuse)™</span>
+<span class="mod-chip">FlowPlan(UFRO+)™</span>
+<span class="mod-chip">FP(Micra+)™ / polishing</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="strategy" data-id="esg_priority" onclick="toggleDiag(this)" style="display: none;">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Strategic Screens · Impact &amp; verification readiness</div>
+<div class="diag-card-name">ESG Priority Screening</div>
+<div class="diag-card-desc">Rank opportunities by impact and verification readiness  -  without turning it into a glossy ESG story.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>You need to prioritise investments across water, energy and residuals with verification readiness.</li>
+<li>Stakeholders want impact, but delivery practicality must govern selection.</li>
+<li>You need a decision-ready shortlist with measurable indicators (not glossy storyline).</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>Site priorities, constraints, stakeholder drivers, and data available.</li>
+<li>Possible opportunities (reuse, recovery, energy, residuals) and delivery complexity notes.</li>
+<li>Verification requirements: what must be measured at commissioning and in steady state.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>Priority shortlist ranked by impact × deliverability × verification readiness.</li>
+<li>Minimum data plan to move forward on top items.</li>
+<li>KPI requirements and reporting approach to support approvals/assessors.</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Selecting ‘highest impact’ items that cannot be proven or operated reliably.</li>
+<li>Letting ESG language replace measurable indicators and data points.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">Verification readiness score, delivery risk score, performance complexity score.</span>
+<span class="kpi-tag">Expected recovery/diversion/energy levers (qualitative until data supports quant).</span>
+<span class="kpi-tag">Data quality and monitoring feasibility indicators.</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">Reuse planning</span>
+<span class="mod-chip">Residuals routing</span>
+<span class="mod-chip">Automation &amp; monitoring</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="strategy" data-id="water_quality_requirements" onclick="toggleDiag(this)" style="display: none;">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Strategic Screens · End‑use → spec</div>
+<div class="diag-card-name">Water Quality Requirements &amp; Treatment Fit</div>
+<div class="diag-card-desc">Define the target water quality (by end‑use/permit) and translate it into measurable ranges, verification requirements, and a clear treatment basis.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>End‑use is clear (irrigation/cooling/process) but target quality is not  -  risk of over‑ or under‑specifying.</li>
+<li>Reuse assurance or permitting needs a traceable parameter set and monitoring approach.</li>
+<li>You want vendors to price/guarantee performance against a consistent performance basis.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>Intended end‑uses, storage/demand pattern, and any mixing/blending realities.</li>
+<li>Local guidance/permit constraints (or a shortlist of likely standards) and performance approach (minimum vs ‘assurance’).</li>
+<li>Influent variability data (sampling snapshots, logs) and any known problem constituents.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>Requirement matrix: parameters + target ranges + measurement method/frequency (clearly bounded).</li>
+<li>Treatment fit shortlist: plausible paths by module family, with ‘what each stage controls’ notes.</li>
+<li>Verification &amp; performance requirements: what must be verified at commissioning and what must be monitored in operation.</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Copy‑pasting another site’s spec without matching end‑use risk, measurement method, and local performance rules.</li>
+<li>Mixing compliance targets and operational targets without stating which is which (and what happens in excursions).</li>
+<li>Letting vendors choose the boundary (parameters, units, averaging periods) after pricing.</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">Target ranges (e.g., TSS/turbidity, microbiological indicators/log reduction, residual disinfectant where relevant).</span>
+<span class="kpi-tag">Salinity/scaling indicators (EC/TDS, hardness/silica where relevant) aligned to end‑use risk.</span>
+<span class="kpi-tag">Assurance approach score: metered vs estimated coverage + sampling/monitoring completeness.</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">Reuse planner</span>
+<span class="mod-chip">Compliance tool</span>
+<span class="mod-chip">MBBR+</span>
+<span class="mod-chip">Clari+</span>
+<span class="mod-chip">Micra+</span>
+<span class="mod-chip">ROCore+</span>
+<span class="mod-chip">Oxiclear+</span>
+<span class="mod-chip">Batch+</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+<div class="diag-card" data-cat="strategy" data-id="vendor_technology_evaluation" onclick="toggleDiag(this)" style="display: none;">
+<div class="diag-card-header">
+<div class="diag-card-left">
+<div class="diag-card-cat">Strategic Screens · Comparable bids · performance verification</div>
+<div class="diag-card-name">Vendor / Technology Evaluation</div>
+<div class="diag-card-desc">Put proposals on a common basis - performance guarantees, exclusions, OPEX assumptions, coordination points, and performance testing - so selection holds through delivery.</div>
+</div>
+<div class="diag-card-right">
+<div class="diag-expand">+</div>
+</div>
+</div>
+<div class="diag-detail">
+<div class="detail-grid">
+<div class="detail-col">
+<div class="detail-col-kicker">Use when</div>
+<ul>
+<li>You have multiple vendor quotes and need an apples-to-apples comparison.</li>
+<li>You want to define evaluation criteria before going to market (pre-tender).</li>
+<li>Risk often lies in exclusions, coordination points, and verification - not just CAPEX.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Inputs needed</div>
+<ul>
+<li>ToR / scope basis (or draft requirements and constraints).</li>
+<li>Vendor technical offers, PFDs, utility lists, consumables and OPEX assumptions.</li>
+<li>Reference cases, guarantees, and proposed performance tests.</li>
+</ul>
+</div>
+<div class="detail-col">
+<div class="detail-col-kicker">Deliverables</div>
+<ul>
+<li>Comparison matrix (technical, commercial, operability, risk).</li>
+<li>Clarification list and red-flag exclusions/coordination points.</li>
+<li>Recommended performance test protocol + verification requirements.</li>
+</ul>
+</div>
+</div>
+<div class="detail-pitfalls">
+<div class="detail-col-kicker">Pitfalls to avoid</div>
+<ul>
+<li>Comparing CAPEX without normalising OPEX assumptions and exclusions.</li>
+<li>Accepting guarantees that aren’t tied to a testable performance protocol.</li>
+<li>Leaving coordination points ambiguous (upstream/downstream scope gaps).</li>
+</ul>
+</div>
+<div class="detail-kpis">
+<div class="detail-kpis-kicker">KPIs &amp; verification requirements</div>
+<div class="kpi-tags">
+<span class="kpi-tag">Guaranteed performance ranges</span>
+<span class="kpi-tag">Specific energy &amp; chemicals</span>
+<span class="kpi-tag">Downtime allowances</span>
+<span class="kpi-tag">Performance tests</span>
+</div>
+</div>
+<div class="modules-row" style="margin-bottom:14px;">
+<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-right:6px;">Links to modules:</span>
+<span class="mod-chip">FlowPlan(Procure+)™</span>
+<span class="mod-chip">Vendor-ready ToR</span>
+<span class="mod-chip">Performance test pack</span>
+<span class="mod-chip">FlowPlan reports</span>
+</div>
+<div class="detail-links">
+<a class="detail-link-btn" href="../get-in-touch.html">Request this diagnostic →</a>
+<a class="detail-link-ghost" href="flowplan-solution-design.html">See process design →</a>
+</div>
+</div>
+</div>
+</div><!-- /diag-grid -->
+</div><!-- /lib-shell -->
+</div>
+</section>
+<hr class="div"/>
+<!-- KPI Tools -->
+<section class="section" id="kpi-tools" style="background:#fff;">
+<div class="si">
+<div class="s-kicker">KPI tools</div>
+<h2 class="s-title">Translate design choices into comparable OPEX and verification requirements.</h2>
+<p class="s-lead">Practical KPI builders for liquid and solids lines. Use these to make design assumptions explicit, cost differences visible, and vendor proposals comparable  -  across chemicals, energy, recovery, reliability, and ESG.</p>
+<div class="kpi-tabs">
+<button class="kpi-tab" onclick="filterKPI(this,'all')">All tools</button>
+<button class="kpi-tab active" onclick="filterKPI(this,'chemicals')">Chemicals &amp; consumables</button>
+<button class="kpi-tab" onclick="filterKPI(this,'energy')">Energy &amp; power</button>
+<button class="kpi-tab" onclick="filterKPI(this,'recovery')">Recovery &amp; recycling</button>
+<button class="kpi-tab" onclick="filterKPI(this,'opex')">OPEX footprint</button>
+<button class="kpi-tab" onclick="filterKPI(this,'reliability')">Reliability &amp; operability</button>
+<button class="kpi-tab" onclick="filterKPI(this,'assessor')">Assessor-ready</button>
+<button class="kpi-tab" onclick="filterKPI(this,'risk')">Risk &amp; nuisance</button>
+</div>
+<div class="kpi-grid">
+<div class="kpi-card" data-kpi="chemicals" style="opacity: 0; transform: translateY(14px); transition: opacity 0.45s, transform 0.45s;">
+<div class="kpi-card-top">
+<div class="kpi-card-name">Chemical Consumption Estimator</div>
+<span class="kpi-type-badge">Cost driver</span>
+</div>
+<div class="kpi-card-desc">Turn dose assumptions into comparable kg/day and OPEX ($/m³) across possible treatment paths  -  making chemical cost drivers visible before vendors are engaged.</div>
+<div class="kpi-meta">
+<span class="kpi-meta-tag">Liquid</span><span class="kpi-meta-tag">Chemicals</span><span class="kpi-meta-tag">OPEX</span>
+</div>
+</div>
+<div class="kpi-card" data-kpi="energy" style="opacity: 0; transform: translateY(14px); transition: opacity 0.45s, transform 0.45s;">
+<div class="kpi-card-top">
+<div class="kpi-card-name">Electricity Intensity Baseline</div>
+<span class="kpi-type-badge">Cost driver</span>
+</div>
+<div class="kpi-card-desc">Normalise kWh/m³ and kWh/kg-removed so upgrades are compared on actual energy picture, not nameplate claims  -  including aeration, pumping, and ancillary loads.</div>
+<div class="kpi-meta">
+<span class="kpi-meta-tag">Liquid</span><span class="kpi-meta-tag">Energy</span><span class="kpi-meta-tag">OPEX</span>
+</div>
+</div>
+<div class="kpi-card" data-kpi="recovery" style="opacity: 0; transform: translateY(14px); transition: opacity 0.45s, transform 0.45s;">
+<div class="kpi-card-top">
+<div class="kpi-card-name">Water Recovery &amp; Recycle Rate Tracker</div>
+<span class="kpi-type-badge">Recycling rate</span>
+</div>
+<div class="kpi-card-desc">Define and verify recycle/recovery rate for TSE, UF/RO, and recycle loops  -  with clear boundaries, metering basis, and sensitivity to operating mode.</div>
+<div class="kpi-meta">
+<span class="kpi-meta-tag">Liquid</span><span class="kpi-meta-tag">Recovery</span><span class="kpi-meta-tag">Meters</span>
+</div>
+</div>
+<div class="kpi-card" data-kpi="recovery" style="opacity: 0; transform: translateY(14px); transition: opacity 0.45s, transform 0.45s;">
+<div class="kpi-card-top">
+<div class="kpi-card-name">Solids Recycling &amp; Diversion Rate Tracker</div>
+<span class="kpi-type-badge">Recycling rate</span>
+</div>
+<div class="kpi-card-desc">Quantify how much solid material is reused vs disposed  -  by route and product class  -  so Class A pathways and reuse market claims are traceable.</div>
+<div class="kpi-meta">
+<span class="kpi-meta-tag">Solids</span><span class="kpi-meta-tag">Reuse</span><span class="kpi-meta-tag">Logistics</span>
+</div>
+</div>
+<div class="kpi-card" data-kpi="chemicals" style="opacity: 0; transform: translateY(14px); transition: opacity 0.45s, transform 0.45s;">
+<div class="kpi-card-top">
+<div class="kpi-card-name">Consumables &amp; Media Life Planner</div>
+<span class="kpi-type-badge">Consumables</span>
+</div>
+<div class="kpi-card-desc">Make filters, membranes, carbon, resins, and cleaning cycles visible in OPEX and verification planning  -  before replacement cycles become a commissioning surprise.</div>
+<div class="kpi-meta">
+<span class="kpi-meta-tag">Liquid</span><span class="kpi-meta-tag">Consumables</span><span class="kpi-meta-tag">OPEX</span>
+</div>
+</div>
+<div class="kpi-card" data-kpi="opex" style="opacity: 0; transform: translateY(14px); transition: opacity 0.45s, transform 0.45s;">
+<div class="kpi-card-top">
+<div class="kpi-card-name">OPEX Footprint Dashboard</div>
+<span class="kpi-type-badge">Comparator</span>
+</div>
+<div class="kpi-card-desc">Combine chemicals, power, consumables, and labour into a simple $/m³ (and $/t solids) comparison view  -  with sensitivity toggles for key cost drivers.</div>
+<div class="kpi-meta">
+<span class="kpi-meta-tag">Liquid + Solids</span><span class="kpi-meta-tag">OPEX</span><span class="kpi-meta-tag">Sensitivity</span>
+</div>
+</div>
+<div class="kpi-card" data-kpi="opex" style="opacity: 0; transform: translateY(14px); transition: opacity 0.45s, transform 0.45s;">
+<div class="kpi-card-top">
+<div class="kpi-card-name">Lifecycle Cost Comparator (MBBR vs MBR)</div>
+<span class="kpi-type-badge">Lifecycle</span>
+</div>
+<div class="kpi-card-desc">Compare lifecycle cost per compliant m³ using an end-use-matched MBBR benchmark (Clari for irrigation; Micra for higher-quality reuse), with MBR as the comparator.</div>
+<div class="kpi-meta">
+<span class="kpi-meta-tag">Lifecycle cost</span><span class="kpi-meta-tag">MBBR benchmark</span>
+</div>
+</div>
+<div class="kpi-card" data-kpi="reliability" style="opacity: 0; transform: translateY(14px); transition: opacity 0.45s, transform 0.45s;">
+<div class="kpi-card-top">
+<div class="kpi-card-name">Operator Workload &amp; Operability Index</div>
+<span class="kpi-type-badge">Design indicator</span>
+</div>
+<div class="kpi-card-desc">Translate design complexity into staffing and maintenance conditions  -  so "low OPEX" claims can be tested against the operational demands of the actual process line.</div>
+<div class="kpi-meta">
+<span class="kpi-meta-tag">Liquid + Solids</span><span class="kpi-meta-tag">Operability</span><span class="kpi-meta-tag">Maintenance</span>
+</div>
+</div>
+<div class="kpi-card" data-kpi="reliability" style="opacity: 0; transform: translateY(14px); transition: opacity 0.45s, transform 0.45s;">
+<div class="kpi-card-top">
+<div class="kpi-card-name">Availability &amp; Resilience Indicator Set</div>
+<span class="kpi-type-badge">Verification requirement</span>
+</div>
+<div class="kpi-card-desc">Define availability targets and failure-mode coverage early  -  so commissioning and handover checklists are measurable and not left to vendor discretion.</div>
+<div class="kpi-meta">
+<span class="kpi-meta-tag">Liquid + Solids</span><span class="kpi-meta-tag">Reliability</span><span class="kpi-meta-tag">Commissioning</span>
+</div>
+</div>
+<div class="kpi-card" data-kpi="assessor" style="opacity: 0; transform: translateY(14px); transition: opacity 0.45s, transform 0.45s;">
+<div class="kpi-card-top">
+<div class="kpi-card-name">Carbon &amp; Emissions Intensity Estimator</div>
+<span class="kpi-type-badge">Assurance</span>
+</div>
+<div class="kpi-card-desc">Translate energy, chemicals, and hauling into traceable emissions indicators (kgCO₂e/m³ and kgCO₂e/tDS)  -  with clear boundaries and confidence flags for ESG reporting.</div>
+<div class="kpi-meta">
+<span class="kpi-meta-tag">kgCO₂e/m³</span><span class="kpi-meta-tag">kgCO₂e/tDS</span><span class="kpi-meta-tag">Traceable</span>
+</div>
+</div>
+<div class="kpi-card" data-kpi="assessor" style="opacity: 0; transform: translateY(14px); transition: opacity 0.45s, transform 0.45s;">
+<div class="kpi-card-top">
+<div class="kpi-card-name">Assessor-ready KPI Pack</div>
+<span class="kpi-type-badge">Assurance</span>
+</div>
+<div class="kpi-card-desc">A compact KPI set that aligns design choices to audit, QA/QC, and lender-style data expectations  -  ready to share with external assessors or due diligence teams.</div>
+<div class="kpi-meta">
+<span class="kpi-meta-tag">Liquid + Solids</span><span class="kpi-meta-tag">QA/QC</span><span class="kpi-meta-tag">Verification</span>
+</div>
+</div>
+<div class="kpi-card" data-kpi="risk" style="opacity: 0; transform: translateY(14px); transition: opacity 0.45s, transform 0.45s;">
+<div class="kpi-card-top">
+<div class="kpi-card-name">Odour &amp; H₂S Indicator Set</div>
+<span class="kpi-type-badge">Indicator set</span>
+</div>
+<div class="kpi-card-desc">Define measurable indicators for odour risk across liquid and solids streams  -  and track control response without overstating certainty. Covers H₂S, septicity, and boundary conditions.</div>
+<div class="kpi-meta">
+<span class="kpi-meta-tag">Liquid</span><span class="kpi-meta-tag">Solids</span><span class="kpi-meta-tag">H₂S</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Connect to implementation -->
+<div class="connect-strip">
+<div class="connect-inner">
+<div class="connect-title">How diagnostics connect to implementation</div>
+<div class="connect-desc">Diagnostics define the data base and performance requirements that protect delivery. The same outputs carry forward into vendor coordination, retrofit sequencing, commissioning checks, and performance verification  -  so nothing is revisited at handover.</div>
+<div class="connect-grid">
+<a class="connect-card" href="../Advisory/process-system-design-advisory.html" style="opacity: 0; transform: translateY(14px); transition: opacity 0.45s, transform 0.45s;">
+<div class="connect-card-kicker">Design &amp; Advisory</div>
+<div class="connect-card-title">Process &amp; System Design</div>
+<div class="connect-card-desc">Diagnostic outputs feed directly into process design  -  setting coordination points, load ranges, and performance criteria.</div>
+</a>
+<a class="connect-card" href="flowplan-solution-design.html" style="opacity: 0; transform: translateY(14px); transition: opacity 0.45s, transform 0.45s;">
+<div class="connect-card-kicker">Solution Structure</div>
+<div class="connect-card-title">FlowPlan Module Mapping</div>
+<div class="connect-card-desc">Each diagnostic links to the module families it informs  -  so shortlisting is traceable to site data, not assumption.</div>
+</a>
+<a class="connect-card" href="flowplan-process-mapping.html" style="opacity: 0; transform: translateY(14px); transition: opacity 0.45s, transform 0.45s;">
+<div class="connect-card-kicker">Process Mapping</div>
+<div class="connect-card-title">Outcome Paths &amp; Integration</div>
+<div class="connect-card-desc">Diagnostic scope informs the path selection and plant integration view  -  from inlet stage to residuals routing.</div>
+</a>
+<a class="connect-card" href="flowplan-planning-delivery.html" style="opacity: 0; transform: translateY(14px); transition: opacity 0.45s, transform 0.45s;">
+<div class="connect-card-kicker">Delivery Assurance</div>
+<div class="connect-card-title">Sourcing &amp; Implementation</div>
+<div class="connect-card-desc">KPI and verification requirements from diagnostics carry through to ToR packs, vendor evaluation, and commissioning checks.</div>
+</a>
+</div>
+</div>
+</div>
+<!-- Enquiry -->
+<section class="enquiry" id="enquiry">
+<div class="enquiry-inner">
+<div>
+<div class="enq-kicker">Start an enquiry</div>
+<h2 class="enq-title">Plan your<br/><em>diagnostic scope.</em></h2>
+<p class="enq-desc">If you already know the decision you're trying to make, we can start with a single diagnostic. If you're unsure, start with a Smart Intake and we'll route you to the minimum set of tools that de-risk implementation.</p>
+<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:10px;">What helps us move quickly</div>
+<div class="enq-list">
+<div class="enq-item"><div class="enq-check">✓</div>Decision focus  -  reuse, retrofit, residuals, compliance, brine</div>
+<div class="enq-item"><div class="enq-check">✓</div>Constraints  -  space, utilities, shutdown periods, access</div>
+<div class="enq-item"><div class="enq-check">✓</div>Data available  -  sampling, SCADA logs, drawings, O&amp;M history</div>
+<div class="enq-item"><div class="enq-check">✓</div>Performance &amp; verification requirements  -  KPIs, handover checks, QA expectations</div>
+</div>
+</div>
+<div class="enq-form">
+<div class="form-title">Route your diagnostic enquiry</div>
+<div class="form-sub">Select the closest enquiry type  -  or choose General if you're unsure.</div>
+<div class="form-group">
+<label class="form-kicker">Region</label>
+<select class="form-select">
+<option>UAE</option><option>GCC</option><option>Global</option>
+</select>
+</div>
+<div class="form-group">
+<label class="form-kicker">Enquiry type</label>
+<select class="form-select">
+<option value="">Select enquiry type…</option>
+<option>Reuse upgrade diagnostic</option>
+<option>Retrofit under constraints</option>
+<option>Residuals / biosolids route</option>
+<option>Compliance tightening</option>
+<option>Pretreatment &amp; protection</option>
+<option>Heat / energy integration</option>
+<option>Brine / ZLD readiness</option>
+<option>General / not sure yet</option>
+</select>
+</div>
+<div class="form-group">
+<label class="form-kicker">Project situation description</label>
+<textarea class="form-textarea" placeholder="e.g. We have an existing STP that isn't meeting TSE Class A targets. Looking for a focused diagnostic before deciding on a retrofit approach…"></textarea>
+</div>
+<a class="form-btn" href="../get-in-touch.html">Send enquiry →</a>
+<div class="form-note">Use the contact form to share the basic project details.</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<style id="enwater-flowplan-footer-standard-v4">
+.enwater-flowplan-footer{background:#173d35;color:rgba(255,255,255,.88);position:relative;border-top:1px solid rgba(255,255,255,.10);margin-top:0;}
+.enwater-flowplan-footer::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.18;background-image:linear-gradient(rgba(255,255,255,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.10) 1px,transparent 1px);background-size:18px 18px;}
+.enwater-flowplan-footer .eff-inner{position:relative;max-width:1180px;margin:0 auto;padding:44px 24px 26px;}
+.enwater-flowplan-footer .eff-grid{display:grid;gap:34px;grid-template-columns:1.4fr 1.1fr 1fr;align-items:start;}
+.enwater-flowplan-footer .eff-brand{display:flex;align-items:center;gap:12px;font-weight:750;color:#fff;font-size:16px;margin-bottom:12px;}
+.enwater-flowplan-footer .eff-logo{height:34px;width:auto;max-width:58px;object-fit:contain;background:#fff;border-radius:6px;padding:4px;box-shadow:0 1px 4px rgba(0,0,0,.16);}
+.enwater-flowplan-footer .eff-desc{max-width:440px;color:rgba(255,255,255,.72);font-size:14px;line-height:1.7;margin:0;}
+.enwater-flowplan-footer .eff-heading{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.62);font-weight:750;margin-bottom:14px;}
+.enwater-flowplan-footer a{display:block;color:rgba(255,255,255,.78);text-decoration:none;font-size:14px;line-height:1.55;margin:8px 0;}
+.enwater-flowplan-footer a:hover{color:#fff;}
+.enwater-flowplan-footer .eff-line{color:rgba(255,255,255,.78);font-size:14px;line-height:1.55;margin:8px 0;}
+.enwater-flowplan-footer .eff-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:34px;padding-top:18px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:rgba(255,255,255,.58);font-size:13px;}
+@media(max-width:780px){.enwater-flowplan-footer .eff-grid{grid-template-columns:1fr}.enwater-flowplan-footer .eff-inner{padding:38px 20px 24px}}
+</style>
+<footer class="footer">
+<div class="wrap">
+<div class="footer-top">
+<div>
+<div class="footer-brand"><img alt="EnWater Design logo" class="footer-logo" src="../assets/images/enwater-design-logo-transparent-mark.png"/><span class="footer-name">EnWater Design</span></div>
+<p class="footer-desc">Independent water, wastewater treatment and reuse consulting, helping owners and operators turn complex challenges into clear decisions and practical outcomes.</p>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<a href="../home.html">Home</a>
+<a href="../About/about.html">About</a>
+<a href="../About/BlogList.html">Our Blog</a>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+</div>
+<div class="footer-col">
+<h4>Services</h4>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing</a>
+<a href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<a href="../Projects/index.html">Projects</a>
+<a href="../Sectors/index.html">Sectors</a>
+</div>
+<div class="footer-col">
+<h4>Pathways</h4>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../Sectors/index.html">Sector Pathways</a>
+</div>
+<div class="footer-col">
+<h4>Get in touch</h4>
+<a href="../get-in-touch.html">Contact form</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">Industrial / CETP</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© <span id="yr"></span> EnWater Design</div>
+<div>Clear systems planning for practical project delivery</div>
+</div>
+</div>
+<script>
+  (function() {
+    const yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+  })();
+</script>
+</footer>
+<script>
+// ── Diagnostic filter (no "All") ─────────────────────────────────────────
+let activeDiagCat = 'smart';
+
+function applyDiagFilters() {
+  const q = (document.getElementById('diagSearch').value || '').toLowerCase().trim();
+  document.querySelectorAll('.diag-card').forEach(card => {
+    const inCat = (card.dataset.cat === activeDiagCat);
+    const inSearch = !q || card.textContent.toLowerCase().includes(q);
+    if (inCat && inSearch) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+      card.classList.remove('expanded');
+    }
+  });
+}
+
+function filterDiag(btn, cat) {
+  activeDiagCat = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyDiagFilters();
+}
+
+// ── Diagnostic search ──────────────────────────────────────────────
+document.getElementById('diagSearch').addEventListener('input', applyDiagFilters);
+
+// ── Expand / collapse diagnostics ─────────────────────────────────
+function toggleDiag(card) {
+  const wasExpanded = card.classList.contains('expanded');
+  document.querySelectorAll('.diag-card').forEach(c => c.classList.remove('expanded'));
+  if (!wasExpanded) card.classList.add('expanded');
+}
+
+// ── KPI filter ──────────────────────────────────────────────────
+function filterKPI(btn, cat) {
+  document.querySelectorAll('.kpi-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.kpi-card').forEach(card => {
+    if (cat === 'all' || card.dataset.kpi === cat) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// ── Scroll-triggered fade-in ──────────────────────────────────────
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.07 });
+
+document.querySelectorAll('.how-card, .connect-card, .kpi-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(14px)';
+  el.style.transition = 'opacity .45s ease, transform .45s ease';
+  io.observe(el);
+});
+
+// Default to Smart Intakes on load (so the user isn't hit with a long list)
+window.addEventListener('DOMContentLoaded', () => {
+  const firstBtn = document.querySelector('.filter-btn');
+  if (firstBtn) { filterDiag(firstBtn, activeDiagCat); }
+
+  const defaultKpiBtn = document.querySelector(".kpi-tab[onclick*=\"'chemicals'\"]");
+  if (defaultKpiBtn) { filterKPI(defaultKpiBtn, 'chemicals'); }
+});
+</script>
+<script src="../exported-ui-effects.js"></script></body></html>

@@ -1,0 +1,5509 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>Solution Advisory | EnWater Design</title>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: "#f4f2ec",
+            forest: "#243f38",
+            forest2: "#1f3731",
+            accent: "#55a092"
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --cream: #f4f2ec;
+      --ink: #1b1f1e;
+      --muted: #5a6561;
+      --forest: #243f38;
+      --forest2: #1f3731;
+      --accent: #55a092;
+      --accent2: #468a7e;
+      --line: rgba(27, 31, 30, .14);
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    .display-serif {
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    }
+
+    .ui-sans {
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    .hairline {
+      border-color: var(--line);
+    }
+
+    .soft-shadow {
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .08);
+    }
+
+    .pattern {
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, .07) 0, rgba(255, 255, 255, .07) 2px, transparent 2px),
+        radial-gradient(circle at 70% 60%, rgba(255, 255, 255, .06) 0, rgba(255, 255, 255, .06) 2px, transparent 2px);
+      background-size: 48px 48px, 64px 64px;
+    }
+
+    .link-row:hover {
+      background: rgba(255, 255, 255, .45);
+    }
+
+    .tag {
+      border: 1px solid rgba(255, 255, 255, .25)
+    }
+
+    /* accordion animation */
+    .acc-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease;
+    }
+
+    .acc-open .acc-panel {
+      max-height: 900px;
+    }
+
+    .acc-open .acc-icon {
+      transform: rotate(180deg);
+    }
+
+    .acc-icon {
+      transition: transform .25s ease;
+    }
+
+    /* capability switcher */
+    .cap-active {
+      background: rgba(255, 255, 255, .10);
+      color: #fff;
+    }
+
+    :focus-visible {
+      outline: 3px solid rgba(85, 160, 146, .45);
+      outline-offset: 3px;
+    }
+  </style>
+  <style>
+    *,
+    ::before,
+    ::after {
+      --tw-border-spacing-x: 0;
+      --tw-border-spacing-y: 0;
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-rotate: 0;
+      --tw-skew-x: 0;
+      --tw-skew-y: 0;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-pan-x: ;
+      --tw-pan-y: ;
+      --tw-pinch-zoom: ;
+      --tw-scroll-snap-strictness: proximity;
+      --tw-gradient-from-position: ;
+      --tw-gradient-via-position: ;
+      --tw-gradient-to-position: ;
+      --tw-ordinal: ;
+      --tw-slashed-zero: ;
+      --tw-numeric-figure: ;
+      --tw-numeric-spacing: ;
+      --tw-numeric-fraction: ;
+      --tw-ring-inset: ;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-color: rgb(59 130 246 / 0.5);
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-colored: 0 0 #0000;
+      --tw-blur: ;
+      --tw-brightness: ;
+      --tw-contrast: ;
+      --tw-grayscale: ;
+      --tw-hue-rotate: ;
+      --tw-invert: ;
+      --tw-saturate: ;
+      --tw-sepia: ;
+      --tw-drop-shadow: ;
+      --tw-backdrop-blur: ;
+      --tw-backdrop-brightness: ;
+      --tw-backdrop-contrast: ;
+      --tw-backdrop-grayscale: ;
+      --tw-backdrop-hue-rotate: ;
+      --tw-backdrop-invert: ;
+      --tw-backdrop-opacity: ;
+      --tw-backdrop-saturate: ;
+      --tw-backdrop-sepia: ;
+      --tw-contain-size: ;
+      --tw-contain-layout: ;
+      --tw-contain-paint: ;
+      --tw-contain-style:
+    }
+
+    ::backdrop {
+      --tw-border-spacing-x: 0;
+      --tw-border-spacing-y: 0;
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-rotate: 0;
+      --tw-skew-x: 0;
+      --tw-skew-y: 0;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-pan-x: ;
+      --tw-pan-y: ;
+      --tw-pinch-zoom: ;
+      --tw-scroll-snap-strictness: proximity;
+      --tw-gradient-from-position: ;
+      --tw-gradient-via-position: ;
+      --tw-gradient-to-position: ;
+      --tw-ordinal: ;
+      --tw-slashed-zero: ;
+      --tw-numeric-figure: ;
+      --tw-numeric-spacing: ;
+      --tw-numeric-fraction: ;
+      --tw-ring-inset: ;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-color: rgb(59 130 246 / 0.5);
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-colored: 0 0 #0000;
+      --tw-blur: ;
+      --tw-brightness: ;
+      --tw-contrast: ;
+      --tw-grayscale: ;
+      --tw-hue-rotate: ;
+      --tw-invert: ;
+      --tw-saturate: ;
+      --tw-sepia: ;
+      --tw-drop-shadow: ;
+      --tw-backdrop-blur: ;
+      --tw-backdrop-brightness: ;
+      --tw-backdrop-contrast: ;
+      --tw-backdrop-grayscale: ;
+      --tw-backdrop-hue-rotate: ;
+      --tw-backdrop-invert: ;
+      --tw-backdrop-opacity: ;
+      --tw-backdrop-saturate: ;
+      --tw-backdrop-sepia: ;
+      --tw-contain-size: ;
+      --tw-contain-layout: ;
+      --tw-contain-paint: ;
+      --tw-contain-style:
+    }
+
+    /* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */
+    *,
+    ::after,
+    ::before {
+      box-sizing: border-box;
+      border-width: 0;
+      border-style: solid;
+      border-color: #e5e7eb
+    }
+
+    ::after,
+    ::before {
+      --tw-content: ''
+    }
+
+    :host,
+    html {
+      line-height: 1.5;
+      -webkit-text-size-adjust: 100%;
+      -moz-tab-size: 4;
+      tab-size: 4;
+      font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      font-feature-settings: normal;
+      font-variation-settings: normal;
+      -webkit-tap-highlight-color: transparent
+    }
+
+    body {
+      margin: 0;
+      line-height: inherit
+    }
+
+    hr {
+      height: 0;
+      color: inherit;
+      border-top-width: 1px
+    }
+
+    abbr:where([title]) {
+      -webkit-text-decoration: underline dotted;
+      text-decoration: underline dotted
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: inherit;
+      font-weight: inherit
+    }
+
+    a {
+      color: inherit;
+      text-decoration: inherit
+    }
+
+    b,
+    strong {
+      font-weight: bolder
+    }
+
+    code,
+    kbd,
+    pre,
+    samp {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-feature-settings: normal;
+      font-variation-settings: normal;
+      font-size: 1em
+    }
+
+    small {
+      font-size: 80%
+    }
+
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline
+    }
+
+    sub {
+      bottom: -.25em
+    }
+
+    sup {
+      top: -.5em
+    }
+
+    table {
+      text-indent: 0;
+      border-color: inherit;
+      border-collapse: collapse
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      font-family: inherit;
+      font-feature-settings: inherit;
+      font-variation-settings: inherit;
+      font-size: 100%;
+      font-weight: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+      color: inherit;
+      margin: 0;
+      padding: 0
+    }
+
+    button,
+    select {
+      text-transform: none
+    }
+
+    button,
+    input:where([type=button]),
+    input:where([type=reset]),
+    input:where([type=submit]) {
+      -webkit-appearance: button;
+      background-color: transparent;
+      background-image: none
+    }
+
+    :-moz-focusring {
+      outline: auto
+    }
+
+    :-moz-ui-invalid {
+      box-shadow: none
+    }
+
+    progress {
+      vertical-align: baseline
+    }
+
+    ::-webkit-inner-spin-button,
+    ::-webkit-outer-spin-button {
+      height: auto
+    }
+
+    [type=search] {
+      -webkit-appearance: textfield;
+      outline-offset: -2px
+    }
+
+    ::-webkit-search-decoration {
+      -webkit-appearance: none
+    }
+
+    ::-webkit-file-upload-button {
+      -webkit-appearance: button;
+      font: inherit
+    }
+
+    summary {
+      display: list-item
+    }
+
+    blockquote,
+    dd,
+    dl,
+    figure,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    hr,
+    p,
+    pre {
+      margin: 0
+    }
+
+    fieldset {
+      margin: 0;
+      padding: 0
+    }
+
+    legend {
+      padding: 0
+    }
+
+    menu,
+    ol,
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0
+    }
+
+    dialog {
+      padding: 0
+    }
+
+    textarea {
+      resize: vertical
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      opacity: 1;
+      color: #9ca3af
+    }
+
+    [role=button],
+    button {
+      cursor: pointer
+    }
+
+    :disabled {
+      cursor: default
+    }
+
+    audio,
+    canvas,
+    embed,
+    iframe,
+    img,
+    object,
+    svg,
+    video {
+      display: block;
+      vertical-align: middle
+    }
+
+    img,
+    video {
+      max-width: 100%;
+      height: auto
+    }
+
+    [hidden]:where(:not([hidden=until-found])) {
+      display: none
+    }
+
+    .absolute {
+      position: absolute
+    }
+
+    .relative {
+      position: relative
+    }
+
+    .sticky {
+      position: sticky
+    }
+
+    .inset-0 {
+      inset: 0px
+    }
+
+    .bottom-6 {
+      bottom: 1.5rem
+    }
+
+    .left-6 {
+      left: 1.5rem
+    }
+
+    .right-0 {
+      right: 0px
+    }
+
+    .right-6 {
+      right: 1.5rem
+    }
+
+    .top-0 {
+      top: 0px
+    }
+
+    .top-6 {
+      top: 1.5rem
+    }
+
+    .z-50 {
+      z-index: 50
+    }
+
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    .mt-1\.5 {
+      margin-top: 0.375rem
+    }
+
+    .mt-10 {
+      margin-top: 2.5rem
+    }
+
+    .mt-16 {
+      margin-top: 4rem
+    }
+
+    .mt-2 {
+      margin-top: 0.5rem
+    }
+
+    .mt-3 {
+      margin-top: 0.75rem
+    }
+
+    .mt-4 {
+      margin-top: 1rem
+    }
+
+    .mt-5 {
+      margin-top: 1.25rem
+    }
+
+    .mt-6 {
+      margin-top: 1.5rem
+    }
+
+    .mt-7 {
+      margin-top: 1.75rem
+    }
+
+    .mt-8 {
+      margin-top: 2rem
+    }
+
+    .mt-1 {
+      margin-top: 0.25rem
+    }
+
+    .flex {
+      display: flex
+    }
+
+    .inline-flex {
+      display: inline-flex
+    }
+
+    .grid {
+      display: grid
+    }
+
+    .hidden {
+      display: none
+    }
+
+    .h-1\.5 {
+      height: 0.375rem
+    }
+
+    .h-14 {
+      height: 3.5rem
+    }
+
+    .h-2\.5 {
+      height: 0.625rem
+    }
+
+    .h-28 {
+      height: 7rem
+    }
+
+    .h-4 {
+      height: 1rem
+    }
+
+    .h-5 {
+      height: 1.25rem
+    }
+
+    .h-\[280px\] {
+      height: 280px
+    }
+
+    .w-1\.5 {
+      width: 0.375rem
+    }
+
+    .w-2\.5 {
+      width: 0.625rem
+    }
+
+    .w-4 {
+      width: 1rem
+    }
+
+    .w-5 {
+      width: 1.25rem
+    }
+
+    .w-52 {
+      width: 13rem
+    }
+
+    .w-full {
+      width: 100%
+    }
+
+    .max-w-6xl {
+      max-width: 72rem
+    }
+
+    .max-w-sm {
+      max-width: 24rem
+    }
+
+    .max-w-xl {
+      max-width: 36rem
+    }
+
+    .cursor-pointer {
+      cursor: pointer
+    }
+
+    .list-none {
+      list-style-type: none
+    }
+
+    .grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr))
+    }
+
+    .flex-col {
+      flex-direction: column
+    }
+
+    .flex-wrap {
+      flex-wrap: wrap
+    }
+
+    .items-start {
+      align-items: flex-start
+    }
+
+    .items-center {
+      align-items: center
+    }
+
+    .justify-end {
+      justify-content: flex-end
+    }
+
+    .justify-center {
+      justify-content: center
+    }
+
+    .justify-between {
+      justify-content: space-between
+    }
+
+    .gap-1 {
+      gap: 0.25rem
+    }
+
+    .gap-10 {
+      gap: 2.5rem
+    }
+
+    .gap-2 {
+      gap: 0.5rem
+    }
+
+    .gap-3 {
+      gap: 0.75rem
+    }
+
+    .gap-4 {
+      gap: 1rem
+    }
+
+    .gap-6 {
+      gap: 1.5rem
+    }
+
+    .space-y-2> :not([hidden])~ :not([hidden]) {
+      --tw-space-y-reverse: 0;
+      margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+      margin-bottom: calc(0.5rem * var(--tw-space-y-reverse))
+    }
+
+    .overflow-hidden {
+      overflow: hidden
+    }
+
+    .rounded-full {
+      border-radius: 9999px
+    }
+
+    .rounded-sm {
+      border-radius: 0.125rem
+    }
+
+    .border {
+      border-width: 1px
+    }
+
+    .border-y {
+      border-top-width: 1px;
+      border-bottom-width: 1px
+    }
+
+    .border-b {
+      border-bottom-width: 1px
+    }
+
+    .border-t {
+      border-top-width: 1px
+    }
+
+    .border-white\/10 {
+      border-color: rgb(255 255 255 / 0.1)
+    }
+
+    .border-white\/15 {
+      border-color: rgb(255 255 255 / 0.15)
+    }
+
+    .bg-\[\#101413\] {
+      --tw-bg-opacity: 1;
+      background-color: rgb(16 20 19 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-accent {
+      --tw-bg-opacity: 1;
+      background-color: rgb(85 160 146 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-black\/10 {
+      background-color: rgb(0 0 0 / 0.1)
+    }
+
+    .bg-cream {
+      --tw-bg-opacity: 1;
+      background-color: rgb(244 242 236 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-forest {
+      --tw-bg-opacity: 1;
+      background-color: rgb(36 63 56 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-forest2 {
+      --tw-bg-opacity: 1;
+      background-color: rgb(31 55 49 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-white {
+      --tw-bg-opacity: 1;
+      background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-white\/10 {
+      background-color: rgb(255 255 255 / 0.1)
+    }
+
+    .bg-white\/20 {
+      background-color: rgb(255 255 255 / 0.2)
+    }
+
+    .bg-white\/35 {
+      background-color: rgb(255 255 255 / 0.35)
+    }
+
+    .bg-white\/40 {
+      background-color: rgb(255 255 255 / 0.4)
+    }
+
+    .bg-white\/5 {
+      background-color: rgb(255 255 255 / 0.05)
+    }
+
+    .bg-white\/55 {
+      background-color: rgb(255 255 255 / 0.55)
+    }
+
+    .bg-white\/80 {
+      background-color: rgb(255 255 255 / 0.8)
+    }
+
+    .bg-white\/85 {
+      background-color: rgb(255 255 255 / 0.85)
+    }
+
+    .bg-gradient-to-br {
+      background-image: linear-gradient(to bottom right, var(--tw-gradient-stops))
+    }
+
+    .from-\[\#dfeae6\] {
+      --tw-gradient-from: #dfeae6 var(--tw-gradient-from-position);
+      --tw-gradient-to: rgb(223 234 230 / 0) var(--tw-gradient-to-position);
+      --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
+    }
+
+    .to-\[\#cbded7\] {
+      --tw-gradient-to: #cbded7 var(--tw-gradient-to-position)
+    }
+
+    .object-cover {
+      object-fit: cover
+    }
+
+    .p-2 {
+      padding: 0.5rem
+    }
+
+    .p-4 {
+      padding: 1rem
+    }
+
+    .p-5 {
+      padding: 1.25rem
+    }
+
+    .p-6 {
+      padding: 1.5rem
+    }
+
+    .p-7 {
+      padding: 1.75rem
+    }
+
+    .p-8 {
+      padding: 2rem
+    }
+
+    .px-3 {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem
+    }
+
+    .px-4 {
+      padding-left: 1rem;
+      padding-right: 1rem
+    }
+
+    .px-5 {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem
+    }
+
+    .px-6 {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem
+    }
+
+    .py-1 {
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem
+    }
+
+    .py-12 {
+      padding-top: 3rem;
+      padding-bottom: 3rem
+    }
+
+    .py-14 {
+      padding-top: 3.5rem;
+      padding-bottom: 3.5rem
+    }
+
+    .py-16 {
+      padding-top: 4rem;
+      padding-bottom: 4rem
+    }
+
+    .py-2 {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem
+    }
+
+    .py-2\.5 {
+      padding-top: 0.625rem;
+      padding-bottom: 0.625rem
+    }
+
+    .py-3 {
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem
+    }
+
+    .py-4 {
+      padding-top: 1rem;
+      padding-bottom: 1rem
+    }
+
+    .pb-14 {
+      padding-bottom: 3.5rem
+    }
+
+    .pb-8 {
+      padding-bottom: 2rem
+    }
+
+    .pt-10 {
+      padding-top: 2.5rem
+    }
+
+    .pt-6 {
+      padding-top: 1.5rem
+    }
+
+    .text-left {
+      text-align: left
+    }
+
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem
+    }
+
+    .text-3xl {
+      font-size: 1.875rem;
+      line-height: 2.25rem
+    }
+
+    .text-4xl {
+      font-size: 2.25rem;
+      line-height: 2.5rem
+    }
+
+    .text-5xl {
+      font-size: 3rem;
+      line-height: 1
+    }
+
+    .text-\[11px\] {
+      font-size: 11px
+    }
+
+    .text-\[15px\] {
+      font-size: 15px
+    }
+
+    .text-sm {
+      font-size: 0.875rem;
+      line-height: 1.25rem
+    }
+
+    .text-xl {
+      font-size: 1.25rem;
+      line-height: 1.75rem
+    }
+
+    .text-xs {
+      font-size: 0.75rem;
+      line-height: 1rem
+    }
+
+    .font-medium {
+      font-weight: 500
+    }
+
+    .font-semibold {
+      font-weight: 600
+    }
+
+    .leading-\[0\.95\] {
+      line-height: 0.95
+    }
+
+    .leading-relaxed {
+      line-height: 1.625
+    }
+
+    .leading-tight {
+      line-height: 1.25
+    }
+
+    .tracking-wide {
+      letter-spacing: 0.025em
+    }
+
+    .text-gray-500 {
+      --tw-text-opacity: 1;
+      color: rgb(107 114 128 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-600 {
+      --tw-text-opacity: 1;
+      color: rgb(75 85 99 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-700 {
+      --tw-text-opacity: 1;
+      color: rgb(55 65 81 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-800 {
+      --tw-text-opacity: 1;
+      color: rgb(31 41 55 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-900 {
+      --tw-text-opacity: 1;
+      color: rgb(17 24 39 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-950 {
+      --tw-text-opacity: 1;
+      color: rgb(3 7 18 / var(--tw-text-opacity, 1))
+    }
+
+    .text-white {
+      --tw-text-opacity: 1;
+      color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+    }
+
+    .text-white\/55 {
+      color: rgb(255 255 255 / 0.55)
+    }
+
+    .text-white\/60 {
+      color: rgb(255 255 255 / 0.6)
+    }
+
+    .text-white\/70 {
+      color: rgb(255 255 255 / 0.7)
+    }
+
+    .text-white\/75 {
+      color: rgb(255 255 255 / 0.75)
+    }
+
+    .text-white\/85 {
+      color: rgb(255 255 255 / 0.85)
+    }
+
+    .text-white\/90 {
+      color: rgb(255 255 255 / 0.9)
+    }
+
+    .opacity-80 {
+      opacity: 0.8
+    }
+
+    .outline-none {
+      outline: 2px solid transparent;
+      outline-offset: 2px
+    }
+
+    .backdrop-blur {
+      --tw-backdrop-blur: blur(8px);
+      -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+      backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)
+    }
+
+    .hover\:bg-forest:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgb(36 63 56 / var(--tw-bg-opacity, 1))
+    }
+
+    .hover\:bg-white\/15:hover {
+      background-color: rgb(255 255 255 / 0.15)
+    }
+
+    .hover\:bg-white\/70:hover {
+      background-color: rgb(255 255 255 / 0.7)
+    }
+
+    .hover\:bg-white\/90:hover {
+      background-color: rgb(255 255 255 / 0.9)
+    }
+
+    .hover\:bg-white\/10:hover {
+      background-color: rgb(255 255 255 / 0.1)
+    }
+
+    .hover\:text-white:hover {
+      --tw-text-opacity: 1;
+      color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+    }
+
+    .hover\:underline:hover {
+      -webkit-text-decoration-line: underline;
+      text-decoration-line: underline
+    }
+
+    .focus\:outline-none:focus {
+      outline: 2px solid transparent;
+      outline-offset: 2px
+    }
+
+    .focus\:ring-2:focus {
+      --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+      --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+      box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)
+    }
+
+    .focus\:ring-accent\/30:focus {
+      --tw-ring-color: rgb(85 160 146 / 0.3)
+    }
+
+    .focus\:ring-white\/20:focus {
+      --tw-ring-color: rgb(255 255 255 / 0.2)
+    }
+
+    .group[open] .group-open\:rotate-180 {
+      --tw-rotate: 180deg;
+      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+    }
+
+    .group:hover .group-hover\:text-gray-900 {
+      --tw-text-opacity: 1;
+      color: rgb(17 24 39 / var(--tw-text-opacity, 1))
+    }
+
+    @media (min-width: 640px) {
+      .sm\:flex {
+        display: flex
+      }
+
+      .sm\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+    }
+
+    @media (min-width: 768px) {
+      .md\:bottom-10 {
+        bottom: 2.5rem
+      }
+
+      .md\:left-10 {
+        left: 2.5rem
+      }
+
+      .md\:right-auto {
+        right: auto
+      }
+
+      .md\:col-span-4 {
+        grid-column: span 4 / span 4
+      }
+
+      .md\:col-span-8 {
+        grid-column: span 8 / span 8
+      }
+
+      .md\:flex {
+        display: flex
+      }
+
+      .md\:h-\[380px\] {
+        height: 380px
+      }
+
+      .md\:w-\[520px\] {
+        width: 520px
+      }
+
+      .md\:grid-cols-12 {
+        grid-template-columns: repeat(12, minmax(0, 1fr))
+      }
+
+      .md\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .md\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+      }
+
+      .md\:flex-row {
+        flex-direction: row
+      }
+
+      .md\:items-center {
+        align-items: center
+      }
+
+      .md\:justify-between {
+        justify-content: space-between
+      }
+
+      .md\:pt-14 {
+        padding-top: 3.5rem
+      }
+
+      .md\:text-6xl {
+        font-size: 3.75rem;
+        line-height: 1
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .lg\:col-span-4 {
+        grid-column: span 4 / span 4
+      }
+
+      .lg\:col-span-8 {
+        grid-column: span 8 / span 8
+      }
+
+      .lg\:block {
+        display: block
+      }
+
+      .lg\:grid-cols-12 {
+        grid-template-columns: repeat(12, minmax(0, 1fr))
+      }
+
+      .lg\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .lg\:grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr))
+      }
+    }
+  </style>
+  <style>
+    *,
+    ::before,
+    ::after {
+      --tw-border-spacing-x: 0;
+      --tw-border-spacing-y: 0;
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-rotate: 0;
+      --tw-skew-x: 0;
+      --tw-skew-y: 0;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-pan-x: ;
+      --tw-pan-y: ;
+      --tw-pinch-zoom: ;
+      --tw-scroll-snap-strictness: proximity;
+      --tw-gradient-from-position: ;
+      --tw-gradient-via-position: ;
+      --tw-gradient-to-position: ;
+      --tw-ordinal: ;
+      --tw-slashed-zero: ;
+      --tw-numeric-figure: ;
+      --tw-numeric-spacing: ;
+      --tw-numeric-fraction: ;
+      --tw-ring-inset: ;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-color: rgb(59 130 246 / 0.5);
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-colored: 0 0 #0000;
+      --tw-blur: ;
+      --tw-brightness: ;
+      --tw-contrast: ;
+      --tw-grayscale: ;
+      --tw-hue-rotate: ;
+      --tw-invert: ;
+      --tw-saturate: ;
+      --tw-sepia: ;
+      --tw-drop-shadow: ;
+      --tw-backdrop-blur: ;
+      --tw-backdrop-brightness: ;
+      --tw-backdrop-contrast: ;
+      --tw-backdrop-grayscale: ;
+      --tw-backdrop-hue-rotate: ;
+      --tw-backdrop-invert: ;
+      --tw-backdrop-opacity: ;
+      --tw-backdrop-saturate: ;
+      --tw-backdrop-sepia: ;
+      --tw-contain-size: ;
+      --tw-contain-layout: ;
+      --tw-contain-paint: ;
+      --tw-contain-style:
+    }
+
+    ::backdrop {
+      --tw-border-spacing-x: 0;
+      --tw-border-spacing-y: 0;
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-rotate: 0;
+      --tw-skew-x: 0;
+      --tw-skew-y: 0;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-pan-x: ;
+      --tw-pan-y: ;
+      --tw-pinch-zoom: ;
+      --tw-scroll-snap-strictness: proximity;
+      --tw-gradient-from-position: ;
+      --tw-gradient-via-position: ;
+      --tw-gradient-to-position: ;
+      --tw-ordinal: ;
+      --tw-slashed-zero: ;
+      --tw-numeric-figure: ;
+      --tw-numeric-spacing: ;
+      --tw-numeric-fraction: ;
+      --tw-ring-inset: ;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-color: rgb(59 130 246 / 0.5);
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-colored: 0 0 #0000;
+      --tw-blur: ;
+      --tw-brightness: ;
+      --tw-contrast: ;
+      --tw-grayscale: ;
+      --tw-hue-rotate: ;
+      --tw-invert: ;
+      --tw-saturate: ;
+      --tw-sepia: ;
+      --tw-drop-shadow: ;
+      --tw-backdrop-blur: ;
+      --tw-backdrop-brightness: ;
+      --tw-backdrop-contrast: ;
+      --tw-backdrop-grayscale: ;
+      --tw-backdrop-hue-rotate: ;
+      --tw-backdrop-invert: ;
+      --tw-backdrop-opacity: ;
+      --tw-backdrop-saturate: ;
+      --tw-backdrop-sepia: ;
+      --tw-contain-size: ;
+      --tw-contain-layout: ;
+      --tw-contain-paint: ;
+      --tw-contain-style:
+    }
+
+    /* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */
+    *,
+    ::after,
+    ::before {
+      box-sizing: border-box;
+      border-width: 0;
+      border-style: solid;
+      border-color: #e5e7eb
+    }
+
+    ::after,
+    ::before {
+      --tw-content: ''
+    }
+
+    :host,
+    html {
+      line-height: 1.5;
+      -webkit-text-size-adjust: 100%;
+      -moz-tab-size: 4;
+      tab-size: 4;
+      font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      font-feature-settings: normal;
+      font-variation-settings: normal;
+      -webkit-tap-highlight-color: transparent
+    }
+
+    body {
+      margin: 0;
+      line-height: inherit
+    }
+
+    hr {
+      height: 0;
+      color: inherit;
+      border-top-width: 1px
+    }
+
+    abbr:where([title]) {
+      -webkit-text-decoration: underline dotted;
+      text-decoration: underline dotted
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: inherit;
+      font-weight: inherit
+    }
+
+    a {
+      color: inherit;
+      text-decoration: inherit
+    }
+
+    b,
+    strong {
+      font-weight: bolder
+    }
+
+    code,
+    kbd,
+    pre,
+    samp {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-feature-settings: normal;
+      font-variation-settings: normal;
+      font-size: 1em
+    }
+
+    small {
+      font-size: 80%
+    }
+
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline
+    }
+
+    sub {
+      bottom: -.25em
+    }
+
+    sup {
+      top: -.5em
+    }
+
+    table {
+      text-indent: 0;
+      border-color: inherit;
+      border-collapse: collapse
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      font-family: inherit;
+      font-feature-settings: inherit;
+      font-variation-settings: inherit;
+      font-size: 100%;
+      font-weight: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+      color: inherit;
+      margin: 0;
+      padding: 0
+    }
+
+    button,
+    select {
+      text-transform: none
+    }
+
+    button,
+    input:where([type=button]),
+    input:where([type=reset]),
+    input:where([type=submit]) {
+      -webkit-appearance: button;
+      background-color: transparent;
+      background-image: none
+    }
+
+    :-moz-focusring {
+      outline: auto
+    }
+
+    :-moz-ui-invalid {
+      box-shadow: none
+    }
+
+    progress {
+      vertical-align: baseline
+    }
+
+    ::-webkit-inner-spin-button,
+    ::-webkit-outer-spin-button {
+      height: auto
+    }
+
+    [type=search] {
+      -webkit-appearance: textfield;
+      outline-offset: -2px
+    }
+
+    ::-webkit-search-decoration {
+      -webkit-appearance: none
+    }
+
+    ::-webkit-file-upload-button {
+      -webkit-appearance: button;
+      font: inherit
+    }
+
+    summary {
+      display: list-item
+    }
+
+    blockquote,
+    dd,
+    dl,
+    figure,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    hr,
+    p,
+    pre {
+      margin: 0
+    }
+
+    fieldset {
+      margin: 0;
+      padding: 0
+    }
+
+    legend {
+      padding: 0
+    }
+
+    menu,
+    ol,
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0
+    }
+
+    dialog {
+      padding: 0
+    }
+
+    textarea {
+      resize: vertical
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      opacity: 1;
+      color: #9ca3af
+    }
+
+    [role=button],
+    button {
+      cursor: pointer
+    }
+
+    :disabled {
+      cursor: default
+    }
+
+    audio,
+    canvas,
+    embed,
+    iframe,
+    img,
+    object,
+    svg,
+    video {
+      display: block;
+      vertical-align: middle
+    }
+
+    img,
+    video {
+      max-width: 100%;
+      height: auto
+    }
+
+    [hidden]:where(:not([hidden=until-found])) {
+      display: none
+    }
+
+    .absolute {
+      position: absolute
+    }
+
+    .relative {
+      position: relative
+    }
+
+    .sticky {
+      position: sticky
+    }
+
+    .inset-0 {
+      inset: 0px
+    }
+
+    .bottom-6 {
+      bottom: 1.5rem
+    }
+
+    .left-6 {
+      left: 1.5rem
+    }
+
+    .right-0 {
+      right: 0px
+    }
+
+    .right-6 {
+      right: 1.5rem
+    }
+
+    .top-0 {
+      top: 0px
+    }
+
+    .top-6 {
+      top: 1.5rem
+    }
+
+    .z-50 {
+      z-index: 50
+    }
+
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    .mt-1 {
+      margin-top: 0.25rem
+    }
+
+    .mt-1\.5 {
+      margin-top: 0.375rem
+    }
+
+    .mt-10 {
+      margin-top: 2.5rem
+    }
+
+    .mt-16 {
+      margin-top: 4rem
+    }
+
+    .mt-2 {
+      margin-top: 0.5rem
+    }
+
+    .mt-3 {
+      margin-top: 0.75rem
+    }
+
+    .mt-4 {
+      margin-top: 1rem
+    }
+
+    .mt-5 {
+      margin-top: 1.25rem
+    }
+
+    .mt-6 {
+      margin-top: 1.5rem
+    }
+
+    .mt-7 {
+      margin-top: 1.75rem
+    }
+
+    .mt-8 {
+      margin-top: 2rem
+    }
+
+    .flex {
+      display: flex
+    }
+
+    .inline-flex {
+      display: inline-flex
+    }
+
+    .grid {
+      display: grid
+    }
+
+    .hidden {
+      display: none
+    }
+
+    .h-1\.5 {
+      height: 0.375rem
+    }
+
+    .h-14 {
+      height: 3.5rem
+    }
+
+    .h-2\.5 {
+      height: 0.625rem
+    }
+
+    .h-28 {
+      height: 7rem
+    }
+
+    .h-4 {
+      height: 1rem
+    }
+
+    .h-5 {
+      height: 1.25rem
+    }
+
+    .h-\[280px\] {
+      height: 280px
+    }
+
+    .w-1\.5 {
+      width: 0.375rem
+    }
+
+    .w-2\.5 {
+      width: 0.625rem
+    }
+
+    .w-4 {
+      width: 1rem
+    }
+
+    .w-5 {
+      width: 1.25rem
+    }
+
+    .w-52 {
+      width: 13rem
+    }
+
+    .w-full {
+      width: 100%
+    }
+
+    .max-w-6xl {
+      max-width: 72rem
+    }
+
+    .max-w-sm {
+      max-width: 24rem
+    }
+
+    .max-w-xl {
+      max-width: 36rem
+    }
+
+    .cursor-pointer {
+      cursor: pointer
+    }
+
+    .list-none {
+      list-style-type: none
+    }
+
+    .grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr))
+    }
+
+    .flex-col {
+      flex-direction: column
+    }
+
+    .flex-wrap {
+      flex-wrap: wrap
+    }
+
+    .items-start {
+      align-items: flex-start
+    }
+
+    .items-center {
+      align-items: center
+    }
+
+    .justify-end {
+      justify-content: flex-end
+    }
+
+    .justify-center {
+      justify-content: center
+    }
+
+    .justify-between {
+      justify-content: space-between
+    }
+
+    .gap-1 {
+      gap: 0.25rem
+    }
+
+    .gap-10 {
+      gap: 2.5rem
+    }
+
+    .gap-2 {
+      gap: 0.5rem
+    }
+
+    .gap-3 {
+      gap: 0.75rem
+    }
+
+    .gap-4 {
+      gap: 1rem
+    }
+
+    .gap-6 {
+      gap: 1.5rem
+    }
+
+    .space-y-2> :not([hidden])~ :not([hidden]) {
+      --tw-space-y-reverse: 0;
+      margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+      margin-bottom: calc(0.5rem * var(--tw-space-y-reverse))
+    }
+
+    .overflow-hidden {
+      overflow: hidden
+    }
+
+    .rounded-full {
+      border-radius: 9999px
+    }
+
+    .rounded-sm {
+      border-radius: 0.125rem
+    }
+
+    .border {
+      border-width: 1px
+    }
+
+    .border-y {
+      border-top-width: 1px;
+      border-bottom-width: 1px
+    }
+
+    .border-b {
+      border-bottom-width: 1px
+    }
+
+    .border-t {
+      border-top-width: 1px
+    }
+
+    .border-white\/10 {
+      border-color: rgb(255 255 255 / 0.1)
+    }
+
+    .border-white\/15 {
+      border-color: rgb(255 255 255 / 0.15)
+    }
+
+    .bg-\[\#101413\] {
+      --tw-bg-opacity: 1;
+      background-color: rgb(16 20 19 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-accent {
+      --tw-bg-opacity: 1;
+      background-color: rgb(85 160 146 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-black\/10 {
+      background-color: rgb(0 0 0 / 0.1)
+    }
+
+    .bg-cream {
+      --tw-bg-opacity: 1;
+      background-color: rgb(244 242 236 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-forest {
+      --tw-bg-opacity: 1;
+      background-color: rgb(36 63 56 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-forest2 {
+      --tw-bg-opacity: 1;
+      background-color: rgb(31 55 49 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-white {
+      --tw-bg-opacity: 1;
+      background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-white\/10 {
+      background-color: rgb(255 255 255 / 0.1)
+    }
+
+    .bg-white\/20 {
+      background-color: rgb(255 255 255 / 0.2)
+    }
+
+    .bg-white\/35 {
+      background-color: rgb(255 255 255 / 0.35)
+    }
+
+    .bg-white\/40 {
+      background-color: rgb(255 255 255 / 0.4)
+    }
+
+    .bg-white\/5 {
+      background-color: rgb(255 255 255 / 0.05)
+    }
+
+    .bg-white\/55 {
+      background-color: rgb(255 255 255 / 0.55)
+    }
+
+    .bg-white\/80 {
+      background-color: rgb(255 255 255 / 0.8)
+    }
+
+    .bg-white\/85 {
+      background-color: rgb(255 255 255 / 0.85)
+    }
+
+    .bg-gradient-to-br {
+      background-image: linear-gradient(to bottom right, var(--tw-gradient-stops))
+    }
+
+    .from-\[\#dfeae6\] {
+      --tw-gradient-from: #dfeae6 var(--tw-gradient-from-position);
+      --tw-gradient-to: rgb(223 234 230 / 0) var(--tw-gradient-to-position);
+      --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
+    }
+
+    .to-\[\#cbded7\] {
+      --tw-gradient-to: #cbded7 var(--tw-gradient-to-position)
+    }
+
+    .object-cover {
+      object-fit: cover
+    }
+
+    .p-2 {
+      padding: 0.5rem
+    }
+
+    .p-4 {
+      padding: 1rem
+    }
+
+    .p-5 {
+      padding: 1.25rem
+    }
+
+    .p-6 {
+      padding: 1.5rem
+    }
+
+    .p-7 {
+      padding: 1.75rem
+    }
+
+    .p-8 {
+      padding: 2rem
+    }
+
+    .px-3 {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem
+    }
+
+    .px-4 {
+      padding-left: 1rem;
+      padding-right: 1rem
+    }
+
+    .px-5 {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem
+    }
+
+    .px-6 {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem
+    }
+
+    .py-1 {
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem
+    }
+
+    .py-12 {
+      padding-top: 3rem;
+      padding-bottom: 3rem
+    }
+
+    .py-14 {
+      padding-top: 3.5rem;
+      padding-bottom: 3.5rem
+    }
+
+    .py-16 {
+      padding-top: 4rem;
+      padding-bottom: 4rem
+    }
+
+    .py-2 {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem
+    }
+
+    .py-2\.5 {
+      padding-top: 0.625rem;
+      padding-bottom: 0.625rem
+    }
+
+    .py-3 {
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem
+    }
+
+    .py-4 {
+      padding-top: 1rem;
+      padding-bottom: 1rem
+    }
+
+    .pb-14 {
+      padding-bottom: 3.5rem
+    }
+
+    .pb-8 {
+      padding-bottom: 2rem
+    }
+
+    .pt-10 {
+      padding-top: 2.5rem
+    }
+
+    .pt-6 {
+      padding-top: 1.5rem
+    }
+
+    .text-left {
+      text-align: left
+    }
+
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem
+    }
+
+    .text-3xl {
+      font-size: 1.875rem;
+      line-height: 2.25rem
+    }
+
+    .text-4xl {
+      font-size: 2.25rem;
+      line-height: 2.5rem
+    }
+
+    .text-5xl {
+      font-size: 3rem;
+      line-height: 1
+    }
+
+    .text-\[11px\] {
+      font-size: 11px
+    }
+
+    .text-\[15px\] {
+      font-size: 15px
+    }
+
+    .text-sm {
+      font-size: 0.875rem;
+      line-height: 1.25rem
+    }
+
+    .text-xl {
+      font-size: 1.25rem;
+      line-height: 1.75rem
+    }
+
+    .text-xs {
+      font-size: 0.75rem;
+      line-height: 1rem
+    }
+
+    .font-medium {
+      font-weight: 500
+    }
+
+    .font-semibold {
+      font-weight: 600
+    }
+
+    .leading-\[0\.95\] {
+      line-height: 0.95
+    }
+
+    .leading-relaxed {
+      line-height: 1.625
+    }
+
+    .leading-tight {
+      line-height: 1.25
+    }
+
+    .tracking-wide {
+      letter-spacing: 0.025em
+    }
+
+    .text-gray-500 {
+      --tw-text-opacity: 1;
+      color: rgb(107 114 128 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-600 {
+      --tw-text-opacity: 1;
+      color: rgb(75 85 99 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-700 {
+      --tw-text-opacity: 1;
+      color: rgb(55 65 81 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-800 {
+      --tw-text-opacity: 1;
+      color: rgb(31 41 55 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-900 {
+      --tw-text-opacity: 1;
+      color: rgb(17 24 39 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-950 {
+      --tw-text-opacity: 1;
+      color: rgb(3 7 18 / var(--tw-text-opacity, 1))
+    }
+
+    .text-white {
+      --tw-text-opacity: 1;
+      color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+    }
+
+    .text-white\/55 {
+      color: rgb(255 255 255 / 0.55)
+    }
+
+    .text-white\/60 {
+      color: rgb(255 255 255 / 0.6)
+    }
+
+    .text-white\/70 {
+      color: rgb(255 255 255 / 0.7)
+    }
+
+    .text-white\/75 {
+      color: rgb(255 255 255 / 0.75)
+    }
+
+    .text-white\/85 {
+      color: rgb(255 255 255 / 0.85)
+    }
+
+    .text-white\/90 {
+      color: rgb(255 255 255 / 0.9)
+    }
+
+    .opacity-80 {
+      opacity: 0.8
+    }
+
+    .outline-none {
+      outline: 2px solid transparent;
+      outline-offset: 2px
+    }
+
+    .backdrop-blur {
+      --tw-backdrop-blur: blur(8px);
+      -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+      backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)
+    }
+
+    .hover\:bg-forest:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgb(36 63 56 / var(--tw-bg-opacity, 1))
+    }
+
+    .hover\:bg-white\/10:hover {
+      background-color: rgb(255 255 255 / 0.1)
+    }
+
+    .hover\:bg-white\/15:hover {
+      background-color: rgb(255 255 255 / 0.15)
+    }
+
+    .hover\:bg-white\/70:hover {
+      background-color: rgb(255 255 255 / 0.7)
+    }
+
+    .hover\:bg-white\/90:hover {
+      background-color: rgb(255 255 255 / 0.9)
+    }
+
+    .hover\:text-white:hover {
+      --tw-text-opacity: 1;
+      color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+    }
+
+    .hover\:underline:hover {
+      -webkit-text-decoration-line: underline;
+      text-decoration-line: underline
+    }
+
+    .focus\:outline-none:focus {
+      outline: 2px solid transparent;
+      outline-offset: 2px
+    }
+
+    .focus\:ring-2:focus {
+      --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+      --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+      box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)
+    }
+
+    .focus\:ring-accent\/30:focus {
+      --tw-ring-color: rgb(85 160 146 / 0.3)
+    }
+
+    .focus\:ring-white\/20:focus {
+      --tw-ring-color: rgb(255 255 255 / 0.2)
+    }
+
+    .group[open] .group-open\:rotate-180 {
+      --tw-rotate: 180deg;
+      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+    }
+
+    .group:hover .group-hover\:text-gray-900 {
+      --tw-text-opacity: 1;
+      color: rgb(17 24 39 / var(--tw-text-opacity, 1))
+    }
+
+    @media (min-width: 640px) {
+      .sm\:flex {
+        display: flex
+      }
+
+      .sm\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+    }
+
+    @media (min-width: 768px) {
+      .md\:bottom-10 {
+        bottom: 2.5rem
+      }
+
+      .md\:left-10 {
+        left: 2.5rem
+      }
+
+      .md\:right-auto {
+        right: auto
+      }
+
+      .md\:col-span-4 {
+        grid-column: span 4 / span 4
+      }
+
+      .md\:col-span-8 {
+        grid-column: span 8 / span 8
+      }
+
+      .md\:flex {
+        display: flex
+      }
+
+      .md\:h-\[380px\] {
+        height: 380px
+      }
+
+      .md\:w-\[520px\] {
+        width: 520px
+      }
+
+      .md\:grid-cols-12 {
+        grid-template-columns: repeat(12, minmax(0, 1fr))
+      }
+
+      .md\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .md\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+      }
+
+      .md\:flex-row {
+        flex-direction: row
+      }
+
+      .md\:items-center {
+        align-items: center
+      }
+
+      .md\:justify-between {
+        justify-content: space-between
+      }
+
+      .md\:pt-14 {
+        padding-top: 3.5rem
+      }
+
+      .md\:text-6xl {
+        font-size: 3.75rem;
+        line-height: 1
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .lg\:col-span-4 {
+        grid-column: span 4 / span 4
+      }
+
+      .lg\:col-span-8 {
+        grid-column: span 8 / span 8
+      }
+
+      .lg\:block {
+        display: block
+      }
+
+      .lg\:grid-cols-12 {
+        grid-template-columns: repeat(12, minmax(0, 1fr))
+      }
+
+      .lg\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .lg\:grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr))
+      }
+    }
+  </style>
+  <style>
+    *,
+    ::before,
+    ::after {
+      --tw-border-spacing-x: 0;
+      --tw-border-spacing-y: 0;
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-rotate: 0;
+      --tw-skew-x: 0;
+      --tw-skew-y: 0;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-pan-x: ;
+      --tw-pan-y: ;
+      --tw-pinch-zoom: ;
+      --tw-scroll-snap-strictness: proximity;
+      --tw-gradient-from-position: ;
+      --tw-gradient-via-position: ;
+      --tw-gradient-to-position: ;
+      --tw-ordinal: ;
+      --tw-slashed-zero: ;
+      --tw-numeric-figure: ;
+      --tw-numeric-spacing: ;
+      --tw-numeric-fraction: ;
+      --tw-ring-inset: ;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-color: rgb(59 130 246 / 0.5);
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-colored: 0 0 #0000;
+      --tw-blur: ;
+      --tw-brightness: ;
+      --tw-contrast: ;
+      --tw-grayscale: ;
+      --tw-hue-rotate: ;
+      --tw-invert: ;
+      --tw-saturate: ;
+      --tw-sepia: ;
+      --tw-drop-shadow: ;
+      --tw-backdrop-blur: ;
+      --tw-backdrop-brightness: ;
+      --tw-backdrop-contrast: ;
+      --tw-backdrop-grayscale: ;
+      --tw-backdrop-hue-rotate: ;
+      --tw-backdrop-invert: ;
+      --tw-backdrop-opacity: ;
+      --tw-backdrop-saturate: ;
+      --tw-backdrop-sepia: ;
+      --tw-contain-size: ;
+      --tw-contain-layout: ;
+      --tw-contain-paint: ;
+      --tw-contain-style:
+    }
+
+    ::backdrop {
+      --tw-border-spacing-x: 0;
+      --tw-border-spacing-y: 0;
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-rotate: 0;
+      --tw-skew-x: 0;
+      --tw-skew-y: 0;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-pan-x: ;
+      --tw-pan-y: ;
+      --tw-pinch-zoom: ;
+      --tw-scroll-snap-strictness: proximity;
+      --tw-gradient-from-position: ;
+      --tw-gradient-via-position: ;
+      --tw-gradient-to-position: ;
+      --tw-ordinal: ;
+      --tw-slashed-zero: ;
+      --tw-numeric-figure: ;
+      --tw-numeric-spacing: ;
+      --tw-numeric-fraction: ;
+      --tw-ring-inset: ;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-color: rgb(59 130 246 / 0.5);
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-colored: 0 0 #0000;
+      --tw-blur: ;
+      --tw-brightness: ;
+      --tw-contrast: ;
+      --tw-grayscale: ;
+      --tw-hue-rotate: ;
+      --tw-invert: ;
+      --tw-saturate: ;
+      --tw-sepia: ;
+      --tw-drop-shadow: ;
+      --tw-backdrop-blur: ;
+      --tw-backdrop-brightness: ;
+      --tw-backdrop-contrast: ;
+      --tw-backdrop-grayscale: ;
+      --tw-backdrop-hue-rotate: ;
+      --tw-backdrop-invert: ;
+      --tw-backdrop-opacity: ;
+      --tw-backdrop-saturate: ;
+      --tw-backdrop-sepia: ;
+      --tw-contain-size: ;
+      --tw-contain-layout: ;
+      --tw-contain-paint: ;
+      --tw-contain-style:
+    }
+
+    /* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */
+    *,
+    ::after,
+    ::before {
+      box-sizing: border-box;
+      border-width: 0;
+      border-style: solid;
+      border-color: #e5e7eb
+    }
+
+    ::after,
+    ::before {
+      --tw-content: ''
+    }
+
+    :host,
+    html {
+      line-height: 1.5;
+      -webkit-text-size-adjust: 100%;
+      -moz-tab-size: 4;
+      tab-size: 4;
+      font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      font-feature-settings: normal;
+      font-variation-settings: normal;
+      -webkit-tap-highlight-color: transparent
+    }
+
+    body {
+      margin: 0;
+      line-height: inherit
+    }
+
+    hr {
+      height: 0;
+      color: inherit;
+      border-top-width: 1px
+    }
+
+    abbr:where([title]) {
+      -webkit-text-decoration: underline dotted;
+      text-decoration: underline dotted
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: inherit;
+      font-weight: inherit
+    }
+
+    a {
+      color: inherit;
+      text-decoration: inherit
+    }
+
+    b,
+    strong {
+      font-weight: bolder
+    }
+
+    code,
+    kbd,
+    pre,
+    samp {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-feature-settings: normal;
+      font-variation-settings: normal;
+      font-size: 1em
+    }
+
+    small {
+      font-size: 80%
+    }
+
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline
+    }
+
+    sub {
+      bottom: -.25em
+    }
+
+    sup {
+      top: -.5em
+    }
+
+    table {
+      text-indent: 0;
+      border-color: inherit;
+      border-collapse: collapse
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      font-family: inherit;
+      font-feature-settings: inherit;
+      font-variation-settings: inherit;
+      font-size: 100%;
+      font-weight: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+      color: inherit;
+      margin: 0;
+      padding: 0
+    }
+
+    button,
+    select {
+      text-transform: none
+    }
+
+    button,
+    input:where([type=button]),
+    input:where([type=reset]),
+    input:where([type=submit]) {
+      -webkit-appearance: button;
+      background-color: transparent;
+      background-image: none
+    }
+
+    :-moz-focusring {
+      outline: auto
+    }
+
+    :-moz-ui-invalid {
+      box-shadow: none
+    }
+
+    progress {
+      vertical-align: baseline
+    }
+
+    ::-webkit-inner-spin-button,
+    ::-webkit-outer-spin-button {
+      height: auto
+    }
+
+    [type=search] {
+      -webkit-appearance: textfield;
+      outline-offset: -2px
+    }
+
+    ::-webkit-search-decoration {
+      -webkit-appearance: none
+    }
+
+    ::-webkit-file-upload-button {
+      -webkit-appearance: button;
+      font: inherit
+    }
+
+    summary {
+      display: list-item
+    }
+
+    blockquote,
+    dd,
+    dl,
+    figure,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    hr,
+    p,
+    pre {
+      margin: 0
+    }
+
+    fieldset {
+      margin: 0;
+      padding: 0
+    }
+
+    legend {
+      padding: 0
+    }
+
+    menu,
+    ol,
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0
+    }
+
+    dialog {
+      padding: 0
+    }
+
+    textarea {
+      resize: vertical
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      opacity: 1;
+      color: #9ca3af
+    }
+
+    [role=button],
+    button {
+      cursor: pointer
+    }
+
+    :disabled {
+      cursor: default
+    }
+
+    audio,
+    canvas,
+    embed,
+    iframe,
+    img,
+    object,
+    svg,
+    video {
+      display: block;
+      vertical-align: middle
+    }
+
+    img,
+    video {
+      max-width: 100%;
+      height: auto
+    }
+
+    [hidden]:where(:not([hidden=until-found])) {
+      display: none
+    }
+
+    .absolute {
+      position: absolute
+    }
+
+    .relative {
+      position: relative
+    }
+
+    .sticky {
+      position: sticky
+    }
+
+    .inset-0 {
+      inset: 0px
+    }
+
+    .bottom-6 {
+      bottom: 1.5rem
+    }
+
+    .left-6 {
+      left: 1.5rem
+    }
+
+    .right-0 {
+      right: 0px
+    }
+
+    .right-6 {
+      right: 1.5rem
+    }
+
+    .top-0 {
+      top: 0px
+    }
+
+    .top-6 {
+      top: 1.5rem
+    }
+
+    .z-50 {
+      z-index: 50
+    }
+
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    .mt-1 {
+      margin-top: 0.25rem
+    }
+
+    .mt-1\.5 {
+      margin-top: 0.375rem
+    }
+
+    .mt-10 {
+      margin-top: 2.5rem
+    }
+
+    .mt-16 {
+      margin-top: 4rem
+    }
+
+    .mt-2 {
+      margin-top: 0.5rem
+    }
+
+    .mt-3 {
+      margin-top: 0.75rem
+    }
+
+    .mt-4 {
+      margin-top: 1rem
+    }
+
+    .mt-5 {
+      margin-top: 1.25rem
+    }
+
+    .mt-6 {
+      margin-top: 1.5rem
+    }
+
+    .mt-7 {
+      margin-top: 1.75rem
+    }
+
+    .mt-8 {
+      margin-top: 2rem
+    }
+
+    .flex {
+      display: flex
+    }
+
+    .inline-flex {
+      display: inline-flex
+    }
+
+    .grid {
+      display: grid
+    }
+
+    .hidden {
+      display: none
+    }
+
+    .h-1\.5 {
+      height: 0.375rem
+    }
+
+    .h-14 {
+      height: 3.5rem
+    }
+
+    .h-2\.5 {
+      height: 0.625rem
+    }
+
+    .h-28 {
+      height: 7rem
+    }
+
+    .h-4 {
+      height: 1rem
+    }
+
+    .h-5 {
+      height: 1.25rem
+    }
+
+    .h-\[280px\] {
+      height: 280px
+    }
+
+    .w-1\.5 {
+      width: 0.375rem
+    }
+
+    .w-2\.5 {
+      width: 0.625rem
+    }
+
+    .w-4 {
+      width: 1rem
+    }
+
+    .w-5 {
+      width: 1.25rem
+    }
+
+    .w-52 {
+      width: 13rem
+    }
+
+    .w-full {
+      width: 100%
+    }
+
+    .max-w-6xl {
+      max-width: 72rem
+    }
+
+    .max-w-sm {
+      max-width: 24rem
+    }
+
+    .max-w-xl {
+      max-width: 36rem
+    }
+
+    .cursor-pointer {
+      cursor: pointer
+    }
+
+    .list-none {
+      list-style-type: none
+    }
+
+    .grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr))
+    }
+
+    .flex-col {
+      flex-direction: column
+    }
+
+    .flex-wrap {
+      flex-wrap: wrap
+    }
+
+    .items-start {
+      align-items: flex-start
+    }
+
+    .items-center {
+      align-items: center
+    }
+
+    .justify-end {
+      justify-content: flex-end
+    }
+
+    .justify-center {
+      justify-content: center
+    }
+
+    .justify-between {
+      justify-content: space-between
+    }
+
+    .gap-1 {
+      gap: 0.25rem
+    }
+
+    .gap-10 {
+      gap: 2.5rem
+    }
+
+    .gap-2 {
+      gap: 0.5rem
+    }
+
+    .gap-3 {
+      gap: 0.75rem
+    }
+
+    .gap-4 {
+      gap: 1rem
+    }
+
+    .gap-6 {
+      gap: 1.5rem
+    }
+
+    .space-y-2> :not([hidden])~ :not([hidden]) {
+      --tw-space-y-reverse: 0;
+      margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+      margin-bottom: calc(0.5rem * var(--tw-space-y-reverse))
+    }
+
+    .overflow-hidden {
+      overflow: hidden
+    }
+
+    .rounded-full {
+      border-radius: 9999px
+    }
+
+    .rounded-sm {
+      border-radius: 0.125rem
+    }
+
+    .border {
+      border-width: 1px
+    }
+
+    .border-y {
+      border-top-width: 1px;
+      border-bottom-width: 1px
+    }
+
+    .border-b {
+      border-bottom-width: 1px
+    }
+
+    .border-t {
+      border-top-width: 1px
+    }
+
+    .border-white\/10 {
+      border-color: rgb(255 255 255 / 0.1)
+    }
+
+    .border-white\/15 {
+      border-color: rgb(255 255 255 / 0.15)
+    }
+
+    .bg-\[\#101413\] {
+      --tw-bg-opacity: 1;
+      background-color: rgb(16 20 19 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-accent {
+      --tw-bg-opacity: 1;
+      background-color: rgb(85 160 146 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-black\/10 {
+      background-color: rgb(0 0 0 / 0.1)
+    }
+
+    .bg-cream {
+      --tw-bg-opacity: 1;
+      background-color: rgb(244 242 236 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-forest {
+      --tw-bg-opacity: 1;
+      background-color: rgb(36 63 56 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-forest2 {
+      --tw-bg-opacity: 1;
+      background-color: rgb(31 55 49 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-white {
+      --tw-bg-opacity: 1;
+      background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1))
+    }
+
+    .bg-white\/10 {
+      background-color: rgb(255 255 255 / 0.1)
+    }
+
+    .bg-white\/20 {
+      background-color: rgb(255 255 255 / 0.2)
+    }
+
+    .bg-white\/35 {
+      background-color: rgb(255 255 255 / 0.35)
+    }
+
+    .bg-white\/40 {
+      background-color: rgb(255 255 255 / 0.4)
+    }
+
+    .bg-white\/5 {
+      background-color: rgb(255 255 255 / 0.05)
+    }
+
+    .bg-white\/55 {
+      background-color: rgb(255 255 255 / 0.55)
+    }
+
+    .bg-white\/80 {
+      background-color: rgb(255 255 255 / 0.8)
+    }
+
+    .bg-white\/85 {
+      background-color: rgb(255 255 255 / 0.85)
+    }
+
+    .bg-gradient-to-br {
+      background-image: linear-gradient(to bottom right, var(--tw-gradient-stops))
+    }
+
+    .from-\[\#dfeae6\] {
+      --tw-gradient-from: #dfeae6 var(--tw-gradient-from-position);
+      --tw-gradient-to: rgb(223 234 230 / 0) var(--tw-gradient-to-position);
+      --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)
+    }
+
+    .to-\[\#cbded7\] {
+      --tw-gradient-to: #cbded7 var(--tw-gradient-to-position)
+    }
+
+    .object-cover {
+      object-fit: cover
+    }
+
+    .p-2 {
+      padding: 0.5rem
+    }
+
+    .p-4 {
+      padding: 1rem
+    }
+
+    .p-5 {
+      padding: 1.25rem
+    }
+
+    .p-6 {
+      padding: 1.5rem
+    }
+
+    .p-7 {
+      padding: 1.75rem
+    }
+
+    .p-8 {
+      padding: 2rem
+    }
+
+    .px-3 {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem
+    }
+
+    .px-4 {
+      padding-left: 1rem;
+      padding-right: 1rem
+    }
+
+    .px-5 {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem
+    }
+
+    .px-6 {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem
+    }
+
+    .py-1 {
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem
+    }
+
+    .py-12 {
+      padding-top: 3rem;
+      padding-bottom: 3rem
+    }
+
+    .py-14 {
+      padding-top: 3.5rem;
+      padding-bottom: 3.5rem
+    }
+
+    .py-16 {
+      padding-top: 4rem;
+      padding-bottom: 4rem
+    }
+
+    .py-2 {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem
+    }
+
+    .py-2\.5 {
+      padding-top: 0.625rem;
+      padding-bottom: 0.625rem
+    }
+
+    .py-3 {
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem
+    }
+
+    .py-4 {
+      padding-top: 1rem;
+      padding-bottom: 1rem
+    }
+
+    .pb-14 {
+      padding-bottom: 3.5rem
+    }
+
+    .pb-8 {
+      padding-bottom: 2rem
+    }
+
+    .pt-10 {
+      padding-top: 2.5rem
+    }
+
+    .pt-6 {
+      padding-top: 1.5rem
+    }
+
+    .text-left {
+      text-align: left
+    }
+
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem
+    }
+
+    .text-3xl {
+      font-size: 1.875rem;
+      line-height: 2.25rem
+    }
+
+    .text-4xl {
+      font-size: 2.25rem;
+      line-height: 2.5rem
+    }
+
+    .text-5xl {
+      font-size: 3rem;
+      line-height: 1
+    }
+
+    .text-\[11px\] {
+      font-size: 11px
+    }
+
+    .text-\[15px\] {
+      font-size: 15px
+    }
+
+    .text-sm {
+      font-size: 0.875rem;
+      line-height: 1.25rem
+    }
+
+    .text-xl {
+      font-size: 1.25rem;
+      line-height: 1.75rem
+    }
+
+    .text-xs {
+      font-size: 0.75rem;
+      line-height: 1rem
+    }
+
+    .font-medium {
+      font-weight: 500
+    }
+
+    .font-semibold {
+      font-weight: 600
+    }
+
+    .leading-\[0\.95\] {
+      line-height: 0.95
+    }
+
+    .leading-relaxed {
+      line-height: 1.625
+    }
+
+    .leading-tight {
+      line-height: 1.25
+    }
+
+    .tracking-wide {
+      letter-spacing: 0.025em
+    }
+
+    .text-gray-500 {
+      --tw-text-opacity: 1;
+      color: rgb(107 114 128 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-600 {
+      --tw-text-opacity: 1;
+      color: rgb(75 85 99 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-700 {
+      --tw-text-opacity: 1;
+      color: rgb(55 65 81 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-800 {
+      --tw-text-opacity: 1;
+      color: rgb(31 41 55 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-900 {
+      --tw-text-opacity: 1;
+      color: rgb(17 24 39 / var(--tw-text-opacity, 1))
+    }
+
+    .text-gray-950 {
+      --tw-text-opacity: 1;
+      color: rgb(3 7 18 / var(--tw-text-opacity, 1))
+    }
+
+    .text-white {
+      --tw-text-opacity: 1;
+      color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+    }
+
+    .text-white\/55 {
+      color: rgb(255 255 255 / 0.55)
+    }
+
+    .text-white\/60 {
+      color: rgb(255 255 255 / 0.6)
+    }
+
+    .text-white\/70 {
+      color: rgb(255 255 255 / 0.7)
+    }
+
+    .text-white\/75 {
+      color: rgb(255 255 255 / 0.75)
+    }
+
+    .text-white\/85 {
+      color: rgb(255 255 255 / 0.85)
+    }
+
+    .text-white\/90 {
+      color: rgb(255 255 255 / 0.9)
+    }
+
+    .opacity-80 {
+      opacity: 0.8
+    }
+
+    .outline-none {
+      outline: 2px solid transparent;
+      outline-offset: 2px
+    }
+
+    .backdrop-blur {
+      --tw-backdrop-blur: blur(8px);
+      -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+      backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)
+    }
+
+    .hover\:bg-forest:hover {
+      --tw-bg-opacity: 1;
+      background-color: rgb(36 63 56 / var(--tw-bg-opacity, 1))
+    }
+
+    .hover\:bg-white\/10:hover {
+      background-color: rgb(255 255 255 / 0.1)
+    }
+
+    .hover\:bg-white\/15:hover {
+      background-color: rgb(255 255 255 / 0.15)
+    }
+
+    .hover\:bg-white\/70:hover {
+      background-color: rgb(255 255 255 / 0.7)
+    }
+
+    .hover\:bg-white\/90:hover {
+      background-color: rgb(255 255 255 / 0.9)
+    }
+
+    .hover\:text-white:hover {
+      --tw-text-opacity: 1;
+      color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+    }
+
+    .hover\:underline:hover {
+      -webkit-text-decoration-line: underline;
+      text-decoration-line: underline
+    }
+
+    .focus\:outline-none:focus {
+      outline: 2px solid transparent;
+      outline-offset: 2px
+    }
+
+    .focus\:ring-2:focus {
+      --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+      --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+      box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)
+    }
+
+    .focus\:ring-accent\/30:focus {
+      --tw-ring-color: rgb(85 160 146 / 0.3)
+    }
+
+    .focus\:ring-white\/20:focus {
+      --tw-ring-color: rgb(255 255 255 / 0.2)
+    }
+
+    .group[open] .group-open\:rotate-180 {
+      --tw-rotate: 180deg;
+      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+    }
+
+    .group:hover .group-hover\:text-gray-900 {
+      --tw-text-opacity: 1;
+      color: rgb(17 24 39 / var(--tw-text-opacity, 1))
+    }
+
+    @media (min-width: 640px) {
+      .sm\:flex {
+        display: flex
+      }
+
+      .sm\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+    }
+
+    @media (min-width: 768px) {
+      .md\:bottom-10 {
+        bottom: 2.5rem
+      }
+
+      .md\:left-10 {
+        left: 2.5rem
+      }
+
+      .md\:right-auto {
+        right: auto
+      }
+
+      .md\:col-span-4 {
+        grid-column: span 4 / span 4
+      }
+
+      .md\:col-span-8 {
+        grid-column: span 8 / span 8
+      }
+
+      .md\:flex {
+        display: flex
+      }
+
+      .md\:h-\[380px\] {
+        height: 380px
+      }
+
+      .md\:w-\[520px\] {
+        width: 520px
+      }
+
+      .md\:grid-cols-12 {
+        grid-template-columns: repeat(12, minmax(0, 1fr))
+      }
+
+      .md\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .md\:grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+      }
+
+      .md\:flex-row {
+        flex-direction: row
+      }
+
+      .md\:items-center {
+        align-items: center
+      }
+
+      .md\:justify-between {
+        justify-content: space-between
+      }
+
+      .md\:pt-14 {
+        padding-top: 3.5rem
+      }
+
+      .md\:text-6xl {
+        font-size: 3.75rem;
+        line-height: 1
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .lg\:col-span-4 {
+        grid-column: span 4 / span 4
+      }
+
+      .lg\:col-span-8 {
+        grid-column: span 8 / span 8
+      }
+
+      .lg\:block {
+        display: block
+      }
+
+      .lg\:grid-cols-12 {
+        grid-template-columns: repeat(12, minmax(0, 1fr))
+      }
+
+      .lg\:grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .lg\:grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr))
+      }
+    }
+  </style>
+
+
+
+  <style>
+    /* === ENWATER_COLOR_ALIGN (match Water & Wastewater reference) === */
+    :root {
+      --cream: #f2f5f4;
+      --ink: #071a21;
+      --muted: #5a6561;
+      --forest: #0f3b45;
+      --forest2: #0a242b;
+      --accent: #55a092;
+      --accent2: #468a7e;
+      --line: rgba(27, 31, 30, .14);
+
+      /* Teal helpers (used in active outlines etc.) */
+      --teal: #60b0a0;
+      --teal2: #4aa596;
+
+      /* Navigation (darker + stable over bright hero imagery) */
+      --nav-bg: rgba(6, 22, 26, .94);
+      --nav-fg: rgba(255, 255, 255, .82);
+      --nav-fg-strong: rgba(255, 255, 255, .95);
+      --nav-fg-muted: rgba(255, 255, 255, .70);
+      --nav-border: rgba(255, 255, 255, .10);
+      --nav-shadow: 0 8px 30px rgba(0, 0, 0, .22);
+      --drop-bg: #0d332f;
+      --drop-border: rgba(255, 255, 255, .10);
+      --drop-shadow: 0 18px 32px rgba(0, 0, 0, .22);
+    }
+
+    /* Base view colour */
+    body {
+      background: var(--cream) !important;
+      color: var(--ink) !important;
+    }
+
+    /* Tailwind-like utility overrides (keep structure, align palette) */
+    .bg-cream {
+      background-color: rgb(242 245 244 / var(--tw-bg-opacity, 1)) !important;
+    }
+
+    .bg-forest {
+      background-color: rgb(15 59 69 / var(--tw-bg-opacity, 1)) !important;
+    }
+
+    .bg-forest2 {
+      background-color: rgb(10 36 43 / var(--tw-bg-opacity, 1)) !important;
+    }
+
+    /* Custom inky utility used on some sections */
+    .bg-\[\#101413\] {
+      background-color: rgb(10 36 43 / var(--tw-bg-opacity, 1)) !important;
+    }
+
+    /* Subtle dot texture (not “snowy”) */
+    .pattern {
+      position: relative;
+      background-image:
+        radial-gradient(circle at 10px 10px, rgba(255, 255, 255, .05) 1px, transparent 1.2px),
+        radial-gradient(circle at 2px 2px, rgba(255, 255, 255, .02) 1px, transparent 1.2px) !important;
+      background-size: 18px 18px !important;
+    }
+
+    /* Click/active state highlight (teal outline like the wastewater reference) */
+    .cap-active {
+      background: rgba(255, 255, 255, .10) !important;
+      color: #fff !important;
+      box-shadow:
+        inset 0 0 0 1px rgba(85, 160, 146, .55),
+        inset 5px 0 0 rgba(85, 160, 146, .88) !important;
+    }
+  </style>
+  <style id="aqua-master-style">
+    /* ==========================================================
+   EnWater Design , Master Colour & Interaction Style (Unified)
+   Applies wastewater/process styling consistently across sections.
+   ========================================================== */
+
+    :root {
+      --cream: #f2f5f4;
+      --paper: #ffffff;
+      --ink: #0b1420;
+      --muted: #586563;
+
+      /* Core dark blues/greens used across the site */
+      --forest: #173b4b;
+      --forest2: #0d2f3a;
+
+      /* Brand accent (matches existing Tailwind accent utilities) */
+      --accent: #55a092;
+
+      /* Section-specific tones (from the Wastewater scheme file) */
+      --servicesTone: #60b0a0;
+      --depthOuter: #131716;
+      --depthInner: #1c1f1f;
+
+      /* Top nav */
+      --nav-bg: rgba(6, 22, 26, .94);
+      --nav-fg: rgba(255, 255, 255, .78);
+      --nav-fg-strong: #ffffff;
+    }
+
+    /* --- Utility overrides (ensure consistent palette even if Tailwind values differ) --- */
+    .bg-cream {
+      background-color: var(--cream) !important;
+    }
+
+    .bg-ink {
+      background-color: var(--ink) !important;
+    }
+
+    .bg-forest {
+      background-color: var(--forest) !important;
+    }
+
+    .bg-forest2 {
+      background-color: var(--forest2) !important;
+    }
+
+    .bg-accent {
+      background-color: var(--accent) !important;
+    }
+
+    .text-accent {
+      color: var(--accent) !important;
+    }
+
+    .border-accent {
+      border-color: var(--accent) !important;
+    }
+
+    /* --- NAV BAR (dark, consistent) --- */
+    .site-topnav {
+      background: var(--nav-bg) !important;
+      border-bottom-color: rgba(255, 255, 255, .10) !important;
+    }
+
+    .site-topnav a {
+      color: var(--nav-fg) !important;
+    }
+
+    .site-topnav a:hover {
+      color: var(--nav-fg-strong) !important;
+    }
+
+    .site-topnav .text-ink {
+      color: var(--nav-fg-strong) !important;
+    }
+
+    .site-topnav .text-muted {
+      color: rgba(255, 255, 255, .70) !important;
+    }
+
+    /* --- TEAL SERVICES SECTION (teal + subtle dark dots) --- */
+    #services {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(rgba(7, 18, 22, .55), rgba(7, 18, 22, .55)), var(--servicesTone) !important;
+    }
+
+    #services .pattern {
+      position: relative;
+    }
+
+    #services .pattern::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      /* subtle dark dots, not snowy */
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(0, 0, 0, .28) 1px, transparent 1.8px),
+        radial-gradient(circle at 1px 1px, rgba(0, 0, 0, .14) 1px, transparent 2px);
+      background-size: 26px 26px, 42px 42px;
+      opacity: .34;
+      mix-blend-mode: multiply;
+    }
+
+    /* --- INKY DEPTH/CAPABILITIES (no dot overlay) --- */
+    #capabilities {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(rgba(0, 0, 0, .18), rgba(0, 0, 0, .34)), var(--depthOuter) !important;
+    }
+
+    #capabilities::before {
+      content: none !important;
+      background: none !important;
+      display: none !important;
+    }
+
+    /* Ensure the inner “dynamic” pane reads darker (not snowy) */
+    #capabilities [data-cap-body],
+    #capabilities [data-cap-list],
+    #capabilities [data-cap-output],
+    #capabilities .cap-output,
+    #capabilities .cap-panel {
+      background-color: rgba(0, 0, 0, .16);
+    }
+
+    /* Active route highlight: teal left edge + subtle inset glow */
+    #capabilities [data-cap-item][aria-pressed="true"],
+    #capabilities .cap-item.is-active {
+      border-left: 4px solid var(--accent) !important;
+      background: rgba(79, 157, 177, .16) !important;
+      box-shadow: 0 0 0 1px rgba(85, 160, 146, .28) inset;
+    }
+
+    /* Make sure the left border doesn’t compress text */
+    #capabilities [data-cap-item],
+    #capabilities .cap-item {
+      box-sizing: border-box;
+    }
+
+    /* Output list cards inside capabilities */
+    #capabilities [data-cap-list]>div {
+      background: rgba(0, 0, 0, .18) !important;
+      border-color: rgba(255, 255, 255, .10) !important;
+    }
+
+    /* Optional: soft separators that match the suite */
+    .section-divider {
+      border-color: rgba(255, 255, 255, .10) !important;
+    }
+  </style>
+
+
+  <style id="advisory-visual-polish">
+    /* Styling layer only: no content changes, no font-family changes, no font-size changes */
+    body.ui-sans {
+      background:
+        radial-gradient(1100px 560px at 0% -10%, rgba(85, 160, 146, .08), transparent 56%),
+        radial-gradient(920px 520px at 100% 2%, rgba(36, 63, 56, .06), transparent 48%),
+        linear-gradient(180deg, #f6f4ef 0%, #f4f2ec 46%, #f2efe8 100%);
+    }
+
+    main>section {
+      position: relative;
+    }
+
+    main>section .max-w-6xl {
+      position: relative;
+      z-index: 1;
+    }
+
+    main>section.bg-cream {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .34), rgba(255, 255, 255, 0)),
+        linear-gradient(180deg, rgba(36, 63, 56, .015), rgba(36, 63, 56, 0));
+    }
+
+    main>section.bg-cream::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(36, 63, 56, .18), transparent);
+      pointer-events: none;
+    }
+
+    /* hero */
+    main>section:first-of-type {
+      overflow: hidden;
+    }
+
+    main>section:first-of-type::before {
+      content: "";
+      position: absolute;
+      top: -3rem;
+      right: -8rem;
+      width: 38rem;
+      height: 24rem;
+      background: radial-gradient(circle, rgba(85, 160, 146, .14) 0%, rgba(85, 160, 146, 0) 70%);
+      filter: blur(8px);
+      pointer-events: none;
+    }
+
+    main>section:first-of-type::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(36, 63, 56, .24), transparent);
+      pointer-events: none;
+    }
+
+    main>section:first-of-type .relative.rounded-2xl {
+      border-radius: 1.25rem;
+      box-shadow: 0 28px 70px rgba(20, 33, 30, .14);
+      outline: 1px solid rgba(255, 255, 255, .52);
+      outline-offset: -1px;
+    }
+
+    main>section:first-of-type img {
+      transform: scale(1.01);
+    }
+
+    main>section:first-of-type .mt-6>span {
+      box-shadow: 0 8px 18px rgba(20, 33, 30, .05);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    main>section:first-of-type .mt-8 a {
+      box-shadow: 0 12px 28px rgba(20, 33, 30, .10);
+    }
+
+    main>section:first-of-type .mt-8 a:hover {
+      transform: translateY(-1px);
+    }
+
+    /* quick-use panel */
+    #howto .bg-gradient-to-br {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.25rem;
+      box-shadow: 0 22px 54px rgba(23, 36, 33, .10);
+    }
+
+    #howto .bg-gradient-to-br::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .30), rgba(255, 255, 255, 0) 48%),
+        radial-gradient(circle at top right, rgba(255, 255, 255, .36), rgba(255, 255, 255, 0) 42%);
+      pointer-events: none;
+    }
+
+    #howto .link-row {
+      position: relative;
+      border-bottom-color: rgba(27, 31, 30, .10);
+    }
+
+    #howto .link-row:last-child {
+      border-bottom-width: 0;
+    }
+
+    #howto .link-row:hover {
+      transform: translateX(4px);
+    }
+
+    /* overview and domains */
+    #overview .sticky>div,
+    #domains .sticky>div {
+      border-radius: 1.25rem;
+      box-shadow: 0 22px 54px rgba(23, 36, 33, .10);
+    }
+
+    #overview .mt-10.grid>div,
+    #domains .mt-10.grid>article {
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 18px 42px rgba(21, 34, 31, .08);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    #overview .mt-10.grid>div::before,
+    #domains .mt-10.grid>article::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 4px;
+      background: linear-gradient(90deg, rgba(85, 160, 146, .78), rgba(36, 63, 56, .55));
+    }
+
+    #overview .mt-10.grid>div:hover,
+    #domains .mt-10.grid>article:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 24px 54px rgba(21, 34, 31, .12);
+      border-color: rgba(36, 63, 56, .18);
+    }
+
+    #domains article a.inline-flex,
+    #overview a.inline-flex,
+    #howto a.inline-flex,
+    #navigator a.inline-flex,
+    #enquiry button.inline-flex {
+      box-shadow: 0 12px 24px rgba(20, 33, 30, .10);
+    }
+
+    /* navigator */
+    #navigator {
+      overflow: hidden;
+      background:
+        radial-gradient(620px 340px at 10% 0%, rgba(85, 160, 146, .14), rgba(85, 160, 146, 0) 70%),
+        radial-gradient(680px 420px at 100% 100%, rgba(255, 255, 255, .06), rgba(255, 255, 255, 0) 70%),
+        linear-gradient(180deg, #151d1c 0%, #101413 100%) !important;
+    }
+
+    #navigator::before,
+    #navigator::after {
+      content: "";
+      position: absolute;
+      inset: auto;
+      pointer-events: none;
+    }
+
+    #navigator::before {
+      top: -4rem;
+      right: -3rem;
+      width: 18rem;
+      height: 18rem;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(85, 160, 146, .14), rgba(85, 160, 146, 0) 72%);
+    }
+
+    #navigator::after {
+      left: -5rem;
+      bottom: -8rem;
+      width: 22rem;
+      height: 22rem;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(255, 255, 255, .06), rgba(255, 255, 255, 0) 72%);
+    }
+
+    #navigator .tag {
+      background: rgba(255, 255, 255, .06);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .05);
+    }
+
+    #capabilities>.grid>div {
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .18);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    #capabilities [data-cap-item] {
+      transition: background .18s ease, transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+
+    #capabilities [data-cap-item]:hover {
+      transform: translateX(3px);
+    }
+
+    #capabilities [data-cap-item][aria-pressed="true"],
+    #capabilities .cap-active {
+      background: linear-gradient(90deg, rgba(85, 160, 146, .18), rgba(255, 255, 255, .04)) !important;
+      box-shadow: inset 0 0 0 1px rgba(85, 160, 146, .28), 0 12px 26px rgba(0, 0, 0, .10);
+    }
+
+    #capabilities .bg-black\/10 {
+      background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .04));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05);
+    }
+
+    #capabilities [data-cap-tags] span,
+    #navigator .mt-7 .tag {
+      border-color: rgba(255, 255, 255, .12);
+    }
+
+    /* engagement */
+    #engage {
+      background:
+        linear-gradient(180deg, rgba(17, 39, 35, .96), rgba(22, 47, 42, .96)),
+        linear-gradient(180deg, #243f38, #1f3731) !important;
+    }
+
+    #engage .pattern {
+      position: relative;
+    }
+
+    #engage .pattern::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, 0) 40%);
+      pointer-events: none;
+    }
+
+    #engage article {
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 22px 54px rgba(6, 14, 13, .18);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    #engage article::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 4px;
+      background: linear-gradient(90deg, rgba(85, 160, 146, .92), rgba(255, 255, 255, .18));
+    }
+
+    #engage article:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, .08);
+      border-color: rgba(255, 255, 255, .16);
+    }
+
+    /* enquiry */
+    #enquiry .bg-white\/40,
+    #enquiry .bg-white\/55 {
+      box-shadow: 0 20px 48px rgba(21, 34, 31, .09);
+    }
+
+    #enquiry .bg-white\/40 {
+      background: linear-gradient(180deg, rgba(255, 255, 255, .55), rgba(255, 255, 255, .36));
+    }
+
+    #enquiry .bg-white\/55 {
+      background: linear-gradient(180deg, rgba(255, 255, 255, .75), rgba(255, 255, 255, .58));
+    }
+
+    #enquiry input,
+    #enquiry textarea,
+    #enquiry select {
+      transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    #enquiry input:hover,
+    #enquiry textarea:hover,
+    #enquiry select:hover {
+      border-color: rgba(36, 63, 56, .22);
+      background: rgba(255, 255, 255, .96);
+    }
+
+    #enquiry button.inline-flex:hover {
+      transform: translateY(-1px);
+    }
+
+    /* faq */
+    #faq details {
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 38px rgba(21, 34, 31, .07);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    #faq details::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, rgba(85, 160, 146, .82), rgba(36, 63, 56, .56));
+      opacity: .0;
+      transition: opacity .18s ease;
+    }
+
+    #faq details:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 48px rgba(21, 34, 31, .10);
+    }
+
+    #faq details[open] {
+      background: rgba(255, 255, 255, .74);
+      border-color: rgba(36, 63, 56, .16);
+    }
+
+    #faq details[open]::before {
+      opacity: 1;
+    }
+
+    /* sticky menus — inner scroll container alignment */
+    .advisory-section-nav {
+      box-shadow: 0 10px 24px rgba(20, 33, 30, .07);
+      border-bottom-color: rgba(27, 31, 30, .08);
+    }
+
+    /* Map .inner to the same layout rules as .advisory-section-nav-inner in exported CSS */
+    .advisory-section-nav .inner {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 10px 18px 10px 38px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-x: auto;
+      white-space: nowrap;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .advisory-section-nav .inner::-webkit-scrollbar {
+      display: none
+    }
+
+    .advisory-section-nav .section-name {
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #6a756f;
+      white-space: nowrap;
+      padding-right: 6px;
+      font-weight: 700;
+    }
+
+    .advisory-section-nav a {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 11px;
+      border-radius: 999px;
+      color: #23443c;
+      text-decoration: none;
+      border: 1px solid rgba(27, 31, 30, .12);
+      background: rgba(255, 255, 255, .72);
+      font: 650 13px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      transition: all .15s ease;
+      box-shadow: 0 8px 18px rgba(20, 33, 30, .05);
+      white-space: nowrap;
+    }
+
+    .advisory-section-nav a:hover {
+      background: #fff;
+      color: var(--ink);
+      transform: translateY(-1px);
+    }
+
+    .advisory-section-nav a.is-active,
+    .advisory-section-nav a.active {
+      background: #23443c;
+      color: #fff;
+      border-color: #23443c;
+    }
+
+    @media(max-width:900px) {
+      .advisory-section-nav .inner {
+        padding: 10px 14px;
+        gap: 8px
+      }
+
+      .advisory-section-nav .section-name {
+        display: none
+      }
+
+      .advisory-section-nav a {
+        font-size: 12.5px;
+        padding: 8px 10px
+      }
+    }
+
+    /* shared motion kept gentle */
+    a.inline-flex,
+    button.inline-flex,
+    .link-row,
+    #overview .mt-10.grid>div,
+    #domains .mt-10.grid>article,
+    #engage article,
+    #faq details,
+    .advisory-section-nav a {
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    /* small utility completion for classes already present in markup */
+    .rounded-2xl {
+      border-radius: 1.25rem;
+    }
+
+    .top-24 {
+      top: 6rem;
+    }
+
+    .lg\:h-\[420px\] {
+      height: 420px;
+    }
+
+    @media (min-width:1024px) {
+      .lg\:h-\[420px\] {
+        height: 420px;
+      }
+    }
+  </style>
+
+  <style id="enwater-logo-refinement-v1">
+    .brand-logo,
+    .nav-logo,
+    .nav-brand-logo {
+      height: 38px !important;
+      width: auto !important;
+      max-width: 66px !important;
+      object-fit: contain !important;
+      background: transparent !important;
+      border-radius: 0 !important;
+      padding: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .brand span,
+    .nav-brand span {
+      white-space: nowrap;
+    }
+
+    .footer-logo {
+      height: 34px;
+      width: auto;
+      max-width: 60px;
+      object-fit: contain;
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      display: block;
+    }
+
+    .footer-brand,
+    .foot-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  </style>
+
+
+  <script id="advisory-section-nav-gap-fix-script-v2">
+      (function () {
+        function setTopNavHeight() {
+          var nav = document.querySelector('header.site-topnav');
+          if (!nav) return;
+          var h = Math.ceil(nav.getBoundingClientRect().height || 64);
+          document.documentElement.style.setProperty('--enwater-topnav-height', h + 'px');
+          document.documentElement.style.scrollPaddingTop = (h + 58) + 'px';
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', setTopNavHeight);
+        } else {
+          setTopNavHeight();
+        }
+        window.addEventListener('resize', setTopNavHeight, { passive: true });
+      })();
+  </script>
+  <link href="../exported-ui-styles.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="../assets/images/enwater-design-logo-nav.png" />
+</head>
+
+<body class="ui-sans">
+  <header class="site-topnav">
+    <div class="wrap">
+      <a aria-label="EnWater Design home" class="brand" href="../home.html">
+        <img alt="EnWater Design logo" class="nav-logo" src="../assets/images/enwater-design-logo.png" />
+        <span>EnWater Design</span>
+      </a>
+      <nav class="desktop-nav">
+        <ul>
+          <li><a class="rootlink" href="../home.html">Home</a></li>
+          <li>
+            <a class="rootlink " href="../About/about.html">About</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a class="" href="../About/about.html">About Us</a>
+              <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink"
+              href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We
+              Engage</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We
+                Engage</a>
+              <a
+                href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process
+                Design &amp; Troubleshooting</a>
+              <a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical
+                Studies</a>
+              <a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project
+                Stages &amp; Report Packs</a>
+              <a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+              <a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+              <a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+              <a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+              <a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+              <a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+              <a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+              <a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink active" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../Advisory/advisory-services.html">Advisory Services</a>
+              <a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+              <a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+              <a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+              <a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+              <a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+              <a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control
+                Advisory</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../FlowPlan/flowplan-framework.html">Framework</a>
+              <a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+              <a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+              <a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+              <a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+              <a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+              <a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink" href="../Projects/index.html">Projects</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../Projects/index.html">Projects Overview</a>
+              <a href="../Projects/project-pathways.html">Project Pathways</a>
+              <a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+              <a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+              <a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+              <a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+              <a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+            </div>
+          </li>
+          <li>
+            <a class="rootlink" href="../Sectors/index.html">Sectors</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../Sectors/index.html">Sector Pathways</a>
+              <a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+              <a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+              <a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+              <a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+              <a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+              <a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+              <a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+              <a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+              <a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+              <a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+              <a href="../Sectors/seafood-processing.html">Seafood processing</a>
+              <a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+            </div>
+          </li>
+          <li><a class="rootlink nav-login" href="../login.html">Login</a></li>
+          <li><a class="rootlink nav-cta" href="../get-in-touch.html">Get in touch</a></li>
+        </ul>
+      </nav>
+      <button aria-expanded="false" aria-label="Toggle menu" class="mobile-nav-toggle" type="button">
+        <span class="hamburger-line line-1"></span>
+        <span class="hamburger-line line-2"></span>
+        <span class="hamburger-line line-3"></span>
+      </button>
+    </div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-content">
+        <div class="mobile-nav-item">
+          <a class="mobile-rootlink" href="../home.html">Home</a>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink " href="../About/about.html">About</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a class="" href="../About/about.html">About Us</a>
+            <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink"
+              href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We
+              Engage</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We
+              Engage Overview</a>
+            <a
+              href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process
+              Design &amp; Troubleshooting</a>
+            <a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical
+              Studies</a>
+            <a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project
+              Stages &amp; Report Packs</a>
+            <a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+            <a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+            <a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+            <a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+            <a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+            <a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+            <a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+            <a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink active" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="../Advisory/advisory-services.html">Advisory Services</a>
+            <a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+            <a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+            <a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+            <a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+            <a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+            <a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control
+              Advisory</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="../FlowPlan/flowplan-framework.html">Framework</a>
+            <a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+            <a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+            <a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+            <a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+            <a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+            <a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink" href="../Projects/index.html">Projects</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="../Projects/index.html">Projects Overview</a>
+            <a href="../Projects/project-pathways.html">Project Pathways</a>
+            <a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+            <a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+            <a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+            <a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+            <a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink" href="../Sectors/index.html">Sectors</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="../Sectors/index.html">Sector Pathways</a>
+            <a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+            <a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+            <a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+            <a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+            <a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+            <a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+            <a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+            <a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+            <a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+            <a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+            <a href="../Sectors/seafood-processing.html">Seafood processing</a>
+            <a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+          </div>
+        </div>
+        <div class="mobile-nav-item">
+          <a class="mobile-login-btn" href="../login.html">Login</a>
+        </div>
+        <div class="mobile-nav-item no-border">
+          <a class="mobile-cta-btn" href="../get-in-touch.html">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <nav aria-label="Advisory section navigation" class="advisory-section-nav">
+    <div class="inner"><span class="section-name">Advisory</span><a class="" href="advisory-services.html">Advisory
+        Services</a><a class="is-active" href="solution-advisory.html">Solution Advisory</a><a class=""
+        href="water-wastewater-advisory.html">Water &amp; Wastewater</a><a class=""
+        href="process-system-design-advisory.html">Process &amp; System Design</a><a class=""
+        href="sludge-biosolids-advisory.html">Sludge &amp; Biosolids</a><a class=""
+        href="odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S</a><a class=""
+        href="automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control</a></div>
+  </nav>
+  <main>
+    <!-- HERO -->
+    <section class="bg-cream border-b hairline">
+      <div class="max-w-6xl mx-auto px-6 pt-10 pb-8 md:pt-14">
+        <div class="grid lg:grid-cols-2 gap-10 items-start">
+          <div>
+            <p class="text-xs text-gray-500">Services › Solution Advisory</p>
+            <h1 class="display-serif mt-3 text-5xl md:text-6xl leading-[0.95] text-gray-950"> Solution Advisory </h1>
+            <p class="mt-5 text-gray-700 leading-relaxed max-w-xl"> Multiple projects competing for budget? Unclear
+              which pathway delivers? Worried about vendor dependence? We provide independent advisory across <span
+                class="font-medium">water treatment</span>, <span class="font-medium">biosolids</span>, <span
+                class="font-medium">odor control</span>, and <span class="font-medium">thermal systems</span>,helping
+              you define clear, vendor-ready scopes that support delivery. </p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              <span
+                class="inline-flex items-center rounded-full border hairline bg-white/35 px-3 py-1 text-[11px] text-gray-700">Planning
+                &amp; scoping</span>
+              <span
+                class="inline-flex items-center rounded-full border hairline bg-white/35 px-3 py-1 text-[11px] text-gray-700">Coordination
+                clarity</span>
+              <span
+                class="inline-flex items-center rounded-full border hairline bg-white/35 px-3 py-1 text-[11px] text-gray-700">Operational
+                fit</span>
+              <span
+                class="inline-flex items-center rounded-full border hairline bg-white/35 px-3 py-1 text-[11px] text-gray-700">Risk
+                &amp; reliability</span>
+              <span
+                class="inline-flex items-center rounded-full border hairline bg-white/35 px-3 py-1 text-[11px] text-gray-700">Monitoring
+                &amp; KPIs</span>
+            </div>
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a class="inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-5 py-2.5 text-sm hover:bg-forest"
+                href="solution-advisory.html#domains"> View advisory domains <svg aria-hidden="true" class="w-4 h-4"
+                  fill="none" viewbox="0 0 24 24">
+                  <path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+                  <path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="1.8"></path>
+                </svg>
+              </a>
+              <a class="inline-flex items-center gap-2 rounded-full bg-white/55 border hairline px-5 py-2.5 text-sm text-gray-900 hover:bg-white/50"
+                href="solution-advisory.html#navigator"> Open the navigator <svg aria-hidden="true"
+                  class="w-4 h-4 text-gray-700" fill="none" viewbox="0 0 24 24">
+                  <path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+                  <path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="1.8"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="relative rounded-2xl overflow-hidden border hairline soft-shadow">
+              <img alt="Waterfront city skyline" class="w-full h-[290px] lg:h-[420px] object-cover" loading="lazy"
+                src="assets/solution-advisory-hero.jpg" />
+              <div class="absolute inset-0 bg-gradient-to-tr from-black/40 via-black/15 to-transparent"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- QUICK USE -->
+    <section class="bg-cream border-b hairline" id="howto">
+      <div class="max-w-6xl mx-auto px-6 py-12">
+        <div class="grid md:grid-cols-2 gap-10">
+          <div>
+            <h2 class="display-serif text-3xl text-gray-950">A quick way to use this section</h2>
+            <p class="mt-3 text-gray-700 leading-relaxed max-w-xl"> Pick a domain, scan the “where we help”, then choose
+              an engagement route. The Navigator ties the topics together so you can see what matters next. </p>
+          </div>
+          <div class="bg-gradient-to-br from-[#dfeae6] to-[#cbded7] rounded-2xl border hairline p-6 soft-shadow">
+            <div class="grid gap-4">
+              <a class="link-row group flex items-center justify-between gap-4 py-3 border-b hairline"
+                href="solution-advisory.html#domains">
+                <span class="display-serif text-[15px] text-gray-900">Need orientation? Start with Domains</span>
+                <span class="text-gray-500 group-hover:text-gray-900">
+                  <svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+                    <path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+                    <path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="1.8"></path>
+                  </svg>
+                </span>
+              </a>
+              <a class="link-row group flex items-center justify-between gap-4 py-3 border-b hairline"
+                href="solution-advisory.html#navigator">
+                <span class="display-serif text-[15px] text-gray-900">Need a fast fit? Use the Navigator</span>
+                <span class="text-gray-500 group-hover:text-gray-900">
+                  <svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+                    <path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+                    <path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="1.8"></path>
+                  </svg>
+                </span>
+              </a>
+              <a class="link-row group flex items-center justify-between gap-4 py-3 border-b hairline"
+                href="solution-advisory.html#engage">
+                <span class="display-serif text-[15px] text-gray-900">Choosing a route? See Ways to engage</span>
+                <span class="text-gray-500 group-hover:text-gray-900">
+                  <svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+                    <path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+                    <path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="1.8"></path>
+                  </svg>
+                </span>
+              </a>
+              <a class="link-row group flex items-center justify-between gap-4 py-3" href="../get-in-touch.html">
+                <span class="display-serif text-[15px] text-gray-900">Ready to talk? Start an enquiry</span>
+                <span class="text-gray-500 group-hover:text-gray-900">
+                  <svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+                    <path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+                    <path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="1.8"></path>
+                  </svg>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- OVERVIEW -->
+    <section class="bg-cream border-b hairline" id="overview">
+      <div class="max-w-6xl mx-auto px-6 py-14">
+        <div class="grid lg:grid-cols-2 gap-10 items-start">
+          <div>
+            <h2 class="display-serif text-4xl text-gray-950">Overview</h2>
+            <p class="mt-3 text-gray-700 leading-relaxed max-w-xl"> We keep the advisory layer practical: what changes
+              on site, what is practical to implement, and what must be monitored to verify improvement. </p>
+          </div>
+          <div class="hidden lg:block">
+            <div class="sticky top-24">
+              <div class="rounded-sm border hairline bg-forest2 text-white/90 p-6 pattern soft-shadow">
+                <p class="text-xs text-white/60 tracking-wide">How this fits within the site</p>
+                <h3 class="mt-2 text-xl font-semibold text-white">From early scoping to selection to installation
+                  support</h3>
+                <p class="mt-2 text-sm text-white/75 leading-relaxed"> Solution Advisory is your “middle layer”: it
+                  translates constraints into a vendor-ready direction without turning into a full design report. </p>
+                <div class="mt-4 space-y-2">
+                </div>
+                <div class="mt-5 border-t border-white/15 pt-4">
+                  <p class="text-xs text-white/60 tracking-wide">Typical trigger</p>
+                  <p class="mt-2 text-sm text-white/75 leading-relaxed"> “We have data, vendors are talking, but we
+                    don’t have clarity on scope, coordination points, or the performance level proposals should meet.”
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-white/55 border hairline rounded-sm p-6">
+            <p class="text-xs text-gray-500">Principle</p>
+            <h3 class="display-serif mt-2 text-xl text-gray-950">Outcome-led</h3>
+            <p class="mt-2 text-sm text-gray-700">Advisory anchored to what you need to achieve on site, not abstract
+              concepts.</p>
+          </div>
+          <div class="bg-white/55 border hairline rounded-sm p-6">
+            <p class="text-xs text-gray-500">Principle</p>
+            <h3 class="display-serif mt-2 text-xl text-gray-950">Operational fit</h3>
+            <p class="mt-2 text-sm text-gray-700">We plan around variability, maintainability, and the “how it actually
+              runs” layer.</p>
+          </div>
+          <div class="bg-white/55 border hairline rounded-sm p-6">
+            <p class="text-xs text-gray-500">Principle</p>
+            <h3 class="display-serif mt-2 text-xl text-gray-950">System connectivity</h3>
+            <p class="mt-2 text-sm text-gray-700">Water, sludge, odor, heat, and controls are connected, we treat them
+              that way.</p>
+          </div>
+          <div class="bg-white/55 border hairline rounded-sm p-6">
+            <p class="text-xs text-gray-500">Principle</p>
+            <h3 class="display-serif mt-2 text-xl text-gray-950">Measurable</h3>
+            <p class="mt-2 text-sm text-gray-700">We define what to monitor and how to verify improvement, with site-fit
+              KPIs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- DOMAINS -->
+    <section class="bg-cream border-b hairline" id="domains">
+      <div class="max-w-6xl mx-auto px-6 py-14">
+        <div class="grid lg:grid-cols-2 gap-10 items-start">
+          <div>
+            <h2 class="display-serif text-4xl text-gray-950">Advisory domains</h2>
+            <p class="mt-3 text-gray-700 leading-relaxed max-w-xl"> These are the streams clients typically enter
+              through. Each can be a dedicated scope, and each also connects to the others through coordination points
+              and KPIs. </p>
+          </div>
+          <div class="hidden lg:block">
+            <div class="sticky top-24">
+              <div class="rounded-2xl border hairline bg-white/85 p-6 soft-shadow">
+                <p class="text-xs text-gray-500 tracking-wide">Useful connections</p>
+                <h3 class="mt-2 text-xl font-semibold text-gray-900">When a domain “becomes the bottleneck”</h3>
+                <p class="mt-2 text-sm text-gray-700 leading-relaxed">These connections are shown because most projects
+                  fail at the coordination points, not inside a single unit process.</p>
+                <div class="mt-4 space-y-2">
+                </div>
+                <div class="mt-5 border-t hairline pt-4">
+                  <p class="text-xs text-gray-500 tracking-wide">Jump to the “how we engage” section</p>
+                  <a class="mt-2 inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-4 py-2 text-sm hover:bg-forest"
+                    href="solution-advisory.html#engage"> Engagement options <svg aria-hidden="true"
+                      class="w-4 h-4 opacity-80" fill="none" viewbox="0 0 24 24">
+                      <path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+                      <path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="1.8"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-10 grid md:grid-cols-2 gap-6">
+          <article class="bg-white/55 border hairline rounded-sm p-7">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="display-serif text-2xl text-gray-950">Water &amp; Wastewater</h3>
+                <p class="mt-2 text-sm text-gray-700">Compliance, reuse readiness, retrofit constraints, performance
+                  stability.</p>
+              </div>
+              <a class="inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-4 py-2 text-xs hover:bg-forest"
+                href="water-wastewater-advisory.html"> View advisory <svg aria-hidden="true" class="w-4 h-4" fill="none"
+                  viewbox="0 0 24 24">
+                  <path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+                  <path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="1.8"></path>
+                </svg>
+              </a>
+            </div>
+            <ul class="mt-5 space-y-2 text-sm text-gray-800">
+              <li class="flex gap-3"><span
+                  class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Problem outline and pathway
+                  clarity</span></li>
+              <li class="flex gap-3"><span
+                  class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Retrofit and operability
+                  constraints</span></li>
+              <li class="flex gap-3"><span
+                  class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Verification logic and
+                  KPIs</span></li>
+            </ul>
+          </article>
+          <article class="bg-white/55 border hairline rounded-sm p-7">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="display-serif text-2xl text-gray-950">Process &amp; Treatment Systems</h3>
+                <p class="mt-2 text-sm text-gray-700">Treatment sequence logic, coordination points, failure modes, and
+                  practical options.</p>
+              </div>
+              <a class="inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-4 py-2 text-xs hover:bg-forest"
+                href="process-system-design-advisory.html"> View advisory <svg aria-hidden="true" class="w-4 h-4"
+                  fill="none" viewbox="0 0 24 24">
+                  <path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+                  <path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="1.8"></path>
+                </svg>
+              </a>
+            </div>
+            <ul class="mt-5 space-y-2 text-sm text-gray-800">
+              <li class="flex gap-3"><span
+                  class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>System coordination points
+                  and bottleneck relief</span></li>
+              <li class="flex gap-3"><span
+                  class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Options clarity (what works
+                  and why)</span></li>
+              <li class="flex gap-3"><span
+                  class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Operational constraints and
+                  verification thinking</span></li>
+            </ul>
+          </article>
+          <article class="bg-white/55 border hairline rounded-sm p-7">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="display-serif text-2xl text-gray-950">Biosolids &amp; Residuals</h3>
+                <p class="mt-2 text-sm text-gray-700">Dewatering, drying readiness, reuse routes, handling and product
+                  viability.</p>
+              </div>
+              <a class="inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-4 py-2 text-xs hover:bg-forest"
+                href="sludge-biosolids-advisory.html"> View advisory <svg aria-hidden="true" class="w-4 h-4" fill="none"
+                  viewbox="0 0 24 24">
+                  <path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+                  <path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="1.8"></path>
+                </svg>
+              </a>
+            </div>
+            <ul class="mt-5 space-y-2 text-sm text-gray-800">
+              <li class="flex gap-3"><span
+                  class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Pathway mapping
+                  (route-level clarity)</span></li>
+              <li class="flex gap-3"><span
+                  class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Handling, storage, odor and
+                  logistics fit</span></li>
+              <li class="flex gap-3"><span
+                  class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>KPI thinking (dryness,
+                  stability, usability)</span></li>
+            </ul>
+          </article>
+          <article class="bg-white/55 border hairline rounded-sm p-7">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="display-serif text-2xl text-gray-950">Odor, Septicity &amp; H₂S</h3>
+                <p class="mt-2 text-sm text-gray-700">Source drivers, monitoring strategy, mitigation pathways,
+                  verification.</p>
+              </div>
+              <a class="inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-4 py-2 text-xs hover:bg-forest"
+                href="odor-septicity-h2s-advisory.html"> View advisory <svg aria-hidden="true" class="w-4 h-4"
+                  fill="none" viewbox="0 0 24 24">
+                  <path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+                  <path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="1.8"></path>
+                </svg>
+              </a>
+            </div>
+            <ul class="mt-5 space-y-2 text-sm text-gray-800">
+              <li class="flex gap-3"><span
+                  class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Source mapping and
+                  conditions</span></li>
+              <li class="flex gap-3"><span
+                  class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Coordinated monitoring and
+                  sampling</span></li>
+              <li class="flex gap-3"><span
+                  class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Actionable mitigation
+                  sequencing</span></li>
+            </ul>
+          </article>
+          <article class="bg-white/55 border hairline rounded-sm p-7">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="display-serif text-2xl text-gray-950">Thermal &amp; Heat Integration</h3>
+                <p class="mt-2 text-sm text-gray-700">Thermal readiness, integration points, safety, and operability.
+                </p>
+              </div>
+              <a class="inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-4 py-2 text-xs hover:bg-forest"
+                href="../get-in-touch.html"> View advisory <svg aria-hidden="true" class="w-4 h-4" fill="none"
+                  viewbox="0 0 24 24">
+                  <path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+                  <path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="1.8"></path>
+                </svg>
+              </a>
+            </div>
+            <ul class="mt-5 space-y-2 text-sm text-gray-800">
+              <li class="flex gap-3"><span
+                  class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Heat-source and duty
+                  logic</span></li>
+              <li class="flex gap-3"><span
+                  class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Integration points and
+                  constraints</span></li>
+              <li class="flex gap-3"><span
+                  class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Controls and reliability
+                  considerations</span></li>
+            </ul>
+          </article>
+          <article class="bg-white/55 border hairline rounded-sm p-7">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="display-serif text-2xl text-gray-950">Automation, Monitoring &amp; Control</h3>
+                <p class="mt-2 text-sm text-gray-700">Instrumentation philosophy, KPIs, commissioning checks, data
+                  clarity.</p>
+              </div>
+              <a class="inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-4 py-2 text-xs hover:bg-forest"
+                href="automation-monitoring-control-advisory.html"> View advisory <svg aria-hidden="true"
+                  class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+                  <path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+                  <path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="1.8"></path>
+                </svg>
+              </a>
+            </div>
+            <ul class="mt-5 space-y-2 text-sm text-gray-800">
+              <li class="flex gap-3"><span
+                  class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>What to measure &amp; why
+                  (site-fit)</span></li>
+              <li class="flex gap-3"><span
+                  class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Performance verification
+                  approach</span></li>
+              <li class="flex gap-3"><span
+                  class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Coordination points between
+                  operations and vendors</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- NAVIGATOR (capability switcher) -->
+    <section class="bg-[#101413] text-white" id="navigator">
+      <div class="max-w-6xl mx-auto px-6 py-16">
+        <div class="grid lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-4">
+            <p class="text-xs text-white/60">Advisory Navigator</p>
+            <h2 class="display-serif mt-2 text-4xl leading-tight">See how the domains connect</h2>
+            <p class="mt-4 text-white/70 leading-relaxed"> Select a domain to view what we clarify, the questions we
+              unblock, and how this links to the rest of the system. </p>
+            <div class="mt-7 flex flex-wrap gap-2">
+              <span class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">Water</span>
+              <span class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">Process</span>
+              <span
+                class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">Biosolids</span>
+              <span class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">Odor</span>
+              <span class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">Thermal</span>
+              <span
+                class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">Automation</span>
+            </div>
+            <div class="mt-10 bg-white/5 border border-white/10 rounded-sm p-5">
+              <p class="text-sm text-white/75"> Want the fastest start? Choose a domain, then use <span
+                  class="font-medium text-white">Start an enquiry</span>, we’ll recommend the right engagement route.
+              </p>
+              <a class="mt-4 inline-flex items-center gap-2 text-sm text-white hover:underline"
+                href="../get-in-touch.html"> Start an enquiry <svg aria-hidden="true" class="w-4 h-4" fill="none"
+                  viewbox="0 0 24 24">
+                  <path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+                  <path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="1.8"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="lg:col-span-8" id="capabilities">
+            <div class="grid md:grid-cols-12 gap-6">
+              <div class="md:col-span-4 bg-white/5 border border-white/10 rounded-sm overflow-hidden">
+                <div class="p-4 border-b border-white/10 text-xs text-white/60">Choose a domain</div>
+                <div class="p-2">
+                  <!-- items injected by JS -->
+                  <div class="grid gap-1" data-cap-list=""><button
+                      class="w-full text-left px-4 py-3 rounded-sm text-white/85 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20"
+                      data-cap-item="water" type="button">
+                      <div class="text-sm">Water &amp; Wastewater Advisory</div>
+                      <div class="text-xs text-white/55 mt-1">planning • reuse • retrofit</div>
+                    </button><button
+                      class="w-full text-left px-4 py-3 rounded-sm text-white/85 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 cap-active"
+                      data-cap-item="process" type="button">
+                      <div class="text-sm">Process &amp; Treatment Systems Advisory</div>
+                      <div class="text-xs text-white/55 mt-1">coordination • retrofit • stability</div>
+                    </button><button
+                      class="w-full text-left px-4 py-3 rounded-sm text-white/85 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20"
+                      data-cap-item="biosolids" type="button">
+                      <div class="text-sm">Biosolids &amp; Residuals Advisory</div>
+                      <div class="text-xs text-white/55 mt-1">pathways • stability • kpis</div>
+                    </button><button
+                      class="w-full text-left px-4 py-3 rounded-sm text-white/85 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20"
+                      data-cap-item="odor" type="button">
+                      <div class="text-sm">Odor, Septicity &amp; H₂S Advisory</div>
+                      <div class="text-xs text-white/55 mt-1">monitoring • risk • stability</div>
+                    </button><button
+                      class="w-full text-left px-4 py-3 rounded-sm text-white/85 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20"
+                      data-cap-item="thermal" type="button">
+                      <div class="text-sm">Thermal &amp; Heat Integration Advisory</div>
+                      <div class="text-xs text-white/55 mt-1">coordination • retrofit • risk</div>
+                    </button><button
+                      class="w-full text-left px-4 py-3 rounded-sm text-white/85 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20"
+                      data-cap-item="automation" type="button">
+                      <div class="text-sm">Automation, Monitoring &amp; Intelligent Control</div>
+                      <div class="text-xs text-white/55 mt-1">kpis • monitoring • risk</div>
+                    </button></div>
+                </div>
+              </div>
+              <div class="md:col-span-8 bg-white/5 border border-white/10 rounded-sm overflow-hidden">
+                <div class="p-6">
+                  <div class="flex items-start justify-between gap-4">
+                    <div>
+                      <p class="text-xs text-white/60">Selected</p>
+                      <h3 class="display-serif mt-2 text-3xl leading-tight" data-cap-title="">Process &amp; Treatment
+                        Systems Advisory</h3>
+                    </div>
+                    <div class="hidden sm:flex flex-wrap justify-end gap-2" data-cap-tags=""><span
+                        class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">coordination</span><span
+                        class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">retrofit</span><span
+                        class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">stability</span><span
+                        class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">planning</span>
+                    </div>
+                  </div>
+                  <p class="mt-4 text-white/75 leading-relaxed" data-cap-intro="">Treatment pathway logic and
+                    coordination planning, especially where upstream drivers and downstream barriers must work together.
+                  </p>
+                  <div class="mt-7 grid sm:grid-cols-2 gap-6">
+                    <div class="bg-black/10 border border-white/10 rounded-sm p-5">
+                      <p class="text-xs text-white/60">Where we help</p>
+                      <ul class="mt-3 space-y-2 text-sm text-white/85" data-cap-help="">
+                        <li class="flex gap-3"><span
+                            class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Make the
+                            treatment pathway work as a connected system</span></li>
+                        <li class="flex gap-3"><span
+                            class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Expose
+                            coordination gaps and bottlenecks that drive failures or cost</span></li>
+                        <li class="flex gap-3"><span
+                            class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Clarify the
+                            practical options that fit your site conditions</span></li>
+                        <li class="flex gap-3"><span
+                            class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Align
+                            expectations between operations, management, and suppliers</span></li>
+                      </ul>
+                    </div>
+                    <div class="bg-black/10 border border-white/10 rounded-sm p-5">
+                      <p class="text-xs text-white/60">Questions we clarify</p>
+                      <ul class="mt-3 space-y-2 text-sm text-white/85" data-cap-questions="">
+                        <li class="flex gap-3"><span
+                            class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Where is the
+                            bottleneck, and what is the root cause?</span></li>
+                        <li class="flex gap-3"><span
+                            class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Which changes
+                            improve reliability without creating new problems?</span></li>
+                        <li class="flex gap-3"><span
+                            class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>What’s the
+                            simplest configuration that is operable long term?</span></li>
+                        <li class="flex gap-3"><span
+                            class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Which
+                            coordination points are likely to be misunderstood during delivery?</span></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="mt-8 flex flex-wrap gap-3">
+                    <a class="inline-flex items-center gap-2 rounded-full bg-white text-gray-900 px-5 py-2.5 text-sm hover:bg-white/90"
+                      href="solution-advisory.html#engage"> View ways to engage <svg aria-hidden="true" class="w-4 h-4"
+                        fill="none" viewbox="0 0 24 24">
+                        <path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+                        <path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="1.8"></path>
+                      </svg>
+                    </a>
+                    <a class="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 text-white px-5 py-2.5 text-sm hover:bg-white/15"
+                      href="../get-in-touch.html"> Start an enquiry <svg aria-hidden="true" class="w-4 h-4" fill="none"
+                        viewbox="0 0 24 24">
+                        <path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+                        <path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="1.8"></path>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ENGAGE -->
+    <section class="bg-forest text-white/90 border-y border-white/10" id="engage">
+      <div class="pattern">
+        <div class="max-w-6xl mx-auto px-6 py-16">
+          <div class="grid lg:grid-cols-2 gap-10 items-start">
+            <div>
+              <p class="text-xs text-white/70">Engagement routes</p>
+              <h2 class="display-serif mt-2 text-4xl leading-tight text-white">Ways to engage</h2>
+              <p class="mt-4 text-white/75 leading-relaxed max-w-xl"> Choose the lightest engagement that creates
+                clarity quickly, then scale only if needed. </p>
+            </div>
+            <div class="hidden lg:block"></div>
+          </div>
+          <div class="mt-10 grid md:grid-cols-3 gap-6">
+            <article class="bg-white/5 border border-white/10 rounded-sm p-6">
+              <p class="text-xs text-white/60">Option</p>
+              <h3 class="display-serif mt-2 text-2xl text-white">Advisory Call</h3>
+              <p class="mt-3 text-sm text-white/75 leading-relaxed">A focused discussion to clarify the problem,
+                constraints, and the fastest sensible next step.</p>
+              <ul class="mt-5 space-y-2 text-sm text-white/85">
+                <li class="flex gap-3"><span
+                    class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Define the goal and “what
+                    changes on site”</span></li>
+                <li class="flex gap-3"><span
+                    class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Identify constraints and
+                    key unknowns</span></li>
+                <li class="flex gap-3"><span
+                    class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Confirm what information
+                    matters (minimum)</span></li>
+              </ul>
+            </article>
+            <article class="bg-white/5 border border-white/10 rounded-sm p-6">
+              <p class="text-xs text-white/60">Option</p>
+              <h3 class="display-serif mt-2 text-2xl text-white">Applied Scoping Session</h3>
+              <p class="mt-3 text-sm text-white/75 leading-relaxed">A guided working session that turns your context
+                into a structured pathway and action list.</p>
+              <ul class="mt-5 space-y-2 text-sm text-white/85">
+                <li class="flex gap-3"><span
+                    class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Map system interactions
+                    (water to sludge to odor to heat to controls)</span></li>
+                <li class="flex gap-3"><span
+                    class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Define a practical
+                    pathway and decision checkpoints</span></li>
+                <li class="flex gap-3"><span
+                    class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Align stakeholders on
+                    scope and expectations</span></li>
+              </ul>
+            </article>
+            <article class="bg-white/5 border border-white/10 rounded-sm p-6">
+              <p class="text-xs text-white/60">Option</p>
+              <h3 class="display-serif mt-2 text-2xl text-white">Embedded Support</h3>
+              <p class="mt-3 text-sm text-white/75 leading-relaxed">Ongoing advisory support during selection,
+                integration, commissioning, and performance improvement.</p>
+              <ul class="mt-5 space-y-2 text-sm text-white/85">
+                <li class="flex gap-3"><span
+                    class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Protect coordination
+                    points and operability</span></li>
+                <li class="flex gap-3"><span
+                    class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Set and track site-fit
+                    KPIs</span></li>
+                <li class="flex gap-3"><span
+                    class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Support ramp-up and
+                    optimisation</span></li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ENQUIRY -->
+    <section class="bg-cream" id="enquiry">
+      <div class="max-w-6xl mx-auto px-6 py-16">
+        <div class="grid lg:grid-cols-2 gap-10 items-start">
+          <div>
+            <h2 class="display-serif text-4xl text-gray-950">Start an enquiry</h2>
+            <p class="mt-3 text-gray-700 leading-relaxed max-w-xl"> Share the outcome you need, the constraints you’re
+              facing, and any timing drivers. If you don’t have all the data, that’s fine, we’ll define the minimum set
+              to move forward. </p>
+            <div class="mt-6 bg-white/40 border hairline rounded-sm p-6">
+              <p class="text-xs text-gray-500">What helps us respond quickly</p>
+              <ul class="mt-4 space-y-2 text-sm text-gray-800">
+                <li class="flex gap-3"><span
+                    class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Outcome target
+                    (compliance, reuse class, odor control, dewatering/drying goal, etc.)</span></li>
+                <li class="flex gap-3"><span
+                    class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Current system snapshot
+                    (flow, variability, key constraints)</span></li>
+                <li class="flex gap-3"><span
+                    class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Known problem drivers
+                    (e.g., load swings, foaming, sludge quality, H₂S hotspots)</span></li>
+                <li class="flex gap-3"><span
+                    class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Any non-negotiables
+                    (space, downtime, utilities, operator capacity)</span></li>
+                <li class="flex gap-3"><span
+                    class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Timeline and decision
+                    date</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-white/55 border hairline rounded-sm p-8">
+            <p class="text-xs text-gray-500">Enquiry form (starter)</p>
+            <form class="mt-6 grid gap-4"
+              onsubmit="event.preventDefault(); alert('Thanks , this is a UI placeholder. Connect it to your contact workflow.');">
+              <label class="grid gap-1 text-sm">
+                <span class="text-gray-700">Name</span>
+                <input
+                  class="rounded-sm border hairline bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-accent/30"
+                  placeholder="Your name" required="" />
+              </label>
+              <label class="grid gap-1 text-sm">
+                <span class="text-gray-700">Email</span>
+                <input
+                  class="rounded-sm border hairline bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-accent/30"
+                  placeholder="name@company.com" required="" type="email" />
+              </label>
+              <label class="grid gap-1 text-sm">
+                <span class="text-gray-700">Primary domain</span>
+                <select
+                  class="rounded-sm border hairline bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-accent/30">
+                  <option>Water &amp; Wastewater</option>
+                  <option>Process &amp; Treatment Systems</option>
+                  <option>Biosolids &amp; Residuals</option>
+                  <option>Odor, Septicity &amp; H₂S</option>
+                  <option>Thermal &amp; Heat Integration</option>
+                  <option>Automation, Monitoring &amp; Control</option>
+                </select>
+              </label>
+              <label class="grid gap-1 text-sm">
+                <span class="text-gray-700">What outcome are you aiming for?</span>
+                <textarea
+                  class="rounded-sm border hairline bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-accent/30"
+                  placeholder="A short description of the outcome, constraints, and what prompted this." required=""
+                  rows="4"></textarea>
+              </label>
+              <button
+                class="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-forest2 text-white px-5 py-3 text-sm hover:bg-forest">
+                Send enquiry <svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+                  <path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+                  <path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="1.8"></path>
+                </svg>
+              </button>
+              <p class="text-xs text-gray-500 mt-2"> Note: This form is a UI starter. Wire it to your contact email/CRM
+                route. </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ -->
+    <section class="bg-cream border-t hairline" id="faq">
+      <div class="max-w-6xl mx-auto px-6 py-14">
+        <div class="grid lg:grid-cols-2 gap-10 items-start">
+          <div>
+            <h2 class="display-serif text-4xl text-gray-950">FAQs</h2>
+            <p class="mt-3 text-gray-700 leading-relaxed max-w-xl"> A few clarifications on scope, approach, and how we
+              keep advisory practical and implementable. </p>
+          </div>
+          <div class="hidden lg:block"></div>
+        </div>
+        <div class="mt-10 grid gap-4">
+          <details class="group bg-white/55 border hairline rounded-sm px-6 py-4">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <span class="display-serif text-xl text-gray-950">What does “solution advisory” mean in practice?</span>
+              <span class="acc-icon text-gray-600 group-open:rotate-180">
+                <svg aria-hidden="true" class="w-5 h-5" fill="none" viewbox="0 0 24 24">
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="1.8"></path>
+                </svg>
+              </span>
+            </summary>
+            <div class="mt-3 text-sm text-gray-700 leading-relaxed"> It means we focus on the decisions that influence
+              outcomes: clarifying the pathway, protecting coordination points, and setting verification requirements so
+              delivery and operations remain aligned. </div>
+          </details>
+          <details class="group bg-white/55 border hairline rounded-sm px-6 py-4">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <span class="display-serif text-xl text-gray-950">Are odor, thermal, and automation separate topics or
+                part of the whole?</span>
+              <span class="acc-icon text-gray-600 group-open:rotate-180">
+                <svg aria-hidden="true" class="w-5 h-5" fill="none" viewbox="0 0 24 24">
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="1.8"></path>
+                </svg>
+              </span>
+            </summary>
+            <div class="mt-3 text-sm text-gray-700 leading-relaxed"> They are both. We support each as a dedicated scope
+              when it’s the constraint, and we also treat them as linked to water and biosolids outcomes. Odor is
+              approached source-first, thermal is treated as an enabling connection point, and automation is treated as
+              the verification layer (KPIs and controls). </div>
+          </details>
+          <details class="group bg-white/55 border hairline rounded-sm px-6 py-4">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <span class="display-serif text-xl text-gray-950">How do you work with in-house teams and solution
+                providers?</span>
+              <span class="acc-icon text-gray-600 group-open:rotate-180">
+                <svg aria-hidden="true" class="w-5 h-5" fill="none" viewbox="0 0 24 24">
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="1.8"></path>
+                </svg>
+              </span>
+            </summary>
+            <div class="mt-3 text-sm text-gray-700 leading-relaxed"> We work alongside your team and any solution
+              providers you engage. The advisory role is to make the scope, coordination points, and verification logic
+              clear, so procurement and delivery are smoother and expectations stay aligned. </div>
+          </details>
+          <details class="group bg-white/55 border hairline rounded-sm px-6 py-4">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <span class="display-serif text-xl text-gray-950">What information helps you move fast?</span>
+              <span class="acc-icon text-gray-600 group-open:rotate-180">
+                <svg aria-hidden="true" class="w-5 h-5" fill="none" viewbox="0 0 24 24">
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="1.8"></path>
+                </svg>
+              </span>
+            </summary>
+            <div class="mt-3 text-sm text-gray-700 leading-relaxed"> A short description of the outcome you need,
+              current constraints, and any known drivers. If some data is missing, we can still progress, we’ll define
+              the minimum data set required to confirm the best next step. </div>
+          </details>
+          <details class="group bg-white/55 border hairline rounded-sm px-6 py-4">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <span class="display-serif text-xl text-gray-950">Do you coordinate testing and specialist inputs?</span>
+              <span class="acc-icon text-gray-600 group-open:rotate-180">
+                <svg aria-hidden="true" class="w-5 h-5" fill="none" viewbox="0 0 24 24">
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="1.8"></path>
+                </svg>
+              </span>
+            </summary>
+            <div class="mt-3 text-sm text-gray-700 leading-relaxed"> Yes. We can coordinate and arrange testing through
+              qualified labs and specialists (where needed), then translate results into practical decisions and
+              monitoring logic. </div>
+          </details>
+          <details class="group bg-white/55 border hairline rounded-sm px-6 py-4">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-4">
+              <span class="display-serif text-xl text-gray-950">What’s the simplest way to start?</span>
+              <span class="acc-icon text-gray-600 group-open:rotate-180">
+                <svg aria-hidden="true" class="w-5 h-5" fill="none" viewbox="0 0 24 24">
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="1.8"></path>
+                </svg>
+              </span>
+            </summary>
+            <div class="mt-3 text-sm text-gray-700 leading-relaxed"> Send an enquiry with your goal, constraints, and
+              timing. We’ll recommend the most suitable entry point (call, scoping session, or embedded support) based
+              on what creates clarity fastest. </div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+<div class="wrap">
+<div class="footer-top">
+<div>
+<div class="footer-brand"><img alt="EnWater Design logo" class="footer-logo" src="../assets/images/enwater-design-logo-transparent-mark.png"/><span class="footer-name">EnWater Design</span></div>
+<p class="footer-desc">Independent water, wastewater treatment and reuse consulting, helping owners and operators turn complex challenges into clear decisions and practical outcomes.</p>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<a href="../home.html">Home</a>
+<a href="../About/about.html">About</a>
+<a href="../About/BlogList.html">Our Blog</a>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+</div>
+<div class="footer-col">
+<h4>Services</h4>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing</a>
+<a href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<a href="../Projects/index.html">Projects</a>
+<a href="../Sectors/index.html">Sectors</a>
+</div>
+<div class="footer-col">
+<h4>Pathways</h4>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../Sectors/index.html">Sector Pathways</a>
+</div>
+<div class="footer-col">
+<h4>Get in touch</h4>
+<a href="../get-in-touch.html">Contact form</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">Industrial / CETP</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© <span id="yr"></span> EnWater Design</div>
+<div>Clear systems planning for practical project delivery</div>
+</div>
+</div>
+<script>
+  (function() {
+    const yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+  })();
+</script>
+</footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const CAPABILITIES = [
+        {
+          id: "water",
+          title: "Water & Wastewater Advisory",
+          tags: ["planning", "reuse", "retrofit", "stability", "kpis"],
+          intro: "High-level planning and decision support for compliance, reuse readiness, retrofit constraints, and performance stability.",
+          help: [
+            "Clarify goals, constraints, and site priorities",
+            "Identify the practical pathway to reach compliance or reuse targets",
+            "Structure options around operability, footprint, and variability",
+            "Define what should be monitored to prove improvement"
+          ],
+          questions: [
+            "What is the simplest pathway that meets our target reliably?",
+            "What are the risks created by variability, and what can we control?",
+            "What must be measured to confirm performance (not just assumptions)?",
+            "Where are the main constraints: space, utilities, operations, timing?"
+          ]
+        },
+        {
+          id: "process",
+          title: "Process & Treatment Systems Advisory",
+          tags: ["coordination", "retrofit", "stability", "planning"],
+          intro: "Treatment pathway logic and coordination planning, especially where upstream drivers and downstream barriers must work together.",
+          help: [
+            "Make the treatment pathway work as a connected system",
+            "Expose coordination gaps and bottlenecks that drive failures or cost",
+            "Clarify the practical options that fit your site conditions",
+            "Align expectations between operations, management, and suppliers"
+          ],
+          questions: [
+            "Where is the bottleneck, and what is the root cause?",
+            "Which changes improve reliability without creating new problems?",
+            "What’s the simplest configuration that is operable long term?",
+            "Which coordination points are likely to be misunderstood during delivery?"
+          ]
+        },
+        {
+          id: "biosolids",
+          title: "Biosolids & Residuals Advisory",
+          tags: ["pathways", "stability", "kpis", "planning"],
+          intro: "From dewatering and drying readiness to reuse routes and handling conditions, with viability and risks made explicit.",
+          help: [
+            "Map pathway options from sludge generation to end-use routes",
+            "Clarify handling, storage, logistics, and odor realities",
+            "Define practical KPI targets (dryness, stability, usability)",
+            "Align the pathway with site constraints and market conditions"
+          ],
+          questions: [
+            "Which pathway fits our site and operating conditions?",
+            "What KPIs matter: dryness, stability, odor, usability?",
+            "Where does the pathway usually fail (handling, storage, end-use)?",
+            "How do we reduce risk before major spend?"
+          ]
+        },
+        {
+          id: "odor",
+          title: "Odor, Septicity & H₂S Advisory",
+          tags: ["monitoring", "risk", "stability"],
+          intro: "Odor is treated as a system problem: sources → monitoring strategy → mitigation pathways and verification.",
+          help: [
+            "Identify sources and conditions driving odor and H₂S formation",
+            "Coordinate a monitoring approach (what, where, and why)",
+            "Sequence mitigation actions (upstream first, then controls)",
+            "Define operational KPIs to verify improvement"
+          ],
+          questions: [
+            "What conditions trigger odor episodes on our site/network?",
+            "Where should we measure to isolate the driver?",
+            "Which interventions solve root cause vs symptoms?",
+            "How do we verify improvement beyond “it smells better”?"
+          ]
+        },
+        {
+          id: "thermal",
+          title: "Thermal & Heat Integration Advisory",
+          tags: ["coordination", "retrofit", "risk", "planning"],
+          intro: "Heat is often the missing connection point, so we plan for thermal readiness, integration constraints, and operable solutions.",
+          help: [
+            "Assess thermal readiness (sources, duties, reliability)",
+            "Map integration points (process, utilities, controls)",
+            "Clarify operability, safety, redundancy, and maintenance conditions",
+            "Define what must be monitored to keep performance stable"
+          ],
+          questions: [
+            "Do we have a usable heat source, and is it reliable?",
+            "Where does heat integrate without causing operational issues?",
+            "What controls and safeguards are critical?",
+            "What does success look like: duty, stability, uptime?"
+          ]
+        },
+        {
+          id: "automation",
+          title: "Automation, Monitoring & Intelligent Control",
+          tags: ["kpis", "monitoring", "risk", "stability"],
+          intro: "Instrumentation and KPI thinking that makes performance visible, verifiable, and manageable for operators.",
+          help: [
+            "Define the monitoring philosophy (what matters, what is measurable)",
+            "Set site-fit KPIs and verification logic",
+            "Plan how performance is demonstrated during ramp-up",
+            "Clarify how data should support operations (not just dashboards)"
+          ],
+          questions: [
+            "Which KPIs prove improvement and prevent regressions?",
+            "What should be instrumented vs inferred?",
+            "How do we verify performance during commissioning and ramp-up?",
+            "How do controls reduce risk rather than add complexity?"
+          ]
+        }
+      ];
+
+      const cap = document.getElementById('capabilities');
+      const list = cap?.querySelector('[data-cap-list]');
+      const outTitle = cap?.querySelector('[data-cap-title]');
+      const outIntro = cap?.querySelector('[data-cap-intro]');
+      const outTags = cap?.querySelector('[data-cap-tags]');
+      const outHelp = cap?.querySelector('[data-cap-help]');
+      const outQs = cap?.querySelector('[data-cap-questions]');
+
+      function pill(text) {
+        const span = document.createElement('span');
+        span.className = 'tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85';
+        span.textContent = text;
+        return span;
+      }
+
+      function renderBullets(ul, items) {
+        ul.innerHTML = '';
+        (items || []).forEach((t) => {
+          const li = document.createElement('li');
+          li.className = 'flex gap-3';
+          li.innerHTML = '<span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span></span>';
+          li.querySelector('span:last-child').textContent = t;
+          ul.appendChild(li);
+        });
+      }
+
+      function selectCapability(id) {
+        const itemEls = list?.querySelectorAll('[data-cap-item]') || [];
+        itemEls.forEach(el => el.classList.remove('cap-active'));
+        const chosen = [...itemEls].find(el => el.dataset.capItem === id);
+        chosen?.classList.add('cap-active');
+
+        const c = CAPABILITIES.find(x => x.id === id) || CAPABILITIES[0];
+        if (!c) return;
+
+        outTitle.textContent = c.title;
+        outIntro.textContent = c.intro;
+
+        outTags.innerHTML = '';
+        (c.tags || []).slice(0, 6).forEach(t => outTags.appendChild(pill(t)));
+
+        renderBullets(outHelp, c.help || []);
+        renderBullets(outQs, c.questions || []);
+      }
+
+      // Build list
+      if (list && CAPABILITIES.length) {
+        // prevent duplicates if file was saved after JS ran
+        list.innerHTML = '';
+
+        CAPABILITIES.forEach((c, idx) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.dataset.capItem = c.id;
+          btn.className = 'w-full text-left px-4 py-3 rounded-sm text-white/85 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20';
+          btn.innerHTML = `<div class="text-sm">${c.title}</div><div class="text-xs text-white/55 mt-1">${(c.tags || []).slice(0, 3).join(' • ')}</div>`;
+          btn.addEventListener('click', () => selectCapability(c.id));
+          list.appendChild(btn);
+          if (idx === 0) btn.classList.add('cap-active');
+        });
+        selectCapability(CAPABILITIES[0].id);
+      }
+
+      // Domain cards -> preselect in navigator
+      document.querySelectorAll('[data-domain]').forEach((a) => {
+        a.addEventListener('click', (e) => {
+          const id = a.getAttribute('data-domain');
+          // allow default anchor scroll, but select after a tick
+          setTimeout(() => selectCapability(id), 40);
+        });
+      });
+    });
+  </script>
+  <script src="../exported-ui-effects.js"></script>
+</body>
+
+</html>

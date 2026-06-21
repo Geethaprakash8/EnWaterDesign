@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>System integration, automation &amp; de-risking | EnWater Design</title>
+<meta content="System integration, automation &amp; de-risking: layouts, connections, phasing, automation and controls intent so projects work on the site." name="description"/>
+<script>
+ tailwind.config = {
+ theme: {
+ extend: {
+ colors: {
+ cream: "#f4f2ec",
+ forest: "#243f38",
+ forest2: "#1f3731",
+ accent: "#55a092"
+ }
+ }
+ }
+ }
+ </script>
+<style>
+ :root{
+ --cream:#f4f2ec;
+ --ink:#1b1f1e;
+ --muted:#5a6561;
+ --forest:#243f38;
+ --forest2:#1f3731;
+ --accent:#55a092;
+ --line:rgba(27,31,30,.14);
+ --forest3:#2c5047;--bg:#f4f2ec;}
+ html{scroll-behavior:smooth}
+ body{background:var(--cream); color:var(--ink);}
+ .ewd-serif{font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;}
+ .ewd-sans{font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";}
+ .hairline{border-color: var(--line);}
+ .soft-shadow{box-shadow: 0 16px 40px rgba(0,0,0,.08);}
+ :focus-visible{ outline: 3px solid rgba(85,160,146,.45); outline-offset: 3px; }
+
+ .ewd-svc-btn{
+ width:100%;
+ text-align:left;
+ display:flex;
+ gap:.75rem;
+ align-items:flex-start;
+ padding: .85rem 1.25rem;
+ border-top: 1px solid rgba(255,255,255,.08);
+ transition: background-color .15s ease, transform .15s ease;
+ }
+ .ewd-svc-btn:hover{ background: rgba(255,255,255,.04); }
+ .ewd-svc-btn[aria-selected="true"]{
+ background: rgba(85,160,146,.14);
+ box-shadow: inset 3px 0 0 rgba(85,160,146,.9);
+ }
+ .ewd-svc-num{
+ font-size:.75rem;
+ line-height:1;
+ color: rgba(255,255,255,.65);
+ margin-top:.2rem;
+ min-width: 1.8rem;
+ }
+ .ewd-svc-title{ color: rgba(255,255,255,.95); font-weight:600; }
+ .ewd-svc-sub{ color: rgba(255,255,255,.70); font-size:.82rem; margin-top:.2rem; }
+ .ewd-chip{
+ display:inline-flex;
+ align-items:center;
+ gap:.35rem;
+ padding:.38rem .6rem;
+ border-radius: 9999px;
+ border: 1px solid rgba(255,255,255,.12);
+ background: rgba(255,255,255,.04);
+ color: rgba(255,255,255,.85);
+ font-size:.75rem;
+ line-height:1;
+ white-space:nowrap;
+ transition: background-color .15s ease, border-color .15s ease;
+ }
+ .ewd-chip:hover{ background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18); }
+ .ewd-chip .tag{
+ font-size:.68rem;
+ padding:.14rem .4rem;
+ border-radius:9999px;
+ border:1px solid rgba(255,255,255,.16);
+ color: rgba(255,255,255,.70);
+ background: rgba(0,0,0,.14);
+ }
+ .ewd-chip.req{ border-color: rgba(255,193,7,.28); }
+ .ewd-chip.req .tag{ border-color: rgba(255,193,7,.28); color: rgba(255,235,190,.85); }
+
+ /* Baseline lens hero (compact strip in forest2 tone) */
+ .ewd-focus-hero{
+ background: var(--forest2);
+ color:#fff;
+ border-radius:0;
+ box-shadow:0 18px 40px rgba(0,0,0,.25);
+ }
+ .ewd-focus-hero-inner{
+ max-width:100%;
+ margin:0;
+ padding:2.5rem 2.25rem 3rem;
+ }
+ @media (min-width:1024px){
+ .ewd-focus-hero-inner{ padding:2.9rem 2.75rem 3.25rem; }
+ }
+ .ewd-focus-grid{
+ display:grid;
+ grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
+ gap:2.5rem;
+ align-items:center;
+ }
+ @media (max-width:900px){
+ .ewd-focus-grid{
+ grid-template-columns:minmax(0,1fr);
+ gap:2rem;
+ }
+ }
+ .ewd-focus-kicker{
+ font-size:.72rem;
+ letter-spacing:.22em;
+ text-transform:uppercase;
+ color:rgba(255,255,255,.7);
+ }
+ .ewd-focus-title{
+ font-family: var(--ewd-serif, "Iowan Old Style", "Palatino", "Book Antiqua", Georgia, serif);
+ font-size:1.9rem;
+ line-height:1.2;
+ margin-top:.6rem;
+ margin-bottom:.75rem;
+ }
+ @media (min-width:1024px){
+ .ewd-focus-title{ font-size:2.1rem; }
+ }
+ .ewd-focus-body{
+ font-size:.97rem;
+ max-width:32rem;
+ color:rgba(255,255,255,.85);
+ line-height:1.7;
+ margin:0;
+ }
+ .ewd-focus-panel{
+ border-radius:26px;
+ padding:1.75rem 1.9rem 1.9rem;
+ background:
+ radial-gradient(160% 220% at 0% 0%, rgba(255,255,255,.06), transparent 40%),
+ rgba(0,0,0,.38);
+ box-shadow:0 18px 40px rgba(0,0,0,.55);
+ border:1px solid rgba(255,255,255,.18);
+ }
+ .ewd-focus-panel h3{
+ font-size:.72rem;
+ letter-spacing:.22em;
+ text-transform:uppercase;
+ margin:0 0 .8rem;
+ color:rgba(255,255,255,.7);
+ }
+ .ewd-focus-panel ul{
+ list-style:none;
+ margin:0 0 1.5rem;
+ padding:0;
+ font-size:.92rem;
+ color:rgba(255,255,255,.9);
+ }
+ .ewd-focus-panel li + li{
+ margin-top:.55rem;
+ }
+ .ewd-focus-panel li span{
+ font-weight:600;
+ }
+ .ewd-focus-next-btn{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ border-radius:999px;
+ padding:.6rem 1.8rem;
+ font-size:.86rem;
+ text-decoration:none;
+ border:1px solid rgba(255,255,255,.35);
+ background:rgba(0,0,0,.18);
+ color:#fff;
+ white-space:nowrap;
+ }
+ .ewd-focus-next-btn:hover{
+ background:rgba(255,255,255,.16);
+ border-color:rgba(255,255,255,.6);
+ }
+
+ .text-ink{color:var(--ink);}
+ .text-ink-soft{color:var(--ink);}
+ .bg-ink{background:var(--ink);}
+ .pattern-card{margin:0.75rem 0;}
+ @media (min-width:768px){
+ .pattern-card{margin:0.75rem;}
+ }
+
+
+ /* Offer UI (no icons) */
+ .offer-tabs{ display:flex; gap:.4rem; background: rgba(15,23,42,.04); border:1px solid var(--line); border-radius:999px; padding:.25rem; }
+ .offer-tab{ flex:1; border-radius:999px; padding:.55rem .8rem; font-size:.86rem; color: rgba(15,23,42,.72); background: transparent; border:0; cursor:pointer; transition: background-color .15s ease, color .15s ease, transform .15s ease; }
+ .offer-tab:hover{ background: rgba(15,23,42,.06); }
+ .offer-tab.is-active{ background: #0f172a; color: #fff; }
+ .offer-panel{ display:none; }
+ .offer-panel.is-active{ display:block; }
+
+
+/* --- Dark offer card overrides (forest + lighter green inner cards) --- */
+.offer-card-dark .offer-tabs{ background: rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.14); }
+.offer-card-dark .offer-tab{ color: rgba(255,255,255,.82); }
+.offer-card-dark .offer-tab:hover{ background: rgba(255,255,255,.08); }
+.offer-card-dark .offer-tab.is-active{ background: rgba(255,255,255,.16); color:#fff; }
+.offer-card-dark .offer-tab:focus{ outline:2px solid rgba(85,160,146,.55); outline-offset:2px; }
+
+/* Primary enquiry button */
+.ewd-focus-next-btn{
+ border-color: rgba(255,255,255,.18);
+ background: var(--accent);
+ box-shadow: 0 10px 26px rgba(0,0,0,.22);
+}
+.ewd-focus-next-btn:hover{ filter: brightness(0.98); }
+
+
+
+/* ===== EnWater Design: Forest lens + offer card polish (V5) ===== */
+:root{
+ --mint:#e7f2ed;
+ --mint2:#d7ebe3;
+ --mint3:#f2faf6;
+}
+
+/* "What you'll leave with" cards */
+.leave-card{ background: var(--forest) !important; color:#fff; }
+.leave-card .leave-label{ opacity:.88; }
+.leave-inner{
+ background: rgba(85,160,146,.18) !important;
+ border:1px solid rgba(255,255,255,.14);
+}
+.leave-inner p{ color: rgba(255,255,255,.88) !important; }
+
+/* Offer intro section on Integration page: forest main + mint cards */
+#integration-offer{
+ background: var(--forest2) !important;
+ color: rgba(255,255,255,.92);
+ border-color: rgba(255,255,255,.14) !important;
+}
+#integration-offer h2, #integration-offer h3{ color:#fff; }
+#integration-offer p{ color: rgba(255,255,255,.82); }
+#integration-offer .offer-subbox{
+ background: var(--mint3) !important;
+ border-color: rgba(27,31,30,.10) !important;
+ color: var(--ink) !important;
+}
+#integration-offer .offer-subbox h3, #integration-offer .offer-subbox p{ color: var(--ink) !important; }
+#integration-offer .tag-pills span{
+ background: rgba(85,160,146,.18) !important;
+ border-color: rgba(85,160,146,.38) !important;
+ color: rgba(255,255,255,.92) !important;
+}
+#integration-offer .ewd-focus-next-btn{
+ background: var(--accent) !important;
+ border-color: rgba(255,255,255,.30) !important;
+ box-shadow: 0 14px 30px rgba(0,0,0,.18);
+}
+
+
+/* Robust bullets (work even if Tailwind fails to load) */
+.plain-bullets{list-style:disc; padding-left:1.25rem; margin-top:.75rem;}
+.plain-bullets li{margin:.45rem 0; line-height:1.5;}
+</style><style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.sticky{position:sticky}.top-0{top:0px}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-7{margin-top:1.75rem}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-14{height:3.5rem}.h-2\.5{height:0.625rem}.h-4{height:1rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.max-w-6xl{max-width:72rem}.max-w-xl{max-width:36rem}.list-inside{list-style-position:inside}.list-disc{list-style-type:disc}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.items-stretch{align-items:stretch}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-sm{border-radius:0.125rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-l-4{border-left-width:4px}.border-emerald-500\/70{border-color:rgb(16 185 129 / 0.7)}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.bg-accent{--tw-bg-opacity:1;background-color:rgb(85 160 146 / var(--tw-bg-opacity, 1))}.bg-cream{--tw-bg-opacity:1;background-color:rgb(244 242 236 / var(--tw-bg-opacity, 1))}.bg-forest2{--tw-bg-opacity:1;background-color:rgb(31 55 49 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/55{background-color:rgb(255 255 255 / 0.55)}.bg-white\/70{background-color:rgb(255 255 255 / 0.7)}.p-6{padding:1.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.pl-4{padding-left:1rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[11px\]{font-size:11px}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-medium{font-weight:500}.font-semibold{font-weight:600}.leading-\[0\.95\]{line-height:0.95}.leading-relaxed{line-height:1.625}.tracking-wide{letter-spacing:0.025em}.text-emerald-900{--tw-text-opacity:1;color:rgb(6 78 59 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-gray-950{--tw-text-opacity:1;color:rgb(3 7 18 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/90{color:rgb(255 255 255 / 0.9)}.opacity-80{opacity:0.8}.hover\:bg-forest:hover{--tw-bg-opacity:1;background-color:rgb(36 63 56 / var(--tw-bg-opacity, 1))}.hover\:bg-white:hover{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/15:hover{background-color:rgb(255 255 255 / 0.15)}.hover\:bg-white\/70:hover{background-color:rgb(255 255 255 / 0.7)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:opacity-95:hover{opacity:0.95}@media (min-width: 768px){.md\:block{display:block}.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:py-14{padding-top:3.5rem;padding-bottom:3.5rem}.md\:text-6xl{font-size:3.75rem;line-height:1}}@media (min-width: 1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}}</style><style>/* --- Interactive view (no icons) --- */
+.focus-btn{transition:transform .12s ease, box-shadow .12s ease, background-color .12s ease;}
+.focus-btn[aria-selected="true"]{
+ background: rgba(85,160,146,.12);
+ border-color: rgba(85,160,146,.45);
+ box-shadow: 0 10px 24px rgba(27,31,30,.08);
+}
+.focus-btn:hover{transform: translateY(-1px);}
+.focus-panel{box-shadow: 0 12px 28px rgba(27,31,30,.06);}
+
+/* --- Patch V7: Forest UI + readable inner windows --- */
+:root{
+ --forest:#243f38;
+ --forest2:#1f3731;
+ --forest3:#2c5047;
+ --accent:#55a092;
+}
+
+/* Side hero box: clean split layout */
+.leave-card{ background:var(--forest) !important; color:rgba(255,255,255,.92) !important; }
+.leave-split{ display:grid; grid-template-columns: 1fr; border:1px solid rgba(255,255,255,.12); border-radius: 1rem; overflow:hidden; }
+@media(min-width: 768px){ .leave-split{ grid-template-columns: 1.15fr .85fr; } }
+.leave-col{ padding: 1.25rem 1.25rem; }
+.leave-col--outputs{ background: rgba(255,255,255,.03); }
+.leave-col--triggers{ background: var(--forest3); border-top:1px solid rgba(255,255,255,.10); }
+@media(min-width: 768px){ .leave-col--triggers{ border-top:0; border-left:1px solid rgba(255,255,255,.10); } }
+.leave-kicker{ font-weight:650; letter-spacing:.01em; }
+.leave-list{ margin-top:.75rem; padding-left: 1.1rem; list-style: disc; }
+.leave-list li{ margin: .4rem 0; color:rgba(255,255,255,.90); }
+.leave-text{ margin-top:.6rem; font-size:.95rem; line-height:1.5; color:rgba(255,255,255,.86); }
+
+/* Patch: Light interactive-lens scheme (match Technology & Implementation lens) */
+#techfit-focus, #integration-focus{
+ background: var(--cream) !important;
+ color: var(--ink);
+}
+
+/* Tiles */
+#techfit-focus .focus-btn, #integration-focus .focus-btn{
+ background: rgba(255,255,255,.70);
+ border: 1px solid rgba(27,31,30,.15);
+ box-shadow: none;
+}
+#techfit-focus .focus-btn:hover, #integration-focus .focus-btn:hover{
+ transform: translateY(-1px);
+ background: rgba(255,255,255,.88);
+}
+#techfit-focus .focus-btn[aria-selected="true"], #integration-focus .focus-btn[aria-selected="true"]{
+ background: rgba(85,160,146,.14);
+ border-color: rgba(85,160,146,.45);
+ box-shadow: 0 10px 24px rgba(27,31,30,.08);
+}
+
+/* Preview panel */
+#techfit-focus .focus-panel, #integration-focus .focus-panel{
+ background: rgba(255,255,255,.72);
+ border-color: rgba(27,31,30,.15) !important;
+ color: var(--ink);
+}
+
+/* Any 'next' buttons inside lens should stay readable on cream */
+#techfit-focus .ewd-focus-next-btn, #integration-focus .ewd-focus-next-btn{
+ background: rgba(27,31,30,.06);
+ border-color: rgba(27,31,30,.14);
+ color: var(--ink);
+}
+#techfit-focus .ewd-focus-next-btn:hover, #integration-focus .ewd-focus-next-btn:hover{
+ background: rgba(27,31,30,.10);
+ border-color: rgba(27,31,30,.18);
+}
+
+</style><style>
+ :root{
+ --cream:#f4f2ec;
+ --ink:#1b1f1e;
+ --muted:#5a6561;
+ --forest:#243f38;
+ --forest2:#1f3731;
+ --accent:#55a092;
+ --line:rgba(27,31,30,.14);
+ }
+ html{scroll-behavior:smooth}
+ body{background:var(--cream); color:var(--ink);}
+ .ewd-serif{font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;}
+ .ewd-sans{font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";}
+ .hairline{border-color: var(--line);}
+ .soft-shadow{box-shadow: 0 16px 40px rgba(0,0,0,.08);}
+ :focus-visible{ outline: 3px solid rgba(85,160,146,.45); outline-offset: 3px; }
+
+ .ewd-svc-btn{
+ width:100%;
+ text-align:left;
+ display:flex;
+ gap:.75rem;
+ align-items:flex-start;
+ padding: .85rem 1.25rem;
+ border-top: 1px solid rgba(255,255,255,.08);
+ transition: background-color .15s ease, transform .15s ease;
+ }
+ .ewd-svc-btn:hover{ background: rgba(255,255,255,.04); }
+ .ewd-svc-btn[aria-selected="true"]{
+ background: rgba(85,160,146,.14);
+ box-shadow: inset 3px 0 0 rgba(85,160,146,.9);
+ }
+ .ewd-svc-num{
+ font-size:.75rem;
+ line-height:1;
+ color: rgba(255,255,255,.65);
+ margin-top:.2rem;
+ min-width: 1.8rem;
+ }
+ .ewd-svc-title{ color: rgba(255,255,255,.95); font-weight:600; }
+ .ewd-svc-sub{ color: rgba(255,255,255,.70); font-size:.82rem; margin-top:.2rem; }
+ .ewd-chip{
+ display:inline-flex;
+ align-items:center;
+ gap:.35rem;
+ padding:.38rem .6rem;
+ border-radius: 9999px;
+ border: 1px solid rgba(255,255,255,.12);
+ background: rgba(255,255,255,.04);
+ color: rgba(255,255,255,.85);
+ font-size:.75rem;
+ line-height:1;
+ white-space:nowrap;
+ transition: background-color .15s ease, border-color .15s ease;
+ }
+ .ewd-chip:hover{ background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18); }
+ .ewd-chip .tag{
+ font-size:.68rem;
+ padding:.14rem .4rem;
+ border-radius:9999px;
+ border:1px solid rgba(255,255,255,.16);
+ color: rgba(255,255,255,.70);
+ background: rgba(0,0,0,.14);
+ }
+ .ewd-chip.req{ border-color: rgba(255,193,7,.28); }
+ .ewd-chip.req .tag{ border-color: rgba(255,193,7,.28); color: rgba(255,235,190,.85); }
+
+ /* Baseline lens hero (compact strip in forest2 tone) */
+ .ewd-focus-hero{
+ background: var(--forest2);
+ color:#fff;
+ border-radius:0;
+ box-shadow:0 18px 40px rgba(0,0,0,.25);
+ }
+ .ewd-focus-hero-inner{
+ max-width:100%;
+ margin:0;
+ padding:2.5rem 2.25rem 3rem;
+ }
+ @media (min-width:1024px){
+ .ewd-focus-hero-inner{ padding:2.9rem 2.75rem 3.25rem; }
+ }
+ .ewd-focus-grid{
+ display:grid;
+ grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
+ gap:2.5rem;
+ align-items:center;
+ }
+ @media (max-width:900px){
+ .ewd-focus-grid{
+ grid-template-columns:minmax(0,1fr);
+ gap:2rem;
+ }
+ }
+ .ewd-focus-kicker{
+ font-size:.72rem;
+ letter-spacing:.22em;
+ text-transform:uppercase;
+ color:rgba(255,255,255,.7);
+ }
+ .ewd-focus-title{
+ font-family: var(--ewd-serif, "Iowan Old Style", "Palatino", "Book Antiqua", Georgia, serif);
+ font-size:1.9rem;
+ line-height:1.2;
+ margin-top:.6rem;
+ margin-bottom:.75rem;
+ }
+ @media (min-width:1024px){
+ .ewd-focus-title{ font-size:2.1rem; }
+ }
+ .ewd-focus-body{
+ font-size:.97rem;
+ max-width:32rem;
+ color:rgba(255,255,255,.85);
+ line-height:1.7;
+ margin:0;
+ }
+ .ewd-focus-panel{
+ border-radius:26px;
+ padding:1.75rem 1.9rem 1.9rem;
+ background:
+ radial-gradient(160% 220% at 0% 0%, rgba(255,255,255,.06), transparent 40%),
+ rgba(0,0,0,.38);
+ box-shadow:0 18px 40px rgba(0,0,0,.55);
+ border:1px solid rgba(255,255,255,.18);
+ }
+ .ewd-focus-panel h3{
+ font-size:.72rem;
+ letter-spacing:.22em;
+ text-transform:uppercase;
+ margin:0 0 .8rem;
+ color:rgba(255,255,255,.7);
+ }
+ .ewd-focus-panel ul{
+ list-style:none;
+ margin:0 0 1.5rem;
+ padding:0;
+ font-size:.92rem;
+ color:rgba(255,255,255,.9);
+ }
+ .ewd-focus-panel li + li{
+ margin-top:.55rem;
+ }
+ .ewd-focus-panel li span{
+ font-weight:600;
+ }
+ .ewd-focus-next-btn{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ border-radius:999px;
+ padding:.6rem 1.8rem;
+ font-size:.86rem;
+ text-decoration:none;
+ border:1px solid rgba(255,255,255,.35);
+ background:rgba(0,0,0,.18);
+ color:#fff;
+ white-space:nowrap;
+ }
+ .ewd-focus-next-btn:hover{
+ background:rgba(255,255,255,.16);
+ border-color:rgba(255,255,255,.6);
+ }
+
+ .text-ink{color:var(--ink);}
+ .text-ink-soft{color:var(--ink);}
+ .bg-ink{background:var(--ink);}
+ .pattern-card{margin:0.75rem 0;}
+ @media (min-width:768px){
+ .pattern-card{margin:0.75rem;}
+ }
+
+
+/* Carousel style aligned to "Technology families" layout */
+.pattern-carousel{
+ display:flex;
+ gap:16px;
+ overflow-x:auto;
+ overflow-y:hidden;
+ padding-bottom:10px;
+ scroll-snap-type:x mandatory;
+ -webkit-overflow-scrolling:touch;
+ scrollbar-width:none; /* Firefox */
+}
+.pattern-carousel::-webkit-scrollbar{ display:none; }
+.pattern-carousel .pattern-item{
+ flex: 0 0 calc((100% - 32px)/3); /* 3 cards visible */
+ scroll-snap-align:start;
+ min-width: 280px;
+}
+@media (max-width: 1024px){
+ .pattern-carousel .pattern-item{
+ flex-basis: calc((100% - 16px)/2); /* 2 cards visible */
+ }
+}
+@media (max-width: 640px){
+ .pattern-carousel .pattern-item{
+ flex-basis: 100%; /* 1 card visible */
+ }
+}
+</style>
+<style>
+/* ===== Patch: Integration Offer visibility + match approved OFFER style ===== */
+#integration-offer{
+ background: var(--forest2) !important;
+ color: rgba(255,255,255,.92) !important;
+ border-color: rgba(255,255,255,.12) !important;
+}
+
+/* Top "Offer | ..." line (make readable on forest) */
+#integration-offer .tag-pills span{
+ color: rgba(255,255,255,.78) !important;
+}
+#integration-offer .tag-pills span:nth-child(2){
+ color: rgba(255,255,255,.45) !important;
+}
+
+/* Headline + intro copy */
+#integration-offer h2{
+ font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif !important;
+ letter-spacing: -0.01em;
+ color: #fff !important;
+}
+#integration-offer p{
+ color: rgba(255,255,255,.84) !important;
+}
+
+/* Chips */
+#integration-offer .ewd-chip{
+ background: rgba(0,0,0,.16) !important;
+ border-color: rgba(255,255,255,.20) !important;
+ color: rgba(255,255,255,.90) !important;
+}
+#integration-offer .ewd-chip.req{
+ border-color: rgba(206,195,114,.55) !important; /* olive-gold outline like approved cards */
+}
+#integration-offer .ewd-chip .tag{
+ background: rgba(0,0,0,.22) !important;
+ border-color: rgba(255,255,255,.18) !important;
+ color: rgba(255,255,255,.78) !important;
+}
+
+/* 3-column mini cards */
+#integration-offer .offer-mini{
+ background: rgba(255,255,255,.03) !important;
+ border-color: rgba(255,255,255,.14) !important;
+ box-shadow: none !important;
+}
+#integration-offer .offer-mini .text-slate-500{
+ color: rgba(255,255,255,.72) !important;
+}
+#integration-offer .offer-mini ul,
+#integration-offer .offer-mini li{
+ color: rgba(255,255,255,.88) !important;
+}
+#integration-offer .offer-mini ul{
+ margin-top: .6rem !important;
+}
+#integration-offer .offer-mini ul{ list-style:none !important; padding-left:0 !important; }
+#integration-offer .offer-mini li + li{ margin-top:.35rem !important; }
+
+/* Scope box: keep as light window but make sure text is readable */
+#integration-offer .offer-scope{
+ background: rgba(255,255,255,.92) !important;
+ border-color: rgba(255,255,255,.18) !important;
+}
+#integration-offer .offer-scope .text-slate-500{ color: rgba(27,31,30,.60) !important; }
+#integration-offer .offer-scope p{ color: rgba(27,31,30,.82) !important; }
+
+/* Enquiry button positioning + styling */
+#integration-offer .ewd-focus-next-btn{
+ background: var(--accent) !important;
+ border-color: rgba(255,255,255,.22) !important;
+ color:#fff !important;
+ padding: .9rem 2.3rem !important;
+ font-size: .95rem !important;
+}
+</style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.sticky{position:sticky}.top-0{top:0px}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-7{margin-top:1.75rem}.mt-\[7px\]{margin-top:7px}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:0.375rem}.h-14{height:3.5rem}.h-2\.5{height:0.625rem}.h-4{height:1rem}.h-full{height:100%}.min-h-\[96px\]{min-height:96px}.w-1\.5{width:0.375rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-6xl{max-width:72rem}.max-w-prose{max-width:65ch}.max-w-xl{max-width:36rem}.flex-none{flex:none}.list-inside{list-style-position:inside}.list-disc{list-style-type:disc}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.items-stretch{align-items:stretch}.justify-start{justify-content:flex-start}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.375rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-sm{border-radius:0.125rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.bg-accent{--tw-bg-opacity:1;background-color:rgb(85 160 146 / var(--tw-bg-opacity, 1))}.bg-accent\/80{background-color:rgb(85 160 146 / 0.8)}.bg-cream{--tw-bg-opacity:1;background-color:rgb(244 242 236 / var(--tw-bg-opacity, 1))}.bg-cream\/60{background-color:rgb(244 242 236 / 0.6)}.bg-forest2{--tw-bg-opacity:1;background-color:rgb(31 55 49 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/55{background-color:rgb(255 255 255 / 0.55)}.bg-white\/70{background-color:rgb(255 255 255 / 0.7)}.bg-white\/80{background-color:rgb(255 255 255 / 0.8)}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-7{padding:1.75rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-14{padding-top:3.5rem;padding-bottom:3.5rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.text-left{text-align:left}.text-2xl{font-size:1.5rem;line-height:2rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[11px\]{font-size:11px}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-\[0\.95\]{line-height:0.95}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.tracking-wide{letter-spacing:0.025em}.tracking-wider{letter-spacing:0.05em}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-gray-950{--tw-text-opacity:1;color:rgb(3 7 18 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/70{color:rgb(255 255 255 / 0.7)}.text-white\/80{color:rgb(255 255 255 / 0.8)}.text-white\/90{color:rgb(255 255 255 / 0.9)}.opacity-80{opacity:0.8}.hover\:bg-forest:hover{--tw-bg-opacity:1;background-color:rgb(36 63 56 / var(--tw-bg-opacity, 1))}.hover\:bg-white:hover{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/15:hover{background-color:rgb(255 255 255 / 0.15)}.hover\:bg-white\/70:hover{background-color:rgb(255 255 255 / 0.7)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:opacity-95:hover{opacity:0.95}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}@media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 768px){.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-end{align-items:flex-end}.md\:justify-between{justify-content:space-between}.md\:p-7{padding:1.75rem}.md\:p-8{padding:2rem}.md\:py-12{padding-top:3rem;padding-bottom:3rem}.md\:py-14{padding-top:3.5rem;padding-bottom:3.5rem}.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}.md\:text-6xl{font-size:3.75rem;line-height:1}}@media (min-width: 1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:grid-cols-\[minmax\(0\2c 1\.1fr\)_minmax\(0\2c 0\.9fr\)\]{grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr)}.lg\:justify-end{justify-content:flex-end}}</style>
+<style>
+ /* ===== EnWater Design: Typography normalisation patch (V18) ===== */
+ /* Ensure consistent readable base without huge jumps */
+ .chip{font-size: 12px;}
+ @media(min-width:768px){ .chip{font-size: 12px;} }
+ /* Reduce overly-tight hero tracking and keep line-height comfortable */
+ .section-hero p{font-size: 1.05rem;}
+ @media(min-width:768px){ .section-hero p{font-size: 1.08rem;} }
+</style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.sticky{position:sticky}.top-0{top:0px}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-7{margin-top:1.75rem}.mt-\[7px\]{margin-top:7px}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:0.375rem}.h-14{height:3.5rem}.h-2\.5{height:0.625rem}.h-4{height:1rem}.h-full{height:100%}.min-h-\[96px\]{min-height:96px}.w-1\.5{width:0.375rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-6xl{max-width:72rem}.max-w-prose{max-width:65ch}.max-w-xl{max-width:36rem}.flex-none{flex:none}.list-inside{list-style-position:inside}.list-disc{list-style-type:disc}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.items-stretch{align-items:stretch}.justify-start{justify-content:flex-start}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.375rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-sm{border-radius:0.125rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.bg-accent{--tw-bg-opacity:1;background-color:rgb(85 160 146 / var(--tw-bg-opacity, 1))}.bg-accent\/80{background-color:rgb(85 160 146 / 0.8)}.bg-cream{--tw-bg-opacity:1;background-color:rgb(244 242 236 / var(--tw-bg-opacity, 1))}.bg-cream\/60{background-color:rgb(244 242 236 / 0.6)}.bg-forest2{--tw-bg-opacity:1;background-color:rgb(31 55 49 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/55{background-color:rgb(255 255 255 / 0.55)}.bg-white\/70{background-color:rgb(255 255 255 / 0.7)}.bg-white\/80{background-color:rgb(255 255 255 / 0.8)}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-7{padding:1.75rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-14{padding-top:3.5rem;padding-bottom:3.5rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.text-left{text-align:left}.text-2xl{font-size:1.5rem;line-height:2rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-\[11px\]{font-size:11px}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-\[1\.05\]{line-height:1.05}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.tracking-wide{letter-spacing:0.025em}.tracking-wider{letter-spacing:0.05em}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-gray-950{--tw-text-opacity:1;color:rgb(3 7 18 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/70{color:rgb(255 255 255 / 0.7)}.text-white\/80{color:rgb(255 255 255 / 0.8)}.text-white\/90{color:rgb(255 255 255 / 0.9)}.opacity-80{opacity:0.8}.shadow-\[0_24px_60px_rgba\(0\2c 0\2c 0\2c 0\.25\)\]{--tw-shadow:0 24px 60px rgba(0,0,0,0.25);--tw-shadow-colored:0 24px 60px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.hover\:bg-forest:hover{--tw-bg-opacity:1;background-color:rgb(36 63 56 / var(--tw-bg-opacity, 1))}.hover\:bg-white:hover{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/15:hover{background-color:rgb(255 255 255 / 0.15)}.hover\:bg-white\/70:hover{background-color:rgb(255 255 255 / 0.7)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:opacity-95:hover{opacity:0.95}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}@media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 768px){.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-end{align-items:flex-end}.md\:justify-between{justify-content:space-between}.md\:p-7{padding:1.75rem}.md\:p-8{padding:2rem}.md\:py-12{padding-top:3rem;padding-bottom:3rem}.md\:py-14{padding-top:3.5rem;padding-bottom:3.5rem}.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}.md\:text-5xl{font-size:3rem;line-height:1}}@media (min-width: 1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:grid-cols-\[minmax\(0\2c 1\.1fr\)_minmax\(0\2c 0\.9fr\)\]{grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr)}.lg\:justify-end{justify-content:flex-end}}</style>
+
+
+
+<style id="baseline-tech-style-only-patch">
+/* Style-only patch aligned to baseline + technology pages.
+   No HTML/body/content/link changes. Typography intentionally preserved. */
+
+/* Preserve original hero text sizing from utility classes */
+.section-hero p.mt-5,
+.section-hero p.mt-4{font-size:1rem !important;}
+.section-hero p.mt-3.text-sm{font-size:.875rem !important;}
+
+/* Hero side card polish only */
+.section-hero .leave-card{
+  background: linear-gradient(135deg, rgba(31,55,49,1) 0%, rgba(36,63,56,1) 100%) !important;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 22px 48px rgba(0,0,0,.16);
+}
+.section-hero .leave-split{
+  border-color: rgba(255,255,255,.12) !important;
+  border-radius: 1.25rem !important;
+  overflow: hidden;
+}
+.section-hero .leave-col--outputs{background: rgba(255,255,255,.03) !important;}
+.section-hero .leave-col--triggers{background: rgba(85,160,146,.14) !important;}
+
+/* Offer section: keep same type scale, just improve finish */
+#integration-offer > .max-w-6xl > div{
+  background: linear-gradient(135deg, rgba(31,55,49,1) 0%, rgba(36,63,56,1) 100%) !important;
+  border-color: rgba(255,255,255,.10) !important;
+  box-shadow: 0 24px 60px rgba(0,0,0,.24);
+}
+#integration-offer [class*="bg-white/5"]{
+  background: rgba(255,255,255,.055) !important;
+  border-color: rgba(255,255,255,.12) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.02);
+}
+#integration-offer .ewd-chip{
+  background: rgba(0,0,0,.14) !important;
+  border-color: rgba(255,255,255,.18) !important;
+}
+#integration-offer .ewd-chip .tag{
+  background: rgba(0,0,0,.2) !important;
+  border-color: rgba(255,255,255,.18) !important;
+}
+#integration-offer a[href="#integration-focus"]{
+  background: rgba(255,255,255,.03) !important;
+  border-color: rgba(255,255,255,.16) !important;
+}
+#integration-offer a[href="#integration-focus"]:hover{background: rgba(255,255,255,.08) !important;}
+
+/* Interactive section: match baseline/technology light lens treatment without changing typography */
+#integration-focus .focus-btn{
+  background: rgba(255,255,255,.72) !important;
+  border-color: rgba(27,31,30,.12) !important;
+  border-radius: 1.15rem !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,.55), 0 8px 20px rgba(27,31,30,.03);
+}
+#integration-focus .focus-btn:hover{
+  background: rgba(255,255,255,.9) !important;
+  transform: translateY(-1px);
+}
+#integration-focus .focus-btn[aria-selected="true"]{
+  background: rgba(85,160,146,.11) !important;
+  border-color: rgba(85,160,146,.36) !important;
+  box-shadow: 0 10px 24px rgba(27,31,30,.07);
+}
+#integration-focus .focus-panel{
+  background: rgba(255,255,255,.76) !important;
+  border-color: rgba(27,31,30,.11) !important;
+  border-radius: 1.5rem !important;
+  box-shadow: 0 18px 36px rgba(27,31,30,.07);
+}
+#integration-focus .focus-panel .rounded-2xl{
+  background: rgba(255,255,255,.8) !important;
+  border-color: rgba(27,31,30,.10) !important;
+}
+#integration-focus .focus-panel .bg-cream\/60{
+  background: rgba(244,242,236,.85) !important;
+}
+#integration-focus .plain-bullets{padding-left:1.1rem;}
+#integration-focus .plain-bullets li::marker{color: rgba(85,160,146,.92);}
+
+/* General content card polish for the lower sections */
+main section article[class*="bg-white/55"],
+main section article[class*="bg-white/60"]{
+  background: rgba(255,255,255,.72) !important;
+  border-color: rgba(27,31,30,.11) !important;
+  border-radius: 1.05rem !important;
+  box-shadow: 0 12px 28px rgba(27,31,30,.05);
+}
+main section article[class*="bg-white/55"]:hover,
+main section article[class*="bg-white/60"]:hover{
+  box-shadow: 0 16px 34px rgba(27,31,30,.07);
+}
+
+/* Pattern carousel in the same family as technology examples */
+#integration-patterns .pattern-item{
+  border-radius: 1.2rem !important;
+  border-color: rgba(255,255,255,.12) !important;
+  background: linear-gradient(135deg, rgba(31,55,49,1) 0%, rgba(44,80,71,1) 100%) !important;
+  box-shadow: 0 18px 40px rgba(0,0,0,.14);
+}
+#integration-patterns .pattern-carousel{padding-bottom: .9rem;}
+
+/* Streams chips */
+main section .inline-flex.items-center.rounded-full.border.border-ink\/12.bg-white\/80{
+  background: rgba(255,255,255,.82) !important;
+  border-color: rgba(27,31,30,.10) !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,.55);
+}
+
+/* Final next-step section: keep plain layout, only refine buttons */
+#integration-next-steps a.bg-white,
+#integration-next-steps a.bg-forest2{
+  box-shadow: 0 10px 24px rgba(27,31,30,.06);
+}
+#integration-next-steps a.bg-white{border-color: rgba(27,31,30,.12) !important;}
+</style>
+<style id="ewd-style-polish-v2">
+/* Additional visual polish only: no typography or HTML changes */
+.section-hero .leave-card{
+  background:
+    radial-gradient(130% 170% at 0% 0%, rgba(85,160,146,.20), transparent 42%),
+    linear-gradient(135deg, rgba(31,55,49,.98), rgba(36,63,56,.98)) !important;
+  box-shadow: 0 24px 54px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+}
+.section-hero .leave-inner{
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07);
+}
+.section-hero a{
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background-color .18s ease;
+}
+.section-hero a:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(27,31,30,.08);
+}
+
+#integration-offer .bg-forest2{
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(1100px 420px at 0% 0%, rgba(85,160,146,.14), transparent 55%),
+    radial-gradient(800px 280px at 100% 0%, rgba(255,255,255,.06), transparent 50%),
+    linear-gradient(135deg, rgba(31,55,49,.98), rgba(36,63,56,.98)) !important;
+  box-shadow: 0 28px 60px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.05);
+}
+#integration-offer .bg-forest2::after{
+  content:"";
+  position:absolute;
+  right:-8%;
+  bottom:-20%;
+  width:240px;
+  height:240px;
+  background:radial-gradient(circle, rgba(85,160,146,.16), transparent 68%);
+  pointer-events:none;
+}
+#integration-offer .rounded-2xl.bg-white\/5{
+  backdrop-filter: blur(4px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 16px 36px rgba(0,0,0,.12);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+#integration-offer .rounded-2xl.bg-white\/5:hover{
+  transform: translateY(-2px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 22px 44px rgba(0,0,0,.16);
+  border-color: rgba(255,255,255,.18) !important;
+}
+#integration-offer .ewd-chip.req{
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+}
+#integration-offer a{
+  transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease;
+}
+#integration-offer a:hover{
+  transform: translateY(-1px);
+}
+
+#integration-focus .focus-btn{
+  border-radius: 1.2rem;
+  box-shadow: 0 10px 22px rgba(27,31,30,.04), inset 0 1px 0 rgba(255,255,255,.5);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background-color .18s ease;
+}
+#integration-focus .focus-btn:hover{
+  box-shadow: 0 16px 34px rgba(27,31,30,.07), inset 0 1px 0 rgba(255,255,255,.6);
+}
+#integration-focus .focus-btn[aria-selected="true"]{
+  box-shadow: inset 3px 0 0 rgba(85,160,146,.9), 0 18px 38px rgba(27,31,30,.10), inset 0 1px 0 rgba(255,255,255,.65);
+}
+#integration-focus .focus-panel{
+  border-radius: 1.5rem;
+  background: linear-gradient(180deg, rgba(255,255,255,.84), rgba(255,255,255,.72)) !important;
+  box-shadow: 0 20px 42px rgba(27,31,30,.08), inset 0 1px 0 rgba(255,255,255,.7);
+}
+#integration-focus .focus-panel > .mt-6.grid > div,
+#integration-focus .focus-panel > .mt-6.rounded-2xl{
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
+}
+#integration-focus .focus-panel > .mt-6.grid > div{
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+#integration-focus .focus-panel > .mt-6.grid > div:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(27,31,30,.06), inset 0 1px 0 rgba(255,255,255,.65);
+  border-color: rgba(85,160,146,.24);
+}
+#integration-focus .focus-panel > .mt-6.rounded-2xl{
+  background: linear-gradient(180deg, rgba(244,242,236,.72), rgba(244,242,236,.58)) !important;
+  border-color: rgba(85,160,146,.16) !important;
+}
+
+#integration-patterns .pattern-carousel{
+  gap: 18px;
+  padding-bottom: 14px;
+}
+#integration-patterns .pattern-item{
+  border-radius: 1.35rem !important;
+  background:
+    radial-gradient(140% 180% at 0% 0%, rgba(85,160,146,.18), transparent 42%),
+    linear-gradient(135deg, rgba(27,31,30,.98), rgba(36,63,56,.98)) !important;
+  box-shadow: 0 20px 42px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.05);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+#integration-patterns .pattern-item:hover{
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,.18) !important;
+  box-shadow: 0 26px 52px rgba(0,0,0,.20), inset 0 1px 0 rgba(255,255,255,.07);
+}
+#integration-patterns .pattern-item::after{
+  content:"";
+  display:block;
+  margin-top:1rem;
+  width:64px;
+  height:2px;
+  background: linear-gradient(90deg, rgba(85,160,146,.9), rgba(85,160,146,0));
+}
+#integration-patterns .lg\:col-span-5::after{
+  content:"";
+  display:block;
+  width:72px;
+  height:2px;
+  margin-top:1.25rem;
+  background: linear-gradient(90deg, rgba(85,160,146,.95), rgba(85,160,146,0));
+  opacity:.85;
+}
+
+#integration-next-steps .grid{
+  align-items: center;
+}
+#integration-next-steps a{
+  border-radius: 999px;
+  box-shadow: 0 10px 22px rgba(27,31,30,.06), inset 0 1px 0 rgba(255,255,255,.45);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background-color .18s ease;
+}
+#integration-next-steps a:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 16px 32px rgba(27,31,30,.10), inset 0 1px 0 rgba(255,255,255,.5);
+}
+</style>
+<style>
+/* ===== Lower sections polish patch: keep typography, improve finish only ===== */
+/* Add section-level depth without changing heading sizes */
+main > section:nth-of-type(4),
+main > section:nth-of-type(6),
+main > section:nth-of-type(7),
+main > section:nth-of-type(8),
+main > section:nth-of-type(9){
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,0) 120px),
+    var(--cream) !important;
+}
+
+/* Small kickers added visually only */
+main > section:nth-of-type(4) h2::before,
+main > section:nth-of-type(5) h2::before,
+main > section:nth-of-type(6) h2::before,
+main > section:nth-of-type(7) h2::before,
+main > section:nth-of-type(8) h2::before,
+main > section:nth-of-type(9) h2::before{
+  display:block;
+  margin-bottom:.7rem;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color: rgba(36,63,56,.82);
+}
+main > section:nth-of-type(4) h2::before{ content:"Integration logic"; }
+main > section:nth-of-type(5) h2::before{ content:"Delivery patterns"; }
+main > section:nth-of-type(6) h2::before{ content:"Controls and monitoring"; }
+main > section:nth-of-type(7) h2::before{ content:"Site streams"; }
+main > section:nth-of-type(8) h2::before{ content:"Project-specific checks"; }
+main > section:nth-of-type(9) h2::before{ content:"Next step"; }
+
+/* Intro columns get a subtle vertical accent */
+main > section:nth-of-type(4) .lg\:col-span-5,
+main > section:nth-of-type(6) .lg\:col-span-5,
+main > section:nth-of-type(8) .lg\:col-span-5{
+  position:relative;
+  padding-left:1.25rem;
+}
+main > section:nth-of-type(4) .lg\:col-span-5::before,
+main > section:nth-of-type(6) .lg\:col-span-5::before,
+main > section:nth-of-type(8) .lg\:col-span-5::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:.5rem;
+  bottom:.6rem;
+  width:2px;
+  border-radius:999px;
+  background: linear-gradient(180deg, rgba(85,160,146,.85), rgba(85,160,146,.18));
+}
+
+/* Lower cards were left too flat: bring them up to the same finish */
+main > section:nth-of-type(4) article,
+main > section:nth-of-type(6) article,
+main > section:nth-of-type(8) article{
+  position:relative;
+  overflow:hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,.93), rgba(255,255,255,.76)) !important;
+  border:1px solid rgba(27,31,30,.08) !important;
+  border-radius:1.4rem !important;
+  box-shadow: 0 16px 34px rgba(27,31,30,.05), inset 0 1px 0 rgba(255,255,255,.72) !important;
+}
+main > section:nth-of-type(4) article::before,
+main > section:nth-of-type(6) article::before,
+main > section:nth-of-type(8) article::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height:3px;
+  background: linear-gradient(90deg, rgba(85,160,146,.62), rgba(85,160,146,.12));
+}
+main > section:nth-of-type(4) article:hover,
+main > section:nth-of-type(6) article:hover,
+main > section:nth-of-type(8) article:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(27,31,30,.07), inset 0 1px 0 rgba(255,255,255,.74) !important;
+}
+
+/* Bullet lists: cleaner spacing without changing type scale */
+main > section:nth-of-type(4) ul,
+main > section:nth-of-type(6) ul{
+  list-style-position: outside !important;
+  padding-left: 1.2rem !important;
+}
+main > section:nth-of-type(4) ul li,
+main > section:nth-of-type(6) ul li{
+  padding-left:.15rem;
+}
+
+/* Streams section needs a more intentional treatment */
+main > section:nth-of-type(7) .max-w-6xl{
+  border:1px solid rgba(27,31,30,.08);
+  border-radius:1.75rem;
+  background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.22));
+  box-shadow: 0 14px 30px rgba(27,31,30,.035), inset 0 1px 0 rgba(255,255,255,.65);
+}
+main > section:nth-of-type(7) .inline-flex.items-center.rounded-full{
+  border-color: rgba(27,31,30,.10) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.74)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.78), 0 3px 8px rgba(27,31,30,.03);
+}
+main > section:nth-of-type(7) .inline-flex.items-center.rounded-full:hover{
+  background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.82)) !important;
+}
+
+/* Next-step section: improve CTA finish but keep layout plain */
+#integration-next-steps .max-w-6xl{
+  border-top:1px solid rgba(27,31,30,.08);
+}
+#integration-next-steps a{
+  box-shadow: 0 8px 18px rgba(27,31,30,.04);
+}
+#integration-next-steps a:last-child{
+  box-shadow: 0 14px 26px rgba(27,31,30,.14);
+}
+</style>
+
+<style id="enwater-logo-refinement-v1">
+.brand-logo,.nav-logo,.nav-brand-logo{height:38px!important;width:auto!important;max-width:66px!important;object-fit:contain!important;background:transparent!important;border-radius:0!important;padding:0!important;box-shadow:none!important;}
+.brand span,.nav-brand span{white-space:nowrap;}
+.footer-logo{height:34px;width:auto;max-width:60px;object-fit:contain;background:transparent;border-radius:0;padding:0;box-shadow:none;display:block;}
+.footer-brand,.foot-brand{display:flex;align-items:center;gap:10px;}
+</style>
+
+
+
+
+<script id="design-sourcing-active-chip-visible-v42">
+(function(){
+  function showActiveChip(){
+    var nav = document.querySelector('.design-sourcing-section-nav .inner');
+    var active = nav && nav.querySelector('a.is-active');
+    if(!nav || !active) return;
+    var navRect = nav.getBoundingClientRect();
+    var activeRect = active.getBoundingClientRect();
+    if(activeRect.right > navRect.right || activeRect.left < navRect.left){
+      active.scrollIntoView({block:'nearest', inline:'center'});
+    }
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', showActiveChip);
+  else showActiveChip();
+})();
+</script>
+<link href="../exported-ui-styles.css" rel="stylesheet"/><link rel="icon" type="image/png" href="../assets/images/enwater-design-logo-nav.png" />
+</head>
+<body class="ewd-sans"><header class="site-topnav">
+<div class="wrap">
+<a aria-label="EnWater Design home" class="brand" href="../home.html">
+<img alt="EnWater Design logo" class="nav-logo" src="../assets/images/enwater-design-logo.png"/>
+<span>EnWater Design</span>
+</a>
+<nav class="desktop-nav">
+<ul>
+<li><a class="rootlink" href="../home.html">Home</a></li>
+<li>
+            <a class="rootlink " href="../About/about.html">About</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a class="" href="../About/about.html">About Us</a>
+              <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+            </div>
+          </li>
+<li>
+<a class="rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink active" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Projects/index.html">Projects</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</li>
+<li><a class="rootlink nav-login" href="../login.html">Login</a></li>
+<li><a class="rootlink nav-cta" href="../get-in-touch.html">Get in touch</a></li>
+</ul>
+</nav>
+<button aria-expanded="false" aria-label="Toggle menu" class="mobile-nav-toggle" type="button">
+<span class="hamburger-line line-1"></span>
+<span class="hamburger-line line-2"></span>
+<span class="hamburger-line line-3"></span>
+</button>
+</div>
+<div class="mobile-nav-panel">
+<div class="mobile-nav-content">
+<div class="mobile-nav-item">
+<a class="mobile-rootlink" href="../home.html">Home</a>
+</div>
+<div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink " href="../About/about.html">About</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a class="" href="../About/about.html">About Us</a>
+            <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+          </div>
+        </div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage Overview</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink active" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Projects/index.html">Projects</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<a class="mobile-login-btn" href="../login.html">Login</a>
+</div>
+<div class="mobile-nav-item no-border">
+<a class="mobile-cta-btn" href="../get-in-touch.html">Get in touch</a>
+</div>
+</div>
+</div>
+</header><nav aria-label="Design &amp; Sourcing section navigation" class="design-sourcing-section-nav"><div class="inner"><span class="section-name">Design &amp; Sourcing</span><a class="" href="index.html">Design &amp; Sourcing Pathways</a><a class="" href="specialist-support.html">Specialist Support</a><a class="" href="baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a><a class="" href="requirements-reuse-savings.html">Requirements, reuse &amp; savings</a><a class="" href="technology-equipment-fit.html">Technology &amp; equipment fit</a><a class="is-active" href="system-integration-automation-de-risking.html">System integration</a><a class="" href="sourcing-advisory.html">Sourcing advisory</a><a class="" href="implementation-applied-support.html">Implementation</a></div></nav>
+<main><section class="bg-cream border-b hairline section-hero">
+<div class="max-w-6xl mx-auto px-6 py-12 md:py-14">
+<div class="grid lg:grid-cols-12 gap-10 items-stretch">
+<div class="lg:col-span-7">
+<div class="text-sm tracking-wide text-ink/60">Design &amp; Sourcing › System Integration</div>
+<h1 class="ewd-serif mt-3 text-4xl md:text-5xl leading-[1.05] text-ink">System integration, automation &amp; de-risking</h1>
+<p class="mt-3 text-sm font-semibold tracking-wide text-ink/70">Consulting &amp; Design · Baseline → Requirements → Fit → Procurement → Delivery support</p>
+<p class="mt-5 max-w-xl text-ink/80 leading-relaxed">Once a technology direction is set, delivery succeeds or fails in the details of layout, connections, controls and commissioning. We turn design intent into an integration plan suppliers can build and operators can live with.</p>
+<p class="mt-4 max-w-xl text-ink/80 leading-relaxed">Focus areas include constructability under shutdown periods, clear package boundaries, I/O and control philosophy, and the site checks that protect handover and long-term performance.</p>
+<div class="mt-7 flex flex-wrap gap-2">
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-white/70 px-3 py-1 text-[11px] text-ink/80">Connections</span>
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-white/70 px-3 py-1 text-[11px] text-ink/80">Phasing &amp; constructability</span>
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-white/70 px-3 py-1 text-[11px] text-ink/80">Automation &amp; controls logic</span>
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-white/70 px-3 py-1 text-[11px] text-ink/80">Commissioning &amp; site checks</span>
+</div>
+<div class="mt-7 flex flex-wrap gap-3">
+<a class="inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-6 py-3 text-sm font-medium shadow-soft hover:opacity-95" href="#integration-focus">Jump to the interactive section <span aria-hidden="true">→</span></a>
+<a class="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white/70 text-ink px-6 py-3 text-sm font-medium hover:bg-white" href="technology-equipment-fit.html"> Back: Technology &amp; equipment fit </a>
+</div>
+</div>
+<div class="lg:col-span-5">
+<div class="leave-card rounded-2xl shadow-soft h-full flex flex-col p-7 md:p-8"><div class="leave-split"><div class="leave-col leave-col--outputs"><div class="leave-kicker">Key outputs</div><ul class="leave-list"><li>Connection map covering hydraulic, electrical, controls and civil scope</li><li>Control philosophy &amp; I/O list foundations (what talks to what, and why)</li><li>Shutdown / phasing plan aligned to operations constraints</li><li>Commissioning and site checks checklist with test periods</li></ul></div><div class="leave-col leave-col--triggers"><div class="leave-kicker">Typical triggers</div><ul class="leave-list"><li>Retrofits</li><li>Packaged skids</li><li>Constrained access</li><li>Tight shutdown periods</li><li>High risk around performance checks at handover</li></ul></div></div></div>
+</div>
+</div>
+</div>
+</section><section class="border-b bg-cream hairline" id="integration-offer">
+<div class="max-w-6xl mx-auto px-6 py-10"><div class="bg-forest2 text-white rounded-3xl border border-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.25)] px-8 py-10">
+<div class="text-xs tracking-wide uppercase opacity-80">OFFER</div>
+<h2 class="ewd-serif mt-2 text-2xl md:text-3xl font-semibold leading-tight">Integration, controls intent &amp; de-risking</h2>
+<p class="mt-4 text-lg leading-relaxed opacity-90 max-w-3xl">We define process-critical connections, controls intent, and commissioning checks and planning so systems run steadily on site, and site checks confirm what matters rather than only start-up.</p>
+<div class="mt-6 flex flex-wrap gap-3">
+<span class="ewd-chip req"><span class="tag">SET</span> key connections</span>
+<span class="ewd-chip req"><span class="tag">SET</span> controls intent</span>
+<span class="ewd-chip req"><span class="tag">CHECK</span> commissioning checks + planning</span>
+<span class="ewd-chip req"><span class="tag">REDUCE RISK</span> handover gaps</span>
+</div>
+<div class="mt-7 grid md:grid-cols-3 gap-3">
+<div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+<div class="text-xs tracking-wide opacity-80">Where projects fail</div>
+<p class="mt-2 text-sm leading-relaxed opacity-95">Process works on paper but fails at key connections. Controls logic is missing, operators cannot stabilise the plant, and commissioning confirms start-up rather than performance.</p>
+</div>
+<div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+<div class="text-xs tracking-wide opacity-80">What we set</div>
+<ul class="mt-2 text-sm leading-relaxed opacity-95 list-disc pl-5 space-y-1"><li>Process connections that drive stability and compliance.</li><li>Controls intent, including what is measured, controlled, and alarmed.</li><li>Commissioning tests aligned to the main risk modes.</li></ul>
+</div>
+<div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+<div class="text-xs tracking-wide opacity-80">How this changes delivery</div>
+<p class="mt-2 text-sm leading-relaxed opacity-95">Fewer surprises appear at commissioning and performance review. Operator burden and control gaps are addressed earlier, and site review becomes more practical.</p>
+</div>
+</div>
+<div class="mt-5 rounded-2xl bg-white/5 border border-white/10 p-4">
+<div class="text-xs tracking-wide opacity-80">Scope boundary</div>
+<p class="mt-2 text-sm leading-relaxed opacity-95">We define the process-side integration basis for delivery, including critical connections, controls intent, package boundaries, and the checks that protect operability, commissioning, and handover.</p>
+</div>
+<div class="mt-6 flex flex-wrap items-center gap-3">
+<a class="inline-flex items-center gap-2 rounded-full bg-accent text-white px-6 py-3 text-sm font-medium hover:opacity-95" href="../get-in-touch.html">Open an enquiry</a>
+<a class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/0 text-white px-6 py-3 text-sm font-medium hover:bg-white/10" href="#integration-focus">See the interactive view</a>
+</div>
+</div></div>
+</section><section class="border-b bg-cream hairline" id="integration-focus">
+<div class="max-w-6xl mx-auto px-6 py-10 md:py-12">
+<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+<div>
+<div class="text-sm tracking-wide text-ink/60">Interactive section</div>
+<h2 class="mt-2 text-2xl md:text-3xl font-semibold text-ink">Choose a risk checkpoint, see how integration scope changes</h2>
+<p class="mt-3 max-w-2xl text-ink/80 leading-relaxed"> Integration is not wiring after selection. This section shows which constraints dominate, including connections, controls intent, commissioning checks, operator load and shutdown periods, and what must be set so delivery stays buildable and clear. </p>
+</div>
+<div class="text-xs text-ink/60">Click a card to preview how the work changes.</div>
+</div>
+<div class="mt-6 grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+<button aria-selected="true" class="focus-btn text-left rounded-2xl border border-ink/15 bg-white/70 p-5 hover:bg-white focus:outline-none min-h-[96px]" data-focus="interfaces" type="button">
+<div class="font-semibold text-ink">Connections</div>
+<div class="mt-1 text-sm text-ink/70">Hydraulic, electrical, controls and civil coordination points.</div>
+</button>
+<button aria-selected="false" class="focus-btn text-left rounded-2xl border border-ink/15 bg-white/70 p-5 hover:bg-white focus:outline-none min-h-[96px]" data-focus="controls" type="button">
+<div class="font-semibold text-ink">Controls intent</div>
+<div class="mt-1 text-sm text-ink/70">What is measured, controlled, alarmed, and why.</div>
+</button>
+<button aria-selected="false" class="focus-btn text-left rounded-2xl border border-ink/15 bg-white/70 p-5 hover:bg-white focus:outline-none min-h-[96px]" data-focus="commissioning" type="button">
+<div class="font-semibold text-ink">Commissioning checks</div>
+<div class="mt-1 text-sm text-ink/70">Commissioning scope, performance ranges, and the level of checking needed.</div>
+</button>
+<button aria-selected="false" class="focus-btn text-left rounded-2xl border border-ink/15 bg-white/70 p-5 hover:bg-white focus:outline-none min-h-[96px]" data-focus="ops" type="button">
+<div class="font-semibold text-ink">Operator readiness</div>
+<div class="mt-1 text-sm text-ink/70">Automation burden, maintainability and handover readiness.</div>
+</button>
+<button aria-selected="false" class="focus-btn text-left rounded-2xl border border-ink/15 bg-white/70 p-5 hover:bg-white focus:outline-none min-h-[96px]" data-focus="phasing" type="button">
+<div class="font-semibold text-ink">Shutdown / phasing</div>
+<div class="mt-1 text-sm text-ink/70">Connection periods, bypass strategy and staged delivery.</div>
+</button>
+</div>
+<div class="mt-6">
+<div class="focus-panel p-6 md:p-7 bg-white/80 border border-ink/10 rounded-2xl" data-focus="interfaces">
+<div>
+<div class="text-sm tracking-wide text-ink/60">Preview</div>
+<div class="mt-1 font-semibold text-ink text-2xl leading-snug">Connections-first integration</div>
+<div class="mt-3 flex flex-wrap gap-2">
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Hydraulics</span>
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Controls coordination</span>
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Constructability</span>
+</div>
+</div>
+<div class="mt-6 grid sm:grid-cols-2 gap-6">
+<div class="rounded-2xl border border-ink/10 bg-white/80 p-5">
+<div class="text-sm tracking-wide text-ink/60">What we focus on</div>
+<ul class="plain-bullets">
+<li>Map connection points, isolation needs, and bypass requirements.</li>
+<li>Define connection ownership between vendor scope and site scope.</li>
+<li>Confirm access, lifting, maintenance clearances and connection sequencing.</li>
+</ul>
+</div>
+<div class="rounded-2xl border border-ink/10 bg-white/80 p-5">
+<div class="text-sm tracking-wide text-ink/60">Check / control emphasis</div>
+<ul class="plain-bullets">
+<li>Connection check points for commissioning and construction readiness.</li>
+<li>Tag conventions, connection drawings and commissioning dependencies.</li>
+<li>Risk controls for temporary bypasses and staged cutovers.</li>
+</ul>
+</div>
+</div>
+<div class="mt-6 rounded-2xl border border-ink/10 bg-cream/60 p-5">
+<div class="text-sm tracking-wide text-ink/60">Typical outputs</div>
+<p class="mt-1 text-sm text-ink/80 leading-relaxed">Connection map + integration risk note so vendors design to the same boundaries.</p>
+</div>
+</div>
+<div class="focus-panel p-6 md:p-7 bg-white/80 border border-ink/10 rounded-2xl" data-focus="controls" hidden="">
+<div>
+<div class="text-sm tracking-wide text-ink/60">Preview</div>
+<div class="mt-1 font-semibold text-ink text-2xl leading-snug">Controls-intent definition</div>
+<div class="mt-3 flex flex-wrap gap-2">
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Measurements</span>
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Alarms</span>
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Remote access</span>
+</div>
+</div>
+<div class="mt-6 grid sm:grid-cols-2 gap-6">
+<div class="rounded-2xl border border-ink/10 bg-white/80 p-5">
+<div class="text-sm tracking-wide text-ink/60">What we focus on</div>
+<ul class="mt-3 space-y-2 text-sm text-ink/80">
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Define control philosophy (what is controlled vs monitored).</span></li>
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Set I/O foundations, alarm priorities and operator workflows.</span></li>
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Clarify consumables, maintenance tasks and automation burden.</span></li>
+</ul>
+</div>
+<div class="rounded-2xl border border-ink/10 bg-white/80 p-5">
+<div class="text-sm tracking-wide text-ink/60">Check / control emphasis</div>
+<ul class="mt-3 space-y-2 text-sm text-ink/80">
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Control descriptions + sequences that vendors must implement.</span></li>
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Alarm testing and response checks aligned to risk modes.</span></li>
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Monitoring points for performance verification and auditability.</span></li>
+</ul>
+</div>
+</div>
+<div class="mt-6 rounded-2xl border border-ink/10 bg-cream/60 p-5">
+<div class="text-sm tracking-wide text-ink/60">Typical outputs</div>
+<p class="mt-1 text-sm text-ink/80 leading-relaxed">Controls intent pack + I/O foundations + monitoring plan that operators can actually run.</p>
+</div>
+</div>
+<div class="focus-panel p-6 md:p-7 bg-white/80 border border-ink/10 rounded-2xl" data-focus="commissioning" hidden="">
+<div>
+<div class="text-sm tracking-wide text-ink/60">Preview</div>
+<div class="mt-1 font-semibold text-ink text-2xl leading-snug">Commissioning checks and planning</div>
+<div class="mt-3 flex flex-wrap gap-2">
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">commissioning and performance verification</span>
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Review ranges</span>
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Information depth</span>
+</div>
+</div>
+<div class="mt-6 grid sm:grid-cols-2 gap-6">
+<div class="rounded-2xl border border-ink/10 bg-white/80 p-5">
+<div class="text-sm tracking-wide text-ink/60">What we focus on</div>
+<ul class="mt-3 space-y-2 text-sm text-ink/80">
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Define commissioning stages and the test periods you can actually run.</span></li>
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Set review criteria that protect stability and compliance.</span></li>
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Confirm sampling, monitoring and data capture requirements.</span></li>
+</ul>
+</div>
+<div class="rounded-2xl border border-ink/10 bg-white/80 p-5">
+<div class="text-sm tracking-wide text-ink/60">Check / control emphasis</div>
+<ul class="mt-3 space-y-2 text-sm text-ink/80">
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>commissioning and performance verification scripts and performance checks (not just start-up).</span></li>
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Ramp-up information checklist aligned to risk modes.</span></li>
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Handover check that makes review auditable.</span></li>
+</ul>
+</div>
+</div>
+<div class="mt-6 rounded-2xl border border-ink/10 bg-cream/60 p-5">
+<div class="text-sm tracking-wide text-ink/60">Typical outputs</div>
+<p class="mt-1 text-sm text-ink/80 leading-relaxed">Commissioning plan + site review checklist that vendors can price and site teams can use.</p>
+</div>
+</div>
+<div class="focus-panel p-6 md:p-7 bg-white/80 border border-ink/10 rounded-2xl" data-focus="ops" hidden="">
+<div>
+<div class="text-sm tracking-wide text-ink/60">Preview</div>
+<div class="mt-1 font-semibold text-ink text-2xl leading-snug">Operator-ready integration</div>
+<div class="mt-3 flex flex-wrap gap-2">
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Simplicity</span>
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Maintainability</span>
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Handover</span>
+</div>
+</div>
+<div class="mt-6 grid sm:grid-cols-2 gap-6">
+<div class="rounded-2xl border border-ink/10 bg-white/80 p-5">
+<div class="text-sm tracking-wide text-ink/60">What we focus on</div>
+<ul class="mt-3 space-y-2 text-sm text-ink/80">
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Align automation burden to operator capacity on site.</span></li>
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Clarify consumables, spares and routine maintenance tasks.</span></li>
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Define control strategy that supports stability (not complexity).</span></li>
+</ul>
+</div>
+<div class="rounded-2xl border border-ink/10 bg-white/80 p-5">
+<div class="text-sm tracking-wide text-ink/60">Check / control emphasis</div>
+<ul class="mt-3 space-y-2 text-sm text-ink/80">
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Check of maintainability (not just performance).</span></li>
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Review criteria for stability and recovery after upsets.</span></li>
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Monitoring plan that operators can run + handover requirements.</span></li>
+</ul>
+</div>
+</div>
+<div class="mt-6 rounded-2xl border border-ink/10 bg-cream/60 p-5">
+<div class="text-sm tracking-wide text-ink/60">Typical outputs</div>
+<p class="mt-1 text-sm text-ink/80 leading-relaxed">Operator-ready fit criteria + review checks that prevent “too complex to run” outcomes.</p>
+</div>
+</div>
+<div class="focus-panel p-6 md:p-7 bg-white/80 border border-ink/10 rounded-2xl" data-focus="phasing" hidden="">
+<div>
+<div class="text-sm tracking-wide text-ink/60">Preview</div>
+<div class="mt-1 font-semibold text-ink text-2xl leading-snug">Phasing and shutdown-period planning</div>
+<div class="mt-3 flex flex-wrap gap-2">
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Tie-in periods</span>
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Bypass strategy</span>
+<span class="inline-flex items-center rounded-full border border-ink/15 bg-cream/60 px-3 py-1 text-[11px] text-ink/80">Sequencing</span>
+</div>
+</div>
+<div class="mt-6 grid sm:grid-cols-2 gap-6">
+<div class="rounded-2xl border border-ink/10 bg-white/80 p-5">
+<div class="text-sm tracking-wide text-ink/60">What we focus on</div>
+<ul class="mt-3 space-y-2 text-sm text-ink/80">
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Map shutdown periods, connection constraints and access realities.</span></li>
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Define temporary bypasses and staged cutovers.</span></li>
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Align phasing to operations and commissioning dependencies.</span></li>
+</ul>
+</div>
+<div class="rounded-2xl border border-ink/10 bg-white/80 p-5">
+<div class="text-sm tracking-wide text-ink/60">Check / control emphasis</div>
+<ul class="mt-3 space-y-2 text-sm text-ink/80">
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Risk controls for cutovers, bypasses and stability during works.</span></li>
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Review checks per stage, so progress is verifiable.</span></li>
+<li class="flex gap-2 leading-relaxed"><span class="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent/80 flex-none"></span><span>Handover information tied to each commissioning period.</span></li>
+</ul>
+</div>
+</div>
+<div class="mt-6 rounded-2xl border border-ink/10 bg-cream/60 p-5">
+<div class="text-sm tracking-wide text-ink/60">Typical outputs</div>
+<p class="mt-1 text-sm text-ink/80 leading-relaxed">Shutdown / phasing plan aligned to your constraints, with check points for each stage.</p>
+</div>
+</div>
+</div>
+</div>
+</section><section class="bg-cream border-b hairline"><div class="max-w-6xl mx-auto px-6 py-12"><div class="grid lg:grid-cols-12 gap-10 items-start"><div class="lg:col-span-5"><h2 class="ewd-serif text-2xl md:text-3xl text-gray-950">Layouts, connections and phasing</h2><p class="mt-3 text-gray-700 leading-relaxed">Integration starts with how the upgraded plant will fit on the site: how new units connect to existing assets, how flows and power are routed, and how work can be sequenced without overwhelming operations.</p><ul class="mt-4 text-sm text-gray-700 space-y-2 list-disc list-inside"><li>Check that new headworks, reactors and storage fit within realistic footprints and hydraulic levels.</li><li>Plan connections and temporary bypasses so shutdowns stay within what operators can live with.</li></ul></div><div class="lg:col-span-7 grid md:grid-cols-3 gap-4"><article class="bg-white/55 border hairline rounded-sm p-6"><h3 class="mt-2 font-semibold text-gray-900">Integration with existing assets</h3><p class="mt-2 text-sm text-gray-700 leading-relaxed">Connection logic for tanks, pipelines, MCC rooms and existing treatment units so the upgraded system behaves as one plant, not a set of disconnected projects.</p></article><article class="bg-white/55 border hairline rounded-sm p-6"><h3 class="mt-2 font-semibold text-gray-900">Constructability and access</h3><p class="mt-2 text-sm text-gray-700 leading-relaxed">Construction and access sequences that work for cranes, tanker routes, confined spaces and day-to-day operations, not just on paper layouts.</p></article><article class="bg-white/55 border hairline rounded-sm p-6"><h3 class="mt-2 font-semibold text-gray-900">Phasing and future expansion</h3><p class="mt-2 text-sm text-gray-700 leading-relaxed">Phased implementation options that respect current demand and budgets while leaving space, power and hydraulic headroom for future stages.</p></article></div></div></div></section><section class="bg-cream border-b hairline" id="integration-patterns"><div class="max-w-6xl mx-auto px-6 py-12"><div class="grid lg:grid-cols-12 gap-10 items-start"><div class="lg:col-span-5"><h2 class="ewd-serif text-2xl md:text-3xl text-gray-950">Typical integration patterns we support</h2><p class="mt-3 text-gray-700 leading-relaxed">Every site has different constraints, but some patterns repeat. We use these as working templates to map connections, risks and operating ranges - then adapt them to your specific plant, networks and reuse or discharge goals.</p></div><div aria-label="Integration patterns" class="lg:col-span-7 pattern-carousel" role="region"><article class="bg-ink text-white border border-white/10 rounded-sm p-6 pattern-item"><p class="text-xs font-semibold tracking-wide text-white/70">STP · REUSE UPGRADE</p><h3 class="mt-2 font-semibold text-white">STP reuse upgrade to cooling-tower make-up</h3><p class="mt-2 text-sm text-white/80 leading-relaxed">When irrigation-grade TSE is no longer enough, we map the extra barriers and connections needed for cooling make-up: polishing (high-capacity filtration / UF-RO as required), disinfection, scaling &amp; corrosion conditioning, blending/storage and monitoring. The focus is connections, bypasses, control points and review checks so performance can be priced and proven.</p></article><article class="bg-ink text-white border border-white/10 rounded-sm p-6 pattern-item"><p class="text-xs font-semibold tracking-wide text-white/70">ETP · EXPANSION TO REUSE</p><h3 class="mt-2 font-semibold text-white">ETP expansion from pretreatment to full treatment</h3><p class="mt-2 text-sm text-white/80 leading-relaxed">For sites that only had basic pretreatment and now need stable treatment that enables reuse. We define the full treatment line (equalisation → biology/MBBR → clarification/filtration → membranes/polishing where needed), sludge and chemical connections, automation, and the check points that make upgrades clear across production and shutdown periods.</p></article><article class="bg-ink text-white border border-white/10 rounded-sm p-6 pattern-item"><p class="text-xs font-semibold tracking-wide text-white/70">BUILDINGS / CAMPUSES</p><h3 class="mt-2 font-semibold text-white">Greywater reuse with clear boundaries &amp; protection</h3><p class="mt-2 text-sm text-white/80 leading-relaxed">A dedicated GWTP running alongside the main STP: capture and separate streams, treat to the non-potable class you need (flushing/irrigation), and add storage/distribution with cross-connection safeguards. We map meters, valves, alarms and sampling so the two systems stay operationally distinct.</p></article><article class="bg-ink text-white border border-white/10 rounded-sm p-6 pattern-item"><p class="text-xs font-semibold tracking-wide text-white/70">VWRP · RECYCLE UPGRADE</p><h3 class="mt-2 font-semibold text-white">Vehicle wash from oil removal to closed-loop reuse</h3><p class="mt-2 text-sm text-white/80 leading-relaxed">Where a site had only grit and oil interception but now wants recycling. We define the added stages (solids capture → oil/DAF → filtration → biological/oxidation where needed → disinfection), plus recycle/bleed control, sludge handling, and simple operator routines that keep day-to-day operation stable.</p></article><article class="bg-ink text-white border border-white/10 rounded-sm p-6 pattern-item"><p class="text-xs font-semibold tracking-wide text-white/70">LWRP · COMMERCIAL LAUNDRIES</p><h3 class="mt-2 font-semibold text-white">Laundry reuse with detergent control &amp; staged return</h3><p class="mt-2 text-sm text-white/80 leading-relaxed">Move beyond discharge reduction into reliable reuse: capture and categorise streams, equalise and treat for surfactants/colour, then membrane + polishing as required. We define where reclaimed water returns in the wash process, CIP/cleaning logic, and monitoring that protects fabric care, chemistry and uptime.</p></article><article class="bg-ink text-white border border-white/10 rounded-sm p-6 pattern-item"><p class="text-xs font-semibold tracking-wide text-white/70">INDUSTRIAL · HIGH-TDS / ZLD</p><h3 class="mt-2 font-semibold text-white">ZLD integration for higher recovery &amp; brine routing</h3><p class="mt-2 text-sm text-white/80 leading-relaxed">If you already have RO, ZLD often needs a rethink, not a bolt-on. We map brine sources, pretreatment for scaling/fouling, high-recovery RO options, and the evaporator/MVR + solids route, with heat/power integration and controls. Outcome: a workable water balance and clear connections.</p></article></div></div></div></section><section class="bg-cream border-b hairline"><div class="max-w-6xl mx-auto px-6 py-12"><div class="grid lg:grid-cols-12 gap-10 items-start"><div class="lg:col-span-5"><h2 class="ewd-serif text-2xl md:text-3xl text-gray-950">Automation and instrumentation at the right level</h2><p class="mt-3 text-gray-700 leading-relaxed">We match the level of automation to the site: the available operators, maintenance practices and SCADA standards. The aim is reliable, explainable control, not black-box complexity.</p><ul class="mt-4 text-sm text-gray-700 space-y-2 list-disc list-inside"><li>Define what must be measured continuously versus verified with periodic checks.</li><li>Clarify alarm priorities, interlocks and data retention so incidents can be reconstructed and learned from.</li></ul></div><div class="lg:col-span-7 grid md:grid-cols-2 gap-4"><article class="bg-white/55 border hairline rounded-sm p-6"><h3 class="mt-1 font-semibold text-gray-900">Field instruments and control philosophy</h3><p class="mt-2 text-sm text-gray-700 leading-relaxed">Selection and placement of flow, level, pressure and analytical instruments; signal ranges; and basic control loops that keep the plant stable under site operating conditions.</p></article><article class="bg-white/55 border hairline rounded-sm p-6"><h3 class="mt-1 font-semibold text-gray-900">Alarm, interlock and data philosophy</h3><p class="mt-2 text-sm text-gray-700 leading-relaxed">Alarm and trip set-points, permissive logic and historian requirements so causes of excursions are visible and operators know what to do next.</p></article></div></div></div></section><section class="bg-cream border-b hairline"><div class="max-w-6xl mx-auto px-6 py-12"><h2 class="ewd-serif text-2xl md:text-3xl text-gray-950">Streams we typically work with</h2><p class="mt-3 max-w-3xl text-gray-700 leading-relaxed">Across our specialist design work, we focus on operating plants and facilities handling a mix of municipal and industrial streams. Integration work keeps reuse, sludge and side-stream systems aligned with how these flows behave on site.</p><div class="mt-5 flex flex-wrap gap-2"><span class="inline-flex items-center rounded-full border border-ink/12 bg-white/80 px-3 py-1 text-[11px] text-ink/80">STP - Municipal / domestic sewage</span><span class="inline-flex items-center rounded-full border border-ink/12 bg-white/80 px-3 py-1 text-[11px] text-ink/80">ETP - Industrial / trade effluent</span><span class="inline-flex items-center rounded-full border border-ink/12 bg-white/80 px-3 py-1 text-[11px] text-ink/80">GWTP - Greywater treatment</span><span class="inline-flex items-center rounded-full border border-ink/12 bg-white/80 px-3 py-1 text-[11px] text-ink/80">VWRP - Vehicle wash water</span><span class="inline-flex items-center rounded-full border border-ink/12 bg-white/80 px-3 py-1 text-[11px] text-ink/80">LWRP - Laundry wash water</span><span class="inline-flex items-center rounded-full border border-ink/12 bg-white/80 px-3 py-1 text-[11px] text-ink/80">Biosolids &amp; sludge to resource recovery</span></div></div></section><section class="bg-cream border-b hairline"><div class="max-w-6xl mx-auto px-6 py-12"><div class="grid lg:grid-cols-12 gap-10 items-start"><div class="lg:col-span-5"><h2 class="ewd-serif text-2xl md:text-3xl text-gray-950">Customisation and risk reduction for your context</h2><p class="mt-3 text-gray-700 leading-relaxed">No two projects share the same constraints. We map integration and automation risks clearly and agree how they will be checked and handed over so delivery partners know what is expected.</p></div><div class="lg:col-span-7 grid md:grid-cols-2 gap-4"><article class="bg-white/55 border hairline rounded-sm p-6"><h3 class="mt-1 font-semibold text-gray-900">Key risk points and mitigations</h3><p class="mt-2 text-sm text-gray-700 leading-relaxed">Structured view of constructability, commissioning, controls and change-management risks, with targeted mitigations and information requests for each.</p></article><article class="bg-white/55 border hairline rounded-sm p-6"><h3 class="mt-1 font-semibold text-gray-900">Alignment with delivery and O&amp;M models</h3><p class="mt-2 text-sm text-gray-700 leading-relaxed">Integration logic that reflects who will operate and maintain the plant, how often it can be shut down, and how future upgrades will tie in without rework.</p></article></div></div></div></section><section class="bg-cream" id="integration-next-steps"><div class="max-w-6xl mx-auto px-6 py-14"><div class="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-10 items-start"><div><h2 class="ewd-serif text-2xl md:text-3xl text-gray-950">From technology fit to integration and delivery</h2><p class="mt-3 max-w-xl text-gray-700 leading-relaxed">With technology options and operating ranges agreed, integration work turns them into a realistic project: layouts, connections, automation scope and site checks that delivery partners can price and commit to.</p><p class="mt-3 max-w-xl text-gray-700 leading-relaxed">You can engage us just for integration and automation, or embed this work into a wider FlowPlan pathway covering baseline, requirements, technology fit and sourcing advisory.</p></div><div class="mt-7 flex flex-wrap gap-3 text-sm justify-start lg:justify-end"><a class="inline-flex items-center px-4 py-2 rounded-lg bg-white border hairline text-ink hover:bg-white/70 font-semibold" href="technology-equipment-fit.html">Review technology &amp; equipment fit</a><a class="inline-flex items-center px-4 py-2 rounded-lg bg-forest2 text-white hover:bg-forest font-semibold" href="sourcing-advisory.html">Continue to sourcing advisory</a></div></div></div></section></main>
+<style id="design-sourcing-footer-add-v2">
+.ds-footer{background:#1f3731;color:rgba(255,255,255,.86);border-top:1px solid rgba(255,255,255,.10);margin-top:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+.ds-footer *{box-sizing:border-box;}
+.ds-footer-pattern{background-image:radial-gradient(circle at 10% 20%,rgba(255,255,255,.07) 0,rgba(255,255,255,.07) 2px,transparent 2px),radial-gradient(circle at 70% 60%,rgba(255,255,255,.06) 0,rgba(255,255,255,.06) 2px,transparent 2px);background-size:48px 48px,64px 64px;}
+.ds-footer-inner{max-width:72rem;margin:0 auto;padding:3.5rem 1.5rem 2rem;}
+.ds-footer-grid{display:grid;gap:2.5rem;}
+@media(min-width:768px){.ds-footer-grid{grid-template-columns:repeat(3,minmax(0,1fr));}.ds-footer-bottom{flex-direction:row;align-items:center;justify-content:space-between;}}
+.ds-footer-brand{display:flex;align-items:center;gap:.55rem;color:#fff;font-weight:700;letter-spacing:.01em;}
+.ds-footer-dot{width:.625rem;height:.625rem;border-radius:999px;background:#55a092;display:inline-flex;flex:0 0 auto;}
+.ds-footer-text{margin-top:.75rem;color:rgba(255,255,255,.70);font-size:.875rem;line-height:1.65;max-width:24rem;}
+.ds-footer-links{display:grid;gap:.5rem;font-size:.875rem;align-content:start;}
+.ds-footer-links p{font-weight:700;color:#fff;margin:0 0 .15rem;}
+.ds-footer-links a{color:rgba(255,255,255,.84);text-decoration:none;}
+.ds-footer-links a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px;}
+.ds-footer-location{color:rgba(255,255,255,.70);margin:0;}
+.ds-footer-bottom{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.10);display:flex;flex-direction:column;gap:.75rem;color:rgba(255,255,255,.56);font-size:.75rem;}
+.ds-footer-bottom p{margin:0;}
+</style>
+<footer class="footer">
+<div class="wrap">
+<div class="footer-top">
+<div>
+<div class="footer-brand"><img alt="EnWater Design logo" class="footer-logo" src="../assets/images/enwater-design-logo-transparent-mark.png"/><span class="footer-name">EnWater Design</span></div>
+<p class="footer-desc">Independent water, wastewater treatment and reuse consulting, helping owners and operators turn complex challenges into clear decisions and practical outcomes.</p>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<a href="../home.html">Home</a>
+<a href="../About/about.html">About</a>
+<a href="../About/BlogList.html">Our Blog</a>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+</div>
+<div class="footer-col">
+<h4>Services</h4>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing</a>
+<a href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<a href="../Projects/index.html">Projects</a>
+<a href="../Sectors/index.html">Sectors</a>
+</div>
+<div class="footer-col">
+<h4>Pathways</h4>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../Sectors/index.html">Sector Pathways</a>
+</div>
+<div class="footer-col">
+<h4>Get in touch</h4>
+<a href="../get-in-touch.html">Contact form</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">Industrial / CETP</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© <span id="yr"></span> EnWater Design</div>
+<div>Clear systems planning for practical project delivery</div>
+</div>
+</div>
+<script>
+  (function() {
+    const yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+  })();
+</script>
+</footer>
+<script>
+(function(){
+ function initOffer(root){
+ const tabs = Array.from(root.querySelectorAll('.offer-tab'));
+ const panels = Array.from(root.querySelectorAll('.offer-panel'));
+ if(!tabs.length || !panels.length) return;
+ function activate(key){
+ tabs.forEach(t=>{
+ const on = t.dataset.offer === key;
+ t.classList.toggle('is-active', on);
+ t.setAttribute('aria-selected', on ? 'true' : 'false');
+ });
+ panels.forEach(p=>p.classList.toggle('is-active', p.dataset.panel === key));
+ }
+ tabs.forEach(t=>t.addEventListener('click', ()=>activate(t.dataset.offer)));
+ }
+ document.querySelectorAll('section[id$="-offer"]').forEach(initOffer);
+})();
+</script><script>(() => {
+ const root = document.getElementById("integration-focus");
+ if(!root) return;
+ const btns = Array.from(root.querySelectorAll('.focus-btn'));
+ const panels = Array.from(root.querySelectorAll('.focus-panel'));
+ function show(key){
+ btns.forEach(b => b.setAttribute('aria-selected', b.dataset.focus === key ? 'true' : 'false'));
+ panels.forEach(p => {
+ if(p.dataset.focus === key) p.removeAttribute('hidden');
+ else p.setAttribute('hidden','');
+ });
+ }
+ btns.forEach(b => b.addEventListener('click', () => show(b.dataset.focus)));
+})();</script>
+<style id="design-sourcing-anchor-scroll-fix-v39">
+/* Design & Sourcing anchor landing fix: keeps hero/internal links from stopping above the target under the two sticky navigation bars. */
+html{scroll-padding-top:120px!important;}
+[id]{scroll-margin-top:120px!important;}
+</style>
+<script id="design-sourcing-anchor-scroll-fix-v39-script">
+(function(){
+  function anchorTarget(hash){
+    if(!hash || hash === '#') return null;
+    try { return document.getElementById(decodeURIComponent(hash.slice(1))); }
+    catch(e){ return document.getElementById(hash.slice(1)); }
+  }
+  function navOffset(){
+    var total = 14;
+    var top = document.querySelector('header.site-topnav, .topnav');
+    var sub = document.querySelector('.design-sourcing-section-nav');
+    if(top){ total += Math.ceil(top.getBoundingClientRect().height || 0); }
+    if(sub){ total += Math.ceil(sub.getBoundingClientRect().height || 0); }
+    return Math.max(96, total);
+  }
+  function scrollToHash(hash, behavior){
+    var target = anchorTarget(hash);
+    if(!target) return false;
+    var y = target.getBoundingClientRect().top + window.pageYOffset - navOffset();
+    window.scrollTo({top: Math.max(0, y), behavior: behavior || 'smooth'});
+    return true;
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var hash = a.getAttribute('href');
+    if(!hash || hash === '#') return;
+    if(!anchorTarget(hash)) return;
+    e.preventDefault();
+    scrollToHash(hash, 'smooth');
+    if(history && history.pushState){ history.pushState(null, '', hash); }
+    else { window.location.hash = hash; }
+  });
+  window.addEventListener('load', function(){
+    if(!window.location.hash) return;
+    [60, 250, 650].forEach(function(delay){
+      window.setTimeout(function(){ scrollToHash(window.location.hash, 'auto'); }, delay);
+    });
+  });
+})();
+</script>
+<script src="../exported-ui-effects.js"></script></body></html>

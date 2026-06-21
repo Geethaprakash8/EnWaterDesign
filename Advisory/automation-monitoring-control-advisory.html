@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+
+<!-- standalone packaged file -->
+<html lang="en"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Automation, Monitoring &amp; Control Advisory | EnWater Design</title>
+<!-- Tailwind (swap to your bundled build if you run offline) -->
+<script>
+ tailwind.config = {
+ theme: {
+ extend: {
+ colors: {
+ cream: "#f4f2ec",
+ ink: "#1b1f1e",
+ muted: "#5a6561",
+ forest: "#243f38",
+ forest2: "#1f3731",
+ accent: "#55a092",
+ accent2: "#468a7e",
+ line: "rgba(27,31,30,.14)"
+ }
+ }
+ }
+ }
+ 
+// Carousel controls (engagement snapshots)
+(function(){
+ document.querySelectorAll('[data-carousel]').forEach(sec=>{
+ const track = sec.querySelector('[data-carousel-track]');
+ const prev = sec.querySelector('[data-carousel-prev]');
+ const next = sec.querySelector('[data-carousel-next]');
+ if(!track||!prev||!next) return;
+ const step = ()=> Math.max(280, Math.min(420, track.clientWidth*0.85));
+ prev.addEventListener('click', ()=> track.scrollBy({left:-step(), behavior:'smooth'}));
+ next.addEventListener('click', ()=> track.scrollBy({left: step(), behavior:'smooth'}));
+ });
+})();
+</script>
+<style>
+ :root{
+ --cream: #f2f5f4;
+ --ink: #071a21;
+ --forest: #0f3b45;
+ --forest2: #0a242b;
+ --accent: #55a092;
+ --accent2: #468a7e;
+ --line: rgba(27,31,30,.14);
+ --nav-bg: #0f3b36;
+ --accent-rgb: 85, 160, 146;
+ --nav-font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+ --depthInner: #071a21;
+ --depthOuter: #0a242b;
+ --drop-bg: #0d332f;
+ --drop-border: rgba(255,255,255,.10);
+ --drop-shadow: 0 18px 32px rgba(0,0,0,.22);
+ --muted: #5a6561;
+ --nav-border: rgba(255,255,255,.10);
+ --nav-fg: rgba(255,255,255,.92);
+ --nav-fg-muted: rgba(255,255,255,.70);
+ --nav-fg-strong: #ffffff;
+ --nav-line: rgba(255,255,255,.12);
+ --nav-shadow: 0 10px 24px rgba(0,0,0,.10);
+ --servicesOverlay: rgba(7,18,22,.62);
+ --servicesTone: #2f5954;
+ --teal: #60b0a0;
+ --teal2: #4aa596;
+}
+/* --- design utility classes (needed for standalone HTML) --- */
+ .bg-cream{background:var(--cream);}
+ .bg-ink{background:var(--ink); color:#fff;}
+ .bg-forest{background:var(--forest); color:#fff;}
+ .bg-forest2{background:var(--forest2); color:#fff;}
+.bg-nav{background:var(--nav-bg)}
+
+ .bg-accent{background:var(--accent); color:#fff;}
+ .text-accent{color:var(--accent);}
+ .border-line{border-color:var(--line);}
+
+html{scroll-behavior:smooth}
+ body{background:var(--cream); color:var(--ink)}
+ .serif-display{font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;}
+ .sans-body{font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";}
+ .hairline{border-color: var(--line);}
+ .soft-shadow{box-shadow: 0 22px 60px rgba(0,0,0,.10);}
+ .pill{border:1px solid rgba(27,31,30,.14); background:rgba(255,255,255,.60)}
+ .mutedline{color:rgba(255,255,255,.72)}
+ 
+/* === Capability dark wrapper overrides (green/ink feel) === */
+.cap-dark .text-gray-950{color:rgba(255,255,255,.92)!important;}
+.cap-dark .text-gray-900{color:rgba(255,255,255,.90)!important;}
+.cap-dark .text-gray-800{color:rgba(255,255,255,.85)!important;}
+.cap-dark .text-gray-700{color:rgba(255,255,255,.75)!important;}
+.cap-dark .text-gray-600{color:rgba(255,255,255,.70)!important;}
+.cap-dark .text-gray-500{color:rgba(255,255,255,.55)!important;}
+.cap-dark .text-gray-400{color:rgba(255,255,255,.45)!important;}
+.cap-dark .border{border-color:rgba(255,255,255,.10)!important;}
+.cap-dark .hairline{border-color:rgba(255,255,255,.10)!important;}
+.cap-dark .bg-white\/60,
+.cap-dark .bg-white\/55,
+.cap-dark .bg-white\/75{background-color:rgba(255,255,255,.06)!important;}
+.cap-dark .hover\:bg-white\/75:hover{background-color:rgba(255,255,255,.09)!important;}
+.cap-dark .hover\:bg-white:hover{background-color:rgba(255,255,255,.10)!important;}
+.cap-dark .pill{background-color:rgba(255,255,255,.06)!important; border:1px solid rgba(255,255,255,.12)!important;}
+.cap-dark select{background-color:rgba(255,255,255,.06)!important; color:rgba(255,255,255,.92)!important; border-color:rgba(255,255,255,.12)!important;}
+.cap-dark option{color:#0f1414;}
+/* Mode pills + recommended marker */
+.mode-pill{white-space:nowrap;}
+.cap-rec{position:relative;}
+.cap-rec::before{content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--accent); opacity:.95;}
+/* Reading dark wrapper overrides */
+
+/* separator + capability on ink */
+.cap-dark .bg-cream{color:inherit;}
+.cap-dark a.pill{border-color:rgba(255,255,255,.18)!important;}
+
+.reading-dark .border{border-color:rgba(255,255,255,.12)!important;}
+.reading-dark .hairline{border-color:rgba(255,255,255,.12)!important;}
+.reading-dark .bg-white\/60,
+.reading-dark .bg-white\/55,
+.reading-dark .bg-white\/75{background-color:rgba(255,255,255,.08)!important;}
+.reading-dark .text-gray-950{color:rgba(255,255,255,.92)!important;}
+.reading-dark .text-gray-800{color:rgba(255,255,255,.85)!important;}
+.reading-dark .text-gray-700{color:rgba(255,255,255,.75)!important;}
+.reading-dark .text-gray-600{color:rgba(255,255,255,.70)!important;}
+.reading-dark .text-gray-500{color:rgba(255,255,255,.55)!important;}
+
+ .pattern{
+ background-image:
+ radial-gradient(circle at 1px 1px, rgba(255,255,255,.06) 1px, transparent 0),
+ radial-gradient(circle at 1px 1px, rgba(255,255,255,.03) 1px, transparent 0);
+ background-size: 18px 18px, 18px 18px;
+ background-position: 0 0, 9px 9px;
+}
+
+ /* Fallback if Tailwind CDN is blocked: keep icons from exploding */
+ svg{width:1em;height:1em;}
+
+/* Project Configurations: green top-quarter accent (≈ 1/4 card height) */
+.config-card{position:relative; overflow:hidden;}
+.config-card::before{
+ content:"";
+ position:absolute;
+ top:0; left:0; right:0;
+ height:25%;
+ background: rgba(85,160,146,0.10);
+ border-top: 4px solid var(--accent);
+ border-bottom: 1px solid rgba(85,160,146,0.28);
+}
+.config-card > *{position:relative; z-index:1;}
+
+ /* Inline chips */
+ .tag{
+ display:inline-flex;
+ align-items:center;
+ white-space:nowrap;
+ border:1px solid rgba(27,31,30,.14);
+ background:rgba(255,255,255,.65);
+ padding:.25rem .75rem;
+ border-radius:9999px;
+ font-size:.75rem;
+ line-height:1rem;
+ color:var(--ink);
+ }
+ .cap-dark .tag{
+ border-color:rgba(255,255,255,.18);
+ background:rgba(255,255,255,.07);
+ color:rgba(255,255,255,.82);
+ }
+
+</style>
+<script>
+ // Tailwind (CDN) config for this standalone file
+ tailwind.config = {
+ theme: {
+ extend: {
+ colors: {
+ cream: 'var(--cream)',
+ ink: 'var(--ink)',
+ forest: 'var(--forest)',
+ forest2: 'var(--forest2)',
+ accent: 'var(--accent)',
+ accent2: 'var(--accent2)'
+ }
+ }
+ }
+ };
+ </script>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.bottom-4{bottom:1rem}.left-4{left:1rem}.top-0{top:0px}.z-50{z-index:50}.mx-1{margin-left:0.25rem;margin-right:0.25rem}.mx-auto{margin-left:auto;margin-right:auto}.mt-1{margin-top:0.25rem}.mt-10{margin-top:2.5rem}.mt-16{margin-top:4rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:0.375rem}.h-10{height:2.5rem}.h-14{height:3.5rem}.h-2\.5{height:0.625rem}.h-20{height:5rem}.h-28{height:7rem}.h-4{height:1rem}.h-\[320px\]{height:320px}.h-full{height:100%}.w-1\.5{width:0.375rem}.w-10{width:2.5rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.w-full{width:100%}.min-w-\[320px\]{min-width:320px}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-6xl{max-width:72rem}.max-w-\[92\%\]{max-width:92%}.max-w-sm{max-width:24rem}.snap-x{scroll-snap-type:x var(--tw-scroll-snap-strictness)}.snap-mandatory{--tw-scroll-snap-strictness:mandatory}.snap-start{scroll-snap-align:start}.list-disc{list-style-type:disc}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.scroll-smooth{scroll-behavior:smooth}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-sm{border-radius:0.125rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-gray-900\/10{border-color:rgb(17 24 39 / 0.1)}.border-gray-900\/15{border-color:rgb(17 24 39 / 0.15)}.border-gray-900\/20{border-color:rgb(17 24 39 / 0.2)}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.border-white\/20{border-color:rgb(255 255 255 / 0.2)}.bg-black\/10{background-color:rgb(0 0 0 / 0.1)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/5{background-color:rgb(255 255 255 / 0.05)}.bg-white\/95{background-color:rgb(255 255 255 / 0.95)}.bg-\[radial-gradient\(circle_at_30\%_20\%\2c rgba\(72\2c 168\2c 130\2c \.28\)\2c transparent_55\%\)\2c radial-gradient\(circle_at_70\%_60\%\2c rgba\(95\2c 156\2c 157\2c \.22\)\2c transparent_50\%\)\2c linear-gradient\(180deg\2c \#131a18\2c \#0f1413\)\]{background-image:radial-gradient(circle at 30% 20%,rgba(72,168,130,.28),transparent 55%),radial-gradient(circle at 70% 60%,rgba(95,156,157,.22),transparent 50%),linear-gradient(180deg,#131a18,#0f1413)}.object-cover{object-fit:cover}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-14{padding-top:3.5rem;padding-bottom:3.5rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pb-10{padding-bottom:2.5rem}.pb-4{padding-bottom:1rem}.pb-5{padding-bottom:1.25rem}.pl-5{padding-left:1.25rem}.pt-14{padding-top:3.5rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.tracking-wide{letter-spacing:0.025em}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-gray-950{--tw-text-opacity:1;color:rgb(3 7 18 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/55{color:rgb(255 255 255 / 0.55)}.text-white\/70{color:rgb(255 255 255 / 0.7)}.text-white\/80{color:rgb(255 255 255 / 0.8)}.text-white\/85{color:rgb(255 255 255 / 0.85)}.text-white\/90{color:rgb(255 255 255 / 0.9)}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.underline-offset-2{text-underline-offset:2px}.opacity-80{opacity:0.8}.opacity-90{opacity:0.9}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.ring-1{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.ring-white\/20{--tw-ring-color:rgb(255 255 255 / 0.2)}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.hover\:bg-\[color\:var\(--accent2\)\]:hover{background-color:var(--accent2)}.hover\:bg-gray-50:hover{--tw-bg-opacity:1;background-color:rgb(249 250 251 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/10:hover{background-color:rgb(255 255 255 / 0.1)}.hover\:bg-white\/20:hover{background-color:rgb(255 255 255 / 0.2)}.hover\:bg-white\/5:hover{background-color:rgb(255 255 255 / 0.05)}.hover\:bg-white\/60:hover{background-color:rgb(255 255 255 / 0.6)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:opacity-80:hover{opacity:0.8}.hover\:opacity-95:hover{opacity:0.95}@media (min-width: 640px){.sm\:min-w-\[360px\]{min-width:360px}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 768px){.md\:bottom-6{bottom:1.5rem}.md\:left-6{left:1.5rem}.md\:flex{display:flex}.md\:h-\[420px\]{height:420px}.md\:max-w-\[520px\]{max-width:520px}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-center{align-items:center}.md\:justify-between{justify-content:space-between}.md\:text-2xl{font-size:1.5rem;line-height:2rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}.md\:text-5xl{font-size:3rem;line-height:1}.md\:text-base{font-size:1rem;line-height:1.5rem}}@media (min-width: 1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:min-w-\[400px\]{min-width:400px}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}</style>
+<style id="aqua-master-style">
+/* ==========================================================
+ EnWater Design , Master Colour & Interaction Style (Unified)
+ Applies wastewater/process styling consistently across sections.
+ ========================================================== */
+
+:root{
+ --cream:#f2f5f4;
+ --paper:#ffffff;
+ --ink:#0b1420;
+ --muted:#586563;
+
+ /* Core dark blues/greens used across the site */
+ --forest:#173b4b;
+ --forest2:#0d2f3a;
+
+ /* Brand accent (matches existing Tailwind accent utilities) */
+ --accent:#55a092;
+
+ /* Section-specific tones (from the Wastewater scheme file) */
+ --servicesTone:#2f5954;
+ --depthOuter:#131716;
+ --depthInner:#1c1f1f;
+
+ /* Top nav */
+ --nav-bg: rgba(6,22,26,.94);
+ --nav-fg: rgba(255,255,255,.78);
+ --nav-fg-strong:#ffffff;
+}
+
+/* --- Utility overrides (ensure consistent palette even if Tailwind values differ) --- */
+.bg-cream{ background-color: var(--cream) !important; }
+.bg-ink{ background-color: var(--ink) !important; }
+.bg-forest{ background-color: var(--forest) !important; }
+.bg-forest2{ background-color: var(--forest2) !important; }
+.bg-accent{ background-color: var(--accent) !important; }
+.text-accent{ color: var(--accent) !important; }
+.border-accent{ border-color: var(--accent) !important; }
+
+/* --- NAV BAR (dark, consistent) --- */
+.site-topnav{
+ background: var(--nav-bg) !important;
+ border-bottom-color: rgba(255,255,255,.10) !important;
+}
+.site-topnav a{ color: var(--nav-fg) !important; }
+.site-topnav a:hover{ color: var(--nav-fg-strong) !important; }
+.site-topnav .text-ink{ color: var(--nav-fg-strong) !important; }
+.site-topnav .text-muted{ color: rgba(255,255,255,.70) !important; }
+
+/* --- TEAL SERVICES SECTION (standard teal across advisory sections) --- */
+:root{ --servicesTone: #2f5954; }
+#services{
+ position: relative;
+ overflow: hidden;
+ background:
+ linear-gradient(rgba(255,255,255,.02), rgba(0,0,0,.08)),
+ var(--servicesTone) !important;
+}
+#services .pattern{ position: relative; }
+#services .pattern::before{
+ content:"";
+ position:absolute; inset:0;
+ pointer-events:none;
+ background-image:
+ radial-gradient(circle at 1px 1px, rgba(0,0,0,.24) 1px, transparent 1.9px);
+ background-size: 26px 26px;
+ opacity: .22;
+ mix-blend-mode: normal;
+}
+
+/* --- INKY DEPTH/CAPABILITIES (no dot overlay) --- */
+#capabilities{
+ position: relative;
+ overflow: hidden;
+ background: linear-gradient(rgba(0,0,0,.18), rgba(0,0,0,.34)), var(--depthOuter) !important;
+}
+#capabilities::before{
+ content:none !important;
+ background:none !important;
+ display:none !important;
+}
+
+/* Ensure the inner “dynamic” pane reads darker (not snowy) */
+#capabilities [data-cap-body],
+#capabilities [data-cap-list],
+#capabilities [data-cap-output],
+#capabilities .cap-output,
+#capabilities .cap-panel{
+ background-color: rgba(0,0,0,.16);
+}
+
+/* Active route highlight: teal left edge + subtle inset glow */
+#capabilities [data-cap-item][aria-pressed="true"],
+#capabilities .cap-item.is-active{
+ border-left: 4px solid var(--accent) !important;
+ background: rgba(79,157,177,.16) !important;
+ box-shadow: 0 0 0 1px rgba(85,160,146,.28) inset;
+}
+
+/* Make sure the left border doesn’t compress text */
+#capabilities [data-cap-item],
+#capabilities .cap-item{
+ box-sizing: border-box;
+}
+
+/* Output list cards inside capabilities */
+#capabilities [data-cap-list] > div{
+ background: rgba(0,0,0,.18) !important;
+ border-color: rgba(255,255,255,.10) !important;
+}
+
+/* Optional: soft separators that match the suite */
+.section-divider{ border-color: rgba(255,255,255,.10) !important; }
+</style>
+
+<style id="anchor-offset-fix">
+#top, #introduction, #services, #capabilities, #configurations, #enquiry, #contact, #insights { scroll-margin-top: 132px; }
+@media (max-width: 767px){
+  #top, #introduction, #services, #capabilities, #configurations, #enquiry, #contact, #insights { scroll-margin-top: 110px; }
+}
+</style>
+
+
+<style id="ad-style-only-enhancement">
+/* CSS-only visual styling. No typography overrides. */
+body{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.52) 0, rgba(255,255,255,0) 180px),
+    var(--cream);
+}
+
+.site-topnav{
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 14px 34px rgba(7,26,33,.14);
+}
+.site-topnav .wrap{
+  position: relative;
+}
+.site-topnav .wrap::after{
+  content:"";
+  position:absolute;
+  left:22px; right:22px; bottom:-12px;
+  height:1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.14), rgba(255,255,255,0));
+  pointer-events:none;
+}
+
+.advisory-section-nav{
+  box-shadow: 0 10px 24px rgba(7,26,33,.07);
+}
+.advisory-section-nav .inner{
+  position: relative;
+}
+.advisory-section-nav .inner::after{
+  content:"";
+  position:absolute;
+  left:16px; right:16px; bottom:-10px;
+  height:1px;
+  background: linear-gradient(90deg, rgba(27,31,30,0), rgba(27,31,30,.10), rgba(27,31,30,0));
+  pointer-events:none;
+}
+.advisory-section-nav a{
+  box-shadow: 0 8px 20px rgba(7,26,33,.04);
+}
+.advisory-section-nav a.is-active{
+  box-shadow: 0 12px 26px rgba(15,59,54,.18);
+}
+
+main > section:first-of-type{
+  position: relative;
+  background:
+    radial-gradient(circle at top right, rgba(85,160,146,.10), transparent 30%),
+    linear-gradient(180deg, rgba(255,255,255,.44), rgba(255,255,255,0) 60%),
+    var(--cream);
+}
+main > section:first-of-type::after{
+  content:"";
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height:1px;
+  background: linear-gradient(90deg, rgba(27,31,30,0), rgba(27,31,30,.09), rgba(27,31,30,0));
+}
+main > section:first-of-type .relative.rounded-sm.overflow-hidden.border{
+  border-color: rgba(7,26,33,.10) !important;
+  box-shadow: 0 24px 56px rgba(7,26,33,.12);
+}
+main > section:first-of-type .relative.rounded-sm.overflow-hidden.border::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0) 34%, rgba(7,26,33,.14));
+  pointer-events:none;
+  z-index:1;
+}
+main > section:first-of-type .absolute .bg-white\/95{
+  box-shadow: 0 18px 44px rgba(7,26,33,.16);
+}
+
+#introduction{
+  background:
+    linear-gradient(180deg, rgba(85,160,146,.045), rgba(255,255,255,0) 44%),
+    var(--cream);
+}
+#introduction .rounded-2xl,
+#introduction .rounded-3xl{
+  position: relative;
+  border-color: rgba(7,26,33,.10) !important;
+  box-shadow: 0 16px 34px rgba(7,26,33,.06);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.96), rgba(248,250,249,.92));
+}
+#introduction .rounded-2xl::before,
+#introduction .rounded-3xl::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height:3px;
+  background: linear-gradient(90deg, rgba(85,160,146,.78), rgba(85,160,146,.18));
+  opacity:.95;
+}
+#introduction .rounded-3xl{ overflow:hidden; }
+
+#services{
+  position: relative;
+}
+#services::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0) 28%, rgba(0,0,0,.14));
+  pointer-events:none;
+}
+#services .accordion{
+  position: relative;
+  border-color: rgba(255,255,255,.12) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04)) !important;
+  box-shadow: 0 14px 30px rgba(0,0,0,.14);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background-color .22s ease;
+}
+#services .accordion::before{
+  content:"";
+  position:absolute;
+  left:0; top:0; bottom:0;
+  width:3px;
+  background: linear-gradient(180deg, rgba(85,160,146,.95), rgba(85,160,146,.20));
+  opacity:.9;
+}
+#services .accordion:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(0,0,0,.18);
+  border-color: rgba(255,255,255,.18) !important;
+}
+#services .accordion [data-acc-body]{
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.08));
+}
+
+#capabilities{
+  background:
+    radial-gradient(circle at top left, rgba(85,160,146,.12), transparent 28%),
+    linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.12)),
+    var(--forest);
+}
+#capabilities [data-cap-item]{
+  position: relative;
+  box-shadow: 0 14px 28px rgba(0,0,0,.12);
+  transition: transform .22s ease, box-shadow .22s ease, background-color .22s ease, border-color .22s ease;
+}
+#capabilities [data-cap-item]::before{
+  content:"";
+  position:absolute;
+  left:0; top:0; bottom:0;
+  width:0;
+  background: linear-gradient(180deg, rgba(85,160,146,.95), rgba(85,160,146,.28));
+  transition: width .22s ease;
+}
+#capabilities [data-cap-item]:hover{
+  transform: translateX(3px);
+  box-shadow: 0 18px 34px rgba(0,0,0,.16);
+}
+#capabilities [data-cap-item][aria-pressed="true"]::before{
+  width:4px;
+}
+#capabilities .rounded-sm.border.border-white\/10.bg-white\/5.p-6{
+  border-color: rgba(255,255,255,.12) !important;
+  box-shadow: 0 18px 36px rgba(0,0,0,.16);
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04)) !important;
+}
+#capabilities [data-cap-list] > div{
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+#configurations{
+  background:
+    linear-gradient(180deg, rgba(85,160,146,.04), rgba(255,255,255,0) 34%),
+    var(--cream);
+}
+#configurations [data-config-track]{
+  padding-top: .3rem;
+  scroll-padding-left: .2rem;
+}
+#configurations article{
+  position: relative;
+  border-color: rgba(7,26,33,.10) !important;
+  box-shadow: 0 18px 38px rgba(7,26,33,.08);
+  background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(248,250,249,.94));
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+#configurations article::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height:4px;
+  background: linear-gradient(90deg, rgba(85,160,146,.88), rgba(85,160,146,.18));
+  z-index:2;
+}
+#configurations article:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 22px 42px rgba(7,26,33,.12);
+}
+#configurations article > .h-20{
+  position: relative;
+  background:
+    radial-gradient(circle at 82% 30%, rgba(255,255,255,.10), transparent 26%),
+    linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,0)),
+    var(--forest2) !important;
+}
+#configurations [data-config-prev],
+#configurations [data-config-next]{
+  box-shadow: 0 10px 22px rgba(7,26,33,.08);
+}
+
+#enquiry{
+  background:
+    linear-gradient(180deg, rgba(85,160,146,.035), rgba(255,255,255,0) 40%),
+    #fff;
+}
+#enquiry .card{
+  position: relative;
+  border: 1px solid rgba(7,26,33,.10);
+  background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(247,250,249,.96));
+  box-shadow: 0 18px 42px rgba(7,26,33,.08);
+  overflow: hidden;
+}
+#enquiry .card::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height:4px;
+  background: linear-gradient(90deg, rgba(85,160,146,.85), rgba(85,160,146,.18));
+}
+#enquiry input,
+#enquiry textarea{
+  border-color: rgba(7,26,33,.14) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(248,250,249,.98)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.65), 0 1px 2px rgba(7,26,33,.03);
+}
+#enquiry input:focus,
+#enquiry textarea:focus{
+  border-color: rgba(85,160,146,.55) !important;
+  box-shadow: 0 0 0 4px rgba(85,160,146,.10), inset 0 1px 0 rgba(255,255,255,.65);
+}
+#enquiry a.bg-forest{
+  box-shadow: 0 14px 28px rgba(15,59,54,.16);
+}
+
+#insights{
+  position: relative;
+  background:
+    radial-gradient(circle at top right, rgba(85,160,146,.14), transparent 26%),
+    linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.12)),
+    var(--forest);
+}
+#insights article{
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 18px 36px rgba(0,0,0,.16);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+#insights article::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height:3px;
+  background: linear-gradient(90deg, rgba(85,160,146,.88), rgba(85,160,146,.18));
+}
+#insights article:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 22px 40px rgba(0,0,0,.20);
+  border-color: rgba(255,255,255,.16) !important;
+}
+
+footer{
+  position: relative;
+  box-shadow: 0 -14px 34px rgba(7,26,33,.10);
+}
+footer::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height:1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.12), rgba(255,255,255,0));
+}
+
+@media (max-width: 767px){
+  .site-topnav .wrap::after,
+  .advisory-section-nav .inner::after,
+  main > section:first-of-type::after,
+  footer::before{left:14px; right:14px;}
+}
+</style>
+
+<style id="enwater-logo-refinement-v1">
+.brand-logo,.nav-logo,.nav-brand-logo{height:38px!important;width:auto!important;max-width:66px!important;object-fit:contain!important;background:transparent!important;border-radius:0!important;padding:0!important;box-shadow:none!important;}
+.brand span,.nav-brand span{white-space:nowrap;}
+.footer-logo{height:34px;width:auto;max-width:60px;object-fit:contain;background:transparent;border-radius:0;padding:0;box-shadow:none;display:block;}
+.footer-brand,.foot-brand{display:flex;align-items:center;gap:10px;}
+</style>
+
+
+<script id="advisory-section-nav-gap-fix-script-v2">
+(function(){
+  function setTopNavHeight(){
+    var nav = document.querySelector('header.site-topnav');
+    if(!nav) return;
+    var h = Math.ceil(nav.getBoundingClientRect().height || 64);
+    document.documentElement.style.setProperty('--enwater-topnav-height', h + 'px');
+    document.documentElement.style.scrollPaddingTop = (h + 58) + 'px';
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', setTopNavHeight);
+  }else{
+    setTopNavHeight();
+  }
+  window.addEventListener('resize', setTopNavHeight, {passive:true});
+})();
+</script>
+<link href="../exported-ui-styles.css" rel="stylesheet"/><link rel="icon" type="image/png" href="../assets/images/enwater-design-logo-nav.png" />
+</head>
+<body class="bg-cream sans-body" id="top"><div id="automation-monitoring-control" style="scroll-margin-top: 132px;"></div>
+<header class="site-topnav">
+<div class="wrap">
+<a aria-label="EnWater Design home" class="brand" href="../home.html">
+<img alt="EnWater Design logo" class="nav-logo" src="../assets/images/enwater-design-logo.png"/>
+<span>EnWater Design</span>
+</a>
+<nav class="desktop-nav">
+<ul>
+<li><a class="rootlink" href="../home.html">Home</a></li>
+<li>
+            <a class="rootlink " href="../About/about.html">About</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a class="" href="../About/about.html">About Us</a>
+              <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+            </div>
+          </li>
+<li>
+<a class="rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</li>
+<li>
+<a class="rootlink active" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Projects/index.html">Projects</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</li>
+<li><a class="rootlink nav-login" href="../login.html">Login</a></li>
+<li><a class="rootlink nav-cta" href="../get-in-touch.html">Get in touch</a></li>
+</ul>
+</nav>
+<button aria-expanded="false" aria-label="Toggle menu" class="mobile-nav-toggle" type="button">
+<span class="hamburger-line line-1"></span>
+<span class="hamburger-line line-2"></span>
+<span class="hamburger-line line-3"></span>
+</button>
+</div>
+<div class="mobile-nav-panel">
+<div class="mobile-nav-content">
+<div class="mobile-nav-item">
+<a class="mobile-rootlink" href="../home.html">Home</a>
+</div>
+<div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink " href="../About/about.html">About</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a class="" href="../About/about.html">About Us</a>
+            <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+          </div>
+        </div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage Overview</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink active" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Projects/index.html">Projects</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<a class="mobile-login-btn" href="../login.html">Login</a>
+</div>
+<div class="mobile-nav-item no-border">
+<a class="mobile-cta-btn" href="../get-in-touch.html">Get in touch</a>
+</div>
+</div>
+</div>
+</header>
+<nav aria-label="Advisory section navigation" class="advisory-section-nav"><div class="inner"><span class="section-name">Advisory</span><a class="" href="advisory-services.html">Advisory Services</a><a class="" href="solution-advisory.html">Solution Advisory</a><a class="" href="water-wastewater-advisory.html">Water &amp; Wastewater</a><a class="" href="process-system-design-advisory.html">Process &amp; System Design</a><a class="" href="sludge-biosolids-advisory.html">Sludge &amp; Biosolids</a><a class="" href="odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S</a><a class="is-active" href="automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control</a></div></nav>
+<main>
+<!-- HERO (EnWater Design process-engineering style) -->
+<section class="bg-cream border-b hairline">
+<div class="max-w-6xl mx-auto px-6 pt-14 pb-10">
+<p class="text-xs text-gray-500">Advisory stream <span class="mx-1">›</span> Automation, monitoring &amp; control</p>
+<div class="mt-3 flex flex-col gap-6">
+<div>
+<h1 class="serif-display text-4xl md:text-5xl">Automation, Monitoring &amp; Control</h1>
+<p class="mt-4 text-lg text-gray-700 leading-relaxed max-w-3xl">Nuisance alarms overwhelming operators? Control loops drifting from setpoints? Unclear what to monitor for performance confirmation? We define the control layer that keeps treatment systems performing under day-to-day variability, with control intent, instrumentation scope, interlocks, and close-out packs built for verification.</p>
+<div class="mt-6 flex flex-wrap gap-2">
+<span class="tag">Control intent &amp; safe states</span>
+<span class="tag">Instrumentation scope</span>
+<span class="tag">Alarm &amp; interlock logic</span>
+<span class="tag">Commissioning built for verification</span>
+</div>
+<div class="mt-8 flex flex-wrap gap-3">
+<a class="inline-flex items-center gap-2 rounded-sm bg-forest text-white px-4 py-2 hover:opacity-95" data-scroll-target="#enquiry" href="../get-in-touch.html">
+ Start an enquiry
+ <svg class="opacity-90" fill="none" height="16" viewbox="0 0 24 24" width="16">
+<path d="M5 12h13" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M14 7l5 5-5 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</a>
+<a class="inline-flex items-center gap-2 rounded-sm border border-gray-900/20 px-4 py-2 hover:bg-white/60" data-scroll-target="#configurations" href="#configurations">View project examples</a></div>
+</div>
+<!-- Wide image + overview card overlay (EnWater Design-style) -->
+<div class="relative rounded-sm overflow-hidden border border-gray-900/10 bg-white shadow-soft">
+<div class="h-[320px] md:h-[420px] w-full overflow-hidden bg-[radial-gradient(circle_at_30%_20%,rgba(72,168,130,.28),transparent_55%),radial-gradient(circle_at_70%_60%,rgba(95,156,157,.22),transparent_50%),linear-gradient(180deg,#131a18,#0f1413)]">
+<img alt="Automation, monitoring and control systems" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.classList.add('bg-[radial-gradient(circle_at_30%_20%,rgba(72,168,130,.28),transparent_55%),radial-gradient(circle_at_70%_60%,rgba(95,156,157,.22),transparent_50%),linear-gradient(180deg,#131a18,#0f1413)]');" src="assets/hero-automation.jpg" style="display: none;"/>
+</div>
+<div class="absolute left-4 md:left-6 bottom-4 md:bottom-6 max-w-[92%] md:max-w-[520px]">
+<div class="bg-white/95 backdrop-blur border border-gray-900/10 rounded-sm p-5">
+<p class="text-xs font-semibold tracking-wide text-gray-600 uppercase">Overview</p>
+<p class="mt-2 text-gray-800 leading-relaxed">Automation succeeds when control intent is defined early, not after vendors have priced black-box solutions. We structure the control layer so operators know what should stay stable, what protections are in place, and what records confirm performance at close-out.</p>
+<div class="mt-3 text-sm text-gray-600">Typical control scopes we define: <span class="font-medium text-gray-800">loop architecture &amp; pacing logic</span>, <span class="font-medium text-gray-800">instrumentation adequacy</span>, <span class="font-medium text-gray-800">alarm rationalisation</span>, <span class="font-medium text-gray-800">interlock &amp; safe-state logic</span>, and <span class="font-medium text-gray-800">performance verification packs</span>.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><div id="solution-advisory" style="scroll-margin-top: 132px;"></div><section class="bg-cream border-t hairline" id="introduction">
+<div class="max-w-6xl mx-auto px-6 py-14">
+<div class="grid lg:grid-cols-12 gap-10 items-start">
+<div class="lg:col-span-7">
+<p class="text-xs text-gray-500">How it works</p>
+<h2 class="serif-display mt-2 text-3xl md:text-4xl text-gray-950">From control intent to working operation</h2>
+<p class="mt-4 text-sm md:text-base text-gray-700 leading-relaxed">
+Automation problems usually show up at coordination points: missing signals, unclear safe states, drifting loops, or package controls that do not line up with plant operation. We turn those issues into a control scope that can be procured, commissioned, and run with confidence.
+</p>
+<div class="mt-6 grid md:grid-cols-2 gap-4">
+<div class="rounded-2xl bg-white border hairline p-5">
+<p class="text-xs text-gray-600">Control intent</p>
+<p class="mt-2 text-sm text-gray-800 leading-relaxed">
+Define what must stay stable, what can vary, and how the system should respond in normal, upset, standby, and maintenance conditions.
+</p>
+</div>
+<div class="rounded-2xl bg-white border hairline p-5">
+<p class="text-xs text-gray-600">Instrumentation &amp; actions</p>
+<p class="mt-2 text-sm text-gray-800 leading-relaxed">
+Set out the sensing, dosing, recycle, and protection logic needed so operators and suppliers are working from the same control basis.
+</p>
+</div>
+<div class="rounded-2xl bg-white border hairline p-5 md:col-span-2">
+<p class="text-xs text-gray-600">Verification &amp; close-out</p>
+<div class="mt-3 grid md:grid-cols-3 gap-3 text-sm text-gray-800">
+<div class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Loop tuning and sequence checks that can be run in practice.</span></div>
+<div class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Trend records, alarm history, and setpoint registers ready for review.</span></div>
+<div class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Handover notes operators can use without reinterpreting vendor logic.</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5">
+<div class="rounded-3xl bg-white border hairline overflow-hidden">
+<div class="p-6 border-b hairline">
+<p class="text-xs font-semibold tracking-wide text-gray-600 uppercase">Typical triggers</p>
+<ul class="mt-4 space-y-2 text-sm text-gray-800">
+<li class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Nuisance alarms masking the few events operators need to act on.</span></li>
+<li class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Package controls and plant controls using different assumptions or ownership boundaries.</span></li>
+<li class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Reuse, membrane, chemical, or odor systems needing clearer permissives and protective actions.</span></li>
+<li class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Commissioning close-out delayed because the records needed for completion were never set clearly.</span></li>
+</ul>
+</div>
+<div class="p-6">
+<p class="text-xs font-semibold tracking-wide text-gray-600 uppercase">Outputs you can hand to suppliers</p>
+<ul class="mt-4 space-y-2 text-sm text-gray-800">
+<li class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Control summary with modes, setpoints, permissives, and safe states.</span></li>
+<li class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Instrumentation and IO list with clear ownership boundaries.</span></li>
+<li class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Verification checks, trend expectations, and close-out records.</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- DARK BANNER + ACCORDION SERVICES -->
+<div id="advisory-services" style="scroll-margin-top: 132px;"></div><section class="bg-ink text-white border-b border-white/10" id="services">
+<div class="pattern">
+<div class="max-w-6xl mx-auto px-6 py-14">
+<div class="grid lg:grid-cols-2 gap-10 items-start">
+<div>
+<h2 class="serif-display text-3xl md:text-4xl">Services &amp; Capabilities</h2>
+<p class="mt-4 text-white/80 leading-relaxed">We support the control layer across water, sludge, odor and thermal systems, translating outcome targets into practical automation scope, clear coordination points, and verification checks that suppliers can commission and hand over.</p>
+</div>
+<div class="grid md:grid-cols-2 gap-4">
+<!-- Step 1 -->
+<div class="accordion rounded-sm border border-white/10 bg-white/5 overflow-hidden">
+<button class="w-full flex items-start gap-3 p-5 text-left hover:bg-white/5" data-acc-btn="">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center font-bold text-sm">1</div>
+<div class="flex-1">
+<h4 class="font-semibold text-white">Control intent &amp; architecture</h4>
+<p class="mt-2 text-sm text-white/80 leading-relaxed">Define what must be held steady, what can vary, and how the control layer behaves across operating modes, so performance stays stable and clear.</p>
+</div>
+<span class="text-white/70 text-xl"> - </span>
+</button>
+<div class="px-5 pb-5" data-acc-body="">
+<ul class="ml-11 text-sm text-white/70 space-y-1.5">
+<li>› Control philosophy: modes, targets, constraints, and safe states</li>
+<li>› Loop map: flow pacing, aeration/DO, recycle control, pressure/level control</li>
+<li>› Scope boundaries: plant PLC/SCADA vs package skid controls, signals and ownership</li>
+<li>› Performance data expectations: trends, setpoint history, alarms, event logs</li>
+</ul>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="accordion rounded-sm border border-white/10 bg-white/5 overflow-hidden">
+<button class="w-full flex items-start gap-3 p-5 text-left hover:bg-white/5" data-acc-btn="">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center font-bold text-sm">2</div>
+<div class="flex-1">
+<h4 class="font-semibold text-white">Instrumentation + dosing &amp; recycle control</h4>
+<p class="mt-2 text-sm text-white/80 leading-relaxed">Specify the sensing and actuation scope that makes control possible, then connect it to dosing, recycles, and protection logic for downstream equipment.</p>
+</div>
+<span class="text-white/70 text-xl"> - </span>
+</button>
+<div class="px-5 pb-5" data-acc-body="">
+<ul class="ml-11 text-sm text-white/70 space-y-1.5">
+<li>› Instrumentation adequacy check: placement, ranges, redundancy and maintainability</li>
+<li>› Chemical dosing control: injection points, pacing, calibration routines, residual confirmation</li>
+<li>› Recycle/return control: RAS/WAS, internal recycle, equalisation and surge handling</li>
+<li>› Protection logic: membrane safeguards, CIP permissives, diversion/bypass conditions</li>
+</ul>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="accordion rounded-sm border border-white/10 bg-white/5 overflow-hidden">
+<button class="w-full flex items-start gap-3 p-5 text-left hover:bg-white/5" data-acc-btn="">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center font-bold text-sm">3</div>
+<div class="flex-1">
+<h4 class="font-semibold text-white">Alarm rationalisation, interlocks &amp; safe states</h4>
+<p class="mt-2 text-sm text-white/80 leading-relaxed">Turn "alarm overload" into clarity, prioritised alarms, cause-and-effect, and interlocks that protect assets, safety and water quality.</p>
+</div>
+<span class="text-white/70 text-xl">+</span>
+</button>
+<div class="px-5 pb-5 hidden" data-acc-body="">
+<ul class="ml-11 text-sm text-white/70 space-y-1.5">
+<li>› Alarm philosophy, prioritisation, and nuisance reduction</li>
+<li>› Cause-and-effect matrix for trips, shutdowns, diversions and ventilation events</li>
+<li>› Interlocks for chemicals, pumps/blowers, ventilation, and confined space risk points</li>
+<li>› Operator UX: dashboards, key KPIs, manual override rules and escalation</li>
+</ul>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="accordion rounded-sm border border-white/10 bg-white/5 overflow-hidden">
+<button class="w-full flex items-start gap-3 p-5 text-left hover:bg-white/5" data-acc-btn="">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center font-bold text-sm">4</div>
+<div class="flex-1">
+<h4 class="font-semibold text-white">Performance verification &amp; close-out packs</h4>
+<p class="mt-2 text-sm text-white/80 leading-relaxed">Build performance checks that can actually be executed, with loop tuning, verification routines, and close-out documentation operators can run and maintain.</p>
+</div>
+<span class="text-white/70 text-xl">+</span>
+</button>
+<div class="px-5 pb-5 hidden" data-acc-body="">
+<ul class="ml-11 text-sm text-white/70 space-y-1.5">
+<li>› Loop tuning guidance and step tests for critical control loops</li>
+<li>› Performance verification: performance ranges, sampling/QA routines, record templates</li>
+<li>› Commissioning readiness: sequence checks, permissives and fail-safe behaviour verification</li>
+<li>› Handover pack: control summary, setpoint register, alarm list, system &amp; O&amp;M routines</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- DEEP-DIVE CAPABILITIES (EnWater Design industry-style) -->
+<div id="water-wastewater" style="scroll-margin-top: 132px;"></div><section class="bg-forest text-white border-b border-white/10" id="capabilities">
+<div class="pattern"><div class="max-w-6xl mx-auto px-6 py-14">
+<div class="flex items-end justify-between gap-6 flex-wrap">
+<div>
+<h2 class="serif-display text-3xl md:text-4xl">Outcome routes we design for</h2>
+<p class="mt-3 text-white/80 max-w-2xl leading-relaxed">These are not software features. They are outcome targets. We use them to define control intent, coordination points, and the verification plan that makes performance measurable.</p>
+</div>
+<div class="text-sm text-white/70">Tip: click a route to see the focus areas.</div>
+</div>
+<div class="mt-8 grid lg:grid-cols-12 gap-6">
+<div class="lg:col-span-5 space-y-2">
+<button aria-pressed="true" class="cap-btn cap-active w-full text-left px-5 py-4 rounded-sm border border-white/10 hover:bg-white/5 bg-white/10 ring-1 ring-white/20" data-cap="bio" data-cap-item="">
+<div class="flex items-center">
+<span class="font-semibold">Stable biological performance</span>
+</div>
+<div class="mt-1 text-sm text-white/70">Hold treatment quality across load swings with robust pacing, aeration and recycle control.</div>
+</button>
+<button aria-pressed="false" class="cap-btn w-full text-left px-5 py-4 rounded-sm border border-white/10 hover:bg-white/5" data-cap="chem" data-cap-item="">
+<div class="flex items-center">
+<span class="font-semibold">Chemical treatment &amp; dosing control</span>
+</div>
+<div class="mt-1 text-sm text-white/70">Specify dosing logic, interlocks and residual confirmation so chemistry delivers the intent safely.</div>
+</button>
+<button aria-pressed="false" class="cap-btn w-full text-left px-5 py-4 rounded-sm border border-white/10 hover:bg-white/5" data-cap="reuse" data-cap-item="">
+<div class="flex items-center">
+<span class="font-semibold">Reuse polishing &amp; membrane protection</span>
+</div>
+<div class="mt-1 text-sm text-white/70">Protect downstream polishing with clear protection logic, CIP permissives and ready for review checks.</div>
+</button>
+<button aria-pressed="false" class="cap-btn w-full text-left px-5 py-4 rounded-sm border border-white/10 hover:bg-white/5" data-cap="solids" data-cap-item="">
+<div class="flex items-center">
+<span class="font-semibold">Sludge &amp; hygienisation controls</span>
+</div>
+<div class="mt-1 text-sm text-white/70">Define control for solids handling, pasteurisation steps, and coordination points back to the waterline.</div>
+</button>
+<button aria-pressed="false" class="cap-btn w-full text-left px-5 py-4 rounded-sm border border-white/10 hover:bg-white/5" data-cap="odor" data-cap-item="">
+<div class="flex items-center">
+<span class="font-semibold">Odor &amp; septicity control points</span>
+</div>
+<div class="mt-1 text-sm text-white/70">Control where odor is expected and observed, capture, dosing and polishing with practical cause-and-effect.</div>
+</button>
+</div>
+<div class="lg:col-span-7">
+<div class="rounded-sm border border-white/10 bg-white/5 p-6">
+<p class="text-xs font-semibold tracking-wide text-white/70 uppercase">Focus areas</p>
+<h3 class="mt-2 text-xl font-semibold" data-cap-title="">Stable biological performance</h3>
+<p class="mt-3 text-white/80 leading-relaxed" data-cap-body="">Define pacing, aeration and recycle control so biological treatment holds quality under flow and load swings, with trend records and performance checks ready for review.</p>
+<div class="mt-5 grid sm:grid-cols-2 gap-4 text-sm text-white/80" data-cap-list=""><div class="rounded-sm border border-white/10 bg-black/10 p-4"><strong>Loops:</strong> flow pacing, DO control, recycles, sludge age guardrails.</div><div class="rounded-sm border border-white/10 bg-black/10 p-4"><strong>Signals:</strong> flows, levels, DO, pH/ORP; analyzers only where maintainable.</div><div class="rounded-sm border border-white/10 bg-black/10 p-4"><strong>Safe states:</strong> diversion/bypass rules and fail-safe behaviour for critical events.</div><div class="rounded-sm border border-white/10 bg-black/10 p-4"><strong>Verification:</strong> performance ranges + trend requirements aligned to compliance and reuse targets.</div></div>
+<div class="mt-6 text-sm text-white/70">
+ Related: <a class="underline underline-offset-2 hover:text-white" data-scroll-target="#capabilities" href="#capabilities">Process &amp; system design</a> ·
+ <a class="underline underline-offset-2 hover:text-white" data-scroll-target="#configurations" href="#configurations">Biosolids diagnostic</a>
+</div>
+</div>
+</div>
+</div>
+</div></div></section><div id="process-system-design" style="scroll-margin-top: 132px;"></div><section class="bg-cream border-t hairline" id="configurations">
+<div class="pattern">
+<div class="max-w-6xl mx-auto px-6 py-14">
+<div class="flex items-start justify-between gap-6">
+<div>
+<h2 class="serif-display text-3xl md:text-4xl text-gray-950">Project Configurations</h2>
+<p class="mt-3 text-sm text-gray-700 max-w-2xl">A few common packaging formats for controls work, kept practical, vendor-ready, and aligned to commissioning and close-out.</p>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Previous" class="h-10 w-10 rounded-full border hairline bg-white text-gray-900 hover:opacity-80" data-config-prev="" type="button">←</button>
+<button aria-label="Next" class="h-10 w-10 rounded-full border hairline bg-white text-gray-900 hover:opacity-80" data-config-next="" type="button">→</button>
+</div>
+</div>
+<div class="mt-8">
+<div class="mt-4 flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scroll-smooth" data-config-track="">
+<!-- Card 1 -->
+<article class="min-w-[320px] sm:min-w-[360px] lg:min-w-[400px] snap-start bg-white rounded-2xl border hairline shadow-sm overflow-hidden">
+<div class="h-20 bg-forest2"></div>
+<div class="p-6">
+<p class="text-xs text-gray-600">Snapshot</p>
+<h3 class="mt-1 serif-display text-xl md:text-2xl text-gray-950">Controls uplift &amp; rationalisation pack</h3>
+<p class="mt-3 text-sm text-gray-700 leading-relaxed">Upgrade controls without losing focus: define intent, reduce alarm noise, and make performance measurable for operators and suppliers.</p>
+<ul class="mt-4 grid gap-2 text-sm text-gray-800">
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Control summary + mode map (normal / upset / maintenance)</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Setpoint register + alarm philosophy &amp; review</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Instrument / IO schedule with scope boundaries</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Commissioning scripts (commissioning checks) + record templates</span></li></ul>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="min-w-[320px] sm:min-w-[360px] lg:min-w-[400px] snap-start bg-white rounded-2xl border hairline shadow-sm overflow-hidden">
+<div class="h-20 bg-forest2"></div>
+<div class="p-6">
+<p class="text-xs text-gray-600">Snapshot</p>
+<h3 class="mt-1 serif-display text-xl md:text-2xl text-gray-950">New build controls specification pack</h3>
+<p class="mt-3 text-sm text-gray-700 leading-relaxed">Establish a clean control scope for new builds so vendors can integrate package skids, deliver sequences, and commission against clear verification requirements.</p>
+<ul class="mt-4 grid gap-2 text-sm text-gray-800">
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Instrumentation list + IO and comms requirements</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Cause-and-effect / interlock matrix and sequences</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Coordination matrix (who owns what control boundaries)</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Performance checks + operator guidance &amp; O&amp;M routines</span></li></ul>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="min-w-[320px] sm:min-w-[360px] lg:min-w-[400px] snap-start bg-white rounded-2xl border hairline shadow-sm overflow-hidden">
+<div class="h-20 bg-forest2"></div>
+<div class="p-6">
+<p class="text-xs text-gray-600">Snapshot</p>
+<h3 class="mt-1 serif-display text-xl md:text-2xl text-gray-950">Reuse polishing protection &amp; verification pack</h3>
+<p class="mt-3 text-sm text-gray-700 leading-relaxed">For UF/RO and polishing stages, protect assets, define diversion rules, and document the verification checks behind reuse assurance.</p>
+<ul class="mt-4 grid gap-2 text-sm text-gray-800">
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Protection logic (DP/pressure, turbidity/cond., divert triggers)</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>CIP permissives + flush/standby sequencing</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>QA logs + alarm/event history expectations</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Performance verification checks aligned to reuse criteria</span></li></ul>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="min-w-[320px] sm:min-w-[360px] lg:min-w-[400px] snap-start bg-white rounded-2xl border hairline shadow-sm overflow-hidden">
+<div class="h-20 bg-forest2"></div>
+<div class="p-6">
+<p class="text-xs text-gray-600">Snapshot</p>
+<h3 class="mt-1 serif-display text-xl md:text-2xl text-gray-950">Odor &amp; septicity control bundle</h3>
+<p class="mt-3 text-sm text-gray-700 leading-relaxed">Control odor where it forms and where it is observed, capture, dosing and polishing, supported by practical cause-and-effect and operator routines.</p>
+<ul class="mt-4 grid gap-2 text-sm text-gray-800">
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Control points map across liquid + solids coordination points</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Dosing package logic (rates, pacing, calibration, interlocks)</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Ventilation / extraction control + safe states</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Biofilter/scrubber operational parameters + performance checks</span></li></ul>
+</div>
+</article>
+</div>
+</div>
+<p class="mt-6 text-xs text-gray-600">Tip: swipe or scroll to browse. Use these as starting points. Scope is tailored to site constraints and end-use intent.</p>
+</div>
+</div>
+</section>
+<!-- PROJECT CONFIGURATIONS (carousel) -->
+<!-- GET IN TOUCH -->
+<div id="sludge-biosolids" style="scroll-margin-top: 132px;"></div><section class="bg-white border-t hairline" id="enquiry"><div id="contact"></div>
+<div class="max-w-6xl mx-auto px-6 py-14">
+<div class="grid lg:grid-cols-2 gap-10 items-start">
+<div>
+<h2 class="serif-display text-3xl md:text-4xl">Get in touch</h2>
+<p class="mt-4 text-gray-700 leading-relaxed">
+Share the units covered, current controls platform (PLC/SCADA), and key pain points (quality drift, nuisance alarms, chemical/energy stability). If you have timing drivers or decision deadlines, include those too.
+</p>
+<div class="mt-6 space-y-3 text-sm text-gray-700">
+<div class="flex gap-2"><span class="tag">Helpful inputs</span><span>Units covered, current controls platform (PLC/SCADA), key pain points (quality drift, nuisance alarms, chemical/energy stability), decision deadline.</span></div>
+<div class="flex gap-2"><span class="tag">If relevant</span><span>Package skid boundaries, reuse criteria, chemical storage constraints, odor capture/polishing coordination points, thermal/hygienisation steps.</span></div>
+</div>
+<div class="mt-8 flex flex-wrap gap-3">
+<a class="inline-flex items-center gap-2 rounded-sm bg-forest text-white px-4 py-2 hover:opacity-95" data-scroll-target="#contact" href="../get-in-touch.html">Contact us</a>
+<a class="inline-flex items-center gap-2 rounded-sm border border-gray-900/20 px-4 py-2 hover:bg-gray-50" data-scroll-target="#configurations" href="../Projects/project-pathways.html">Explore project pathways</a>
+</div>
+</div>
+<div class="card p-6">
+<div class="text-xs font-semibold tracking-wide text-gray-500 uppercase">Quick enquiry</div>
+<div class="mt-3 grid gap-3 text-sm">
+<label class="space-y-1">
+<div class="text-gray-700">Site / project name</div>
+<input class="w-full rounded-sm border border-gray-900/15 px-3 py-2 bg-white" placeholder="e.g., STP upgrade - control layer uplift"/>
+</label>
+<label class="space-y-1">
+<div class="text-gray-700">Controls focus areas</div>
+<textarea class="w-full rounded-sm border border-gray-900/15 px-3 py-2 bg-white h-28" placeholder="Which units need control? (bio, chemical, polishing, solids, odor) + current PLC/SCADA and pain points."></textarea>
+</label>
+<label class="space-y-1">
+<div class="text-gray-700">Target verification need</div>
+<input class="w-full rounded-sm border border-gray-900/15 px-3 py-2 bg-white" placeholder="e.g., reuse stability, alarm reduction, performance verification pack"/>
+</label>
+<button class="mt-4 w-full inline-flex items-center justify-center gap-2 rounded-sm bg-forest text-white px-4 py-2.5 hover:opacity-95" id="sendEnquiryBtn" type="button">
+Send enquiry
+<svg class="opacity-90" fill="none" height="16" viewbox="0 0 24 24" width="16">
+<path d="M5 12h13" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M14 7l5 5-5 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</button>
+<div class="mt-3 text-xs text-gray-600 hidden" id="enquiryToast">Copied to clipboard.</div>
+<div class="mt-3 text-xs text-gray-600">This form is a template for your own implementation. For live enquiries, please use the Contact page.</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FURTHER READING -->
+<div id="odor-septicity-h2s" style="scroll-margin-top: 132px;"></div><section class="bg-forest border-t hairline" id="insights">
+<div class="pattern">
+<div class="max-w-6xl mx-auto px-6 py-14">
+<div class="flex items-start justify-between gap-6">
+<div>
+<h2 class="serif-display text-3xl md:text-4xl text-white">Insights</h2>
+<p class="mt-3 text-sm text-white/80 max-w-2xl">A few recurring patterns we see in controls work, useful for setting out scope and verification checks before vendors step in.</p>
+</div>
+</div>
+<div class="mt-8 grid md:grid-cols-3 gap-6">
+<article class="rounded-2xl bg-forest2/60 border border-white/10 p-6">
+<h3 class="serif-display text-xl text-white">Controls define performance criteria</h3>
+<p class="mt-3 text-sm text-white/80 leading-relaxed">Good automation turns targets into measurable performance checks, so commissioning shows performance instead of just “running it until it looks stable.”</p>
+</article>
+<article class="rounded-2xl bg-forest2/60 border border-white/10 p-6">
+<h3 class="serif-display text-xl text-white">Alarm reduction is performance</h3>
+<p class="mt-3 text-sm text-white/80 leading-relaxed">Rationalised alarms and clear safe states reduce operator load, prevent drift, and keep quality stable under day-to-day variability.</p>
+</article>
+<article class="rounded-2xl bg-forest2/60 border border-white/10 p-6">
+<h3 class="serif-display text-xl text-white">Coordination points decide success</h3>
+<p class="mt-3 text-sm text-white/80 leading-relaxed">Most control failures happen at boundaries: package skids, connections, return liquors, and ventilation. Define ownership and signals early.</p>
+</article>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="wrap">
+<div class="footer-top">
+<div>
+<div class="footer-brand"><img alt="EnWater Design logo" class="footer-logo" src="../assets/images/enwater-design-logo-transparent-mark.png"/><span class="footer-name">EnWater Design</span></div>
+<p class="footer-desc">Independent water, wastewater treatment and reuse consulting, helping owners and operators turn complex challenges into clear decisions and practical outcomes.</p>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<a href="../home.html">Home</a>
+<a href="../About/about.html">About</a>
+<a href="../About/BlogList.html">Our Blog</a>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+</div>
+<div class="footer-col">
+<h4>Services</h4>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing</a>
+<a href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<a href="../Projects/index.html">Projects</a>
+<a href="../Sectors/index.html">Sectors</a>
+</div>
+<div class="footer-col">
+<h4>Pathways</h4>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../Sectors/index.html">Sector Pathways</a>
+</div>
+<div class="footer-col">
+<h4>Get in touch</h4>
+<a href="../get-in-touch.html">Contact form</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">Industrial / CETP</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© <span id="yr"></span> EnWater Design</div>
+<div>Clear systems planning for practical project delivery</div>
+</div>
+</div>
+<script>
+  (function() {
+    const yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+  })();
+</script>
+</footer>
+<script>
+(() => {
+ const y = document.getElementById('year');
+ if (y) y.textContent = new Date().getFullYear();
+
+ document.querySelectorAll('.accordion').forEach((wrap) => {
+ const btn = wrap.querySelector('[data-acc-btn]');
+ const body = wrap.querySelector('[data-acc-body]');
+ const indicator = btn ? btn.querySelector('span:last-child') : null;
+ if (!btn || !body) return;
+ btn.addEventListener('click', () => {
+ const isOpen = !body.classList.contains('hidden');
+ body.classList.toggle('hidden', isOpen);
+ if (indicator) indicator.textContent = isOpen ? '+' : '-';
+ });
+ });
+
+ const cap = document.getElementById('capabilities');
+ if (cap) {
+ const items = [...cap.querySelectorAll('[data-cap-item]')];
+ const outTitle = cap.querySelector('[data-cap-title]');
+ const outBody = cap.querySelector('[data-cap-body]');
+ const outList = cap.querySelector('[data-cap-list]');
+
+ const content = {
+ bio: {
+ title: 'Stable biological performance',
+ body: 'Define pacing, aeration, and recycle control so biological treatment holds quality under flow and load swings, with trend records and performance checks ready for review.',
+ list: [
+ '<strong>Loops:</strong> flow pacing, DO control, recycles, and sludge-age guardrails.',
+ '<strong>Signals:</strong> flows, levels, DO, and pH/ORP, with analyzers only where they can be maintained properly.',
+ '<strong>Safe states:</strong> diversion and bypass rules, plus fail-safe behavior for critical events.',
+ '<strong>Verification:</strong> performance ranges and trend requirements aligned to compliance and reuse targets.'
+ ]
+ },
+ chem: {
+ title: 'Chemical treatment &amp; dosing control',
+ body: 'Translate chemical intent into dosing logic that is safe, stable, and verifiable, from injection points to interlocks and residual confirmation.',
+ list: [
+ '<strong>Dose logic:</strong> pacing, feedback where justified, and calibration routines.',
+ '<strong>Interlocks:</strong> chemical level and containment permissives, plus shutdown behavior.',
+ '<strong>Protection:</strong> prevent overfeed, pH excursions, and downstream fouling risk.',
+ '<strong>Verification:</strong> residual checks, sampling routines, and commissioning record templates.'
+ ]
+ },
+ reuse: {
+ title: 'Reuse polishing &amp; membrane protection',
+ body: 'Define protection logic and verification checks that keep polishing assets safe, and keep reuse outcomes clear at close-out.',
+ list: [
+ '<strong>Protection:</strong> pressure and DP limits, turbidity and SDI triggers, and conductivity safeguards.',
+ '<strong>Sequences:</strong> CIP permissives, flush and standby modes, and divert rules.',
+ '<strong>Coordination points:</strong> package skid versus plant PLC and SCADA boundaries made explicit.',
+ '<strong>Verification:</strong> QA logs, alarm history, and performance verification checks.'
+ ]
+ },
+ solids: {
+ title: 'Sludge &amp; hygienisation controls',
+ body: 'Control solids handling and hygienisation steps with clear sequences, interlocks, and temperature and holding-time verification, while linking coordination points back to the waterline.',
+ list: [
+ '<strong>Solids handling:</strong> conveyors, pumps, polymer, dewatering sequences, and alarms.',
+ '<strong>Thermo hygiene:</strong> temperature and hold control, recirculation, and validation points.',
+ '<strong>Coordination points:</strong> return liquors, filtrate, washwater routing, and constraints.',
+ '<strong>Verification:</strong> setpoint register and record pack for commissioning and QA.'
+ ]
+ },
+ odor: {
+ title: 'Odor &amp; septicity control points',
+ body: 'Focus on control where odor forms and is observed, with capture, dosing, and polishing supported by practical cause-and-effect and operator routines.',
+ list: [
+ '<strong>Control points:</strong> wet wells, headworks, sludge handling, and biofilter or scrubber stages.',
+ '<strong>Dosing:</strong> chemical or biological dosing logic tied to the odor risk points.',
+ '<strong>Ventilation:</strong> extraction control, permissives, and safe-state behavior.',
+ '<strong>Verification:</strong> performance checks, alarm rationalisation, and O&amp;M routines.'
+ ]
+ }
+ };
+
+ const setActive = (key) => {
+ const d = content[key] || content.bio;
+ items.forEach((i) => {
+ const active = i.dataset.cap === key;
+ i.classList.toggle('bg-white/10', active);
+ i.classList.toggle('ring-1', active);
+ i.classList.toggle('ring-white/20', active);
+ i.setAttribute('aria-pressed', active ? 'true' : 'false');
+ });
+ if (outTitle) outTitle.innerHTML = d.title;
+ if (outBody) outBody.innerHTML = d.body;
+ if (outList) {
+ outList.innerHTML = d.list.map(t => `<div class="rounded-sm border border-white/10 bg-black/10 p-4">${t}</div>`).join('');
+ }
+ };
+
+ items.forEach((el) => {
+ el.addEventListener('click', (e) => {
+ e.preventDefault();
+ setActive(el.dataset.cap);
+ });
+ });
+ setActive(items[0]?.dataset.cap || 'bio');
+ }
+
+ const track = document.querySelector('[data-config-track]');
+ const prev = document.querySelector('[data-config-prev]');
+ const next = document.querySelector('[data-config-next]');
+ if (track && prev && next) {
+ const step = () => Math.max(320, Math.floor(track.clientWidth * 0.9));
+ prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+ next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+ }
+
+ const section = document.getElementById('enquiry');
+ const btn = document.getElementById('sendEnquiryBtn');
+ const toast = document.getElementById('enquiryToast');
+ if (section && btn) {
+ const show = (msg) => {
+ if (!toast) { alert(msg); return; }
+ toast.textContent = msg;
+ toast.classList.remove('hidden');
+ clearTimeout(show._t);
+ show._t = setTimeout(() => toast.classList.add('hidden'), 3500);
+ };
+ btn.addEventListener('click', async () => {
+ const fields = [];
+ section.querySelectorAll('label').forEach(label => {
+ const title = label.querySelector('div')?.textContent?.trim();
+ const input = label.querySelector('input, textarea');
+ const val = input?.value?.trim();
+ if (title) fields.push(`${title}: ${val || '[ ]'}`);
+ });
+ const text = `Automation, Monitoring & Control enquiry
+
+${fields.join('\n')}`.trim();
+ try {
+ await navigator.clipboard.writeText(text);
+ show('Copied to clipboard.');
+ } catch (e) {
+ const ta = document.createElement('textarea');
+ ta.value = text;
+ ta.style.position = 'fixed';
+ ta.style.opacity = '0';
+ document.body.appendChild(ta);
+ ta.select();
+ try { document.execCommand('copy'); show('Copied to clipboard.'); } catch (e2) { show('Please copy manually.'); }
+ document.body.removeChild(ta);
+ }
+ });
+ }
+})();
+</script>
+<script src="../exported-ui-effects.js"></script></body></html>

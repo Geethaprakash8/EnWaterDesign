@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Sludge &amp; Biosolids Advisory | EnWater Design</title>
+<script>
+    window.tailwind = window.tailwind || {}; window.tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: "#f4f2ec",
+            ink: "#1b1f1e",
+            muted: "#5a6561",
+            forest: "#243f38",
+            forest2: "#1f3731",
+            accent: "#55a092",
+            accent2: "#468a7e",
+            line: "rgba(27,31,30,.14)"
+          }
+        }
+      }
+    }
+  
+// Carousel controls (engagement snapshots)
+    document.addEventListener("DOMContentLoaded", function(){
+document.querySelectorAll('[data-carousel]').forEach(sec=>{
+    const track = sec.querySelector('[data-carousel-track]');
+    const prev = sec.querySelector('[data-carousel-prev]');
+    const next = sec.querySelector('[data-carousel-next]');
+    if(!track||!prev||!next) return;
+    const step = ()=> Math.max(280, Math.min(420, track.clientWidth*0.85));
+    prev.addEventListener('click', ()=> track.scrollBy({left:-step(), behavior:'smooth'}));
+    next.addEventListener('click', ()=> track.scrollBy({left: step(), behavior:'smooth'}));
+  });
+
+    });
+</script>
+<style>
+    :root{
+  --cream: #f2f5f4;
+  --ink: #071a21;
+  --forest: #0f3b45;
+  --forest2: #0a242b;
+  --accent: #55a092;
+  --accent2: #468a7e;
+  --line: rgba(27,31,30,.14);
+  --nav-bg: #0f3b36;
+  --accent-rgb: 85, 160, 146;
+  --nav-font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  --depthInner: #071a21;
+  --depthOuter: #0a242b;
+  --drop-bg: #0d332f;
+  --drop-border: rgba(255,255,255,.10);
+  --drop-shadow: 0 18px 32px rgba(0,0,0,.22);
+  --muted: #5a6561;
+  --nav-border: rgba(255,255,255,.10);
+  --nav-fg: rgba(255,255,255,.92);
+  --nav-fg-muted: rgba(255,255,255,.70);
+  --nav-fg-strong: #ffffff;
+  --nav-line: rgba(255,255,255,.12);
+  --nav-shadow: 0 10px 24px rgba(0,0,0,.10);
+  --servicesOverlay: rgba(7,18,22,.62);
+  --servicesTone: #2f5954;
+  --teal: #60b0a0;
+  --teal2: #4aa596;
+}
+/* --- design utility classes (needed for standalone HTML) --- */
+    .bg-cream{background:var(--cream);}
+    .bg-ink{background:var(--ink); color:#fff;}
+    .bg-forest{background:var(--forest); color:#fff;}
+    .bg-forest2{background:var(--forest2); color:#fff;}
+    .bg-accent{background:var(--accent); color:#fff;}
+    .text-accent{color:var(--accent);}
+    .border-line{border-color:var(--line);}
+
+html{scroll-behavior:smooth}
+    body{background:var(--cream); color:var(--ink)}
+    .site-serif{font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;}
+    .site-sans{font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";}
+    .hairline{border-color: var(--line);}
+    .soft-shadow{box-shadow: 0 22px 60px rgba(0,0,0,.10);}
+    .shadow-soft{box-shadow: 0 22px 60px rgba(0,0,0,.10);}
+    .bg-accent\/20{background-color: rgb(var(--accent-rgb) / 0.20);}
+    .pill{border:1px solid rgba(27,31,30,.14); background:rgba(255,255,255,.60)}
+    .mutedline{color:rgba(255,255,255,.72)}
+  
+/* === Capability dark wrapper overrides (green/ink feel) === */
+.cap-dark .text-gray-950{color:rgba(255,255,255,.92)!important;}
+.cap-dark .text-gray-900{color:rgba(255,255,255,.90)!important;}
+.cap-dark .text-gray-800{color:rgba(255,255,255,.85)!important;}
+.cap-dark .text-gray-700{color:rgba(255,255,255,.75)!important;}
+.cap-dark .text-gray-600{color:rgba(255,255,255,.70)!important;}
+.cap-dark .text-gray-500{color:rgba(255,255,255,.55)!important;}
+.cap-dark .text-gray-400{color:rgba(255,255,255,.45)!important;}
+.cap-dark .border{border-color:rgba(255,255,255,.10)!important;}
+.cap-dark .hairline{border-color:rgba(255,255,255,.10)!important;}
+.cap-dark .bg-white\/60,
+.cap-dark .bg-white\/55,
+.cap-dark .bg-white\/75{background-color:rgba(255,255,255,.06)!important;}
+.cap-dark .hover\:bg-white\/75:hover{background-color:rgba(255,255,255,.09)!important;}
+.cap-dark .hover\:bg-white:hover{background-color:rgba(255,255,255,.10)!important;}
+.cap-dark .pill{background-color:rgba(255,255,255,.06)!important; border:1px solid rgba(255,255,255,.12)!important;}
+.cap-dark select{background-color:rgba(255,255,255,.06)!important; color:rgba(255,255,255,.92)!important; border-color:rgba(255,255,255,.12)!important;}
+.cap-dark option{color:#0f1414;}
+/* Mode pills + recommended marker */
+.mode-pill{white-space:nowrap;}
+.cap-rec{position:relative;}
+.cap-rec::before{content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--accent); opacity:.95;}
+/* Reading dark wrapper overrides */
+
+/* separator + capability on ink */
+.cap-dark .bg-cream{color:inherit;}
+.cap-dark a.pill{border-color:rgba(255,255,255,.18)!important;}
+
+.reading-dark .border{border-color:rgba(255,255,255,.12)!important;}
+.reading-dark .hairline{border-color:rgba(255,255,255,.12)!important;}
+.reading-dark .bg-white\/60,
+.reading-dark .bg-white\/55,
+.reading-dark .bg-white\/75{background-color:rgba(255,255,255,.08)!important;}
+.reading-dark .text-gray-950{color:rgba(255,255,255,.92)!important;}
+.reading-dark .text-gray-800{color:rgba(255,255,255,.85)!important;}
+.reading-dark .text-gray-700{color:rgba(255,255,255,.75)!important;}
+.reading-dark .text-gray-600{color:rgba(255,255,255,.70)!important;}
+.reading-dark .text-gray-500{color:rgba(255,255,255,.55)!important;}
+
+    .pattern{
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,.06) 1px, transparent 0),
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,.03) 1px, transparent 0);
+  background-size: 18px 18px, 18px 18px;
+  background-position: 0 0, 9px 9px;
+}
+
+    /* Fallback if Tailwind CDN is blocked: keep icons from exploding */
+    svg{width:1em;height:1em;}
+
+/* Project Configurations: green top-quarter accent (≈ 1/4 card height) */
+.config-card{position:relative; overflow:hidden;}
+.config-card::before{
+  content:"";
+  position:absolute;
+  top:0; left:0; right:0;
+  height:25%;
+  background: rgba(85,160,146,0.10);
+  border-top: 4px solid var(--accent);
+  border-bottom: 1px solid rgba(85,160,146,0.28);
+}
+.config-card > *{position:relative; z-index:1;}
+
+    /* Inline chips */
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      white-space:nowrap;
+      border:1px solid rgba(27,31,30,.14);
+      background:rgba(255,255,255,.65);
+      padding:.25rem .75rem;
+      border-radius:9999px;
+      font-size:.75rem;
+      line-height:1rem;
+      color:var(--ink);
+    }
+    .cap-dark .tag{
+      border-color:rgba(255,255,255,.18);
+      background:rgba(255,255,255,.07);
+      color:rgba(255,255,255,.82);
+    }
+
+</style>
+<script>
+    // Tailwind (CDN) config for this standalone file
+    window.tailwind = window.tailwind || {}; window.tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: 'var(--cream)',
+            ink: 'var(--ink)',
+            forest: 'var(--forest)',
+            forest2: 'var(--forest2)',
+            accent: 'var(--accent)',
+            accent2: 'var(--accent2)'
+          }
+        }
+      }
+    };
+  </script>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.bottom-4{bottom:1rem}.left-4{left:1rem}.top-0{top:0px}.z-50{z-index:50}.mx-1{margin-left:0.25rem;margin-right:0.25rem}.mx-auto{margin-left:auto;margin-right:auto}.mt-1{margin-top:0.25rem}.mt-10{margin-top:2.5rem}.mt-16{margin-top:4rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:0.375rem}.h-10{height:2.5rem}.h-14{height:3.5rem}.h-2\.5{height:0.625rem}.h-20{height:5rem}.h-28{height:7rem}.h-4{height:1rem}.h-\[320px\]{height:320px}.h-full{height:100%}.w-1\.5{width:0.375rem}.w-10{width:2.5rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.w-full{width:100%}.min-w-\[320px\]{min-width:320px}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-6xl{max-width:72rem}.max-w-\[92\%\]{max-width:92%}.max-w-sm{max-width:24rem}.snap-x{scroll-snap-type:x var(--tw-scroll-snap-strictness)}.snap-mandatory{--tw-scroll-snap-strictness:mandatory}.snap-start{scroll-snap-align:start}.list-disc{list-style-type:disc}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-10{gap:2.5rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.scroll-smooth{scroll-behavior:smooth}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-sm{border-radius:0.125rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-gray-900\/10{border-color:rgb(17 24 39 / 0.1)}.border-gray-900\/15{border-color:rgb(17 24 39 / 0.15)}.border-gray-900\/20{border-color:rgb(17 24 39 / 0.2)}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.border-white\/20{border-color:rgb(255 255 255 / 0.2)}.bg-black\/10{background-color:rgb(0 0 0 / 0.1)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/5{background-color:rgb(255 255 255 / 0.05)}.bg-white\/95{background-color:rgb(255 255 255 / 0.95)}.bg-\[radial-gradient\(circle_at_30\%_20\%\2c rgba\(72\2c 168\2c 130\2c \.28\)\2c transparent_55\%\)\2c radial-gradient\(circle_at_70\%_60\%\2c rgba\(95\2c 156\2c 157\2c \.22\)\2c transparent_50\%\)\2c linear-gradient\(180deg\2c \#131a18\2c \#0f1413\)\]{background-image:radial-gradient(circle at 30% 20%,rgba(72,168,130,.28),transparent 55%),radial-gradient(circle at 70% 60%,rgba(95,156,157,.22),transparent 50%),linear-gradient(180deg,#131a18,#0f1413)}.object-cover{object-fit:cover}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-14{padding-top:3.5rem;padding-bottom:3.5rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pb-10{padding-bottom:2.5rem}.pb-4{padding-bottom:1rem}.pb-5{padding-bottom:1.25rem}.pl-5{padding-left:1.25rem}.pt-14{padding-top:3.5rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.tracking-wide{letter-spacing:0.025em}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-gray-950{--tw-text-opacity:1;color:rgb(3 7 18 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/55{color:rgb(255 255 255 / 0.55)}.text-white\/70{color:rgb(255 255 255 / 0.7)}.text-white\/80{color:rgb(255 255 255 / 0.8)}.text-white\/85{color:rgb(255 255 255 / 0.85)}.text-white\/90{color:rgb(255 255 255 / 0.9)}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.underline-offset-2{text-underline-offset:2px}.opacity-80{opacity:0.8}.opacity-90{opacity:0.9}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.ring-1{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.ring-white\/20{--tw-ring-color:rgb(255 255 255 / 0.2)}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.hover\:bg-\[color\:var\(--accent2\)\]:hover{background-color:var(--accent2)}.hover\:bg-gray-50:hover{--tw-bg-opacity:1;background-color:rgb(249 250 251 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/10:hover{background-color:rgb(255 255 255 / 0.1)}.hover\:bg-white\/20:hover{background-color:rgb(255 255 255 / 0.2)}.hover\:bg-white\/5:hover{background-color:rgb(255 255 255 / 0.05)}.hover\:bg-white\/60:hover{background-color:rgb(255 255 255 / 0.6)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:opacity-80:hover{opacity:0.8}.hover\:opacity-95:hover{opacity:0.95}@media (min-width: 640px){.sm\:min-w-\[360px\]{min-width:360px}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 768px){.md\:bottom-6{bottom:1.5rem}.md\:left-6{left:1.5rem}.md\:flex{display:flex}.md\:h-\[420px\]{height:420px}.md\:max-w-\[520px\]{max-width:520px}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-center{align-items:center}.md\:justify-between{justify-content:space-between}.md\:text-2xl{font-size:1.5rem;line-height:2rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}.md\:text-5xl{font-size:3rem;line-height:1}.md\:text-base{font-size:1rem;line-height:1.5rem}}@media (min-width: 1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:min-w-\[400px\]{min-width:400px}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}</style>
+
+
+
+<style id="aqua-master-style">
+/* ==========================================================
+   EnWater Design - Master Colour & Interaction Style (Unified)
+   Applies wastewater/process styling consistently across sections.
+   ========================================================== */
+
+:root{
+  --cream:#f2f5f4;
+  --paper:#ffffff;
+  --ink:#0b1420;
+  --muted:#586563;
+
+  /* Core dark blues/greens used across the site */
+  --forest:#173b4b;
+  --forest2:#0d2f3a;
+
+  /* Brand accent (matches existing Tailwind accent utilities) */
+  --accent:#55a092;
+
+  /* Section-specific tones (from the Wastewater scheme file) */
+  --servicesTone:#2f5954;
+  --depthOuter:#131716;
+  --depthInner:#1c1f1f;
+
+  /* Top nav */
+  --nav-bg: rgba(6,22,26,.94);
+  --nav-fg: rgba(255,255,255,.78);
+  --nav-fg-strong:#ffffff;
+}
+
+/* --- Utility overrides (ensure consistent palette even if Tailwind values differ) --- */
+.bg-cream{ background-color: var(--cream) !important; }
+.bg-ink{ background-color: var(--ink) !important; }
+.bg-forest{ background-color: var(--forest) !important; }
+.bg-forest2{ background-color: var(--forest2) !important; }
+.bg-accent{ background-color: var(--accent) !important; }
+.text-accent{ color: var(--accent) !important; }
+.border-accent{ border-color: var(--accent) !important; }
+
+/* --- NAV BAR (dark, consistent) --- */
+.site-topnav{
+  background: var(--nav-bg) !important;
+  border-bottom-color: rgba(255,255,255,.10) !important;
+}
+.site-topnav a{ color: var(--nav-fg) !important; }
+.site-topnav a:hover{ color: var(--nav-fg-strong) !important; }
+.site-topnav .text-ink{ color: var(--nav-fg-strong) !important; }
+.site-topnav .text-muted{ color: rgba(255,255,255,.70) !important; }
+
+/* --- TEAL SERVICES SECTION (standard teal across advisory sections) --- */
+:root{ --servicesTone: #2f5954; }
+#services{
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(255,255,255,.02), rgba(0,0,0,.08)),
+    var(--servicesTone) !important;
+}
+#services .pattern{ position: relative; }
+#services .pattern::before{
+  content:"";
+  position:absolute; inset:0;
+  pointer-events:none;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(0,0,0,.24) 1px, transparent 1.9px);
+  background-size: 26px 26px;
+  opacity: .22;
+  mix-blend-mode: normal;
+}
+
+/* --- INKY DEPTH/CAPABILITIES (no dot overlay) --- */
+#capabilities{
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(rgba(0,0,0,.18), rgba(0,0,0,.34)), var(--depthOuter) !important;
+}
+#capabilities::before{
+  content:none !important;
+  background:none !important;
+  display:none !important;
+}
+
+/* Ensure the inner “dynamic” pane reads darker (not snowy) */
+#capabilities [data-cap-body],
+#capabilities [data-cap-list],
+#capabilities [data-cap-output],
+#capabilities .cap-output,
+#capabilities .cap-panel{
+  background-color: rgba(0,0,0,.16);
+}
+
+/* Active route highlight: teal left edge + subtle inset glow */
+#capabilities [data-cap-item][aria-pressed="true"],
+#capabilities .cap-item.is-active{
+  border-left: 4px solid var(--accent) !important;
+  background: rgba(79,157,177,.16) !important;
+  box-shadow: 0 0 0 1px rgba(85,160,146,.28) inset;
+}
+
+/* Make sure the left border doesn’t compress text */
+#capabilities [data-cap-item],
+#capabilities .cap-item{
+  box-sizing: border-box;
+}
+
+/* Output list cards inside capabilities */
+#capabilities [data-cap-list] > div{
+  background: rgba(0,0,0,.18) !important;
+  border-color: rgba(255,255,255,.10) !important;
+}
+
+/* Optional: soft separators that match the suite */
+.section-divider{ border-color: rgba(255,255,255,.10) !important; }
+</style>
+
+
+<style id="style-only-visual-pass">
+/* Style-only pass: no text edits, no font-family changes, no font-size changes */
+body{
+  background:
+    linear-gradient(180deg, #f3f5f2 0%, #eef3f0 100%);
+}
+main > section{position:relative;}
+main > section.bg-cream,
+main > section.bg-white{
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,.34), rgba(255,255,255,0)),
+    radial-gradient(circle at top right, rgba(85,160,146,.06), transparent 40%);
+}
+
+.advisory-section-nav{
+  background:rgba(244,242,236,.92);
+  border-bottom:1px solid rgba(15,59,54,.10);
+  box-shadow:0 10px 28px rgba(7,26,33,.04);
+}
+.advisory-section-nav a{
+  border-radius:8px;
+  background:rgba(255,255,255,.86);
+  box-shadow:0 1px 0 rgba(255,255,255,.65) inset;
+}
+.advisory-section-nav a.is-active{
+  box-shadow:0 10px 22px rgba(15,59,54,.18);
+}
+
+main > section:first-of-type .max-w-6xl{position:relative;}
+main > section:first-of-type .max-w-6xl::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:1.25rem;
+  bottom:1.25rem;
+  border-radius:18px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.78), rgba(255,255,255,.48)),
+    radial-gradient(circle at top right, rgba(85,160,146,.11), transparent 35%);
+  border:1px solid rgba(15,59,54,.09);
+  box-shadow:0 22px 60px rgba(7,26,33,.08);
+  pointer-events:none;
+}
+main > section:first-of-type .max-w-6xl > *{position:relative;z-index:1;}
+main > section:first-of-type .shadow-soft{
+  box-shadow:0 24px 54px rgba(7,26,33,.12), 0 1px 0 rgba(255,255,255,.55) inset;
+}
+main > section:first-of-type .bg-white\/95{
+  background:rgba(255,255,255,.96)!important;
+  box-shadow:0 18px 35px rgba(7,26,33,.12);
+}
+
+.tag{
+  border-radius:8px;
+  background:linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.76));
+  box-shadow:0 1px 0 rgba(255,255,255,.65) inset;
+  border-color:rgba(15,59,54,.14);
+}
+
+main > section:not(#services):not(#capabilities):not(#insights) h2.site-serif,
+main > section:not(#services):not(#capabilities):not(#insights) h1.site-serif{
+  position:relative;
+}
+main > section:not(#services):not(#capabilities):not(#insights) h2.site-serif::after,
+main > section:not(#services):not(#capabilities):not(#insights) h1.site-serif::after{
+  content:"";
+  display:block;
+  width:72px;
+  height:2px;
+  margin-top:.85rem;
+  background:linear-gradient(90deg, var(--accent), rgba(85,160,146,0));
+}
+
+.rounded-2xl.bg-white.border.hairline,
+.rounded-3xl.bg-white.border.hairline,
+article.bg-white.rounded-2xl.border.hairline,
+.card.p-6{
+  background-image:linear-gradient(180deg, rgba(255,255,255,1), rgba(249,252,251,.98));
+  box-shadow:0 14px 34px rgba(7,26,33,.07);
+}
+
+#introduction .flex-1.rounded-2xl.bg-white.border.hairline.p-5,
+#introduction .rounded-3xl.bg-white.border.hairline{
+  position:relative;
+  overflow:hidden;
+}
+#introduction .flex-1.rounded-2xl.bg-white.border.hairline.p-5::before,
+#introduction .rounded-3xl.bg-white.border.hairline > .p-6:first-child::before,
+#introduction .rounded-3xl.bg-white.border.hairline > .p-6:last-child::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:3px;
+  background:linear-gradient(90deg, var(--accent), rgba(85,160,146,.18));
+}
+
+#services{
+  background:
+    linear-gradient(180deg, rgba(10,20,18,.28), rgba(10,20,18,.18)),
+    var(--servicesTone)!important;
+}
+#services .accordion,
+#capabilities [data-cap-item],
+#configurations article,
+#insights article,
+.card.p-6{
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease, background-color .18s ease;
+}
+#services .accordion{
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 18px 30px rgba(0,0,0,.12);
+}
+#services .accordion:hover{
+  transform:translateY(-2px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 22px 36px rgba(0,0,0,.16);
+}
+#services [data-acc-body]{
+  border-top:1px solid rgba(255,255,255,.09);
+  background:rgba(0,0,0,.08);
+}
+
+#capabilities{
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.22)),
+    linear-gradient(135deg, rgba(19,59,75,.88), rgba(13,47,58,.98))!important;
+}
+#capabilities [data-cap-item]{
+  border-radius:10px;
+  backdrop-filter:blur(2px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+}
+#capabilities [data-cap-item]:hover{
+  transform:translateX(3px);
+  box-shadow:0 18px 28px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.05);
+}
+#capabilities .lg\:col-span-7 > div{
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04)) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 18px 30px rgba(0,0,0,.14);
+}
+
+#configurations .pattern{
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(15,59,54,.06) 1px, transparent 0),
+    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,0));
+  background-size:18px 18px, auto;
+}
+#configurations [data-config-track]{
+  padding:0 .25rem .25rem;
+  scroll-padding-left:.25rem;
+}
+#configurations article{
+  border-radius:12px;
+  box-shadow:0 20px 40px rgba(7,26,33,.08);
+}
+#configurations article:hover{
+  transform:translateY(-3px);
+  box-shadow:0 24px 46px rgba(7,26,33,.12);
+}
+#configurations article > div:first-child{
+  position:relative;
+  background:
+    linear-gradient(135deg, rgba(85,160,146,.30), rgba(15,59,54,.12)),
+    linear-gradient(180deg, #153b39, #0d2927)!important;
+}
+#configurations article > div:first-child::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:1px;
+  background:rgba(255,255,255,.22);
+}
+#configurations button[data-config-prev],
+#configurations button[data-config-next]{
+  border-radius:8px;
+  box-shadow:0 10px 22px rgba(7,26,33,.08);
+}
+
+.card.p-6{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(15,59,54,.12);
+  border-radius:12px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,1), rgba(247,251,249,.98)),
+    radial-gradient(circle at top right, rgba(85,160,146,.08), transparent 40%);
+  box-shadow:0 22px 50px rgba(7,26,33,.08);
+}
+.card.p-6::before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:4px;
+  background:linear-gradient(180deg, var(--accent), rgba(85,160,146,.25));
+}
+.card.p-6:hover{
+  transform:translateY(-2px);
+  box-shadow:0 26px 54px rgba(7,26,33,.11);
+}
+#enquiry input,
+#enquiry textarea{
+  box-shadow:inset 0 1px 2px rgba(7,26,33,.03), 0 1px 0 rgba(255,255,255,.5);
+  background:linear-gradient(180deg, #fff, #fbfdfc);
+}
+#enquiry button.w-full{
+  box-shadow:0 16px 28px rgba(15,59,54,.16);
+}
+
+#insights{
+  background:
+    linear-gradient(180deg, rgba(11,24,29,.16), rgba(11,24,29,.26)),
+    var(--forest)!important;
+}
+#insights article{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04)),
+    rgba(13,47,58,.35)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 20px 36px rgba(0,0,0,.16);
+  border-radius:12px;
+}
+#insights article:hover{
+  transform:translateY(-2px);
+}
+
+footer{
+  box-shadow:0 -1px 0 rgba(255,255,255,.05) inset;
+}
+</style>
+
+
+
+<style id="enwater-logo-refinement-v1">
+.brand-logo,.nav-logo,.nav-brand-logo{height:38px!important;width:auto!important;max-width:66px!important;object-fit:contain!important;background:transparent!important;border-radius:0!important;padding:0!important;box-shadow:none!important;}
+.brand span,.nav-brand span{white-space:nowrap;}
+.footer-logo{height:34px;width:auto;max-width:60px;object-fit:contain;background:transparent;border-radius:0;padding:0;box-shadow:none;display:block;}
+.footer-brand,.foot-brand{display:flex;align-items:center;gap:10px;}
+</style>
+
+
+<script id="advisory-section-nav-gap-fix-script-v2">
+(function(){
+  function setTopNavHeight(){
+    var nav = document.querySelector('header.site-topnav');
+    if(!nav) return;
+    var h = Math.ceil(nav.getBoundingClientRect().height || 64);
+    document.documentElement.style.setProperty('--enwater-topnav-height', h + 'px');
+    document.documentElement.style.scrollPaddingTop = (h + 58) + 'px';
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', setTopNavHeight);
+  }else{
+    setTopNavHeight();
+  }
+  window.addEventListener('resize', setTopNavHeight, {passive:true});
+})();
+</script>
+<link href="../exported-ui-styles.css" rel="stylesheet"/><link rel="icon" type="image/png" href="../assets/images/enwater-design-logo-nav.png" />
+</head>
+<body class="bg-cream site-sans"><header class="site-topnav">
+<div class="wrap">
+<a aria-label="EnWater Design home" class="brand" href="../home.html">
+<img alt="EnWater Design logo" class="nav-logo" src="../assets/images/enwater-design-logo.png"/>
+<span>EnWater Design</span>
+</a>
+<nav class="desktop-nav">
+<ul>
+<li><a class="rootlink" href="../home.html">Home</a></li>
+<li>
+            <a class="rootlink " href="../About/about.html">About</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a class="" href="../About/about.html">About Us</a>
+              <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+            </div>
+          </li>
+<li>
+<a class="rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</li>
+<li>
+<a class="rootlink active" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Projects/index.html">Projects</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</li>
+<li><a class="rootlink nav-login" href="../login.html">Login</a></li>
+<li><a class="rootlink nav-cta" href="../get-in-touch.html">Get in touch</a></li>
+</ul>
+</nav>
+<button aria-expanded="false" aria-label="Toggle menu" class="mobile-nav-toggle" type="button">
+<span class="hamburger-line line-1"></span>
+<span class="hamburger-line line-2"></span>
+<span class="hamburger-line line-3"></span>
+</button>
+</div>
+<div class="mobile-nav-panel">
+<div class="mobile-nav-content">
+<div class="mobile-nav-item">
+<a class="mobile-rootlink" href="../home.html">Home</a>
+</div>
+<div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink " href="../About/about.html">About</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a class="" href="../About/about.html">About Us</a>
+            <a class="" href="../About/BlogList.html">Blog &amp; Insights</a>
+          </div>
+        </div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage Overview</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink active" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Projects/index.html">Projects</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<a class="mobile-login-btn" href="../login.html">Login</a>
+</div>
+<div class="mobile-nav-item no-border">
+<a class="mobile-cta-btn" href="../get-in-touch.html">Get in touch</a>
+</div>
+</div>
+</div>
+</header>
+<nav aria-label="Advisory section navigation" class="advisory-section-nav"><div class="inner"><span class="section-name">Advisory</span><a class="" href="advisory-services.html">Advisory Services</a><a class="" href="solution-advisory.html">Solution Advisory</a><a class="" href="water-wastewater-advisory.html">Water &amp; Wastewater</a><a class="" href="process-system-design-advisory.html">Process &amp; System Design</a><a class="is-active" href="sludge-biosolids-advisory.html">Sludge &amp; Biosolids</a><a class="" href="odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S</a><a class="" href="automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control</a></div></nav>
+<main>
+<section class="bg-cream border-b hairline">
+<div class="max-w-6xl mx-auto px-6 pt-14 pb-10">
+<p class="text-xs text-gray-500">Services <span class="mx-1">›</span> Sludge &amp; Biosolids</p>
+<div class="mt-3 flex flex-col gap-6">
+<div>
+<h1 class="site-serif text-4xl md:text-5xl">Sludge &amp; Biosolids Advisory</h1>
+<p class="mt-4 text-lg text-gray-700 leading-relaxed max-w-3xl">Unclear disposal options? Rising haulage costs? Failing to meet Class A standards? We help you turn residuals into a practical, implementable outcome, clarifying the product target, selecting the right routing (dewater, dry, compost, fertilizer, biofertilizer, or thermal), and defining verification requirements early so delivery stays on track.</p>
+<div class="mt-6 flex flex-wrap gap-2">
+<span class="tag">Class A planning</span>
+<span class="tag">Routing &amp; coordination points</span>
+<span class="tag">Vendor alignment</span>
+<span class="tag">Reuse - market readiness</span>
+</div>
+<div class="mt-8 flex flex-wrap gap-3">
+<a class="inline-flex items-center gap-2 rounded-sm bg-forest text-white px-4 py-2 hover:opacity-95" href="../get-in-touch.html">
+ Start an enquiry
+ <svg class="opacity-90" fill="none" height="16" viewbox="0 0 24 24" width="16">
+<path d="M5 12h13" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M14 7l5 5-5 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</a>
+<a class="inline-flex items-center gap-2 rounded-sm border border-gray-900/20 px-4 py-2 hover:bg-white/60" href="../home.html#configurations">View project examples</a></div>
+</div>
+<div class="relative rounded-sm overflow-hidden border border-gray-900/10 bg-white shadow-soft">
+<div class="h-[320px] md:h-[420px] w-full overflow-hidden bg-[radial-gradient(circle_at_30%_20%,rgba(72,168,130,.28),transparent_55%),radial-gradient(circle_at_70%_60%,rgba(95,156,157,.22),transparent_50%),linear-gradient(180deg,#131a18,#0f1413)]">
+<img alt="Sludge and biosolids systems" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.classList.add('bg-[radial-gradient(circle_at_30%_20%,rgba(72,168,130,.28),transparent_55%),radial-gradient(circle_at_70%_60%,rgba(95,156,157,.22),transparent_50%),linear-gradient(180deg,#131a18,#0f1413)]');" src="assets/hero-biosolids.jpg" style="display: none;"/>
+</div>
+<div class="absolute left-4 md:left-6 bottom-4 md:bottom-6 max-w-[92%] md:max-w-[520px]">
+<div class="bg-white/95 backdrop-blur border border-gray-900/10 rounded-sm p-5">
+<p class="text-xs font-semibold tracking-wide text-gray-600 uppercase">Overview</p>
+<p class="mt-2 text-gray-800 leading-relaxed">
+ Biosolids success starts upstream. We structure the decision basis (feed characteristics, stability,
+ handling constraints), define routing options, and translate them into vendor-ready requirements so the installed system
+ produces a reusable output with clear KPIs, not just “a solution on paper”.
+ </p>
+<div class="mt-3 text-sm text-gray-600">
+ Typical outputs we plan for: <span class="font-medium text-gray-800">dewatered cake</span>, <span class="font-medium text-gray-800">dried solids</span>,
+ <span class="font-medium text-gray-800">compost</span>, <span class="font-medium text-gray-800">organo-mineral fertilizer</span>, <span class="font-medium text-gray-800">biofertilizer</span>,
+ and <span class="font-medium text-gray-800">ash recovery pathways</span>.
+ </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section class="bg-cream border-t hairline" id="introduction">
+<div class="max-w-6xl mx-auto px-6 py-14">
+<div class="grid lg:grid-cols-12 gap-10 items-start">
+<div class="lg:col-span-7">
+<p class="text-xs text-gray-500">How it works</p>
+<h2 class="site-serif mt-2 text-3xl md:text-4xl text-gray-950">Biosolids routing, made vendor-ready</h2>
+<p class="mt-4 text-sm md:text-base text-gray-700 leading-relaxed">
+ Biosolids projects become expensive when routing is chosen before the actual feed conditions is understood. We build a clear decision
+ basis (stability, dewatering behaviour, storage/logistics), then translate the selected route into coordination points, performance checks, and
+ a documentation pack that vendors can price and deliver against.
+ </p>
+<div class="mt-7 space-y-4">
+<div class="flex gap-4 items-start">
+<div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center text-xs font-semibold">1</div>
+<div class="flex-1 rounded-2xl bg-white border hairline p-5">
+<p class="text-sm font-semibold text-gray-900">Feed picture &amp; stability</p>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">Confirm digestion status, variability, polymer/conditioning constraints, and what the cake/solids behave like in the actual plant.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center text-xs font-semibold">2</div>
+<div class="flex-1 rounded-2xl bg-white border hairline p-5">
+<p class="text-sm font-semibold text-gray-900">Route selection</p>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">Shortlist viable pathways (dewater, dry, compost, fertilizer, thermal/ash) based on footprint, odor risk, energy and market/reuse intent.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center text-xs font-semibold">3</div>
+<div class="flex-1 rounded-2xl bg-white border hairline p-5">
+<p class="text-sm font-semibold text-gray-900">Coordination points &amp; responsibilities</p>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">Set leachate/returns, odor capture boundaries, civil/access needs, utilities, and who owns each connection across the package.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center text-xs font-semibold">4</div>
+<div class="flex-1 rounded-2xl bg-white border hairline p-5">
+<p class="text-sm font-semibold text-gray-900">Verification plan &amp; product credibility</p>
+<p class="mt-2 text-sm text-gray-700 leading-relaxed">Define KPIs, QA/QC and traceability (Class A intent where relevant) so the output is measurable and reliable at commissioning and beyond.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5">
+<div class="rounded-3xl bg-white border hairline overflow-hidden">
+<div class="p-6 border-b hairline">
+<p class="text-xs font-semibold tracking-wide text-gray-600 uppercase">Quick checks</p>
+<ul class="mt-4 space-y-2 text-sm text-gray-800">
+<li class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Storage time, truck access and neighbours often dictate what is truly feasible.</span></li>
+<li class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Returns (centrate/filtrate/leachate) must be treated as liquid - line connection points, not afterthoughts.</span></li>
+<li class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>“Class A” is a system outcome: processing + QA/QC + handling and traceability.</span></li>
+<li class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Market readiness requires packaging the product story (and its limits) into the release plan.</span></li>
+</ul>
+</div>
+<div class="p-6">
+<p class="text-xs font-semibold tracking-wide text-gray-600 uppercase">Outputs you can hand to suppliers</p>
+<ul class="mt-4 space-y-2 text-sm text-gray-800">
+<li class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Routing intent + shortlist rationale (what is in/out and why).</span></li>
+<li class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Coordination notes: odor/leachate, utilities, access, civil and package boundaries.</span></li>
+<li class="flex gap-3"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Commissioning &amp; performance checklist + QA/QC outline for the output.</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- DARK BANNER + ACCORDION SERVICES -->
+<section class="bg-ink text-white border-b border-white/10" id="services">
+<div class="pattern">
+<div class="max-w-6xl mx-auto px-6 py-14">
+<div class="grid lg:grid-cols-2 gap-10 items-start">
+<div>
+<h2 class="site-serif text-3xl md:text-4xl">Services &amp; Capabilities</h2>
+<p class="mt-4 text-white/80 leading-relaxed">
+ We support sludge and biosolids planning across the full project life cycle - from early decision points to
+ vendor alignment and performance verification, while keeping attention on coordination points (waterline, odor/septicity,
+ energy/thermal, and reuse product handling).
+ </p>
+</div>
+<div class="grid md:grid-cols-2 gap-4">
+<!-- Step 1 -->
+<div class="accordion rounded-sm border border-white/10 bg-white/5 overflow-hidden">
+<button class="w-full flex items-start gap-3 p-5 text-left hover:bg-white/5" data-acc-btn="">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center font-bold text-sm">1</div>
+<div class="flex-1">
+<h4 class="font-semibold text-white">Decision basis &amp; routing</h4>
+<p class="mt-2 text-sm text-white/80 leading-relaxed">Define the product target, compliance intent, and routing options from upstream constraints - so the project starts with clarity.</p>
+</div>
+<span class="text-white/70 text-xl">+</span>
+</button>
+<div class="px-5 pb-5 hidden" data-acc-body="">
+<ul class="ml-11 text-sm text-white/70 space-y-1.5">
+<li>• Feed characterization &amp; stability (including coordination of sampling/testing where needed)</li>
+<li>• Mass balance, sludge age assumptions, and operational limits</li>
+<li>• Routing shortlist: dewater - only, drying, compost, fertilizer/biofertilizer, or thermal pathways</li>
+<li>• Early risk flags: odors/septicity, polymer/chemical carryover, storage &amp; logistics</li>
+</ul>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="accordion rounded-sm border border-white/10 bg-white/5 overflow-hidden">
+<button class="w-full flex items-start gap-3 p-5 text-left hover:bg-white/5" data-acc-btn="">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center font-bold text-sm">2</div>
+<div class="flex-1">
+<h4 class="font-semibold text-white">Treatment sequence definition</h4>
+<p class="mt-2 text-sm text-white/80 leading-relaxed">Translate routing into a structured treatment sequence - with coordination points included - so vendors quote and deliver on the same intent.</p>
+</div>
+<span class="text-white/70 text-xl">+</span>
+</button>
+<div class="px-5 pb-5 hidden" data-acc-body="">
+<ul class="ml-11 text-sm text-white/70 space-y-1.5">
+<li>• Dewatering technology logic (decanter / screw press / filter press) and target cake condition</li>
+<li>• Drying options (beds vs thermal) and integration points for heat/energy</li>
+<li>• Composting/PFR/ASP outline: hygiene, bulking, aeration, odor control provisions</li>
+<li>• Solids handling, storage, and conveyance requirements</li>
+</ul>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="accordion rounded-sm border border-white/10 bg-white/5 overflow-hidden">
+<button class="w-full flex items-start gap-3 p-5 text-left hover:bg-white/5" data-acc-btn="">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center font-bold text-sm">3</div>
+<div class="flex-1">
+<h4 class="font-semibold text-white">Reuse product &amp; market readiness</h4>
+<p class="mt-2 text-sm text-white/80 leading-relaxed">Move beyond "disposal planning" and define what makes the output saleable or usable, including verification, packaging, and performance criteria.</p>
+</div>
+<span class="text-white/70 text-xl">+</span>
+</button>
+<div class="px-5 pb-5 hidden" data-acc-body="">
+<ul class="ml-11 text-sm text-white/70 space-y-1.5">
+<li>• Class A target planning and target ranges (pathogens, stability, metals, organics)</li>
+<li>• Route-to-market considerations: agriculture, landscaping, soil improvement, industrial fuel/ash recovery</li>
+<li>• Quality monitoring and batch release/traceability approach</li>
+<li>• Coordination with lenders/ESG messaging (where applicable)</li>
+</ul>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="accordion rounded-sm border border-white/10 bg-white/5 overflow-hidden">
+<button class="w-full flex items-start gap-3 p-5 text-left hover:bg-white/5" data-acc-btn="">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center font-bold text-sm">4</div>
+<div class="flex-1">
+<h4 class="font-semibold text-white">Vendor alignment &amp; performance verification</h4>
+<p class="mt-2 text-sm text-white/80 leading-relaxed">Convert technical intent into vendor-ready requirements and verification plans - so commissioning is measurable and disputes are reduced.</p>
+</div>
+<span class="text-white/70 text-xl">+</span>
+</button>
+<div class="px-5 pb-5 hidden" data-acc-body="">
+<ul class="ml-11 text-sm text-white/70 space-y-1.5">
+<li>• Terms of Reference / specification logic and coordination responsibilities</li>
+<li>• KPIs and verification methods (dryness, stability, odor, throughput, power/heat, product consistency)</li>
+<li>• Bid evaluation support and clarification workshops</li>
+<li>• Commissioning checklists and post - implementation performance review</li>
+</ul>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+</section>
+<section class="bg-forest text-white border-b border-white/10" id="capabilities">
+<div class="pattern"><div class="max-w-6xl mx-auto px-6 py-14">
+<div class="flex items-end justify-between gap-6 flex-wrap">
+<div>
+<h2 class="site-serif text-3xl md:text-4xl">Outcome routes we design for</h2>
+<p class="mt-3 text-white/80 max-w-2xl leading-relaxed">
+ These are not “product menus” - they are outcome targets. We use them to structure the design intent, coordination points,
+ and the verification plan that makes delivery measurable.
+ </p>
+</div>
+<div class="text-sm text-white/70">Tip: click a route to see the focus areas.</div>
+</div>
+<div class="mt-8 grid lg:grid-cols-12 gap-6">
+<div class="lg:col-span-5 space-y-2">
+<button aria-pressed="true" class="cap-btn cap-active w-full text-left px-5 py-4 rounded-sm border border-white/10 hover:bg-white/5 bg-white/10 ring-1 ring-white/20" data-cap="dewater" data-cap-item="">
+<div class="flex items-center justify-between">
+<span class="font-semibold">Dewatering - first routing</span>
+</div>
+<div class="mt-1 text-sm text-white/70">Stabilise operations, reduce haulage, prepare downstream options.</div>
+</button>
+<button aria-pressed="false" class="cap-btn w-full text-left px-5 py-4 rounded-sm border border-white/10 hover:bg-white/5" data-cap="dry" data-cap-item="">
+<div class="flex items-center justify-between">
+<span class="font-semibold">Dry solids / thermal conditioning</span>
+</div>
+<div class="mt-1 text-sm text-white/70">Capacity uplift, storage resilience, enable reuse pathways.</div>
+</button>
+<button aria-pressed="false" class="cap-btn w-full text-left px-5 py-4 rounded-sm border border-white/10 hover:bg-white/5" data-cap="compost" data-cap-item="">
+<div class="flex items-center justify-between">
+<span class="font-semibold">Compost &amp; Class A outputs</span>
+</div>
+<div class="mt-1 text-sm text-white/70">Hygiene control + odor management + market - ready product definition.</div>
+</button>
+<button aria-pressed="false" class="cap-btn w-full text-left px-5 py-4 rounded-sm border border-white/10 hover:bg-white/5" data-cap="fert" data-cap-item="">
+<div class="flex items-center justify-between">
+<span class="font-semibold">Fertilizer / biofertilizer value - add</span>
+</div>
+<div class="mt-1 text-sm text-white/70">Product specification, blends/additives, release criteria and traceability.</div>
+</button>
+<button aria-pressed="false" class="cap-btn w-full text-left px-5 py-4 rounded-sm border border-white/10 hover:bg-white/5" data-cap="ash" data-cap-item="">
+<div class="flex items-center justify-between">
+<span class="font-semibold">Thermal + ash recovery pathways</span>
+</div>
+<div class="mt-1 text-sm text-white/70">When land routes are constrained - focus shifts to recovery and logistics.</div>
+</button>
+</div>
+<div class="lg:col-span-7">
+<div class="rounded-sm border border-white/10 bg-white/5 p-6">
+<p class="text-xs font-semibold tracking-wide text-white/70 uppercase">Focus areas</p>
+<h3 class="mt-2 text-xl font-semibold" data-cap-title="">Dewatering-first routing</h3>
+<p class="mt-3 text-white/80 leading-relaxed" data-cap-body="">Clarify upstream solids behaviour, select the dewatering logic, and define cake condition and chemistry constraints that drive downstream viability.</p>
+<div class="mt-5 grid sm:grid-cols-2 gap-4 text-sm text-white/80" data-cap-list=""><div class="rounded-sm border border-white/10 bg-black/10 p-4">Target dryness and throughput, with measurable performance tests.</div><div class="rounded-sm border border-white/10 bg-black/10 p-4">Conveyance, storage, and haulage coordination points defined early.</div><div class="rounded-sm border border-white/10 bg-black/10 p-4">Odor &amp; septicity considerations embedded into routing.</div><div class="rounded-sm border border-white/10 bg-black/10 p-4">Downstream “option readiness”: compost, fertilizer, or thermal integration.</div></div>
+<div class="mt-6 text-sm text-white/70">
+ Related: <a class="underline underline-offset-2 hover:text-white" href="process-system-design-advisory.html">Process &amp; system design</a> ·
+ <a class="underline underline-offset-2 hover:text-white" href="../FlowPlan/flowplan-framework.html">Biosolids diagnostic</a>
+</div>
+</div>
+</div>
+</div>
+</div></div></section><section class="bg-cream border-t hairline" id="configurations">
+<div class="pattern">
+<div class="max-w-6xl mx-auto px-6 py-14">
+<div class="flex items-start justify-between gap-6">
+<div>
+<h2 class="site-serif text-3xl md:text-4xl text-gray-950">Project Configurations</h2>
+<p class="mt-3 text-sm text-gray-700 max-w-2xl">
+ A few common “packaging formats” for biosolids work - kept practical, vendor-ready, and sized to decision timelines.
+ </p>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Previous" class="h-10 w-10 rounded-full border hairline bg-white text-gray-900 hover:opacity-80" data-config-prev="" type="button">←</button>
+<button aria-label="Next" class="h-10 w-10 rounded-full border hairline bg-white text-gray-900 hover:opacity-80" data-config-next="" type="button">→</button>
+</div>
+</div>
+<div class="mt-8">
+<div class="mt-4 flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scroll-smooth" data-config-track="">
+<!-- Card 1 -->
+<article class="min-w-[320px] sm:min-w-[360px] lg:min-w-[400px] snap-start bg-white rounded-2xl border hairline shadow-sm overflow-hidden">
+<div class="h-20 bg-forest2"></div>
+<div class="p-6">
+<p class="text-xs text-gray-600">Snapshot</p>
+<h3 class="mt-1 site-serif text-xl md:text-2xl text-gray-950">Routing &amp; decision basis pack</h3>
+<p class="mt-3 text-sm text-gray-700 leading-relaxed">
+ Turn “what do we do with our sludge?” into a clear routing shortlist, with constraints and risks identified early.
+ </p>
+<ul class="mt-4 grid gap-2 text-sm text-gray-800">
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Feed / stability baseline + operating range</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Route shortlist + connection notes (odor, leachate, utilities)</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Viability flags + verification priorities to carry into procurement</span></li>
+</ul>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="min-w-[320px] sm:min-w-[360px] lg:min-w-[400px] snap-start bg-white rounded-2xl border hairline shadow-sm overflow-hidden">
+<div class="h-20 bg-forest2"></div>
+<div class="p-6">
+<p class="text-xs text-gray-600">Snapshot</p>
+<h3 class="mt-1 site-serif text-xl md:text-2xl text-gray-950">Dewatering upgrade + vendor scope</h3>
+<p class="mt-3 text-sm text-gray-700 leading-relaxed">
+ A tight scope that vendors can price - focused on performance, integration limits, and actual operating conditions.
+ </p>
+<ul class="mt-4 grid gap-2 text-sm text-gray-800">
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Capacity + polymer / energy drivers (OPEX hotspots)</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Tie - ins, civils, access + staged installation notes</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Commissioning checks + target ranges</span></li>
+</ul>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="min-w-[320px] sm:min-w-[360px] lg:min-w-[400px] snap-start bg-white rounded-2xl border hairline shadow-sm overflow-hidden">
+<div class="h-20 bg-forest2"></div>
+<div class="p-6">
+<p class="text-xs text-gray-600">Snapshot</p>
+<h3 class="mt-1 site-serif text-xl md:text-2xl text-gray-950">Compost / Class A readiness pack</h3>
+<p class="mt-3 text-sm text-gray-700 leading-relaxed">
+ Define the hygiene pathway and the “neighbour controls” that keep composting viable.
+ </p>
+<ul class="mt-4 grid gap-2 text-sm text-gray-800">
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Stabilisation intent + drying / blending assumptions</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Odor + leachate control connection points and monitoring</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>QA/QC + product definition for reuse - market fit</span></li>
+</ul>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="min-w-[320px] sm:min-w-[360px] lg:min-w-[400px] snap-start bg-white rounded-2xl border hairline shadow-sm overflow-hidden">
+<div class="h-20 bg-forest2"></div>
+<div class="p-6">
+<p class="text-xs text-gray-600">Snapshot</p>
+<h3 class="mt-1 site-serif text-xl md:text-2xl text-gray-950">Fertiliser / bio-value add pack</h3>
+<p class="mt-3 text-sm text-gray-700 leading-relaxed">
+ When value recovery is the intent, we set product intent, claims, and traceability alongside the process.
+ </p>
+<ul class="mt-4 grid gap-2 text-sm text-gray-800">
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Product specification + additives / blends logic</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Quality priorities (metals, pathogens, end-use fit) + QA plan</span></li>
+<li class="flex gap-2"><span class="mt-2 w-1.5 h-1.5 rounded-full bg-accent"></span><span>Pilot pathway for market confidence</span></li>
+</ul>
+</div>
+</article>
+</div>
+</div>
+<p class="mt-6 text-xs text-gray-600">Tip: swipe/scroll to browse. Use these as starting points. Scope is tailored to site constraints and end-use intent.</p>
+</div>
+</div>
+</section>
+<!-- PROJECT CONFIGURATIONS (carousel) -->
+<!-- GET IN TOUCH -->
+<section class="bg-white border-t hairline" id="enquiry"><div id="contact"></div>
+<div class="max-w-6xl mx-auto px-6 py-14">
+<div class="grid lg:grid-cols-2 gap-10 items-start">
+<div>
+<h2 class="site-serif text-3xl md:text-4xl">Start an enquiry</h2>
+<p class="mt-4 text-gray-700 leading-relaxed">
+ If you share a few basics, we can point you to the right routing logic and the most relevant deliverable pack.
+ You can also use the <a class="underline underline-offset-2" href="../FlowPlan/flowplan-framework.html">Residuals &amp; Biosolids Planning</a> diagnostic as a starting point.
+ </p>
+<div class="mt-6 space-y-3 text-sm text-gray-700">
+<div class="flex gap-2"><span class="tag">Helpful inputs</span><span>solids baseline, stability/digestion status, current handling, space constraints, target reuse route.</span></div>
+<div class="flex gap-2"><span class="tag">If relevant</span><span>odor/septicity issues, heat source availability, storage/logistics constraints.</span></div>
+</div>
+<div class="mt-8 flex flex-wrap gap-3">
+<a class="inline-flex items-center gap-2 rounded-sm bg-forest text-white px-4 py-2 hover:opacity-95" href="../get-in-touch.html">Contact us</a>
+<a class="inline-flex items-center gap-2 rounded-sm border border-gray-900/20 px-4 py-2 hover:bg-gray-50" href="../Projects/project-pathways.html">Explore project pathways</a>
+</div>
+</div>
+<div class="card p-6">
+<div class="text-xs font-semibold tracking-wide text-gray-500 uppercase">Quick enquiry</div>
+<div class="mt-3 grid gap-3 text-sm">
+<label class="space-y-1">
+<div class="text-gray-700">Site / project name</div>
+<input class="w-full rounded-sm border border-gray-900/15 px-3 py-2 bg-white" placeholder="e.g., Industrial WWTP - biosolids upgrade"/>
+</label>
+<label class="space-y-1">
+<div class="text-gray-700">Current situation</div>
+<textarea class="w-full rounded-sm border border-gray-900/15 px-3 py-2 bg-white h-28" placeholder="What is produced today? Any constraints or pain points?"></textarea>
+</label>
+<label class="space-y-1">
+<div class="text-gray-700">Target outcome</div>
+<input class="w-full rounded-sm border border-gray-900/15 px-3 py-2 bg-white" placeholder="e.g., Class A compost, fertilizer product, or thermal route"/>
+</label>
+<button class="mt-4 w-full inline-flex items-center justify-center gap-2 rounded-sm bg-forest text-white px-4 py-2.5 hover:opacity-95">
+Send enquiry
+<svg class="opacity-90" fill="none" height="16" viewbox="0 0 24 24" width="16">
+<path d="M5 12h13" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M14 7l5 5-5 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FURTHER READING -->
+<section class="bg-forest border-t hairline" id="insights">
+<div class="pattern">
+<div class="max-w-6xl mx-auto px-6 py-14">
+<div class="flex items-start justify-between gap-6">
+<div>
+<h2 class="site-serif text-3xl md:text-4xl text-white">Insights</h2>
+<p class="mt-3 text-sm text-white/80 max-w-2xl">
+ A few recurring patterns we see in sludge and biosolids programmes - useful for setting scope before vendors step in.
+ </p>
+</div>
+</div>
+<div class="mt-8 grid md:grid-cols-3 gap-6">
+<article class="rounded-2xl bg-forest2/60 border border-white/10 p-6">
+<h3 class="site-serif text-xl text-white">Class A is a system, not a lab result</h3>
+<p class="mt-3 text-sm text-white/80 leading-relaxed">
+ Hygiene targets depend on stabilisation intent, storage, mixing, and QA/QC discipline.
+ Define the pathway, monitoring and hold points, then pick the equipment.
+ </p>
+</article>
+<article class="rounded-2xl bg-forest2/60 border border-white/10 p-6">
+<h3 class="site-serif text-xl text-white">Odor + leachate are design connection points</h3>
+<p class="mt-3 text-sm text-white/80 leading-relaxed">
+ Composting and drying rarely fail on “process” alone. Neighbour controls, drainage, and airflow routing
+ must be engineered as connection points, with verification requirements attached.
+ </p>
+</article>
+<article class="rounded-2xl bg-forest2/60 border border-white/10 p-6">
+<h3 class="site-serif text-xl text-white">Market readiness needs traceability</h3>
+<p class="mt-3 text-sm text-white/80 leading-relaxed">
+ Reuse value comes from consistent product intent - specs, blending logic, claims, and documentation.
+ A small QA plan early often saves months of rework later.
+ </p>
+</article>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="footer">
+<div class="wrap">
+<div class="footer-top">
+<div>
+<div class="footer-brand"><img alt="EnWater Design logo" class="footer-logo" src="../assets/images/enwater-design-logo-transparent-mark.png"/><span class="footer-name">EnWater Design</span></div>
+<p class="footer-desc">Independent water, wastewater treatment and reuse consulting, helping owners and operators turn complex challenges into clear decisions and practical outcomes.</p>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<a href="../home.html">Home</a>
+<a href="../About/about.html">About</a>
+<a href="../About/BlogList.html">Our Blog</a>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+</div>
+<div class="footer-col">
+<h4>Services</h4>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing</a>
+<a href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<a href="../Projects/index.html">Projects</a>
+<a href="../Sectors/index.html">Sectors</a>
+</div>
+<div class="footer-col">
+<h4>Pathways</h4>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../Sectors/index.html">Sector Pathways</a>
+</div>
+<div class="footer-col">
+<h4>Get in touch</h4>
+<a href="../get-in-touch.html">Contact form</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">Industrial / CETP</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© <span id="yr"></span> EnWater Design</div>
+<div>Clear systems planning for practical project delivery</div>
+</div>
+</div>
+<script>
+  (function() {
+    const yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+  })();
+</script>
+</footer>
+<script>
+(() => {
+  // footer year
+  const y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+
+  // accordion (matches markup: .accordion + [data-acc-btn]/[data-acc-body])
+  document.querySelectorAll('.accordion').forEach((wrap) => {
+    const btn = wrap.querySelector('[data-acc-btn]');
+    const body = wrap.querySelector('[data-acc-body]');
+    const indicator = btn ? btn.querySelector('span:last-child') : null;
+    if (!btn || !body) return;
+
+    btn.addEventListener('click', () => {
+      const isOpen = !body.classList.contains('hidden');
+      body.classList.toggle('hidden', isOpen);
+      if (indicator) indicator.textContent = isOpen ? '+' : '-';
+    });
+  });
+
+  // capability switcher (Outcome routes)
+  const cap = document.getElementById('capabilities');
+  if (cap) {
+    const items = [...cap.querySelectorAll('[data-cap-item]')];
+    const outTitle = cap.querySelector('[data-cap-title]');
+    const outBody  = cap.querySelector('[data-cap-body]');
+    const outList  = cap.querySelector('[data-cap-list]');
+
+    const content = {
+      dewater: {
+        title: 'Dewatering-first routing',
+        body: 'Clarify upstream solids behaviour, select the dewatering logic, and define cake condition and chemistry constraints that drive downstream viability.',
+        list: [
+          'Target dryness and throughput, with measurable performance tests.',
+          'Conveyance, storage, and haulage coordination points defined early.',
+          'Odor &amp; septicity considerations embedded into routing.',
+          'Downstream “option readiness”: compost, fertilizer, or thermal integration.'
+        ]
+      },
+      dry: {
+        title: 'Dry solids / thermal conditioning',
+        body: 'Select drying approach (beds vs thermal), define energy/heat coordination points, and set performance intent for storage resilience and downstream reuse options.',
+        list: [
+          'Dryness targets (and variability) tied to storage, handling, and transport limits.',
+          'Heat/energy integration requirements defined early (utilities, recovery, redundancy).',
+          'Odor, VOC, dust, and emissions coordination points embedded into the system.',
+          'Downstream readiness: compost blending, fertilizer feedstock, or thermal routing.'
+        ]
+      },
+      compost: {
+        title: 'Compost & Class A outputs',
+        body: 'Define hygiene pathway, blending and aeration needs, and the odor/leachate controls that keep composting bankable and neighbour-safe.',
+        list: [
+          'Class A intent: time/temperature profile, verification approach, and release criteria.',
+          'Bulking & blend design: moisture balance, aeration, curing, and footprint fit.',
+          'Odor and leachate provisions sized for actual operating conditions and seasonality.',
+          'Product refinement: screening, curing, packaging, and market target ranges.'
+        ]
+      },
+      fert: {
+        title: 'Fertilizer / biofertilizer value-add',
+        body: 'Translate “biosolids reuse” into a defined product spec with QA/QC, traceability, and blending/additive logic that supports uptake.',
+        list: [
+          'Organo-mineral spec: nutrient targets, blends/additives, and consistency controls.',
+          'Batch release &amp; traceability: testing plan for pathogens, metals, stability, and organics.',
+          'Handling & packaging coordination points: storage, dust/odor control, conveyance, and logistics.',
+          'Market fit: offtakers, performance criteria, and verification requirements for credibility.'
+        ]
+      },
+      ash: {
+        title: 'Thermal + ash recovery pathways',
+        body: 'When land routes are constrained, focus shifts to thermal routing and ash recovery, requiring early clarity on feed prep, residues, and verification requirements.',
+        list: [
+          'Thermal routing intent: throughput, availability, and upstream feed preparation coordination points.',
+          'Ash handling and recovery coordination points (P recovery, metal recovery, residue logistics).',
+          'Air/emissions control coordination points clarified early (specialist-led, but designed-in).',
+          'Commissioning plan: throughput, energy performance, residue quality, and recovery yields.'
+        ]
+      }
+    };
+
+    const setActive = (key) => {
+      const d = content[key] || content.dewater;
+
+      items.forEach((i) => {
+        const active = i.dataset.cap === key;
+        i.classList.toggle('bg-white/10', active);
+        i.classList.toggle('ring-1', active);
+        i.classList.toggle('ring-white/20', active);
+        i.classList.toggle('cap-active', active);
+        i.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+
+      if (outTitle) outTitle.textContent = d.title;
+      if (outBody) outBody.innerHTML = d.body; // allow &amp; etc.
+
+      if (outList) {
+        outList.innerHTML = d.list
+          .map(t => `<div class="rounded-sm border border-white/10 bg-black/10 p-4">${t}</div>`)
+          .join('');
+      }
+    };
+
+    items.forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        setActive(el.dataset.cap);
+      });
+    });
+
+    // default
+    setActive(items[0]?.dataset.cap || 'dewater');
+  }
+
+  // carousel controls
+  document.querySelectorAll('[data-carousel]').forEach((c) => {
+    const scroller = c.querySelector('[data-carousel-track]');
+    const prev = c.querySelector('[data-carousel-prev]');
+    const next = c.querySelector('[data-carousel-next]');
+    if (!scroller) return;
+
+    const amount = () => Math.min(scroller.clientWidth * 0.9, 840);
+
+    prev?.addEventListener('click', () => scroller.scrollBy({ left: -amount(), behavior: 'smooth' }));
+    next?.addEventListener('click', () => scroller.scrollBy({ left:  amount(), behavior: 'smooth' }));
+  });
+})();
+</script>
+<script>
+(() => {
+  const track = document.querySelector('[data-config-track]');
+  const prev = document.querySelector('[data-config-prev]');
+  const next = document.querySelector('[data-config-next]');
+  if (!track || !prev || !next) return;
+
+  const step = () => Math.max(320, Math.floor(track.clientWidth * 0.9));
+  prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+  next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+})();
+</script>
+<script src="../exported-ui-effects.js"></script></body></html>

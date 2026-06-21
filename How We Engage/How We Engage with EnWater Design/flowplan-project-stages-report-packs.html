@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Report Packs | Stage-Ready Project Reports from Early Direction to Commissioning | EnWater Design</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<style>
+ :root{
+ --brand:#55a092;
+ --ink:#0e1726;
+ --mist:#f7f9f9;
+ }
+ *{box-sizing:border-box}
+ body{
+ margin:0;
+ font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ color:#0f172a;
+ background:#ffffff;
+ }
+ .container{max-width:80rem;margin:0 auto;padding:0 1rem}
+ @media (min-width:640px){.container{padding:0 1.5rem}}
+ @media (min-width:1024px){.container{padding:0 2rem}}
+ .card{
+ background:#fff;
+ border-radius:1rem;
+ border:1px solid rgb(226 232 240);
+ box-shadow:0 1px 2px rgba(15,23,42,.06);
+ transition:box-shadow .18s ease,transform .18s ease;
+ }
+ .card:hover{
+ box-shadow:0 14px 30px rgba(15,23,42,.12);
+ transform:translateY(-1px);
+ }
+ .chip{
+ display:inline-flex;
+ align-items:center;
+ gap:.4rem;
+ padding:.22rem .8rem;
+ border-radius:999px;
+ border:1px solid rgba(85,160,146,.35);
+ background:rgba(255,255,255,.95);
+ font-size:.72rem;
+ color:#0f172a;
+ }
+ .chip::before{
+ content:"";
+ width:.42rem;
+ height:.42rem;
+ border-radius:999px;
+ background:var(--brand);
+ box-shadow:0 0 0 3px rgba(85,160,146,.22);
+ }
+ .badge{
+ font-size:.7rem;
+ letter-spacing:.15em;
+ text-transform:uppercase;
+ color:#047857;
+ }
+ .pill-small{
+ display:inline-flex;
+ align-items:center;
+ padding:.18rem .7rem;
+ border-radius:999px;
+ border:1px solid rgba(85,160,146,.7);
+ font-size:.78rem;
+ color:#0f172a;
+ background:rgba(240,253,250,.9);
+ text-decoration:none;
+ cursor:pointer;
+ transition:background .15s ease, box-shadow .15s ease, transform .15s ease;
+ }
+ .pill-small:hover{
+ background:#d1fae5;
+ box-shadow:0 6px 16px rgba(15,23,42,.08);
+ transform:translateY(-1px);
+ }
+ /* Project drivers graphic */
+ .drivers-title{
+ text-transform:uppercase;
+ letter-spacing:.12em;
+ font-size:.7rem;
+ font-weight:600;
+ color:#047857;
+ text-align:center;
+ margin-bottom:.35rem;
+ }
+ .drivers-sub{
+ font-size:.72rem;
+ color:#6b7280;
+ text-align:center;
+ margin-bottom:.7rem;
+ }
+ .driver-row{
+ display:flex;
+ align-items:flex-start;
+ justify-content:space-between;
+ gap:.5rem;
+ padding:.35rem .25rem;
+ border-radius:.5rem;
+ }
+ .driver-main{
+ flex:1;
+ }
+ .driver-label{
+ font-size:.8rem;
+ font-weight:600;
+ color:#111827;
+ margin-bottom:.08rem;
+ }
+ .driver-hint{
+ font-size:.7rem;
+ color:#6b7280;
+ }
+ .driver-strength{
+ display:flex;
+ align-items:center;
+ gap:.12rem;
+ margin-left:.25rem;
+ margin-top:.15rem;
+ }
+ .driver-dot{
+ width:.44rem;
+ height:.44rem;
+ border-radius:999px;
+ border:1px solid #cbd5e1;
+ background:#f9fafb;
+ }
+ .driver-dot.is-on{
+ background:radial-gradient(circle at 30% 30%, #bbf7d0, #22c55e);
+ border-color:rgba(34,197,94,.9);
+ box-shadow:0 0 0 1px rgba(16,185,129,.35);
+ }
+ .driver-tag{
+ font-size:.68rem;
+ font-weight:600;
+ color:#047857;
+ background:#ecfdf5;
+ border-radius:999px;
+ padding:.08rem .4rem;
+ white-space:nowrap;
+ margin-top:.2rem;
+ }
+ 
+/* --- CTA panel (match "How we engage" styling) --- */
+.cta-panel{
+ margin-top: 2.25rem;
+ background: rgba(27,31,30,.06);
+ border: 1px solid rgba(27,31,30,.12);
+ border-radius: 22px;
+ padding: 1.75rem;
+}
+.cta-inner{
+ display:flex;
+ flex-direction:column;
+ gap:1.25rem;
+}
+@media (min-width: 768px){
+ .cta-inner{flex-direction:row; align-items:stretch; gap:2rem;}
+ .cta-left{width:66.666%;}
+ .cta-right{width:33.333%;}
+}
+.cta-left h3{
+ font-family: var(--serif);
+ font-size: 1.25rem;
+ line-height: 1.25;
+ margin: 0 0 .4rem 0;
+ color: #0f172a;
+}
+.cta-left p{
+ margin: 0;
+ color: rgba(15,23,42,.72);
+ line-height: 1.7;
+ font-size: .95rem;
+}
+.cta-left p.mt{ margin-top: .8rem; }
+
+.cta-right{
+ background: rgba(255,255,255,.92);
+ border: 1px solid rgba(27,31,30,.12);
+ border-radius: 16px;
+ padding: 1.15rem 1.15rem 1.1rem;
+ box-shadow: 0 18px 40px rgba(15, 23, 42, .06);
+ display:flex;
+ flex-direction:column;
+}
+.cta-right p{
+ margin: 0;
+ color: rgba(15,23,42,.70);
+ line-height: 1.65;
+ font-size: .92rem;
+}
+.btn-primary{
+ margin-top: .9rem;
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ width:100%;
+ padding:.85rem 1rem;
+ border-radius: 12px;
+ background: rgba(85,160,146,1);
+ border: 1px solid rgba(85,160,146,.75);
+ color:#fff;
+ font-weight: 650;
+ text-decoration:none;
+ box-shadow: 0 10px 22px rgba(15,23,42,.10);
+}
+.btn-primary:hover{ filter: brightness(.98); }
+.btn-muted{
+ margin-top: .55rem;
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ width:100%;
+ padding:.8rem 1rem;
+ border-radius: 12px;
+ background: rgba(15,23,42,.03);
+ border: 1px solid rgba(15,23,42,.08);
+ color: rgba(15,23,42,.30);
+ font-weight: 600;
+ text-decoration:none;
+ pointer-events:none;
+}
+
+/* --- Footer (minimal, consistent with Complete Process Design) --- */
+.site-footer{
+ margin-top: 4rem;
+ background: var(--forest);
+ color: rgba(255,255,255,.92);
+ position: relative;
+}
+.site-footer .footer-grid{
+ position:absolute;
+ inset:0;
+ pointer-events:none;
+ opacity:.25;
+ background-image:
+ linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px),
+ linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px);
+ background-size: 18px 18px;
+}
+.site-footer .footer-inner{
+ position:relative;
+ padding-top: 3.25rem;
+ padding-bottom: 2.25rem;
+}
+.footer-title{
+ font-weight: 750;
+ letter-spacing: -.02em;
+ font-size: 1.05rem;
+}
+.footer-sub{
+ margin-top: .25rem;
+ color: rgba(255,255,255,.72);
+ font-size: .9rem;
+}
+.footer-note{
+ margin-top: .9rem;
+ max-width: 44ch;
+ color: rgba(255,255,255,.70);
+ line-height: 1.7;
+ font-size: .92rem;
+}
+.footer-links{
+ margin-top: 1.75rem;
+ display:grid;
+ grid-template-columns: 1fr;
+ gap: 1.25rem;
+}
+@media (min-width: 768px){
+ .footer-links{ grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+.footer-col .footer-h{
+ font-size: .8rem;
+ text-transform: uppercase;
+ letter-spacing: .14em;
+ color: rgba(255,255,255,.62);
+ font-weight: 700;
+}
+.footer-col a{
+ display:block;
+ margin-top: .65rem;
+ color: rgba(255,255,255,.75);
+ text-decoration:none;
+ font-size: .95rem;
+}
+.footer-col a:hover{ color: #fff; }
+.footer-bottom{
+ margin-top: 2rem;
+ padding-top: 1.25rem;
+ border-top: 1px solid rgba(255,255,255,.12);
+ display:flex;
+ flex-direction:column;
+ gap:.35rem;
+ color: rgba(255,255,255,.62);
+ font-size: .88rem;
+}
+@media (min-width: 768px){
+ .footer-bottom{ flex-direction:row; justify-content:space-between; align-items:center; }
+}
+.footer-small{ color: rgba(255,255,255,.55); }
+</style>
+<style>
+ .flex{display:flex}.grid{display:grid}
+ .flex-col{flex-direction:column}
+ .items-center{align-items:center}
+ .items-stretch{align-items:stretch}
+ .justify-between{justify-content:space-between}
+ .gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}
+ .space-y-2> :not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}
+ .space-y-3> :not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}
+ .space-y-4> :not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}
+ .space-y-6> :not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem*calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem*var(--tw-space-y-reverse))}
+ .mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}
+ .mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}
+ .mb-1{margin-bottom:.25rem}.mb-2{margin-bottom:.5rem}.mb-4{margin-bottom:1rem}
+ .py-6{padding-top:1.5rem;padding-bottom:1.5rem}
+ .py-10{padding-top:2.5rem;padding-bottom:2.5rem}
+ .py-12{padding-top:3rem;padding-bottom:3rem}
+ .px-4{padding-left:1rem;padding-right:1rem}
+ .p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-8{padding:2rem}
+ .rounded-lg{border-radius:.5rem}.rounded-xl{border-radius:.75rem}
+ .bg-slate-50{background:#f8fafc}.bg-slate-900{background:#0f172a}
+ .text-xs{font-size:.75rem;line-height:1rem}
+ .text-sm{font-size:.875rem;line-height:1.25rem}
+ .text-base{font-size:1rem;line-height:1.5rem}
+ .text-lg{font-size:1.125rem;line-height:1.75rem}
+ .text-2xl{font-size:1.5rem;line-height:2rem}
+ .text-3xl{font-size:1.875rem;line-height:2.25rem}
+ .font-semibold{font-weight:600}
+ .leading-tight{line-height:1.25}
+ .leading-relaxed{line-height:1.625}
+ .text-slate-500{color:#64748b}
+ .text-slate-600{color:#475569}
+ .text-slate-700{color:#334155}
+ .text-slate-800{color:#1f2937}
+ .text-slate-900{color:#0f172a}
+ .text-emerald-700{color:#047857}
+ .uppercase{text-transform:uppercase}
+ .tracking-wide{letter-spacing:.05em}
+ .w-full{width:100%}
+ .max-w-xs{max-width:20rem}
+ .text-center{text-align:center}
+ @media (min-width:768px){
+ .md\:flex{display:flex}
+ .md\:flex-row{flex-direction:row}
+ .md\:items-stretch{align-items:stretch}
+ .md\:gap-8{gap:2rem}
+ .md\:w-2\/3{width:66.666667%}
+ .md\:w-1\/3{width:33.333333%}
+ }
+ 
+/* --- CTA panel (match "How we engage" styling) --- */
+.cta-panel{
+ margin-top: 2.25rem;
+ background: rgba(27,31,30,.06);
+ border: 1px solid rgba(27,31,30,.12);
+ border-radius: 22px;
+ padding: 1.75rem;
+}
+.cta-inner{
+ display:flex;
+ flex-direction:column;
+ gap:1.25rem;
+}
+@media (min-width: 768px){
+ .cta-inner{flex-direction:row; align-items:stretch; gap:2rem;}
+ .cta-left{width:66.666%;}
+ .cta-right{width:33.333%;}
+}
+.cta-left h3{
+ font-family: var(--serif);
+ font-size: 1.25rem;
+ line-height: 1.25;
+ margin: 0 0 .4rem 0;
+ color: #0f172a;
+}
+.cta-left p{
+ margin: 0;
+ color: rgba(15,23,42,.72);
+ line-height: 1.7;
+ font-size: .95rem;
+}
+.cta-left p.mt{ margin-top: .8rem; }
+
+.cta-right{
+ background: rgba(255,255,255,.92);
+ border: 1px solid rgba(27,31,30,.12);
+ border-radius: 16px;
+ padding: 1.15rem 1.15rem 1.1rem;
+ box-shadow: 0 18px 40px rgba(15, 23, 42, .06);
+ display:flex;
+ flex-direction:column;
+}
+.cta-right p{
+ margin: 0;
+ color: rgba(15,23,42,.70);
+ line-height: 1.65;
+ font-size: .92rem;
+}
+.btn-primary{
+ margin-top: .9rem;
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ width:100%;
+ padding:.85rem 1rem;
+ border-radius: 12px;
+ background: rgba(85,160,146,1);
+ border: 1px solid rgba(85,160,146,.75);
+ color:#fff;
+ font-weight: 650;
+ text-decoration:none;
+ box-shadow: 0 10px 22px rgba(15,23,42,.10);
+}
+.btn-primary:hover{ filter: brightness(.98); }
+.btn-muted{
+ margin-top: .55rem;
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ width:100%;
+ padding:.8rem 1rem;
+ border-radius: 12px;
+ background: rgba(15,23,42,.03);
+ border: 1px solid rgba(15,23,42,.08);
+ color: rgba(15,23,42,.30);
+ font-weight: 600;
+ text-decoration:none;
+ pointer-events:none;
+}
+
+/* --- Footer (minimal, consistent with Complete Process Design) --- */
+.site-footer{
+ margin-top: 4rem;
+ background: var(--forest);
+ color: rgba(255,255,255,.92);
+ position: relative;
+}
+.site-footer .footer-grid{
+ position:absolute;
+ inset:0;
+ pointer-events:none;
+ opacity:.25;
+ background-image:
+ linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px),
+ linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px);
+ background-size: 18px 18px;
+}
+.site-footer .footer-inner{
+ position:relative;
+ padding-top: 3.25rem;
+ padding-bottom: 2.25rem;
+}
+.footer-title{
+ font-weight: 750;
+ letter-spacing: -.02em;
+ font-size: 1.05rem;
+}
+.footer-sub{
+ margin-top: .25rem;
+ color: rgba(255,255,255,.72);
+ font-size: .9rem;
+}
+.footer-note{
+ margin-top: .9rem;
+ max-width: 44ch;
+ color: rgba(255,255,255,.70);
+ line-height: 1.7;
+ font-size: .92rem;
+}
+.footer-links{
+ margin-top: 1.75rem;
+ display:grid;
+ grid-template-columns: 1fr;
+ gap: 1.25rem;
+}
+@media (min-width: 768px){
+ .footer-links{ grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+.footer-col .footer-h{
+ font-size: .8rem;
+ text-transform: uppercase;
+ letter-spacing: .14em;
+ color: rgba(255,255,255,.62);
+ font-weight: 700;
+}
+.footer-col a{
+ display:block;
+ margin-top: .65rem;
+ color: rgba(255,255,255,.75);
+ text-decoration:none;
+ font-size: .95rem;
+}
+.footer-col a:hover{ color: #fff; }
+.footer-bottom{
+ margin-top: 2rem;
+ padding-top: 1.25rem;
+ border-top: 1px solid rgba(255,255,255,.12);
+ display:flex;
+ flex-direction:column;
+ gap:.35rem;
+ color: rgba(255,255,255,.62);
+ font-size: .88rem;
+}
+@media (min-width: 768px){
+ .footer-bottom{ flex-direction:row; justify-content:space-between; align-items:center; }
+}
+.footer-small{ color: rgba(255,255,255,.55); }
+</style>
+<style>:root{
+ --cream:#f4f2ec;
+ --ink:#1b1f1e;
+ --muted:#5a6561;
+ --forest:#243f38;
+ --forest2:#1f3731;
+ --accent:#55a092;
+ --accent2:#468a7e;
+ --line:rgba(27,31,30,.14);
+ --shadow:0 10px 30px rgba(27,31,30,.08);
+}
+
+/* Typography */
+html,body{height:100%}
+body{
+ background:var(--cream);
+ color:var(--ink);
+ font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+ -webkit-font-smoothing:antialiased;
+ -moz-osx-font-smoothing:grayscale;
+}
+h1,h2,h3{
+ font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+ letter-spacing:-0.02em;
+}
+p{color:rgba(27,31,30,.78)}
+
+/* Palette overrides for tailwind utility colors used in older files */
+.text-slate-900{color:var(--ink)!important}
+.text-slate-800{color:rgba(27,31,30,.88)!important}
+.text-slate-700{color:rgba(27,31,30,.72)!important}
+.text-slate-600{color:rgba(27,31,30,.65)!important}
+.border-slate-200{border-color:var(--line)!important}
+.bg-slate-50{background:rgba(255,255,255,.65)!important}
+
+.text-emerald-700{color:var(--accent)!important}
+.text-emerald-600{color:var(--accent)!important}
+.bg-emerald-600{background:var(--accent)!important}
+.bg-emerald-700{background:var(--accent2)!important}
+.border-emerald-200{border-color:rgba(85,160,146,.28)!important}
+.bg-emerald-50{background:rgba(85,160,146,.08)!important}
+
+/* Header */
+.site-header{
+ background:linear-gradient(180deg,var(--forest),var(--forest2));
+ color:#fff;
+ border-bottom:1px solid rgba(255,255,255,.10);
+}
+.site-header a{color:rgba(255,255,255,.82)}
+.site-header a:hover{color:#fff}
+.brand-chip{
+ background:rgba(255,255,255,.10);
+ border:1px solid rgba(255,255,255,.16);
+}
+.brand-dot{background:var(--accent)}
+.btn-primary{
+ background:var(--accent);
+ color:#fff;
+}
+.btn-primary:hover{background:var(--accent2)}
+/* Cards */
+.card{
+ border:1px solid rgba(27,31,30,.12);
+ background:transparent;
+ border-radius:14px;
+}
+.card p{color:rgba(27,31,30,.74)}
+/* Engage panel tint */
+.engage-shell{
+ background:linear-gradient(180deg, rgba(36,63,56,.12), rgba(36,63,56,.07));
+ border:1px solid rgba(27,31,30,.14);
+}
+.engage-step{
+ background:rgba(255,255,255,.62);
+ backdrop-filter: blur(6px);
+}
+
+.card-elev{
+ box-shadow:var(--shadow);
+}
+.card-topbar{
+ position:relative;
+}
+.card-topbar:before{
+ content:"";
+ position:absolute;
+ left:0; top:0;
+ height:3px; width:100%;
+ background:linear-gradient(90deg,var(--accent),rgba(85,160,146,0));
+ border-top-left-radius:16px;
+ border-top-right-radius:16px;
+}
+
+/* Small labels */
+.kicker{
+ text-transform:uppercase;
+ letter-spacing:.12em;
+ font-size:.72rem;
+ color:rgba(27,31,30,.58);
+ font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+}
+
+/* Make section anchors land nicely under sticky header */
+:target{scroll-margin-top:96px}
+
+/* Hero */
+.hero-bg{background:linear-gradient(180deg,var(--forest),var(--forest2)); color:#fff;}
+.hero-bg p{color:rgba(255,255,255,.78)}
+.hero-bg .kicker{color:rgba(255,255,255,.60)}
+.hero-bg .brand-chip{background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.18)}
+
+
+/* Reduce “cards galore”: use simple blocks in Positioning + Snapshot */
+.positioning-item, .snapshot-item{
+ background:transparent;
+ border:none;
+ border-radius:0;
+}
+.positioning-item h3, .snapshot-item h3{
+ padding-bottom:.75rem;
+ margin-bottom:.75rem;
+ border-bottom:1px solid rgba(27,31,30,.10);
+}
+
+
+/* Extra overrides to match Complete Process Design styling without "card galore" */
+.card{background:rgba(255,255,255,.55)!important; box-shadow:none!important; transform:none!important;}
+.card:hover{box-shadow:none!important; transform:none!important;}
+/* Make hero section use the forest gradient and invert text */
+.hero-bg{background:linear-gradient(180deg,var(--forest),var(--forest2)); color:#fff;}
+.hero-bg .text-slate-900{color:#fff!important}
+.hero-bg .text-slate-600, .hero-bg .text-slate-700, .hero-bg .text-slate-500{color:rgba(255,255,255,.75)!important}
+.hero-bg p{color:rgba(255,255,255,.78)}
+.hero-bg .badge{color:rgba(255,255,255,.65)!important}
+.hero-bg .chip{
+ background:rgba(255,255,255,.10)!important;
+ border-color:rgba(255,255,255,.16)!important;
+ color:rgba(255,255,255,.86)!important;
+}
+.hero-bg .chip::before{
+ background:var(--accent)!important;
+ box-shadow:0 0 0 3px rgba(85,160,146,.22)!important;
+}
+.hero-bg .card{background:rgba(255,255,255,.08)!important; border-color:rgba(255,255,255,.18)!important}
+.hero-bg .bg-slate-50{background:rgba(255,255,255,.08)!important}
+/* Header: dark forest bar */
+.site-header{background:linear-gradient(180deg,var(--forest),var(--forest2))!important; border-bottom:1px solid rgba(255,255,255,.10)!important;}
+.site-header .text-slate-900{color:#fff!important}
+.site-header .text-slate-500{color:rgba(255,255,255,.65)!important}
+.site-header a{color:rgba(255,255,255,.82)!important}
+.site-header a:hover{color:#fff!important}
+/* So anchor jumps don't hide behind sticky header */
+html{scroll-behavior:smooth}
+section[id]{scroll-margin-top:88px}
+
+/* --- CTA panel (match "How we engage" styling) --- */
+.cta-panel{
+ margin-top: 2.25rem;
+ background: rgba(27,31,30,.06);
+ border: 1px solid rgba(27,31,30,.12);
+ border-radius: 22px;
+ padding: 1.75rem;
+}
+.cta-inner{
+ display:flex;
+ flex-direction:column;
+ gap:1.25rem;
+}
+@media (min-width: 768px){
+ .cta-inner{flex-direction:row; align-items:stretch; gap:2rem;}
+ .cta-left{width:66.666%;}
+ .cta-right{width:33.333%;}
+}
+.cta-left h3{
+ font-family: var(--serif);
+ font-size: 1.25rem;
+ line-height: 1.25;
+ margin: 0 0 .4rem 0;
+ color: #0f172a;
+}
+.cta-left p{
+ margin: 0;
+ color: rgba(15,23,42,.72);
+ line-height: 1.7;
+ font-size: .95rem;
+}
+.cta-left p.mt{ margin-top: .8rem; }
+
+.cta-right{
+ background: rgba(255,255,255,.92);
+ border: 1px solid rgba(27,31,30,.12);
+ border-radius: 16px;
+ padding: 1.15rem 1.15rem 1.1rem;
+ box-shadow: 0 18px 40px rgba(15, 23, 42, .06);
+ display:flex;
+ flex-direction:column;
+}
+.cta-right p{
+ margin: 0;
+ color: rgba(15,23,42,.70);
+ line-height: 1.65;
+ font-size: .92rem;
+}
+.btn-primary{
+ margin-top: .9rem;
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ width:100%;
+ padding:.85rem 1rem;
+ border-radius: 12px;
+ background: rgba(85,160,146,1);
+ border: 1px solid rgba(85,160,146,.75);
+ color:#fff;
+ font-weight: 650;
+ text-decoration:none;
+ box-shadow: 0 10px 22px rgba(15,23,42,.10);
+}
+.btn-primary:hover{ filter: brightness(.98); }
+.btn-muted{
+ margin-top: .55rem;
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ width:100%;
+ padding:.8rem 1rem;
+ border-radius: 12px;
+ background: rgba(15,23,42,.03);
+ border: 1px solid rgba(15,23,42,.08);
+ color: rgba(15,23,42,.30);
+ font-weight: 600;
+ text-decoration:none;
+ pointer-events:none;
+}
+
+/* --- Footer (minimal, consistent with Complete Process Design) --- */
+.site-footer{
+ margin-top: 4rem;
+ background: var(--forest);
+ color: rgba(255,255,255,.92);
+ position: relative;
+}
+.site-footer .footer-grid{
+ position:absolute;
+ inset:0;
+ pointer-events:none;
+ opacity:.25;
+ background-image:
+ linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px),
+ linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px);
+ background-size: 18px 18px;
+}
+.site-footer .footer-inner{
+ position:relative;
+ padding-top: 3.25rem;
+ padding-bottom: 2.25rem;
+}
+.footer-title{
+ font-weight: 750;
+ letter-spacing: -.02em;
+ font-size: 1.05rem;
+}
+.footer-sub{
+ margin-top: .25rem;
+ color: rgba(255,255,255,.72);
+ font-size: .9rem;
+}
+.footer-note{
+ margin-top: .9rem;
+ max-width: 44ch;
+ color: rgba(255,255,255,.70);
+ line-height: 1.7;
+ font-size: .92rem;
+}
+.footer-links{
+ margin-top: 1.75rem;
+ display:grid;
+ grid-template-columns: 1fr;
+ gap: 1.25rem;
+}
+@media (min-width: 768px){
+ .footer-links{ grid-template-columns: 1fr 1fr; gap: 2rem; }
+}
+.footer-col .footer-h{
+ font-size: .8rem;
+ text-transform: uppercase;
+ letter-spacing: .14em;
+ color: rgba(255,255,255,.62);
+ font-weight: 700;
+}
+.footer-col a{
+ display:block;
+ margin-top: .65rem;
+ color: rgba(255,255,255,.75);
+ text-decoration:none;
+ font-size: .95rem;
+}
+.footer-col a:hover{ color: #fff; }
+.footer-bottom{
+ margin-top: 2rem;
+ padding-top: 1.25rem;
+ border-top: 1px solid rgba(255,255,255,.12);
+ display:flex;
+ flex-direction:column;
+ gap:.35rem;
+ color: rgba(255,255,255,.62);
+ font-size: .88rem;
+}
+@media (min-width: 768px){
+ .footer-bottom{ flex-direction:row; justify-content:space-between; align-items:center; }
+}
+.footer-small{ color: rgba(255,255,255,.55); }
+</style>
+
+<style>
+ .home-pill{position:fixed;top:16px;left:16px;z-index:9999;
+ background:rgba(15,47,43,.92);color:#fff;padding:10px 14px;border-radius:999px;
+ font:600 14px/1.1 system-ui,-apple-system,Segoe UI,Roboto,Arial; text-decoration:none;
+ box-shadow:0 10px 30px rgba(0,0,0,.18); backdrop-filter: blur(6px);}
+ .home-pill:hover{transform:translateY(-1px); box-shadow:0 14px 36px rgba(0,0,0,.22);}
+ </style>
+<style>
+ .fp-internalbar{position:sticky;top:0;z-index:9998;
+ background:linear-gradient(180deg, rgba(15,47,43,.96), rgba(15,47,43,.82));
+ padding:12px 14px; backdrop-filter: blur(8px); }
+ .fp-internalbar .wrap{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:10px;}
+ .fp-internalbar a{color:#fff;text-decoration:none;font:650 14px/1.1 system-ui,-apple-system,Segoe UI,Roboto,Arial;}
+ .fp-internalbar a:hover{text-decoration:underline;}
+ </style>
+<style id="reports-hero-bg-override">
+.hero-bg{
+  background:
+    linear-gradient(145deg, rgba(17,52,47,.88), rgba(15,46,60,.80) 58%, rgba(17,52,47,.86)),
+    url('assets/media/report-packs-hero-bg.jpg') center/cover no-repeat !important;
+  color:#fff;
+}
+.hero-bg .badge{
+  color: rgba(167,243,208,.95) !important;
+}
+.hero-bg .text-slate-900{
+  color: rgba(248,250,252,1) !important;
+}
+.hero-bg .text-slate-600,
+.hero-bg .text-slate-700{
+  color: rgba(226,232,240,.88) !important;
+}
+.hero-bg .chip{
+  background: rgba(255,255,255,.10) !important;
+  border-color: rgba(255,255,255,.18) !important;
+  color: rgba(241,245,249,.94) !important;
+}
+.hero-bg .chip::before{
+  box-shadow: 0 0 0 3px rgba(255,255,255,.18) !important;
+}
+.hero-bg .card{
+  background: rgba(255,255,255,.88) !important;
+  backdrop-filter: blur(6px);
+}
+.hero-bg .text-emerald-700{
+  color: rgba(6,95,70,1) !important;
+}
+</style>
+<style id="report-packs-hero-clean-fix">
+.hero-bg{
+  background:
+    linear-gradient(145deg, rgba(16,52,47,.84), rgba(14,48,63,.78) 58%, rgba(14,45,55,.82)),
+    url('assets/media/report-packs-hero-bg.jpg') center/cover no-repeat !important;
+  color:#fff;
+}
+.hero-bg .badge{color:rgba(167,243,208,.95) !important;}
+.hero-bg .text-slate-900{color:rgba(248,250,252,1) !important;}
+.hero-bg .text-slate-600,
+.hero-bg .text-slate-700{color:rgba(226,232,240,.88) !important;}
+.hero-bg .chip{
+  background:rgba(255,255,255,.10) !important;
+  border-color:rgba(255,255,255,.18) !important;
+  color:rgba(241,245,249,.94) !important;
+}
+.hero-bg .chip::before{
+  box-shadow:0 0 0 3px rgba(255,255,255,.18) !important;
+}
+.hero-bg .card{
+  background:rgba(255,255,255,.94) !important;
+  border-color:rgba(255,255,255,.24) !important;
+  backdrop-filter:blur(8px);
+}
+.hero-bg .card p,
+.hero-bg .card li,
+.hero-bg .card strong,
+.hero-bg .card em,
+.hero-bg .card .text-sm,
+.hero-bg .card .text-xs,
+.hero-bg .card .text-slate-700,
+.hero-bg .card .text-slate-600,
+.hero-bg .card .text-slate-500{
+  color:rgba(15,23,42,.82) !important;
+}
+.hero-bg .card .badge,
+.hero-bg .card .text-emerald-700{
+  color:#0f766e !important;
+}
+</style>
+
+<style id="enwater-logo-refinement-v1">
+.brand-logo,.nav-logo,.nav-brand-logo{height:38px!important;width:auto!important;max-width:66px!important;object-fit:contain!important;background:transparent!important;border-radius:0!important;padding:0!important;box-shadow:none!important;}
+.brand span,.nav-brand span{white-space:nowrap;}
+.footer-logo{height:34px;width:auto;max-width:60px;object-fit:contain;background:transparent;border-radius:0;padding:0;box-shadow:none;display:block;}
+.footer-brand,.foot-brand{display:flex;align-items:center;gap:10px;}
+</style>
+<style id="report-packs-logo-white-badge-final">
+/* Final EnWater logo visibility fix for Report Packs: keeps the existing navigation and only makes the transparent logo readable on the dark bar. */
+header.site-topnav a.brand::before,
+.site-topnav a.brand::before{
+  display:none !important;
+  content:none !important;
+}
+header.site-topnav a.brand,
+.site-topnav a.brand{
+  gap:12px !important;
+}
+header.site-topnav .brand-logo,
+.site-topnav .brand-logo{
+  height:38px !important;
+  width:auto !important;
+  max-width:72px !important;
+  object-fit:contain !important;
+  background:#ffffff !important;
+  border-radius:6px !important;
+  padding:3px !important;
+  box-shadow:0 1px 4px rgba(0,0,0,.16) !important;
+  flex-shrink:0 !important;
+}
+header.site-topnav .brand span,
+.site-topnav .brand span{
+  white-space:nowrap !important;
+}
+</style>
+<style id="enwater-standard-footer-v3">
+/* Controlled footer standardization for How We Engage subpages */
+.enwater-footer-standard{background:#173d35;color:rgba(255,255,255,.88);position:relative;border-top:1px solid rgba(255,255,255,.10);margin-top:0;}
+.enwater-footer-standard::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.20;background-image:linear-gradient(rgba(255,255,255,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.10) 1px,transparent 1px);background-size:18px 18px;}
+.enwater-footer-standard .efs-inner{position:relative;max-width:1180px;margin:0 auto;padding:48px 24px 28px;}
+.enwater-footer-standard .efs-grid{display:grid;gap:34px;grid-template-columns:1.5fr 1fr 1fr;align-items:start;}
+.enwater-footer-standard .efs-brand{display:flex;align-items:center;gap:12px;font-weight:750;color:#fff;font-size:16px;margin-bottom:12px;}
+.enwater-footer-standard .efs-logo{height:34px;width:auto;max-width:58px;object-fit:contain;background:#fff;border-radius:6px;padding:4px;box-shadow:0 1px 4px rgba(0,0,0,.16);}
+.enwater-footer-standard .efs-desc{max-width:440px;color:rgba(255,255,255,.72);font-size:14px;line-height:1.7;margin:0;}
+.enwater-footer-standard .efs-heading{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.62);font-weight:750;margin-bottom:14px;}
+.enwater-footer-standard a{display:block;color:rgba(255,255,255,.78);text-decoration:none;font-size:14px;line-height:1.55;margin:8px 0;}
+.enwater-footer-standard a:hover{color:#fff;}
+.enwater-footer-standard .efs-line{color:rgba(255,255,255,.78);font-size:14px;line-height:1.55;margin:8px 0;}
+.enwater-footer-standard .efs-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:34px;padding-top:18px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:rgba(255,255,255,.58);font-size:13px;}
+@media(max-width:780px){.enwater-footer-standard .efs-grid{grid-template-columns:1fr}.enwater-footer-standard .efs-inner{padding:38px 20px 24px}}
+</style>
+<style id="active-decision-studies-link-fix">
+/* Makes the secondary CTA an active link while keeping the softer visual treatment. */
+.cta-right a.btn-muted[href="flowplan-decision-studies.html"]{
+  pointer-events:auto !important;
+  cursor:pointer !important;
+  color:rgba(15,23,42,.76) !important;
+  background:#ffffff !important;
+  border:1px solid rgba(85,160,146,.30) !important;
+}
+.cta-right a.btn-muted[href="flowplan-decision-studies.html"]:hover{
+  color:#0f172a !important;
+  background:rgba(85,160,146,.08) !important;
+  border-color:rgba(85,160,146,.48) !important;
+}
+</style>
+
+<link href="../../exported-ui-styles.css" rel="stylesheet"/><link rel="icon" type="image/png" href="../../assets/images/enwater-design-logo-nav.png" />
+</head>
+<body>
+<header class="site-topnav">
+<div class="wrap">
+<a aria-label="EnWater Design home" class="brand" href="../../home.html">
+<img alt="EnWater Design logo" class="nav-logo" src="../../assets/images/enwater-design-logo.png"/>
+<span>EnWater Design</span>
+</a>
+<nav class="desktop-nav">
+<ul>
+<li><a class="rootlink" href="../../home.html">Home</a></li>
+<li>
+            <a class="rootlink " href="../../About/about.html">About</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a class="" href="../../About/about.html">About Us</a>
+              <a class="" href="../../About/BlogList.html">Blog &amp; Insights</a>
+            </div>
+          </li>
+<li>
+<a class="rootlink active" href="../../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<a href="../../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../../Projects/index.html">Projects</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../../Projects/index.html">Projects Overview</a>
+<a href="../../Projects/project-pathways.html">Project Pathways</a>
+<a href="../../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../../Sectors/index.html">Sectors</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../../Sectors/index.html">Sector Pathways</a>
+<a href="../../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</li>
+<li><a class="rootlink nav-login" href="../../login.html">Login</a></li>
+<li><a class="rootlink nav-cta" href="../../get-in-touch.html">Get in touch</a></li>
+</ul>
+</nav>
+<button aria-expanded="false" aria-label="Toggle menu" class="mobile-nav-toggle" type="button">
+<span class="hamburger-line line-1"></span>
+<span class="hamburger-line line-2"></span>
+<span class="hamburger-line line-3"></span>
+</button>
+</div>
+<div class="mobile-nav-panel">
+<div class="mobile-nav-content">
+<div class="mobile-nav-item">
+<a class="mobile-rootlink" href="../../home.html">Home</a>
+</div>
+<div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink " href="../../About/about.html">About</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a class="" href="../../About/about.html">About Us</a>
+            <a class="" href="../../About/BlogList.html">Blog &amp; Insights</a>
+          </div>
+        </div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink active" href="../../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage Overview</a>
+<a href="../../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../../Projects/index.html">Projects</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../../Projects/index.html">Projects Overview</a>
+<a href="../../Projects/project-pathways.html">Project Pathways</a>
+<a href="../../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../../Sectors/index.html">Sectors</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../../Sectors/index.html">Sector Pathways</a>
+<a href="../../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<a class="mobile-login-btn" href="../../login.html">Login</a>
+</div>
+<div class="mobile-nav-item no-border">
+<a class="mobile-cta-btn" href="../../get-in-touch.html">Get in touch</a>
+</div>
+</div>
+</div>
+</header>
+<section class="py-12 hero-bg">
+<div class="container">
+<div class="flex flex-col md:flex-row md:items-stretch gap-6 md:gap-8">
+<div class="md:w-2/3">
+<div class="badge">Project stages</div>
+<h1 class="mt-1 text-3xl font-semibold leading-tight text-slate-900">
+ Report Packs for Early Direction, Procurement, and Commissioning
+ </h1>
+<p class="mt-3 text-lg text-slate-600 leading-relaxed">
+ Report Packs organise the report work by project stage, so project basis, scope, and review requirements stay connected from early direction through procurement and into commissioning. Start at the stage that matches where the project stands today.
+ </p>
+<div class="mt-4 flex flex-wrap gap-2">
+<span class="chip">Uses the same report titles as “How to Engage”</span>
+<span class="chip">Maps directly to project milestones</span>
+<span class="chip">Shows what most often drives each stage</span>
+</div>
+</div>
+<div class="md:w-1/3">
+<div class="card p-5 bg-slate-50">
+<div class="badge text-emerald-700 mb-1">Quick orientation</div>
+<p class="text-sm text-slate-700">
+ Think of this section as the <strong>project view</strong> of the same work described on:
+ </p>
+<ul class="mt-3 space-y-2 text-sm text-slate-700">
+<li><strong>Consulting &amp; Process Design Advisory</strong> - services &amp; studies.</li>
+<li><strong>How We Engage with EnWater Design</strong> - advisory families &amp; report titles.</li>
+<li><strong>Project pathways</strong> - milestones &amp; outcomes.</li>
+</ul>
+<p class="mt-3 text-xs text-slate-500">Here we show what the stage packs consist of - <em>Project Background Report, Project Feasibility Report, Project Specification &amp; Terms of Reference Report / Spec Pack, and Commissioning &amp; Start-up Alignment Notes</em> - together with the project drivers that usually lie behind each one. This helps turn a long report list into a clearer stage structure, so it is easier to see what belongs where, what each stage supports, and when it should come into the job.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-10 bg-slate-50">
+<div class="container">
+<div class="text-sm font-semibold tracking-wide uppercase text-slate-700 mb-3">
+ Stages at a glance
+ </div>
+<div class="flex flex-wrap gap-2 text-sm text-slate-700">
+<a class="pill-small" href="how-we-engage-with-enwater-design.html">Stage 0 · Project Background &amp; Early direction</a>
+<a class="pill-small" href="#stage-1">Stage 1 · Feasibility &amp; Planning</a>
+<a class="pill-small" href="#stage-2">Stage 2 · Implementation Alignment</a>
+<a class="pill-small" href="#stage-3">Stage 3 · Vendor &amp; Contracting Support</a>
+<a class="pill-small" href="#stage-4">Stage 4 · Commissioning &amp; Performance</a>
+<a class="pill-small" href="#stage-5">Stage 5 · Optimization &amp; Upside</a>
+</div>
+</div>
+</section>
+<main class="py-10">
+<div class="container space-y-6">
+<!-- Stage 0 -->
+<section class="card p-6 md:flex md:flex-row md:items-stretch md:gap-8" id="stage-0">
+<div class="md:w-2/3 flex flex-col justify-between">
+<div>
+<div class="badge">Stage 0 · Pre-feasibility</div>
+<h2 class="mt-1 text-2xl font-semibold text-slate-900">
+ Project Background &amp; Early direction pack
+ </h2>
+<p class="mt-2 text-sm text-slate-600 leading-relaxed">
+ Uses the <strong>Project Background &amp; Early direction</strong> advisory family to create a single orientation point
+ for everyone involved. This pack is about agreeing what the project is - and what it is not - before
+ feasibility or vendor conversations start.
+ </p>
+<div class="mt-3 space-y-2 text-sm text-slate-700 leading-relaxed">
+<p>
+<span class="font-semibold">Scope:</span>
+ captures where water, wastewater and sludge are coming from, existing constraints, any reuse or biosolids
+ ambitions, and the regulatory and physical boundary the project must fit within.
+ </p>
+<p>
+<span class="font-semibold">Useful for:</span>
+ owners, planning teams, lenders and advisors who need a short, shared background document that is
+ richer than a slide but lighter than a full feasibility study.
+ </p>
+</div>
+<div class="mt-3 rounded-lg bg-slate-50 border border-slate-200 p-4">
+<div class="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-1">
+ Report titles used in this pack
+ </div>
+<ul class="text-sm text-slate-700 space-y-1">
+<li><strong>Project Background Report</strong></li>
+<li><strong>Regulatory Alignment Note</strong></li>
+<li><strong>Technology Fit Notes</strong></li>
+</ul>
+<p class="mt-2 text-xs text-slate-600">
+ These are the same titles you see on <em>How to Engage</em> - here, they're compiled as the
+ opening "Chapter 0" of a FlowPlan project.
+ </p>
+</div>
+<p class="mt-3 text-sm text-slate-700">
+<span class="font-semibold">Moves the decision on:</span>
+ whether the early direction is sound, which FlowPlan variants (STP+, ETP+, TSE+, ZLD+, GWTP, VWRP) belong in
+ scope, and what is better parked for later phases.
+ </p>
+</div>
+</div>
+<div class="md:w-1/3 flex items-center justify-center mt-4 md:mt-0">
+<div class="w-full max-w-xs rounded-xl border border-slate-200 bg-slate-50 p-4">
+<div class="drivers-title">Typical project drivers</div>
+<div class="drivers-sub">
+ What usually triggers a Project Background &amp; Early direction pack.
+ </div>
+<div class="space-y-2 text-xs text-slate-700">
+<div class="driver-row">
+<div class="driver-main">
+<div class="driver-label">Regulatory or planning trigger</div>
+<div class="driver-hint">Need to show basic intent and limit to authorities or planners.</div>
+<div class="driver-strength">
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+</div>
+</div>
+</div>
+<div class="driver-row">
+<div class="driver-main">
+<div class="driver-label">Internal alignment</div>
+<div class="driver-hint">Different teams hold different views of “the project”.</div>
+<div class="driver-strength">
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot"></span>
+</div>
+</div>
+</div>
+<div class="driver-row">
+<div class="driver-main">
+<div class="driver-label">Data &amp; baseline gaps</div>
+<div class="driver-hint">Existing information is scattered, incomplete or out of date.</div>
+<div class="driver-strength">
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot"></span>
+<span class="driver-dot"></span>
+</div>
+</div>
+</div>
+</div>
+<div class="driver-tag">Usually owner &amp; planning driven</div>
+</div>
+</div>
+</section>
+<!-- Stage 1 -->
+<section class="card p-6 md:flex md:flex-row md:items-stretch md:gap-8" id="stage-1">
+<div class="md:w-2/3 flex flex-col justify-between">
+<div>
+<div class="badge">Stage 1 · Feasibility</div>
+<h2 class="mt-1 text-2xl font-semibold text-slate-900">
+ Feasibility &amp; Planning pack
+ </h2>
+<p class="mt-2 text-sm text-slate-600 leading-relaxed">
+ Uses the <strong>Feasibility &amp; Planning</strong> family to move from "we have a project idea"
+ to a preferred route and project scale. This is where options are compared and the FlowPlan configuration
+ is narrowed down to a practical short list.
+ </p>
+<div class="mt-3 space-y-2 text-sm text-slate-700 leading-relaxed">
+<p>
+<span class="font-semibold">Scope:</span>
+ tests realistic routes - status quo, incremental upgrade, full retrofit, different reuse or biosolids
+ strategies - and assembles <strong>order-of-magnitude CAPEX / OPEX and unit cost ranges</strong>
+ using benchmarks, vendor budget quotes and existing plant data, with assumptions and uncertainties
+ clearly flagged.
+ </p>
+<p>
+<span class="font-semibold">Useful for:</span>
+ owners, boards and lenders who need a <strong>quantitative but still early-stage view</strong> to
+ approve a preferred route before detailed design, RFQs or partner discussions begin.
+ </p>
+</div>
+<div class="mt-3 rounded-lg bg-slate-50 border border-slate-200 p-4">
+<div class="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-1">
+ Report titles used in this pack
+ </div>
+<ul class="text-sm text-slate-700 space-y-1">
+<li><strong>Options Comparison Matrix</strong></li>
+<li><strong>Project Feasibility Report (Technical &amp; Commercial)</strong></li>
+<li><strong>Indicative Route &amp; Phasing Notes</strong></li>
+</ul>
+<p class="mt-2 text-xs text-slate-600">
+ These are combined into a single Feasibility &amp; Route Decision Report that can serve as
+ <em>Milestone 1 - Project Feasibility Report</em> within Project pathways.
+ </p>
+</div>
+<p class="mt-3 text-sm text-slate-700">
+<span class="font-semibold">Moves the decision on:</span>
+ which route to pursue, what level of reuse or recovery is realistic now, and which FlowPlan variant
+ (or combination) should be carried forward into Stage 2 - with a
+ <strong>range-based CAPEX / OPEX and unit cost range</strong> suitable for board and lender review.
+ </p>
+</div>
+</div>
+<div class="md:w-1/3 flex items-center justify-center mt-4 md:mt-0">
+<div class="w-full max-w-xs rounded-xl border border-slate-200 bg-slate-50 p-4">
+<div class="drivers-title">Typical project drivers</div>
+<div class="drivers-sub">
+ Why feasibility &amp; route work is usually commissioned.
+ </div>
+<div class="space-y-2 text-xs text-slate-700">
+<div class="driver-row">
+<div class="driver-main">
+<div class="driver-label">Board or lender approval</div>
+<div class="driver-hint">A clear yes/no or route choice is needed, backed by quantified ranges rather than overview only.</div>
+<div class="driver-strength">
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+</div>
+</div>
+</div>
+<div class="driver-row">
+<div class="driver-main">
+<div class="driver-label">Upgrade vs new build dilemma</div>
+<div class="driver-hint">Uncertainty about retrofit, new capacity or entirely new plant.</div>
+<div class="driver-strength">
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot"></span>
+</div>
+</div>
+</div>
+<div class="driver-row">
+<div class="driver-main">
+<div class="driver-label">Reuse &amp; recovery ambition</div>
+<div class="driver-hint">Exploring if TSE, brine or biosolids can sensibly enter the plan now.</div>
+<div class="driver-strength">
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot"></span>
+<span class="driver-dot"></span>
+</div>
+</div>
+</div>
+</div>
+<div class="driver-tag">Owner, finance &amp; ESG driven</div>
+</div>
+</div>
+</section>
+<!-- Stage 2 -->
+<section class="card p-6 md:flex md:flex-row md:items-stretch md:gap-8" id="stage-2">
+<div class="md:w-2/3 flex flex-col justify-between">
+<div>
+<div class="badge">Stage 2 · Design intake</div>
+<h2 class="mt-1 text-2xl font-semibold text-slate-900">
+ Implementation Alignment pack
+ </h2>
+<p class="mt-2 text-sm text-slate-600 leading-relaxed">
+ Uses the <strong>Implementation Alignment</strong> family to translate the chosen route into vendor-ready
+ documents. This is where the feasibility decision becomes scopes, specs and comparison logic that tie
+ directly to FlowPlan modules.
+ </p>
+<div class="mt-3 space-y-2 text-sm text-slate-700 leading-relaxed">
+<p>
+<span class="font-semibold">Scope:</span>
+ defines the technical and commercial boundary between owner, EPC and suppliers; sets expectations on
+ performance, integration and control logic without doing detailed design.
+ </p>
+<p>
+<span class="font-semibold">Useful for:</span>
+ technical, procurement and project leads preparing RFQs, RFPs or partner notes.
+ </p>
+</div>
+<div class="mt-3 rounded-lg bg-slate-50 border border-slate-200 p-4">
+<div class="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-1">
+ Report titles used in this pack
+ </div>
+<ul class="text-sm text-slate-700 space-y-1">
+<li><strong>Project Specification &amp; Terms of Reference Report / Spec Pack</strong></li>
+<li><strong>Integration &amp; Connection Notes (equipment, controls)</strong></li>
+<li><strong>Evaluation &amp; Comparison Framework</strong></li>
+</ul>
+<p class="mt-2 text-xs text-slate-600">
+ On the projects side, these can appear under <em>Milestone 2 - Project Specification &amp; Terms of Reference Report</em>
+ and form the core of tender packs.
+ </p>
+</div>
+<p class="mt-3 text-sm text-slate-700">
+<span class="font-semibold">Moves the decision on:</span>
+ what you are actually asking vendors to do, how their designs will be compared, and which connections must
+ be clearly owned.
+ </p>
+</div>
+</div>
+<div class="md:w-1/3 flex items-center justify-center mt-4 md:mt-0">
+<div class="w-full max-w-xs rounded-xl border border-slate-200 bg-slate-50 p-4">
+<div class="drivers-title">Typical project drivers</div>
+<div class="drivers-sub">
+ Why implementation alignment work is triggered.
+ </div>
+<div class="space-y-2 text-xs text-slate-700">
+<div class="driver-row">
+<div class="driver-main">
+<div class="driver-label">Tender or RFQ preparation</div>
+<div class="driver-hint">Need to issue specs without over-prescribing design.</div>
+<div class="driver-strength">
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot"></span>
+</div>
+</div>
+</div>
+<div class="driver-row">
+<div class="driver-main">
+<div class="driver-label">Connection risk</div>
+<div class="driver-hint">Unclear boundaries between owner, EPC and equipment vendors.</div>
+<div class="driver-strength">
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot"></span>
+<span class="driver-dot"></span>
+</div>
+</div>
+</div>
+<div class="driver-row">
+<div class="driver-main">
+<div class="driver-label">Review &amp; performance clarity</div>
+<div class="driver-hint">Want performance tests anchored before contracts are signed.</div>
+<div class="driver-strength">
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot"></span>
+</div>
+</div>
+</div>
+</div>
+<div class="driver-tag">Technical &amp; procurement driven</div>
+</div>
+</div>
+</section>
+ Stage 3 - Vendor &amp; contracting support 
+<section class="card p-6 md:flex md:flex-row md:items-stretch md:gap-8" id="stage-3">
+<div class="md:w-2/3 flex flex-col justify-between">
+<div>
+<div class="badge">Stage 3 · Selection &amp; award</div>
+<h2 class="mt-1 text-2xl font-semibold text-slate-900">
+ Vendor &amp; Contracting Support pack
+ </h2>
+<p class="mt-2 text-sm text-slate-600 leading-relaxed">
+ Extends the <strong>Implementation Alignment</strong> logic into running a structured procurement process,
+ while staying true to the evaluation framework and performance responsibilities set earlier.
+ </p>
+<div class="mt-3 space-y-2 text-sm text-slate-700 leading-relaxed">
+<p>
+<span class="font-semibold">Scope:</span>
+ supports RFQ/RFP preparation, bidder Q&amp;A, proposal comparisons and recommendation notes, without
+ taking over the owner's procurement role.
+ </p>
+<p>
+<span class="font-semibold">Useful for:</span>
+ procurement leads, evaluation committees and owner's technical advisors.
+ </p>
+</div>
+<div class="mt-3 rounded-lg bg-slate-50 border border-slate-200 p-4">
+<div class="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-1">
+ Core components in this pack
+ </div>
+<ul class="text-sm text-slate-700 space-y-1">
+<li><strong>Evaluation &amp; Comparison Framework</strong> (re-used from Stage 2)</li>
+<li>Bid query log &amp; clarifications summary</li>
+<li>Vendor scoring sheets &amp; recommendation memo outline</li>
+</ul>
+<p class="mt-2 text-xs text-slate-600">
+ On the projects view, these can underpin <em>Milestone 3 - Vendor Selection Report</em> and leave a
+ clear "why we chose this partner" trail.
+ </p>
+</div>
+<p class="mt-3 text-sm text-slate-700">
+<span class="font-semibold">Moves the decision on:</span>
+ which vendor or consortium to proceed with, and how commercial terms and responsibilities should be set out.
+ </p>
+</div>
+</div>
+<div class="md:w-1/3 flex items-center justify-center mt-4 md:mt-0">
+<div class="w-full max-w-xs rounded-xl border border-slate-200 bg-slate-50 p-4">
+<div class="drivers-title">Typical project drivers</div>
+<div class="drivers-sub">
+ What usually makes owners seek support at this stage.
+ </div>
+<div class="space-y-2 text-xs text-slate-700">
+<div class="driver-row">
+<div class="driver-main">
+<div class="driver-label">Well-supported selection</div>
+<div class="driver-hint">Need an auditable trail for why a vendor was chosen.</div>
+<div class="driver-strength">
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+</div>
+</div>
+</div>
+<div class="driver-row">
+<div class="driver-main">
+<div class="driver-label">Lifecycle vs CAPEX balance</div>
+<div class="driver-hint">Concern that lowest CAPEX may not be best lifecycle choice.</div>
+<div class="driver-strength">
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot"></span>
+</div>
+</div>
+</div>
+<div class="driver-row">
+<div class="driver-main">
+<div class="driver-label">Risk allocation</div>
+<div class="driver-hint">Clarifying who owns which performance and integration risks.</div>
+<div class="driver-strength">
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot"></span>
+<span class="driver-dot"></span>
+</div>
+</div>
+</div>
+</div>
+<div class="driver-tag">Procurement &amp; approvals driven</div>
+</div>
+</div>
+</section>
+ Stage 4 - Commissioning &amp; Performance 
+<section class="card p-6 md:flex md:flex-row md:items-stretch md:gap-8" id="stage-4">
+<div class="md:w-2/3 flex flex-col justify-between">
+<div>
+<div class="badge">Stage 4 · Proving it works</div>
+<h2 class="mt-1 text-2xl font-semibold text-slate-900">
+ Commissioning &amp; Performance pack
+ </h2>
+<p class="mt-2 text-sm text-slate-600 leading-relaxed">
+ Uses the <strong>Commissioning &amp; Performance</strong> family to define what "good" looks
+ like during start-up and the early months of operation - and how tests, sampling and review will
+ be managed.
+ </p>
+<div class="mt-3 space-y-2 text-sm text-slate-700 leading-relaxed">
+<p>
+<span class="font-semibold">Scope:</span>
+ covers pre-commissioning checks, wet commissioning, performance testing periods and the first stretch of
+ assisted operation.
+ </p>
+<p>
+<span class="font-semibold">Useful for:</span>
+ implementation teams, operators, O&amp;M partners, lenders and owner's representatives.
+ </p>
+</div>
+<div class="mt-3 rounded-lg bg-slate-50 border border-slate-200 p-4">
+<div class="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-1">
+ Report titles used in this pack
+ </div>
+<ul class="text-sm text-slate-700 space-y-1">
+<li><strong>Commissioning &amp; Start-up Alignment Notes</strong></li>
+<li><strong>Performance Test &amp; KPI Monitoring Scheme</strong></li>
+<li><strong>Early Operations / Handover Guidance</strong></li>
+</ul>
+<p class="mt-2 text-xs text-slate-600">
+ These line up with <em>Milestone 5 - Commissioning Report</em> within Projects.
+ </p>
+</div>
+<p class="mt-3 text-sm text-slate-700">
+<span class="font-semibold">Moves the decision on:</span>
+ what the plant must demonstrate, how performance will be documented and when responsibility passes cleanly
+ from vendors to the owner.
+ </p>
+</div>
+</div>
+<div class="md:w-1/3 flex items-center justify-center mt-4 md:mt-0">
+<div class="w-full max-w-xs rounded-xl border border-slate-200 bg-slate-50 p-4">
+<div class="drivers-title">Typical project drivers</div>
+<div class="drivers-sub">
+ Why commissioning &amp; performance work is formalised.
+ </div>
+<div class="space-y-2 text-xs text-slate-700">
+<div class="driver-row">
+<div class="driver-main">
+<div class="driver-label">Regulatory or permit handover</div>
+<div class="driver-hint">Need project basis that new assets meet consent or permit conditions.</div>
+<div class="driver-strength">
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+</div>
+</div>
+</div>
+<div class="driver-row">
+<div class="driver-main">
+<div class="driver-label">Operational comfort</div>
+<div class="driver-hint">Operators want a clearer playbook for early issues and handover.</div>
+<div class="driver-strength">
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot"></span>
+<span class="driver-dot"></span>
+</div>
+</div>
+</div>
+<div class="driver-row">
+<div class="driver-main">
+<div class="driver-label">Performance payment checks</div>
+<div class="driver-hint">Linking review tests to milestone or performance payments.</div>
+<div class="driver-strength">
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot"></span>
+</div>
+</div>
+</div>
+</div>
+<div class="driver-tag">Owner, regulator &amp; O&amp;M driven</div>
+</div>
+</div>
+</section>
+ Stage 5 - Optimization &amp; Upside (links to ROI study card) 
+<section class="card p-6 md:flex md:flex-row md:items-stretch md:gap-8" id="stage-5">
+<div class="md:w-2/3 flex flex-col justify-between">
+<div>
+<div class="badge">Stage 5 · Optimization &amp; value</div>
+<h2 class="mt-1 text-2xl font-semibold text-slate-900">
+ Optimization &amp; Upside pack
+ </h2>
+<p class="mt-2 text-sm text-slate-600 leading-relaxed">
+ Combines the <strong>Commissioning &amp; Performance</strong> learnings with the
+ <strong>ROI &amp; Cost - benefit Analysis</strong> study in Technical studies to show what the plant is delivering - and where to go next.
+ </p>
+<div class="mt-3 space-y-2 text-sm text-slate-700 leading-relaxed">
+<p>
+<span class="font-semibold">Scope:</span>
+ reviews early operation data, compares it with the feasibility range, and explores technically and
+ commercially workable upgrades: chemical or automation changes, new reuse outlets, or biosolids routes.
+ </p>
+<p>
+<span class="font-semibold">Useful for:</span>
+ asset managers, finance and ESG teams who must track value realisation and set out the next wave.
+ </p>
+</div>
+<div class="mt-3 rounded-lg bg-slate-50 border border-slate-200 p-4">
+<div class="text-xs font-semibold uppercase tracking-wide text-slate-500 mb-1">
+ Core components in this pack
+ </div>
+<ul class="text-sm text-slate-700 space-y-1">
+<li>Performance &amp; resilience review note</li>
+<li><strong>ROI &amp; cost - benefit analysis study</strong> (from the decision-studies grid)</li>
+<li>Upside options menu &amp; phased roadmap</li>
+</ul>
+<p class="mt-2 text-xs text-slate-600">
+ This can extend <em>Milestone 6 - Performance Review &amp; Optimization Recommendations</em> within Projects into a concrete, board-facing document.
+ </p>
+</div>
+<p class="mt-3 text-sm text-slate-700">
+<span class="font-semibold">Moves the decision on:</span>
+ whether to stabilise and hold, fine-tune operations only, or commit to the next wave of reuse, automation
+ or biosolids investments.
+ </p>
+</div>
+</div>
+<div class="md:w-1/3 flex items-center justify-center mt-4 md:mt-0">
+<div class="w-full max-w-xs rounded-xl border border-slate-200 bg-slate-50 p-4">
+<div class="drivers-title">Typical project drivers</div>
+<div class="drivers-sub">
+ When Optimization &amp; upside work becomes worth doing.
+ </div>
+<div class="space-y-2 text-xs text-slate-700">
+<div class="driver-row">
+<div class="driver-main">
+<div class="driver-label">Value vs promise check</div>
+<div class="driver-hint">Testing if the delivered performance matches the original case.</div>
+<div class="driver-strength">
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot"></span>
+</div>
+</div>
+</div>
+<div class="driver-row">
+<div class="driver-main">
+<div class="driver-label">Next-wave opportunities</div>
+<div class="driver-hint">Interest in deeper reuse, biosolids or automation steps.</div>
+<div class="driver-strength">
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot"></span>
+<span class="driver-dot"></span>
+</div>
+</div>
+</div>
+<div class="driver-row">
+<div class="driver-main">
+<div class="driver-label">Cost &amp; risk pressure</div>
+<div class="driver-hint">Rising costs or risk appetite triggering a rethink on operations.</div>
+<div class="driver-strength">
+<span class="driver-dot is-on"></span>
+<span class="driver-dot is-on"></span>
+<span class="driver-dot"></span>
+<span class="driver-dot"></span>
+</div>
+</div>
+</div>
+</div>
+<div class="driver-tag">Asset, finance &amp; ESG driven</div>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<section class="cta-panel">
+<div class="cta-inner">
+<div class="cta-left">
+<h3>Choose the stage that fits where you are today</h3>
+<p>
+ You don't have to start at Stage 0. Many clients arrive with existing studies, specs or vendor work.
+ We map what you already have to these packs, show which report titles are already covered, and then recommend
+ a practical entry point that keeps the project aligned.
+ </p>
+<p class="mt">
+ From there, the same report families flow through to the <strong>Project pathways</strong> milestones
+ and the <strong>Full Process Design</strong> views, so you're never buying the same work twice.
+ </p>
+</div>
+<div class="cta-right">
+<p>
+ Share a short note on project type, stage and key questions. We'll highlight one or two packs that will move
+ your decisions the fastest.
+ </p>
+<a class="btn-primary" href="../../get-in-touch.html">
+ Send project snapshot
+ </a>
+<a class="btn-muted" href="flowplan-decision-studies.html">
+ View technical studies
+ </a>
+</div>
+</div>
+</section>
+</div>
+</main>
+<footer class="footer">
+<div class="wrap">
+<div class="footer-top">
+<div>
+<div class="footer-brand"><img alt="EnWater Design logo" class="footer-logo" src="../../assets/images/enwater-design-logo-transparent-mark.png"/><span class="footer-name">EnWater Design</span></div>
+<p class="footer-desc">Independent water, wastewater treatment and reuse consulting, helping owners and operators turn complex challenges into clear decisions and practical outcomes.</p>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<a href="../../home.html">Home</a>
+<a href="../../About/about.html">About</a>
+<a href="../../About/BlogList.html">Our Blog</a>
+<a href="../../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+</div>
+<div class="footer-col">
+<h4>Services</h4>
+<a href="../../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../../design-sourcing/index.html">Design &amp; Sourcing</a>
+<a href="../../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<a href="../../Projects/index.html">Projects</a>
+<a href="../../Sectors/index.html">Sectors</a>
+</div>
+<div class="footer-col">
+<h4>Pathways</h4>
+<a href="../../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics</a>
+<a href="../../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../../Sectors/index.html">Sector Pathways</a>
+</div>
+<div class="footer-col">
+<h4>Get in touch</h4>
+<a href="../../get-in-touch.html">Contact form</a>
+<a href="../../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../../Sectors/common-effluent-plant-cetp-industrial-parks.html">Industrial / CETP</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© <span id="yr"></span> EnWater Design</div>
+<div>Clear systems planning for practical project delivery</div>
+</div>
+</div>
+<script>
+  (function() {
+    const yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+  })();
+</script>
+</footer>
+<script src="../../exported-ui-effects.js"></script></body></html>

@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Design &amp; Sourcing Services | EnWater Design</title>
+<script>
+ tailwind.config = {
+ theme: {
+ extend: {
+ colors: {
+ cream: "#f4f2ec",
+ forest: "#243f38",
+ forest2: "#1f3731",
+ accent: "#55a092"
+ }
+ }
+ }
+ }
+ </script>
+<style>
+ 
+
+/* Harmonised panel tints (match Advisory Services) */
+.panel-soft{background: var(--sage);}
+.panel-oat{background: var(--oat);}
+:root{
+
+ --cream:#f4f2ec;
+ --ink:#1b1f1e;
+ --muted:#5a6561;
+ --forest:#243f38;
+ --forest2:#1f3731;
+ --accent:#55a092;
+ --accent2:#468a7e;
+ --line:rgba(27,31,30,.14);
+ --sage: #e2e7e2;
+ --oat: #ece6d9;
+}
+ html{scroll-behavior:smooth}
+ body{background:var(--cream); color:var(--ink);}
+ .ewd-serif{font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;}
+ .ewd-sans{font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";}
+ .hairline{border-color: var(--line);}
+ .soft-shadow{box-shadow: 0 16px 40px rgba(0,0,0,.08);}
+ .pattern{
+ background-image:
+ radial-gradient(circle at 10% 20%, rgba(255,255,255,.07) 0, rgba(255,255,255,.07) 2px, transparent 2px),
+ radial-gradient(circle at 70% 60%, rgba(255,255,255,.06) 0, rgba(255,255,255,.06) 2px, transparent 2px);
+ background-size: 48px 48px, 64px 64px;
+ }
+ .link-row:hover{background: rgba(255,255,255,.45);}
+ .tag{border:1px solid rgba(255,255,255,.25)}
+ /* accordion animation */
+ .acc-panel{max-height:0; overflow:hidden; transition:max-height .35s ease;}
+ .acc-open .acc-panel{max-height:900px;}
+ .acc-open .acc-icon{transform: rotate(180deg);}
+ .acc-icon{transition: transform .25s ease;}
+ /* capability switcher */
+ .cap-active{background: rgba(255,255,255,.10); color:#fff;}
+ :focus-visible{ outline: 3px solid rgba(85,160,146,.45); outline-offset: 3px; }
+ 
+ /* Buttons (match Pathways styling) */
+ .btn{display:inline-flex;align-items:center;gap:.45rem;border-radius:8px;padding:10px 14px;font-size:13px;font-weight:600;line-height:1;border:1px solid transparent;transition:all .18s ease;white-space:nowrap}
+ .btn svg{width:14px;height:14px}
+ .btn-forest{background:var(--accent);color:#fff}
+ .btn-forest:hover{background:var(--accent2)}
+ .btn-outline{border-color:rgba(27,31,30,.16);background:rgba(255,255,255,.35);color:#1b1f1e}
+ .btn-outline:hover{background:rgba(255,255,255,.6)}
+
+</style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.bottom-6{bottom:1.5rem}.left-6{left:1.5rem}.right-0{right:0px}.right-6{right:1.5rem}.top-0{top:0px}.top-6{top:1.5rem}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mt-1\.5{margin-top:0.375rem}.mt-10{margin-top:2.5rem}.mt-16{margin-top:4rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-7{margin-top:1.75rem}.mt-8{margin-top:2rem}.mt-1{margin-top:0.25rem}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:0.375rem}.h-14{height:3.5rem}.h-2\.5{height:0.625rem}.h-28{height:7rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-\[280px\]{height:280px}.w-1\.5{width:0.375rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-52{width:13rem}.w-full{width:100%}.max-w-6xl{max-width:72rem}.max-w-sm{max-width:24rem}.max-w-xl{max-width:36rem}.cursor-pointer{cursor:pointer}.list-none{list-style-type:none}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-10{gap:2.5rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.rounded-full{border-radius:9999px}.rounded-sm{border-radius:0.125rem}.border{border-width:1px}.border-y{border-top-width:1px;border-bottom-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.border-white\/15{border-color:rgb(255 255 255 / 0.15)}.bg-\[\#101413\]{--tw-bg-opacity:1;background-color:rgb(16 20 19 / var(--tw-bg-opacity, 1))}.bg-accent{--tw-bg-opacity:1;background-color:rgb(85 160 146 / var(--tw-bg-opacity, 1))}.bg-black\/10{background-color:rgb(0 0 0 / 0.1)}.bg-cream{--tw-bg-opacity:1;background-color:rgb(244 242 236 / var(--tw-bg-opacity, 1))}.bg-forest{--tw-bg-opacity:1;background-color:rgb(36 63 56 / var(--tw-bg-opacity, 1))}.bg-forest2{--tw-bg-opacity:1;background-color:rgb(31 55 49 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/20{background-color:rgb(255 255 255 / 0.2)}.bg-white\/35{background-color:rgb(255 255 255 / 0.35)}.bg-white\/40{background-color:rgb(255 255 255 / 0.4)}.bg-white\/5{background-color:rgb(255 255 255 / 0.05)}.bg-white\/55{background-color:rgb(255 255 255 / 0.55)}.bg-white\/80{background-color:rgb(255 255 255 / 0.8)}.bg-white\/85{background-color:rgb(255 255 255 / 0.85)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.from-\[\#dfeae6\]{--tw-gradient-from:#dfeae6 var(--tw-gradient-from-position);--tw-gradient-to:rgb(223 234 230 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-\[\#cbded7\]{--tw-gradient-to:#cbded7 var(--tw-gradient-to-position)}.object-cover{object-fit:cover}.p-2{padding:0.5rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-7{padding:1.75rem}.p-8{padding:2rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-14{padding-top:3.5rem;padding-bottom:3.5rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pb-14{padding-bottom:3.5rem}.pb-8{padding-bottom:2rem}.pt-10{padding-top:2.5rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[11px\]{font-size:11px}.text-\[15px\]{font-size:15px}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-medium{font-weight:500}.font-semibold{font-weight:600}.leading-\[0\.95\]{line-height:0.95}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-wide{letter-spacing:0.025em}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-gray-950{--tw-text-opacity:1;color:rgb(3 7 18 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/55{color:rgb(255 255 255 / 0.55)}.text-white\/60{color:rgb(255 255 255 / 0.6)}.text-white\/70{color:rgb(255 255 255 / 0.7)}.text-white\/75{color:rgb(255 255 255 / 0.75)}.text-white\/85{color:rgb(255 255 255 / 0.85)}.text-white\/90{color:rgb(255 255 255 / 0.9)}.opacity-80{opacity:0.8}.outline-none{outline:2px solid transparent;outline-offset:2px}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.hover\:bg-forest:hover{--tw-bg-opacity:1;background-color:rgb(36 63 56 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/15:hover{background-color:rgb(255 255 255 / 0.15)}.hover\:bg-white\/70:hover{background-color:rgb(255 255 255 / 0.7)}.hover\:bg-white\/90:hover{background-color:rgb(255 255 255 / 0.9)}.hover\:bg-white\/10:hover{background-color:rgb(255 255 255 / 0.1)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-accent\/30:focus{--tw-ring-color:rgb(85 160 146 / 0.3)}.focus\:ring-white\/20:focus{--tw-ring-color:rgb(255 255 255 / 0.2)}.group[open] .group-open\:rotate-180{--tw-rotate:180deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}@media (min-width: 640px){.sm\:flex{display:flex}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 768px){.md\:bottom-10{bottom:2.5rem}.md\:left-10{left:2.5rem}.md\:right-auto{right:auto}.md\:col-span-4{grid-column:span 4 / span 4}.md\:col-span-8{grid-column:span 8 / span 8}.md\:flex{display:flex}.md\:h-\[380px\]{height:380px}.md\:w-\[520px\]{width:520px}.md\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-center{align-items:center}.md\:justify-between{justify-content:space-between}.md\:pt-14{padding-top:3.5rem}.md\:text-6xl{font-size:3.75rem;line-height:1}}@media (min-width: 1024px){.lg\:col-span-4{grid-column:span 4 / span 4}.lg\:col-span-8{grid-column:span 8 / span 8}.lg\:block{display:block}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}}</style><meta content="Specialist design advisory for water, wastewater &amp; reuse systems, baseline, requirements, technology fit, integration, sourcing and implementation support." name="description"/><style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.bottom-6{bottom:1.5rem}.left-6{left:1.5rem}.right-6{right:1.5rem}.top-0{top:0px}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mt-1{margin-top:0.25rem}.mt-1\.5{margin-top:0.375rem}.mt-10{margin-top:2.5rem}.mt-16{margin-top:4rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-7{margin-top:1.75rem}.mt-8{margin-top:2rem}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:0.375rem}.h-14{height:3.5rem}.h-2\.5{height:0.625rem}.h-4{height:1rem}.h-\[280px\]{height:280px}.w-1\.5{width:0.375rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.w-full{width:100%}.max-w-6xl{max-width:72rem}.max-w-sm{max-width:24rem}.max-w-xl{max-width:36rem}.cursor-pointer{cursor:pointer}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-10{gap:2.5rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.rounded-full{border-radius:9999px}.rounded-sm{border-radius:0.125rem}.border{border-width:1px}.border-y{border-top-width:1px;border-bottom-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-gray-900\/10{border-color:rgb(17 24 39 / 0.1)}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.border-white\/15{border-color:rgb(255 255 255 / 0.15)}.border-white\/20{border-color:rgb(255 255 255 / 0.2)}.bg-\[\#101413\]{--tw-bg-opacity:1;background-color:rgb(16 20 19 / var(--tw-bg-opacity, 1))}.bg-accent{--tw-bg-opacity:1;background-color:rgb(85 160 146 / var(--tw-bg-opacity, 1))}.bg-black\/10{background-color:rgb(0 0 0 / 0.1)}.bg-cream{--tw-bg-opacity:1;background-color:rgb(244 242 236 / var(--tw-bg-opacity, 1))}.bg-forest{--tw-bg-opacity:1;background-color:rgb(36 63 56 / var(--tw-bg-opacity, 1))}.bg-forest2{--tw-bg-opacity:1;background-color:rgb(31 55 49 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/15{background-color:rgb(255 255 255 / 0.15)}.bg-white\/35{background-color:rgb(255 255 255 / 0.35)}.bg-white\/40{background-color:rgb(255 255 255 / 0.4)}.bg-white\/45{background-color:rgb(255 255 255 / 0.45)}.bg-white\/5{background-color:rgb(255 255 255 / 0.05)}.bg-white\/55{background-color:rgb(255 255 255 / 0.55)}.bg-white\/80{background-color:rgb(255 255 255 / 0.8)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.from-\[\#dfeae6\]{--tw-gradient-from:#dfeae6 var(--tw-gradient-from-position);--tw-gradient-to:rgb(223 234 230 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-\[\#cbded7\]{--tw-gradient-to:#cbded7 var(--tw-gradient-to-position)}.object-cover{object-fit:cover}.p-2{padding:0.5rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-7{padding:1.75rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-14{padding-top:3.5rem;padding-bottom:3.5rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.pb-8{padding-bottom:2rem}.pt-10{padding-top:2.5rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[11px\]{font-size:11px}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-medium{font-weight:500}.font-semibold{font-weight:600}.leading-\[0\.95\]{line-height:0.95}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-wide{letter-spacing:0.025em}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-gray-950{--tw-text-opacity:1;color:rgb(3 7 18 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/55{color:rgb(255 255 255 / 0.55)}.text-white\/60{color:rgb(255 255 255 / 0.6)}.text-white\/70{color:rgb(255 255 255 / 0.7)}.text-white\/75{color:rgb(255 255 255 / 0.75)}.text-white\/80{color:rgb(255 255 255 / 0.8)}.text-white\/85{color:rgb(255 255 255 / 0.85)}.text-white\/90{color:rgb(255 255 255 / 0.9)}.opacity-80{opacity:0.8}.opacity-90{opacity:0.9}.outline-none{outline:2px solid transparent;outline-offset:2px}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.hover\:bg-forest:hover{--tw-bg-opacity:1;background-color:rgb(36 63 56 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/10:hover{background-color:rgb(255 255 255 / 0.1)}.hover\:bg-white\/15:hover{background-color:rgb(255 255 255 / 0.15)}.hover\:bg-white\/20:hover{background-color:rgb(255 255 255 / 0.2)}.hover\:bg-white\/60:hover{background-color:rgb(255 255 255 / 0.6)}.hover\:bg-white\/70:hover{background-color:rgb(255 255 255 / 0.7)}.hover\:bg-white\/90:hover{background-color:rgb(255 255 255 / 0.9)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}.hover\:opacity-95:hover{opacity:0.95}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-accent\/30:focus{--tw-ring-color:rgb(85 160 146 / 0.3)}.focus\:ring-white\/20:focus{--tw-ring-color:rgb(255 255 255 / 0.2)}@media (min-width: 640px){.sm\:flex{display:flex}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 768px){.md\:bottom-10{bottom:2.5rem}.md\:left-10{left:2.5rem}.md\:right-auto{right:auto}.md\:col-span-4{grid-column:span 4 / span 4}.md\:col-span-8{grid-column:span 8 / span 8}.md\:flex{display:flex}.md\:h-\[380px\]{height:380px}.md\:max-w-\[420px\]{max-width:420px}.md\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-center{align-items:center}.md\:justify-between{justify-content:space-between}.md\:pt-14{padding-top:3.5rem}.md\:text-6xl{font-size:3.75rem;line-height:1}}@media (min-width: 1024px){.lg\:col-span-4{grid-column:span 4 / span 4}.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-6{grid-column:span 6 / span 6}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:col-span-8{grid-column:span 8 / span 8}.lg\:block{display:block}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}</style><style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.bottom-6{bottom:1.5rem}.left-6{left:1.5rem}.right-6{right:1.5rem}.top-0{top:0px}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mt-1{margin-top:0.25rem}.mt-1\.5{margin-top:0.375rem}.mt-10{margin-top:2.5rem}.mt-16{margin-top:4rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-7{margin-top:1.75rem}.mt-8{margin-top:2rem}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:0.375rem}.h-14{height:3.5rem}.h-2\.5{height:0.625rem}.h-4{height:1rem}.h-\[280px\]{height:280px}.w-1\.5{width:0.375rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.w-full{width:100%}.max-w-6xl{max-width:72rem}.max-w-sm{max-width:24rem}.max-w-xl{max-width:36rem}.cursor-pointer{cursor:pointer}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-10{gap:2.5rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.rounded-full{border-radius:9999px}.rounded-sm{border-radius:0.125rem}.border{border-width:1px}.border-y{border-top-width:1px;border-bottom-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-gray-900\/10{border-color:rgb(17 24 39 / 0.1)}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.border-white\/15{border-color:rgb(255 255 255 / 0.15)}.border-white\/20{border-color:rgb(255 255 255 / 0.2)}.bg-\[\#101413\]{--tw-bg-opacity:1;background-color:rgb(16 20 19 / var(--tw-bg-opacity, 1))}.bg-accent{--tw-bg-opacity:1;background-color:rgb(85 160 146 / var(--tw-bg-opacity, 1))}.bg-black\/10{background-color:rgb(0 0 0 / 0.1)}.bg-cream{--tw-bg-opacity:1;background-color:rgb(244 242 236 / var(--tw-bg-opacity, 1))}.bg-forest{--tw-bg-opacity:1;background-color:rgb(36 63 56 / var(--tw-bg-opacity, 1))}.bg-forest2{--tw-bg-opacity:1;background-color:rgb(31 55 49 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/15{background-color:rgb(255 255 255 / 0.15)}.bg-white\/35{background-color:rgb(255 255 255 / 0.35)}.bg-white\/40{background-color:rgb(255 255 255 / 0.4)}.bg-white\/45{background-color:rgb(255 255 255 / 0.45)}.bg-white\/5{background-color:rgb(255 255 255 / 0.05)}.bg-white\/55{background-color:rgb(255 255 255 / 0.55)}.bg-white\/80{background-color:rgb(255 255 255 / 0.8)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.from-\[\#dfeae6\]{--tw-gradient-from:#dfeae6 var(--tw-gradient-from-position);--tw-gradient-to:rgb(223 234 230 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-\[\#cbded7\]{--tw-gradient-to:#cbded7 var(--tw-gradient-to-position)}.object-cover{object-fit:cover}.p-2{padding:0.5rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-7{padding:1.75rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-14{padding-top:3.5rem;padding-bottom:3.5rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.pb-8{padding-bottom:2rem}.pt-10{padding-top:2.5rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[11px\]{font-size:11px}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-medium{font-weight:500}.font-semibold{font-weight:600}.leading-\[0\.95\]{line-height:0.95}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-wide{letter-spacing:0.025em}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-gray-950{--tw-text-opacity:1;color:rgb(3 7 18 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/55{color:rgb(255 255 255 / 0.55)}.text-white\/60{color:rgb(255 255 255 / 0.6)}.text-white\/70{color:rgb(255 255 255 / 0.7)}.text-white\/75{color:rgb(255 255 255 / 0.75)}.text-white\/80{color:rgb(255 255 255 / 0.8)}.text-white\/85{color:rgb(255 255 255 / 0.85)}.text-white\/90{color:rgb(255 255 255 / 0.9)}.opacity-80{opacity:0.8}.opacity-90{opacity:0.9}.outline-none{outline:2px solid transparent;outline-offset:2px}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.hover\:bg-forest:hover{--tw-bg-opacity:1;background-color:rgb(36 63 56 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/10:hover{background-color:rgb(255 255 255 / 0.1)}.hover\:bg-white\/15:hover{background-color:rgb(255 255 255 / 0.15)}.hover\:bg-white\/20:hover{background-color:rgb(255 255 255 / 0.2)}.hover\:bg-white\/60:hover{background-color:rgb(255 255 255 / 0.6)}.hover\:bg-white\/70:hover{background-color:rgb(255 255 255 / 0.7)}.hover\:bg-white\/90:hover{background-color:rgb(255 255 255 / 0.9)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}.hover\:opacity-95:hover{opacity:0.95}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-accent\/30:focus{--tw-ring-color:rgb(85 160 146 / 0.3)}.focus\:ring-white\/20:focus{--tw-ring-color:rgb(255 255 255 / 0.2)}@media (min-width: 640px){.sm\:flex{display:flex}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 768px){.md\:bottom-10{bottom:2.5rem}.md\:left-10{left:2.5rem}.md\:right-auto{right:auto}.md\:col-span-4{grid-column:span 4 / span 4}.md\:col-span-8{grid-column:span 8 / span 8}.md\:flex{display:flex}.md\:h-\[380px\]{height:380px}.md\:max-w-\[420px\]{max-width:420px}.md\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-center{align-items:center}.md\:justify-between{justify-content:space-between}.md\:pt-14{padding-top:3.5rem}.md\:text-6xl{font-size:3.75rem;line-height:1}}@media (min-width: 1024px){.lg\:col-span-4{grid-column:span 4 / span 4}.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-6{grid-column:span 6 / span 6}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:col-span-8{grid-column:span 8 / span 8}.lg\:block{display:block}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}</style><style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0px}.bottom-6{bottom:1.5rem}.left-6{left:1.5rem}.right-6{right:1.5rem}.mx-auto{margin-left:auto;margin-right:auto}.mt-1{margin-top:0.25rem}.mt-1\.5{margin-top:0.375rem}.mt-10{margin-top:2.5rem}.mt-16{margin-top:4rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-7{margin-top:1.75rem}.mt-8{margin-top:2rem}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:0.375rem}.h-2\.5{height:0.625rem}.h-4{height:1rem}.h-\[280px\]{height:280px}.w-1\.5{width:0.375rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.w-full{width:100%}.max-w-6xl{max-width:72rem}.max-w-sm{max-width:24rem}.max-w-xl{max-width:36rem}.cursor-pointer{cursor:pointer}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-10{gap:2.5rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.rounded-full{border-radius:9999px}.rounded-sm{border-radius:0.125rem}.border{border-width:1px}.border-y{border-top-width:1px;border-bottom-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-gray-900\/10{border-color:rgb(17 24 39 / 0.1)}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.border-white\/15{border-color:rgb(255 255 255 / 0.15)}.border-white\/20{border-color:rgb(255 255 255 / 0.2)}.bg-\[\#101413\]{--tw-bg-opacity:1;background-color:rgb(16 20 19 / var(--tw-bg-opacity, 1))}.bg-accent{--tw-bg-opacity:1;background-color:rgb(85 160 146 / var(--tw-bg-opacity, 1))}.bg-black\/10{background-color:rgb(0 0 0 / 0.1)}.bg-cream{--tw-bg-opacity:1;background-color:rgb(244 242 236 / var(--tw-bg-opacity, 1))}.bg-forest{--tw-bg-opacity:1;background-color:rgb(36 63 56 / var(--tw-bg-opacity, 1))}.bg-forest2{--tw-bg-opacity:1;background-color:rgb(31 55 49 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/15{background-color:rgb(255 255 255 / 0.15)}.bg-white\/35{background-color:rgb(255 255 255 / 0.35)}.bg-white\/40{background-color:rgb(255 255 255 / 0.4)}.bg-white\/45{background-color:rgb(255 255 255 / 0.45)}.bg-white\/5{background-color:rgb(255 255 255 / 0.05)}.bg-white\/55{background-color:rgb(255 255 255 / 0.55)}.bg-white\/80{background-color:rgb(255 255 255 / 0.8)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.from-\[\#dfeae6\]{--tw-gradient-from:#dfeae6 var(--tw-gradient-from-position);--tw-gradient-to:rgb(223 234 230 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-\[\#cbded7\]{--tw-gradient-to:#cbded7 var(--tw-gradient-to-position)}.object-cover{object-fit:cover}.p-2{padding:0.5rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-7{padding:1.75rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-14{padding-top:3.5rem;padding-bottom:3.5rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.pb-8{padding-bottom:2rem}.pt-10{padding-top:2.5rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[11px\]{font-size:11px}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-medium{font-weight:500}.font-semibold{font-weight:600}.leading-\[0\.95\]{line-height:0.95}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-wide{letter-spacing:0.025em}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-gray-950{--tw-text-opacity:1;color:rgb(3 7 18 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/55{color:rgb(255 255 255 / 0.55)}.text-white\/60{color:rgb(255 255 255 / 0.6)}.text-white\/70{color:rgb(255 255 255 / 0.7)}.text-white\/75{color:rgb(255 255 255 / 0.75)}.text-white\/80{color:rgb(255 255 255 / 0.8)}.text-white\/85{color:rgb(255 255 255 / 0.85)}.text-white\/90{color:rgb(255 255 255 / 0.9)}.opacity-90{opacity:0.9}.outline-none{outline:2px solid transparent;outline-offset:2px}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.hover\:bg-forest:hover{--tw-bg-opacity:1;background-color:rgb(36 63 56 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/10:hover{background-color:rgb(255 255 255 / 0.1)}.hover\:bg-white\/15:hover{background-color:rgb(255 255 255 / 0.15)}.hover\:bg-white\/20:hover{background-color:rgb(255 255 255 / 0.2)}.hover\:bg-white\/60:hover{background-color:rgb(255 255 255 / 0.6)}.hover\:bg-white\/70:hover{background-color:rgb(255 255 255 / 0.7)}.hover\:bg-white\/90:hover{background-color:rgb(255 255 255 / 0.9)}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}.hover\:opacity-95:hover{opacity:0.95}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-accent\/30:focus{--tw-ring-color:rgb(85 160 146 / 0.3)}.focus\:ring-white\/20:focus{--tw-ring-color:rgb(255 255 255 / 0.2)}@media (min-width: 640px){.sm\:flex{display:flex}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 768px){.md\:bottom-10{bottom:2.5rem}.md\:left-10{left:2.5rem}.md\:right-auto{right:auto}.md\:col-span-4{grid-column:span 4 / span 4}.md\:col-span-8{grid-column:span 8 / span 8}.md\:h-\[380px\]{height:380px}.md\:max-w-\[420px\]{max-width:420px}.md\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-center{align-items:center}.md\:justify-between{justify-content:space-between}.md\:pt-14{padding-top:3.5rem}.md\:text-6xl{font-size:3.75rem;line-height:1}}@media (min-width: 1024px){.lg\:col-span-4{grid-column:span 4 / span 4}.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-6{grid-column:span 6 / span 6}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:col-span-8{grid-column:span 8 / span 8}.lg\:block{display:block}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}</style>
+
+
+
+<style>
+ /* Hero image: background only (prevents double-render) */
+ .hero-panel{height:520px;background-size:cover;background-position:center;}
+ @media (min-width:768px){.hero-panel{height:560px;}}
+</style>
+
+<style id="ewd-card-polish-patch">
+/* --- Hub page card system refresh: more varied, less repetitive --- */
+#howto .bg-white\/45.border.hairline.rounded-sm.p-5,
+#howto .bg-white\/55.border.hairline.rounded-sm.p-6,
+#overview .bg-white\/55.border.hairline.rounded-sm.p-7,
+#overview .bg-white\/55.border.hairline.rounded-sm.p-5,
+#domains article.bg-white\/55.border.hairline.rounded-sm.p-7,
+main details.bg-white\/55.border.hairline.rounded-sm.p-6,
+#howto a.group.flex.items-start.gap-3.rounded-sm.border.hairline.bg-white\/55.p-4.hover\:bg-white\/70{
+  position:relative;
+  overflow:hidden;
+  border-radius:22px !important;
+  border-color:rgba(27,31,30,.10) !important;
+  box-shadow:0 18px 36px rgba(16,24,23,.08);
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease, background-color .18s ease;
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+}
+
+#howto .bg-white\/45.border.hairline.rounded-sm.p-5::before,
+#howto .bg-white\/55.border.hairline.rounded-sm.p-6::before,
+#overview .bg-white\/55.border.hairline.rounded-sm.p-7::before,
+#overview .bg-white\/55.border.hairline.rounded-sm.p-5::before,
+#domains article.bg-white\/55.border.hairline.rounded-sm.p-7::before,
+main details.bg-white\/55.border.hairline.rounded-sm.p-6::before,
+#howto a.group.flex.items-start.gap-3.rounded-sm.border.hairline.bg-white\/55.p-4.hover\:bg-white\/70::before{
+  display:none !important;
+}
+
+#howto .bg-white\/45.border.hairline.rounded-sm.p-5:hover,
+#howto .bg-white\/55.border.hairline.rounded-sm.p-6:hover,
+#overview .bg-white\/55.border.hairline.rounded-sm.p-7:hover,
+#overview .bg-white\/55.border.hairline.rounded-sm.p-5:hover,
+#domains article.bg-white\/55.border.hairline.rounded-sm.p-7:hover,
+main details.bg-white\/55.border.hairline.rounded-sm.p-6:hover,
+#howto a.group.flex.items-start.gap-3.rounded-sm.border.hairline.bg-white\/55.p-4.hover\:bg-white\/70:hover{
+  transform:translateY(-4px);
+  box-shadow:0 26px 50px rgba(16,24,23,.12);
+  border-color:rgba(85,160,146,.22) !important;
+}
+
+/* Step cards */
+#howto .grid.gap-4 > .bg-white\/45.border.hairline.rounded-sm.p-5{
+  padding:1.35rem 1.35rem 1.3rem 1.5rem !important;
+}
+#howto .grid.gap-4 > .bg-white\/45.border.hairline.rounded-sm.p-5::after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:16px;
+  bottom:16px;
+  width:4px;
+  border-radius:999px;
+}
+#howto .grid.gap-4 > .bg-white\/45.border.hairline.rounded-sm.p-5:nth-child(1){
+  background:linear-gradient(135deg, rgba(226,231,226,.96), rgba(255,255,255,.88)) !important;
+}
+#howto .grid.gap-4 > .bg-white\/45.border.hairline.rounded-sm.p-5:nth-child(1)::after{ background:#55a092; }
+#howto .grid.gap-4 > .bg-white\/45.border.hairline.rounded-sm.p-5:nth-child(2){
+  background:linear-gradient(135deg, rgba(236,230,217,.96), rgba(255,255,255,.9)) !important;
+}
+#howto .grid.gap-4 > .bg-white\/45.border.hairline.rounded-sm.p-5:nth-child(2)::after{ background:#8e7652; }
+#howto .grid.gap-4 > .bg-white\/45.border.hairline.rounded-sm.p-5:nth-child(3){
+  background:linear-gradient(135deg, rgba(243,245,242,.98), rgba(255,255,255,.9)) !important;
+}
+#howto .grid.gap-4 > .bg-white\/45.border.hairline.rounded-sm.p-5:nth-child(3)::after{ background:#243f38; }
+#howto .grid.gap-4 > .bg-white\/45.border.hairline.rounded-sm.p-5 p:first-child{
+  display:flex;
+  align-items:center;
+  gap:.55rem;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-size:.68rem;
+}
+#howto .grid.gap-4 > .bg-white\/45.border.hairline.rounded-sm.p-5:nth-child(1) p:first-child::before,
+#howto .grid.gap-4 > .bg-white\/45.border.hairline.rounded-sm.p-5:nth-child(2) p:first-child::before,
+#howto .grid.gap-4 > .bg-white\/45.border.hairline.rounded-sm.p-5:nth-child(3) p:first-child::before{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:1.8rem;
+  height:1.8rem;
+  border-radius:999px;
+  background:rgba(255,255,255,.76);
+  border:1px solid rgba(27,31,30,.08);
+  color:#243f38;
+  font-weight:700;
+  letter-spacing:0;
+}
+#howto .grid.gap-4 > .bg-white\/45.border.hairline.rounded-sm.p-5:nth-child(1) p:first-child::before{ content:"01"; }
+#howto .grid.gap-4 > .bg-white\/45.border.hairline.rounded-sm.p-5:nth-child(2) p:first-child::before{ content:"02"; }
+#howto .grid.gap-4 > .bg-white\/45.border.hairline.rounded-sm.p-5:nth-child(3) p:first-child::before{ content:"03"; }
+
+/* Quick entry panel */
+#howto .bg-white\/55.border.hairline.rounded-sm.p-6{
+  background:linear-gradient(145deg, rgba(255,255,255,.95), rgba(247,246,242,.9)) !important;
+  border-radius:24px !important;
+}
+#howto .grid.sm\:grid-cols-2.gap-3 > a.group.flex.items-start.gap-3.rounded-sm.border.hairline.bg-white\/55.p-4.hover\:bg-white\/70{
+  padding:1.15rem 1.15rem 1.1rem !important;
+  gap:1rem !important;
+  align-items:flex-start;
+}
+#howto .grid.sm\:grid-cols-2.gap-3 > a.group.flex.items-start.gap-3.rounded-sm.border.hairline.bg-white\/55.p-4.hover\:bg-white\/70::after{
+  content:"↗";
+  position:absolute;
+  right:14px;
+  top:14px;
+  width:28px;
+  height:28px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
+  font-size:14px;
+  color:#243f38;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(27,31,30,.08);
+  transition:transform .18s ease, background-color .18s ease;
+}
+#howto .grid.sm\:grid-cols-2.gap-3 > a.group.flex.items-start.gap-3.rounded-sm.border.hairline.bg-white\/55.p-4.hover\:bg-white\/70:hover::after{
+  transform:translate(1px,-1px);
+  background:rgba(255,255,255,.92);
+}
+#howto .grid.sm\:grid-cols-2.gap-3 > a:nth-child(1){ background:linear-gradient(135deg, rgba(226,231,226,.98), rgba(255,255,255,.9)) !important; }
+#howto .grid.sm\:grid-cols-2.gap-3 > a:nth-child(2){ background:linear-gradient(135deg, rgba(236,230,217,.98), rgba(255,255,255,.9)) !important; }
+#howto .grid.sm\:grid-cols-2.gap-3 > a:nth-child(3){ background:linear-gradient(135deg, rgba(230,239,236,.98), rgba(255,255,255,.9)) !important; }
+#howto .grid.sm\:grid-cols-2.gap-3 > a:nth-child(4){ background:linear-gradient(135deg, rgba(243,240,231,.98), rgba(255,255,255,.9)) !important; }
+#howto .grid.sm\:grid-cols-2.gap-3 > a:nth-child(5){ background:linear-gradient(135deg, rgba(239,244,241,.98), rgba(255,255,255,.92)) !important; }
+#howto .grid.sm\:grid-cols-2.gap-3 > a:nth-child(6){ background:linear-gradient(135deg, rgba(245,242,235,.98), rgba(255,255,255,.92)) !important; }
+#howto .grid.sm\:grid-cols-2.gap-3 > a .w-1\.5,
+#howto .grid.sm\:grid-cols-2.gap-3 > a .h-1\.5{
+  width:.72rem;
+  height:.72rem;
+  margin-top:.28rem;
+  box-shadow:0 0 0 7px rgba(85,160,146,.10);
+}
+#howto .grid.sm\:grid-cols-2.gap-3 > a:nth-child(1) .bg-accent{ background:#55a092 !important; box-shadow:0 0 0 7px rgba(85,160,146,.14); }
+#howto .grid.sm\:grid-cols-2.gap-3 > a:nth-child(2) .bg-accent{ background:#8e7652 !important; box-shadow:0 0 0 7px rgba(142,118,82,.12); }
+#howto .grid.sm\:grid-cols-2.gap-3 > a:nth-child(3) .bg-accent{ background:#4e8b7d !important; box-shadow:0 0 0 7px rgba(78,139,125,.12); }
+#howto .grid.sm\:grid-cols-2.gap-3 > a:nth-child(4) .bg-accent{ background:#7d8761 !important; box-shadow:0 0 0 7px rgba(125,135,97,.12); }
+#howto .grid.sm\:grid-cols-2.gap-3 > a:nth-child(5) .bg-accent{ background:#243f38 !important; box-shadow:0 0 0 7px rgba(36,63,56,.10); }
+#howto .grid.sm\:grid-cols-2.gap-3 > a:nth-child(6) .bg-accent{ background:#6f8f93 !important; box-shadow:0 0 0 7px rgba(111,143,147,.12); }
+
+/* Overview block */
+#overview .lg\:col-span-7 > .bg-white\/55.border.hairline.rounded-sm.p-7{
+  background:
+    radial-gradient(110% 120% at 100% 0%, rgba(85,160,146,.10), transparent 42%),
+    linear-gradient(145deg, rgba(255,255,255,.95), rgba(247,246,242,.92)) !important;
+  border-radius:26px !important;
+}
+#overview .md\:grid-cols-2.gap-6 > .bg-white\/55.border.hairline.rounded-sm.p-5{
+  min-height:100%;
+  padding:1.35rem 1.35rem 1.4rem !important;
+}
+#overview .md\:grid-cols-2.gap-6 > .bg-white\/55.border.hairline.rounded-sm.p-5:nth-child(1){
+  background:linear-gradient(135deg, rgba(226,231,226,.94), rgba(255,255,255,.9)) !important;
+}
+#overview .md\:grid-cols-2.gap-6 > .bg-white\/55.border.hairline.rounded-sm.p-5:nth-child(2){
+  background:linear-gradient(135deg, rgba(236,230,217,.94), rgba(255,255,255,.9)) !important;
+}
+#overview .md\:grid-cols-2.gap-6 > .bg-white\/55.border.hairline.rounded-sm.p-5 li{
+  gap:.85rem !important;
+}
+#overview .md\:grid-cols-2.gap-6 > .bg-white\/55.border.hairline.rounded-sm.p-5 li .bg-accent{
+  width:.72rem;
+  height:.72rem;
+  margin-top:.32rem;
+}
+#overview .md\:grid-cols-2.gap-6 > .bg-white\/55.border.hairline.rounded-sm.p-5:nth-child(1) li .bg-accent{
+  background:#55a092 !important;
+  box-shadow:0 0 0 7px rgba(85,160,146,.12);
+}
+#overview .md\:grid-cols-2.gap-6 > .bg-white\/55.border.hairline.rounded-sm.p-5:nth-child(2) li .bg-accent{
+  background:#8e7652 !important;
+  box-shadow:0 0 0 7px rgba(142,118,82,.12);
+}
+
+/* Domain cards */
+#domains .mt-10.grid.md\:grid-cols-2.gap-6 > article.bg-white\/55.border.hairline.rounded-sm.p-7,
+#domains .mt-8 .grid.md\:grid-cols-2.gap-6 > article.bg-white\/55.border.hairline.rounded-sm.p-7{
+  padding:1.6rem 1.55rem 1.45rem !important;
+}
+#domains .mt-10.grid.md\:grid-cols-2.gap-6 > article.bg-white\/55.border.hairline.rounded-sm.p-7::after,
+#domains .mt-8 .grid.md\:grid-cols-2.gap-6 > article.bg-white\/55.border.hairline.rounded-sm.p-7::after{
+  content:"";
+  position:absolute;
+  right:-26px;
+  top:-26px;
+  width:120px;
+  height:120px;
+  border-radius:999px;
+  pointer-events:none;
+}
+#domains .mt-10.grid.md\:grid-cols-2.gap-6 > article:nth-child(1){ background:linear-gradient(135deg, rgba(226,231,226,.96), rgba(255,255,255,.9)) !important; }
+#domains .mt-10.grid.md\:grid-cols-2.gap-6 > article:nth-child(1)::after{ background:radial-gradient(circle, rgba(85,160,146,.22), rgba(85,160,146,0)); }
+#domains .mt-10.grid.md\:grid-cols-2.gap-6 > article:nth-child(2){ background:linear-gradient(135deg, rgba(236,230,217,.96), rgba(255,255,255,.9)) !important; }
+#domains .mt-10.grid.md\:grid-cols-2.gap-6 > article:nth-child(2)::after{ background:radial-gradient(circle, rgba(142,118,82,.18), rgba(142,118,82,0)); }
+#domains .mt-10.grid.md\:grid-cols-2.gap-6 > article:nth-child(3){ background:linear-gradient(135deg, rgba(232,240,237,.96), rgba(255,255,255,.9)) !important; }
+#domains .mt-10.grid.md\:grid-cols-2.gap-6 > article:nth-child(3)::after{ background:radial-gradient(circle, rgba(78,139,125,.18), rgba(78,139,125,0)); }
+#domains .mt-10.grid.md\:grid-cols-2.gap-6 > article:nth-child(4){ background:linear-gradient(135deg, rgba(244,241,233,.96), rgba(255,255,255,.92)) !important; }
+#domains .mt-10.grid.md\:grid-cols-2.gap-6 > article:nth-child(4)::after{ background:radial-gradient(circle, rgba(125,135,97,.18), rgba(125,135,97,0)); }
+#domains .mt-8 .grid.md\:grid-cols-2.gap-6 > article:nth-child(1){ background:linear-gradient(135deg, rgba(239,244,241,.96), rgba(255,255,255,.92)) !important; }
+#domains .mt-8 .grid.md\:grid-cols-2.gap-6 > article:nth-child(1)::after{ background:radial-gradient(circle, rgba(36,63,56,.14), rgba(36,63,56,0)); }
+#domains .mt-8 .grid.md\:grid-cols-2.gap-6 > article:nth-child(2){ background:linear-gradient(135deg, rgba(245,242,235,.96), rgba(255,255,255,.92)) !important; }
+#domains .mt-8 .grid.md\:grid-cols-2.gap-6 > article:nth-child(2)::after{ background:radial-gradient(circle, rgba(111,143,147,.16), rgba(111,143,147,0)); }
+#domains article.bg-white\/55.border.hairline.rounded-sm.p-7 .inline-flex.rounded-full.bg-forest2{
+  box-shadow:0 12px 24px rgba(31,55,49,.14);
+  transition:transform .18s ease, box-shadow .18s ease, background-color .18s ease;
+}
+#domains article.bg-white\/55.border.hairline.rounded-sm.p-7:hover .inline-flex.rounded-full.bg-forest2{
+  transform:translateX(3px);
+  box-shadow:0 16px 28px rgba(31,55,49,.20);
+}
+
+/* FAQ cards */
+main details.bg-white\/55.border.hairline.rounded-sm.p-6{
+  background:linear-gradient(145deg, rgba(255,255,255,.94), rgba(247,246,242,.9)) !important;
+  padding-top:1.05rem !important;
+  padding-bottom:1.05rem !important;
+}
+main details.bg-white\/55.border.hairline.rounded-sm.p-6 summary{
+  cursor:pointer;
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  font-weight:600;
+}
+main details.bg-white\/55.border.hairline.rounded-sm.p-6 summary::-webkit-details-marker{ display:none; }
+main details.bg-white\/55.border.hairline.rounded-sm.p-6 summary::after{
+  content:"+";
+  flex:0 0 auto;
+  width:30px;
+  height:30px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
+  background:rgba(36,63,56,.08);
+  color:#243f38;
+  font-size:18px;
+  line-height:1;
+  transition:transform .18s ease, background-color .18s ease;
+}
+main details.bg-white\/55.border.hairline.rounded-sm.p-6[open] summary::after{
+  content:"-";
+  transform:rotate(180deg);
+  background:rgba(85,160,146,.16);
+}
+main details.bg-white\/55.border.hairline.rounded-sm.p-6 > :not(summary){ margin-top:1rem; }
+
+@media (max-width: 767px){
+  #howto .bg-white\/45.border.hairline.rounded-sm.p-5,
+  #howto .bg-white\/55.border.hairline.rounded-sm.p-6,
+  #overview .bg-white\/55.border.hairline.rounded-sm.p-7,
+  #overview .bg-white\/55.border.hairline.rounded-sm.p-5,
+  #domains article.bg-white\/55.border.hairline.rounded-sm.p-7,
+  main details.bg-white\/55.border.hairline.rounded-sm.p-6,
+  #howto a.group.flex.items-start.gap-3.rounded-sm.border.hairline.bg-white\/55.p-4.hover\:bg-white\/70{
+    border-radius:18px !important;
+  }
+}
+</style>
+<style id="ewd-card-flat-bullet-refine">
+/* Flat card pass: remove gradients from card surfaces and keep a calmer hub-page finish */
+#howto .bg-white\/45.border.hairline.rounded-sm.p-5,
+#howto .bg-white\/55.border.hairline.rounded-sm.p-6,
+#overview .bg-white\/55.border.hairline.rounded-sm.p-7,
+#overview .bg-white\/55.border.hairline.rounded-sm.p-5,
+#domains article.bg-white\/55.border.hairline.rounded-sm.p-7,
+main details.bg-white\/55.border.hairline.rounded-sm.p-6,
+#howto a.group.flex.items-start.gap-3.rounded-sm.border.hairline.bg-white\/55.p-4.hover\:bg-white\/70{
+  background-image:none !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+
+/* Step cards */
+#howto .grid.gap-4 > .bg-white\/45.border.hairline.rounded-sm.p-5:nth-child(1){
+  background:#f4f7f3 !important;
+}
+#howto .grid.gap-4 > .bg-white\/45.border.hairline.rounded-sm.p-5:nth-child(2){
+  background:#f6f1e8 !important;
+}
+#howto .grid.gap-4 > .bg-white\/45.border.hairline.rounded-sm.p-5:nth-child(3){
+  background:#f5f5f2 !important;
+}
+#howto .grid.gap-4 > .bg-white\/45.border.hairline.rounded-sm.p-5 p:first-child::before{
+  background:#fff !important;
+  box-shadow:0 1px 1px rgba(16,24,23,.04);
+}
+
+/* Quick entry wrapper and tiles */
+#howto .bg-white\/55.border.hairline.rounded-sm.p-6{
+  background:#fbfaf7 !important;
+}
+#howto .grid.sm\:grid-cols-2.gap-3 > a:nth-child(1){ background:#f3f7f4 !important; }
+#howto .grid.sm\:grid-cols-2.gap-3 > a:nth-child(2){ background:#f6f2ea !important; }
+#howto .grid.sm\:grid-cols-2.gap-3 > a:nth-child(3){ background:#f3f8f6 !important; }
+#howto .grid.sm\:grid-cols-2.gap-3 > a:nth-child(4){ background:#f5f4ec !important; }
+#howto .grid.sm\:grid-cols-2.gap-3 > a:nth-child(5){ background:#f2f5f4 !important; }
+#howto .grid.sm\:grid-cols-2.gap-3 > a:nth-child(6){ background:#f4f5f5 !important; }
+#howto .grid.sm\:grid-cols-2.gap-3 > a.group.flex.items-start.gap-3.rounded-sm.border.hairline.bg-white\/55.p-4.hover\:bg-white\/70::after{
+  background:#fff !important;
+  box-shadow:none !important;
+}
+
+/* Overview section */
+#overview .lg\:col-span-7 > .bg-white\/55.border.hairline.rounded-sm.p-7{
+  background:#fbfaf7 !important;
+}
+#overview .md\:grid-cols-2.gap-6 > .bg-white\/55.border.hairline.rounded-sm.p-5:nth-child(1){
+  background:#f3f7f4 !important;
+}
+#overview .md\:grid-cols-2.gap-6 > .bg-white\/55.border.hairline.rounded-sm.p-5:nth-child(2){
+  background:#f6f1e8 !important;
+}
+
+/* Domain / FAQ cards */
+#domains article.bg-white\/55.border.hairline.rounded-sm.p-7,
+main details.bg-white\/55.border.hairline.rounded-sm.p-6{
+  background:#fbfaf7 !important;
+}
+
+/* Make bullets sleeker across the page */
+#overview li .bg-accent,
+#domains li .bg-accent,
+main details li .bg-accent,
+[data-cap-help] li .bg-accent,
+[data-cap-questions] li .bg-accent,
+[data-cap-list] + * li .bg-accent,
+ul li > span.inline-flex.w-1\.5.h-1\.5.rounded-full.bg-accent,
+ul li > span.inline-flex.w-2\.5.h-2\.5.rounded-full.bg-accent{
+  width:.38rem !important;
+  height:.92rem !important;
+  min-width:.38rem !important;
+  border-radius:999px !important;
+  margin-top:.18rem !important;
+  background:#5fa696 !important;
+  box-shadow:0 0 0 4px rgba(95,166,150,.10) !important;
+}
+#overview .md\:grid-cols-2.gap-6 > .bg-white\/55.border.hairline.rounded-sm.p-5:nth-child(2) li .bg-accent,
+#overview .lg\:col-span-7 > .bg-white\/55.border.hairline.rounded-sm.p-7 .md\:grid-cols-2.gap-6 > .bg-white\/55.border.hairline.rounded-sm.p-5:nth-child(2) li .bg-accent{
+  background:#9b835f !important;
+  box-shadow:0 0 0 4px rgba(155,131,95,.10) !important;
+}
+
+/* Slightly calmer bullet spacing */
+#overview li,
+#domains li,
+main details li,
+[data-cap-help] li,
+[data-cap-questions] li,
+[data-cap-list] + * li{
+  align-items:flex-start !important;
+  gap:.72rem !important;
+}
+
+/* Prevent any old glowing ring from feeling too loud */
+#howto .grid.sm\:grid-cols-2.gap-3 > a .w-1\.5,
+#howto .grid.sm\:grid-cols-2.gap-3 > a .h-1\.5,
+#overview .md\:grid-cols-2.gap-6 > .bg-white\/55.border.hairline.rounded-sm.p-5 li .bg-accent{
+  box-shadow:0 0 0 4px rgba(95,166,150,.10) !important;
+}
+</style>
+<style id="cap-selection-teal-active-fix">
+[data-cap-list] > button{
+  border:1px solid transparent;
+  transition:background-color .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease;
+}
+[data-cap-list] > button:hover{
+  border-color:rgba(255,255,255,.10);
+}
+[data-cap-list] > button.cap-active{
+  background:linear-gradient(180deg, rgba(85,160,146,.20), rgba(85,160,146,.12)) !important;
+  border-color:rgba(85,160,146,.55) !important;
+  box-shadow:inset 3px 0 0 rgba(85,160,146,.98), 0 10px 24px rgba(0,0,0,.14) !important;
+}
+[data-cap-list] > button.cap-active .text-sm{
+  color:#ffffff !important;
+}
+[data-cap-list] > button.cap-active .text-xs{
+  color:rgba(223,248,242,.92) !important;
+}
+</style>
+<style id="ewd-kicker-pass-v1">
+/* final selected-state alignment */
+#capabilities [data-cap-list] button.cap-active{
+  background:rgba(85,160,146,.18) !important;
+  border:1px solid rgba(85,160,146,.42) !important;
+  box-shadow:inset 3px 0 0 rgba(85,160,146,.98), 0 10px 22px rgba(0,0,0,.18) !important;
+}
+#capabilities [data-cap-list] button.cap-active:hover{
+  background:rgba(85,160,146,.22) !important;
+}
+#capabilities [data-cap-list] button.cap-active > div:first-child{
+  color:rgba(255,255,255,.98) !important;
+}
+#capabilities [data-cap-list] button.cap-active > div.text-xs{
+  color:rgba(215,245,239,.9) !important;
+}
+
+/* generated kickers for sections that do not already have one */
+#howto .lg\:col-span-6 > h2.ewd-serif,
+#domains > .max-w-6xl > .grid > div:first-child > h2.ewd-serif,
+#enquiry > .max-w-6xl > .grid > div:first-child > h2.ewd-serif{
+  position:relative;
+  margin-top:1.1rem !important;
+}
+#howto .lg\:col-span-6 > h2.ewd-serif::before,
+#domains > .max-w-6xl > .grid > div:first-child > h2.ewd-serif::before,
+#enquiry > .max-w-6xl > .grid > div:first-child > h2.ewd-serif::before{
+  display:block;
+  margin-bottom:.7rem;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  font-size:.72rem;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(85,101,97,.88);
+}
+#howto .lg\:col-span-6 > h2.ewd-serif::before{content:"How to use it";}
+#domains > .max-w-6xl > .grid > div:first-child > h2.ewd-serif::before{content:"Focus areas";}
+#enquiry > .max-w-6xl > .grid > div:first-child > h2.ewd-serif::before{content:"Get in touch";}
+</style>
+
+<style id="enwater-logo-refinement-v1">
+.brand-logo,.nav-logo,.nav-brand-logo{height:38px!important;width:auto!important;max-width:66px!important;object-fit:contain!important;background:transparent!important;border-radius:0!important;padding:0!important;box-shadow:none!important;}
+.brand span,.nav-brand span{white-space:nowrap;}
+.footer-logo{height:34px;width:auto;max-width:60px;object-fit:contain;background:transparent;border-radius:0;padding:0;box-shadow:none;display:block;}
+.footer-brand,.foot-brand{display:flex;align-items:center;gap:10px;}
+</style>
+
+
+
+
+<script id="design-sourcing-active-chip-visible-v42">
+(function(){
+  function showActiveChip(){
+    var nav = document.querySelector('.design-sourcing-section-nav .inner');
+    var active = nav && nav.querySelector('a.is-active');
+    if(!nav || !active) return;
+    var navRect = nav.getBoundingClientRect();
+    var activeRect = active.getBoundingClientRect();
+    if(activeRect.right > navRect.right || activeRect.left < navRect.left){
+      active.scrollIntoView({block:'nearest', inline:'center'});
+    }
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', showActiveChip);
+  else showActiveChip();
+})();
+</script>
+<link href="../exported-ui-styles.css" rel="stylesheet"/><link rel="icon" type="image/png" href="../assets/images/enwater-design-logo-nav.png" />
+</head>
+<body class="ewd-sans"><header class="site-topnav">
+<div class="wrap">
+<a aria-label="EnWater Design home" class="brand" href="../home.html">
+<img alt="EnWater Design logo" class="nav-logo" src="../assets/images/enwater-design-logo.png"/>
+<span>EnWater Design</span>
+</a>
+<nav class="desktop-nav">
+<ul>
+<li><a class="rootlink" href="../home.html">Home</a></li>
+<li>
+            <a class="rootlink" href="../About/about.html">About</a>
+            <button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+            <div class="drop">
+              <div class="section">In this section</div>
+              <a href="../About/about.html">About Us</a>
+              <a href="../About/BlogList.html">Blog &amp; Insights</a>
+            </div>
+          </li>
+<li>
+<a class="rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink active" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Projects/index.html">Projects</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</li>
+<li>
+<a class="rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-expanded="false" aria-label="Open section menu" class="nav-toggle" type="button">▾</button>
+<div class="drop">
+<div class="section">In this section</div>
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</li>
+<li><a class="rootlink nav-login" href="../login.html">Login</a></li>
+<li><a class="rootlink nav-cta" href="../get-in-touch.html">Get in touch</a></li>
+</ul>
+</nav>
+<button aria-expanded="false" aria-label="Toggle menu" class="mobile-nav-toggle" type="button">
+<span class="hamburger-line line-1"></span>
+<span class="hamburger-line line-2"></span>
+<span class="hamburger-line line-3"></span>
+</button>
+</div>
+<div class="mobile-nav-panel">
+<div class="mobile-nav-content">
+<div class="mobile-nav-item">
+<a class="mobile-rootlink" href="../home.html">Home</a>
+</div>
+<div class="mobile-nav-item">
+          <div class="mobile-rootlink-row">
+            <a class="mobile-rootlink" href="../About/about.html">About</a>
+            <button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+          </div>
+          <div class="mobile-submenu">
+            <a href="../About/about.html">About Us</a>
+            <a href="../About/BlogList.html">Blog &amp; Insights</a>
+          </div>
+        </div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage Overview</a>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-decision-studies.html">Technical Studies</a>
+<a href="../How We Engage/How We Engage with EnWater Design/flowplan-project-stages-report-packs.html">Project Stages &amp; Report Packs</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink active" href="../design-sourcing/sourcing-advisory.html">Design &amp; Sourcing</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../design-sourcing/index.html">Design &amp; Sourcing Pathways</a>
+<a href="../design-sourcing/specialist-support.html">Specialist Support</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a>
+<a href="../design-sourcing/requirements-reuse-savings.html">Requirements, reuse &amp; savings</a>
+<a href="../design-sourcing/technology-equipment-fit.html">Technology &amp; equipment fit</a>
+<a href="../design-sourcing/system-integration-automation-de-risking.html">System integration</a>
+<a href="../design-sourcing/sourcing-advisory.html">Sourcing Advisory</a>
+<a href="../design-sourcing/implementation-applied-support.html">Implementation</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Advisory/advisory-services.html">Advisory Services</a>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../Advisory/water-wastewater-advisory.html">Water &amp; Wastewater Advisory</a>
+<a href="../Advisory/process-system-design-advisory.html">Process &amp; System Design</a>
+<a href="../Advisory/sludge-biosolids-advisory.html">Sludge &amp; Biosolids Advisory</a>
+<a href="../Advisory/odor-septicity-h2s-advisory.html">Odor, Septicity &amp; H₂S Advisory</a>
+<a href="../Advisory/automation-monitoring-control-advisory.html">Automation, Monitoring &amp; Control Advisory</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../FlowPlan/flowplan-framework.html">Framework</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../FlowPlan/flowplan-diagnostics-tools.html">Diagnostics &amp; Tools</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-solution-design.html">Solution Design</a>
+<a href="../FlowPlan/flowplan-process-mapping.html">Process Mapping</a>
+<a href="../FlowPlan/flowplan-planning-delivery.html">Planning &amp; Delivery</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Projects/index.html">Projects</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Projects/index.html">Projects Overview</a>
+<a href="../Projects/project-pathways.html">Project Pathways</a>
+<a href="../Projects/treated-water-reuse-projects.html">Treated Water Reuse</a>
+<a href="../Projects/stp-etp-treatment-projects.html">STP &amp; ETP Treatment</a>
+<a href="../Projects/equipment-utilities-projects.html">Equipment &amp; Utilities</a>
+<a href="../Projects/biosolids-residuals-projects.html">Biosolids &amp; Residuals</a>
+<a href="../Projects/engagement-roadmap.html">Engagement Roadmap</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<div class="mobile-rootlink-row">
+<a class="mobile-rootlink" href="../Sectors/index.html">Sectors</a>
+<button aria-label="Toggle submenu" class="mobile-submenu-toggle" type="button">▾</button>
+</div>
+<div class="mobile-submenu">
+<a href="../Sectors/index.html">Sector Pathways</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/catering-restaurants.html">Catering &amp; restaurants</a>
+<a href="../Sectors/commercial-laundry.html">Commercial laundry</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">CETP / industrial parks</a>
+<a href="../Sectors/facility-management-labor-camps.html">Facilities &amp; labour camps</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/metals-fabrication.html">Metals fabrication</a>
+<a href="../Sectors/paper-packaging.html">Paper &amp; packaging</a>
+<a href="../Sectors/ready-mix-construction.html">Ready-mix &amp; construction</a>
+<a href="../Sectors/seafood-processing.html">Seafood processing</a>
+<a href="../Sectors/stormwater-urban-runoff.html">Stormwater &amp; urban runoff</a>
+</div>
+</div>
+<div class="mobile-nav-item">
+<a class="mobile-login-btn" href="../login.html">Login</a>
+</div>
+<div class="mobile-nav-item no-border">
+<a class="mobile-cta-btn" href="../get-in-touch.html">Get in touch</a>
+</div>
+</div>
+</div>
+</header>
+<nav aria-label="Design &amp; Sourcing section navigation" class="design-sourcing-section-nav"><div class="inner"><span class="section-name">Design &amp; Sourcing</span><a class="is-active" href="index.html">Design &amp; Sourcing Pathways</a><a class="" href="specialist-support.html">Specialist Support</a><a class="" href="baseline-diagnostics-planning.html">Baseline Diagnostics &amp; Planning</a><a class="" href="requirements-reuse-savings.html">Requirements, reuse &amp; savings</a><a class="" href="technology-equipment-fit.html">Technology &amp; equipment fit</a><a class="" href="system-integration-automation-de-risking.html">System integration</a><a class="" href="sourcing-advisory.html">Sourcing advisory</a><a class="" href="implementation-applied-support.html">Implementation</a></div></nav>
+<main>
+<section class="bg-cream border-b hairline">
+<div class="max-w-6xl mx-auto px-6 pt-10 pb-8 md:pt-14">
+<div class="grid lg:grid-cols-2 gap-10 items-start">
+<div>
+<p class="text-xs text-gray-500">Services › Design &amp; Sourcing</p>
+<h1 class="ewd-serif mt-3 text-5xl md:text-6xl leading-[0.95] text-gray-950">
+ Design &amp; Sourcing: end-to-end services
+ </h1>
+<p class="mt-5 text-gray-700 leading-relaxed max-w-xl">Water and treatment projects stall or go wrong at the same points: going to vendors before you know what you’re working with, getting proposals back that you can’t compare, or finding after award that the original intent has quietly been renegotiated.</p><p class="mt-3 text-gray-700 leading-relaxed max-w-xl">Design &amp; Sourcing is owner-side support through those stages, from building the information base your project depends on, through to keeping delivery aligned with what was actually specified. Six connected stages, each producing something you can act on, each usable on its own or as part of a full assignment.</p>
+<div class="mt-6 flex flex-wrap gap-2">
+<span class="inline-flex items-center rounded-full border hairline bg-white/35 px-3 py-1 text-[11px] text-gray-700">Baseline</span>
+<span class="inline-flex items-center rounded-full border hairline bg-white/35 px-3 py-1 text-[11px] text-gray-700">Requirements</span>
+<span class="inline-flex items-center rounded-full border hairline bg-white/35 px-3 py-1 text-[11px] text-gray-700">Technology fit</span>
+<span class="inline-flex items-center rounded-full border hairline bg-white/35 px-3 py-1 text-[11px] text-gray-700">Integration</span>
+<span class="inline-flex items-center rounded-full border hairline bg-white/35 px-3 py-1 text-[11px] text-gray-700">Sourcing</span>
+<span class="inline-flex items-center rounded-full border hairline bg-white/35 px-3 py-1 text-[11px] text-gray-700">Implementation</span>
+</div>
+<div class="mt-6 rounded-2xl border hairline panel-soft p-5 soft-shadow">
+<div class="text-xs uppercase tracking-[.16em] text-slate-500">Engage &amp; deliver</div>
+<h3 class="mt-2 text-base font-semibold text-slate-900">What this work gives you control over</h3>
+<p class="mt-2 text-sm text-slate-700 leading-relaxed">
+ A scope pack that suppliers can’t reinterpret. Performance criteria you can actually check. Clear boundaries between what each party is responsible for. And a design that can be extended without rebuilding from scratch.
+ </p>
+<div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-slate-700">
+<div class="flex gap-2">
+<span class="mt-2 h-2 w-2 rounded-full bg-forest2"></span>
+<span><strong>Vendor-ready requirements:</strong> What a supplier must propose and provide.</span>
+</div>
+<div class="flex gap-2">
+<span class="mt-2 h-2 w-2 rounded-full bg-forest2"></span>
+<span><strong>Information &amp; approval criteria:</strong> How performance is checked and approved.</span>
+</div>
+<div class="flex gap-2">
+<span class="mt-2 h-2 w-2 rounded-full bg-forest2"></span>
+<span><strong>Connections &amp; handover readiness:</strong> Where boundaries are, and what is required at handover.</span>
+</div>
+<div class="flex gap-2">
+<span class="mt-2 h-2 w-2 rounded-full bg-forest2"></span>
+<span><strong>Upgrades &amp; roadmap:</strong> How to modularise and plan staged improvements.</span>
+</div>
+</div>
+<div class="mt-5 flex flex-wrap gap-2">
+<a class="btn btn-forest" href="sourcing-advisory.html">Sourcing advisory</a>
+<a class="btn btn-outline" href="implementation-applied-support.html">Implementation support</a>
+</div>
+</div>
+<div class="mt-7 flex flex-wrap gap-3">
+<a class="inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-5 py-3 text-sm hover:bg-forest" href="#domains">
+ Explore focus areas
+ <svg aria-hidden="true" class="w-4 h-4 opacity-90" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</a>
+<a class="inline-flex items-center gap-2 rounded-full border border-gray-900/10 bg-white/40 px-5 py-3 text-sm text-gray-900 hover:bg-white/60" href="../get-in-touch.html">
+ Start an enquiry
+ </a>
+</div>
+</div>
+<div class="hero-panel relative rounded-3xl overflow-hidden soft-shadow border hairline panel-soft" style="background-image:url('assets/images/design-sourcing-pathways.jpg');background-position:center center;">
+</div>
+</div>
+</div>
+</section>
+<section class="bg-cream border-b hairline" id="howto">
+<div class="max-w-6xl mx-auto px-6 py-12">
+<div class="grid lg:grid-cols-12 gap-10 items-start">
+<div class="lg:col-span-6">
+<h2 class="ewd-serif text-4xl text-gray-950">A quick way to use this section</h2>
+<p class="mt-3 text-gray-700 leading-relaxed max-w-xl">
+ Start where you are. Pick a focus area, scan what it clarifies, then use the Navigator to see what comes next.
+ </p>
+<div class="mt-7 grid gap-4">
+<div class="bg-white/45 border hairline rounded-sm p-5">
+<p class="text-xs text-gray-500">1) Choose a focus area</p>
+<p class="mt-2 text-sm text-gray-800">Baseline → Requirements → Technology fit → Integration</p>
+</div>
+<div class="bg-white/45 border hairline rounded-sm p-5">
+<p class="text-xs text-gray-500">2) Check the “why” and the basis</p>
+<p class="mt-2 text-sm text-gray-800">Constraints first: selection logic, KPIs, monitoring intent, approval checks, and information requests.</p>
+</div>
+<div class="bg-white/45 border hairline rounded-sm p-5">
+<p class="text-xs text-gray-500">3) Move into delivery alignment</p>
+<p class="mt-2 text-sm text-gray-800">When you’re ready, carry the outputs into sourcing and implementation.</p>
+</div>
+</div>
+<div class="mt-8 flex flex-wrap gap-3">
+<a class="inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-5 py-3 text-sm hover:bg-forest" href="#navigator">
+ Open the Navigator
+ </a>
+<a class="inline-flex items-center gap-2 rounded-full border border-gray-900/10 bg-white/40 px-5 py-3 text-sm text-gray-900 hover:bg-white/60" href="#engage">
+ See ways to engage
+ </a>
+</div>
+</div>
+<aside class="lg:col-span-6">
+<div class="bg-white/55 border hairline rounded-sm p-6">
+<p class="text-xs text-gray-500">Quick entry point</p>
+<p class="mt-2 text-gray-900 leading-relaxed">
+ Not sure where to begin? Use this to choose the lightest next step.
+ </p>
+<div class="mt-5 grid sm:grid-cols-2 gap-3 text-sm">
+<a class="group flex items-start gap-3 rounded-sm border hairline bg-white/55 p-4 hover:bg-white/70" href="baseline-diagnostics-planning.html">
+<span class="mt-1 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span>
+<div>
+<div class="font-medium text-gray-900">Not sure what you have?</div>
+<div class="text-gray-700">Start at Baseline &amp; characterisation.</div>
+</div>
+</a>
+<a class="group flex items-start gap-3 rounded-sm border hairline bg-white/55 p-4 hover:bg-white/70" href="requirements-reuse-savings.html">
+<span class="mt-1 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span>
+<div>
+<div class="font-medium text-gray-900">Have targets or reuse intent?</div>
+<div class="text-gray-700">Go to Requirements &amp; information.</div>
+</div>
+</a>
+<a class="group flex items-start gap-3 rounded-sm border hairline bg-white/55 p-4 hover:bg-white/70" href="technology-equipment-fit.html">
+<span class="mt-1 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span>
+<div>
+<div class="font-medium text-gray-900">Comparing options or vendors?</div>
+<div class="text-gray-700">Use Technology &amp; equipment fit.</div>
+</div>
+</a>
+<a class="group flex items-start gap-3 rounded-sm border hairline bg-white/55 p-4 hover:bg-white/70" href="system-integration-automation-de-risking.html">
+<span class="mt-1 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span>
+<div>
+<div class="font-medium text-gray-900">Retrofit / tight connections?</div>
+<div class="text-gray-700">Jump to Integration &amp; controls.</div>
+</div>
+</a>
+<a class="group flex items-start gap-3 rounded-sm border hairline bg-white/55 p-4 hover:bg-white/70" href="sourcing-advisory.html">
+<span class="mt-1 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span>
+<div>
+<div class="font-medium text-gray-900">Ready to buy?</div>
+<div class="text-gray-700">Move into Sourcing advisory.</div>
+</div>
+</a>
+<a class="group flex items-start gap-3 rounded-sm border hairline bg-white/55 p-4 hover:bg-white/70" href="implementation-applied-support.html">
+<span class="mt-1 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span>
+<div>
+<div class="font-medium text-gray-900">Already awarded?</div>
+<div class="text-gray-700">Use Implementation support.</div>
+</div>
+</a>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</section>
+<section class="bg-cream border-b hairline" id="overview">
+<div class="max-w-6xl mx-auto px-6 py-14">
+<div class="grid lg:grid-cols-12 gap-10 items-start">
+<div class="lg:col-span-5">
+<p class="text-xs text-gray-500">Why this exists</p>
+<h2 class="ewd-serif mt-2 text-4xl text-gray-950 leading-tight">When decisions get made too early, you pay for it later</h2>
+<p class="mt-4 text-gray-700 leading-relaxed">Vendors receive requests before the site data is solid. Technologies get shortlisted from brochures rather than tested against actual operating conditions. Connections between systems, physical, electrical, operational, get left to be sorted out during delivery. And commissioning gets treated as a final approval event rather than a performance check. By the time any of that appears as a problem, it’s expensive to fix. These stages exist to structure the decisions that matter before procurement begins, so what gets built is what was actually needed, and what gets handed over can be shown to work.</p>
+<div class="mt-7">
+<p class="text-xs text-gray-500">Streams we typically work with</p>
+<div class="mt-3 flex flex-wrap gap-2">
+<span class="inline-flex items-center rounded-full border hairline bg-white/35 px-3 py-1 text-[11px] text-gray-700">STP - Municipal / domestic sewage</span><span class="inline-flex items-center rounded-full border hairline bg-white/35 px-3 py-1 text-[11px] text-gray-700">ETP - Industrial / trade effluent</span><span class="inline-flex items-center rounded-full border hairline bg-white/35 px-3 py-1 text-[11px] text-gray-700">GWTP - Greywater treatment</span><span class="inline-flex items-center rounded-full border hairline bg-white/35 px-3 py-1 text-[11px] text-gray-700">VWRP - Vehicle wash water</span><span class="inline-flex items-center rounded-full border hairline bg-white/35 px-3 py-1 text-[11px] text-gray-700">LWRP - Laundry wash water</span><span class="inline-flex items-center rounded-full border hairline bg-white/35 px-3 py-1 text-[11px] text-gray-700">Biosolids &amp; sludge to resource recovery</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-7">
+<div class="bg-white/55 border hairline rounded-sm p-7">
+<h3 class="ewd-serif text-2xl text-gray-950">Clear boundaries to avoid conflicts</h3>
+<p class="mt-2 text-sm text-gray-700">We work between owner intent and delivery partners, tightening the decision basis without becoming a vendor or the detailed designer. Early, we set a clear design basis (outcomes, constraints, connections and assumptions), workable pathways based on site conditions, and approval information for commissioning and sustained operation.</p>
+<div class="mt-6 grid md:grid-cols-2 gap-6">
+<div class="bg-white/55 border hairline rounded-sm p-5">
+<p class="text-xs text-gray-500">What we do</p>
+<ul class="mt-4 space-y-2 text-sm text-gray-800">
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>State clearly what the site produces, what the constraints are, and what suppliers are actually being asked to deliver</span></li>
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Turn targets into measurable criteria, so performance can be verified, not just claimed</span></li>
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Keep option evaluation fair, same rules, same check requirements, for every technology and supplier considered</span></li>
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Build the procurement package, scope, connections and evaluation logic that protects the design basis when it hits the market</span></li>
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Stay engaged through delivery, so what gets built reflects what was agreed, not what was convenient</span></li>
+</ul>
+</div>
+<div class="bg-white/55 border hairline rounded-sm p-5">
+<p class="text-xs text-gray-500">What we don’t do</p>
+<ul class="mt-4 space-y-2 text-sm text-gray-800">
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>We don’t replace your detailed designer, EPC or equipment supplier, and we don’t sell equipment</span></li>
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>We work on the owner’s side, making sure the decisions that guide procurement and delivery are deliberate</span></li>
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>And the outcomes are provable</span></li>
+</ul>
+</div>
+</div>
+<div class="mt-6 flex flex-wrap gap-3">
+<a class="inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-5 py-3 text-sm hover:bg-forest" href="technology-equipment-fit.html">
+ Explore technology fit
+ <svg aria-hidden="true" class="w-4 h-4 opacity-90" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</a>
+<a class="inline-flex items-center gap-2 rounded-full border border-gray-900/10 bg-white/40 px-5 py-3 text-sm text-gray-900 hover:bg-white/60" href="../get-in-touch.html">Start an enquiry</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-cream border-b hairline" id="domains">
+<div class="max-w-6xl mx-auto px-6 py-14">
+<div class="grid lg:grid-cols-2 gap-10 items-start">
+<div>
+<h2 class="ewd-serif text-4xl text-gray-950">Design focus areas</h2>
+<p class="mt-3 text-gray-700 leading-relaxed max-w-xl">
+ These are the specialist stages clients typically enter through. Each is a detailed section and each connects forward into delivery alignment.
+ </p>
+</div>
+<div class="hidden lg:block"></div>
+</div>
+<div class="mt-10 grid md:grid-cols-2 gap-6">
+<article class="bg-white/55 border hairline rounded-sm p-7">
+<div class="flex items-start justify-between gap-4">
+<div>
+<p class="text-xs text-gray-500">Focus area</p>
+<h3 class="ewd-serif mt-1 text-2xl text-gray-950">Baseline &amp; characterisation</h3>
+<p class="mt-2 text-sm text-gray-700">Before targets, before technology, before any supplier conversation, you need to know what you’re actually working with. Flows, variability, site constraints, and what’s still uncertain. This stage makes that explicit.</p>
+</div>
+<a class="inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-4 py-2 text-sm hover:bg-forest" href="baseline-diagnostics-planning.html">
+ Explore
+ <svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</a>
+</div>
+<div class="mt-5 flex flex-wrap gap-3 text-sm">
+</div>
+</article>
+<article class="bg-white/55 border hairline rounded-sm p-7">
+<div class="flex items-start justify-between gap-4">
+<div>
+<p class="text-xs text-gray-500">Focus area</p>
+<h3 class="ewd-serif mt-1 text-2xl text-gray-950">Requirements, reuse &amp; savings</h3>
+<p class="mt-2 text-sm text-gray-700">A performance target that can’t be measured isn’t a target, it’s a starting point for a dispute. This stage translates what you need to achieve into approval criteria, check requirements and a savings case that holds up to scrutiny.</p>
+</div>
+<a class="inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-4 py-2 text-sm hover:bg-forest" href="requirements-reuse-savings.html">
+ Explore
+ <svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</a>
+</div>
+<div class="mt-5 flex flex-wrap gap-3 text-sm">
+</div>
+</article>
+<article class="bg-white/55 border hairline rounded-sm p-7">
+<div class="flex items-start justify-between gap-4">
+<div>
+<p class="text-xs text-gray-500">Focus area</p>
+<h3 class="ewd-serif mt-1 text-2xl text-gray-950">Technology &amp; equipment fit</h3>
+<p class="mt-2 text-sm text-gray-700">Supplier proposals look credible on paper. This stage tests them against your operating conditions, your site constraints and your operators, before anyone is committed to anything.</p>
+</div>
+<a class="inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-4 py-2 text-sm hover:bg-forest" href="technology-equipment-fit.html">
+ Explore
+ <svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</a>
+</div>
+<div class="mt-5 flex flex-wrap gap-3 text-sm">
+</div>
+</article>
+<article class="bg-white/55 border hairline rounded-sm p-7">
+<div class="flex items-start justify-between gap-4">
+<div>
+<p class="text-xs text-gray-500">Focus area</p>
+<h3 class="ewd-serif mt-1 text-2xl text-gray-950">Integration, automation &amp; de-risking</h3>
+<p class="mt-2 text-sm text-gray-700">A technology decision made in isolation will fail at the connections. This stage makes connection points, controls intent and commissioning check explicit, so what gets built works as a system, not just as individual units.</p>
+</div>
+<a class="inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-4 py-2 text-sm hover:bg-forest" href="system-integration-automation-de-risking.html">
+ Explore
+ <svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</a>
+</div>
+<div class="mt-5 flex flex-wrap gap-3 text-sm">
+</div>
+</article>
+</div>
+<div class="mt-8">
+<p class="text-xs text-gray-500">Delivery alignment</p>
+<div class="mt-3 grid md:grid-cols-2 gap-6">
+<article class="bg-white/55 border hairline rounded-sm p-7">
+<div class="flex items-start justify-between gap-4">
+<div>
+<p class="text-xs text-gray-500">Focus area</p>
+<h3 class="ewd-serif mt-1 text-2xl text-gray-950">Sourcing advisory</h3>
+<p class="mt-2 text-sm text-gray-700">An RFP that leaves room for interpretation will get interpreted, differently by every bidder. This stage builds the procurement package that controls what suppliers respond to and keeps bids genuinely comparable.</p>
+</div>
+<a class="inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-4 py-2 text-sm hover:bg-forest" href="sourcing-advisory.html">
+ Explore
+ <svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</a>
+</div>
+<div class="mt-5 flex flex-wrap gap-3 text-sm">
+</div>
+</article>
+<article class="bg-white/55 border hairline rounded-sm p-7">
+<div class="flex items-start justify-between gap-4">
+<div>
+<p class="text-xs text-gray-500">Focus area</p>
+<h3 class="ewd-serif mt-1 text-2xl text-gray-950">Implementation &amp; applied support</h3>
+<p class="mt-2 text-sm text-gray-700">Award is where most projects start to drift. This stage keeps the original design intent visible through delivery, in submittals, in change requests, and in a commissioning process based on information rather than assumptions alone.</p>
+</div>
+<a class="inline-flex items-center gap-2 rounded-full bg-forest2 text-white px-4 py-2 text-sm hover:bg-forest" href="implementation-applied-support.html">
+ Explore
+ <svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</a>
+</div>
+<div class="mt-5 flex flex-wrap gap-3 text-sm">
+</div>
+</article>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-[#101413] text-white" id="navigator">
+<div class="max-w-6xl mx-auto px-6 py-16">
+<div class="grid lg:grid-cols-12 gap-10 items-start">
+<div class="lg:col-span-4">
+<p class="text-xs text-white/60">Design Navigator</p>
+<h2 class="ewd-serif mt-2 text-4xl leading-tight">See how the design stages connect</h2>
+<p class="mt-4 text-white/70 leading-relaxed">Select a stage to view what we clarify, the information we require, and what it feeds into next.</p>
+<div class="mt-7 flex flex-wrap gap-2"><span class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">Baseline</span><span class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">Requirements</span><span class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">Tech fit</span><span class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">Integration</span><span class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">Sourcing</span><span class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">Implementation</span></div>
+<div class="mt-10 bg-white/5 border border-white/10 rounded-sm p-5">
+<p class="text-sm text-white/75">Choose a stage<span class="font-medium text-white">Start an enquiry</span> and we’ll recommend the right engagement route.
+ </p>
+<a class="mt-4 inline-flex items-center gap-2 text-sm text-white hover:underline" href="../get-in-touch.html">
+ Start an enquiry
+ <svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</a>
+</div>
+</div>
+<div class="lg:col-span-8" id="capabilities">
+<div class="grid md:grid-cols-12 gap-6">
+<div class="md:col-span-4 bg-white/5 border border-white/10 rounded-sm overflow-hidden">
+<div class="p-4 border-b border-white/10 text-xs text-white/60">Choose a domain</div>
+<div class="p-2">
+<!-- items injected by JS -->
+<div class="grid gap-1" data-cap-list=""><button class="w-full text-left px-4 py-3 rounded-sm text-white/90 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 cap-active" data-cap-item="baseline" type="button"><div class="text-sm">Baseline &amp; characterisation</div><div class="text-xs text-white/55 mt-1">baseline • flows • constraints</div></button><button class="w-full text-left px-4 py-3 rounded-sm text-white/90 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20" data-cap-item="requirements" type="button"><div class="text-sm">Requirements, reuse &amp; savings</div><div class="text-xs text-white/55 mt-1">targets • reuse • KPIs</div></button><button class="w-full text-left px-4 py-3 rounded-sm text-white/90 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20" data-cap-item="techfit" type="button"><div class="text-sm">Technology &amp; equipment fit</div><div class="text-xs text-white/55 mt-1">options • check • risk</div></button><button class="w-full text-left px-4 py-3 rounded-sm text-white/90 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20" data-cap-item="integration" type="button"><div class="text-sm">Integration, automation &amp; de-risking</div><div class="text-xs text-white/55 mt-1">connections • connection points • controls</div></button><button class="w-full text-left px-4 py-3 rounded-sm text-white/90 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20" data-cap-item="sourcing" type="button"><div class="text-sm">Sourcing advisory</div><div class="text-xs text-white/55 mt-1">Supplier request • scorecards • contracts</div></button><button class="w-full text-left px-4 py-3 rounded-sm text-white/90 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20" data-cap-item="implementation" type="button"><div class="text-sm">Implementation &amp; applied support</div><div class="text-xs text-white/55 mt-1">submittals • commissioning and performance verification • commissioning</div></button></div>
+</div>
+</div>
+<div class="md:col-span-8 bg-white/5 border border-white/10 rounded-sm overflow-hidden">
+<div class="p-6">
+<div class="flex items-start justify-between gap-4">
+<div>
+<p class="text-xs text-white/60">Selected</p>
+<h3 class="ewd-serif mt-2 text-3xl leading-tight" data-cap-title="">Baseline &amp; characterisation</h3>
+</div>
+<div class="hidden sm:flex flex-wrap justify-end gap-2" data-cap-tags=""><span class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">baseline</span><span class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">flows</span><span class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">constraints</span><span class="tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85">testing</span></div>
+</div>
+<p class="mt-4 text-white/75 leading-relaxed" data-cap-intro="">Build a shared view of flows, variability, constraints and the minimum testing needed to remove key uncertainty.</p>
+<div class="mt-7 grid sm:grid-cols-2 gap-6">
+<div class="bg-black/10 border border-white/10 rounded-sm p-5">
+<p class="text-xs text-white/60">Where we help</p>
+<ul class="mt-3 space-y-2 text-sm text-white/85" data-cap-help=""><ul class="mt-3 space-y-2 text-sm text-white/80"><li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Operating ranges and peaks (where relevant)</span></li><li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Constraint map: space, connection points, shutdown limits</span></li><li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Targeted gap-closure testing plan</span></li></ul></ul>
+</div>
+<div class="bg-black/10 border border-white/10 rounded-sm p-5">
+<p class="text-xs text-white/60">Questions we clarify</p>
+<ul class="mt-3 space-y-2 text-sm text-white/85" data-cap-questions=""><ul class="mt-3 space-y-2 text-sm text-white/80"><li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>What are the operating ranges and peaks, not just averages?</span></li><li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Which constraints (space, connection points, shutdown limits) determine the viable options?</span></li><li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>What is the minimum testing needed to close the key uncertainties?</span></li><li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Where are the hidden connections that could break delivery or operability?</span></li></ul></ul>
+</div>
+</div>
+<div class="mt-8 flex flex-wrap gap-3">
+<a class="inline-flex items-center gap-2 rounded-full bg-white text-gray-900 px-5 py-2.5 text-sm hover:bg-white/90" href="#engage">
+ View ways to engage
+ <svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</a>
+<a class="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 text-white px-5 py-2.5 text-sm hover:bg-white/15" href="../get-in-touch.html">
+ Start an enquiry
+ <svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-forest text-white/90 border-y border-white/10" id="engage">
+<div class="max-w-6xl mx-auto px-6 py-16">
+<div class="grid lg:grid-cols-12 gap-10 items-start">
+<div class="lg:col-span-4">
+<p class="text-xs text-white/60">Engagement routes</p>
+<h2 class="ewd-serif mt-2 text-4xl text-white leading-tight">Ways to engage</h2>
+<p class="mt-4 text-sm text-white/75 leading-relaxed">
+ Choose the pack that matches where you are. Each one ends with a defined output, documented, usable, and ready to move the project forward.
+ </p>
+</div>
+<div class="lg:col-span-8 grid md:grid-cols-3 gap-4">
+<!-- Pack 1 -->
+<article class="rounded-xl border border-white/10 bg-white/5 p-5">
+<p class="text-xs tracking-wide text-white/60">Pack 1</p>
+<h3 class="ewd-serif mt-2 text-2xl text-white">Rapid baseline &amp; options clarity</h3>
+<p class="mt-3 text-sm text-white/75 leading-relaxed">You need to understand what you’re working with and which routes are workable, without committing to a design direction yet.</p>
+<ul class="mt-4 space-y-3 text-sm text-white/85">
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Baseline intelligence + data-gap plan</span></li>
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Scenario options + trade-off logic</span></li>
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Minimum verification / testing plan</span></li>
+</ul>
+</article>
+<!-- Pack 2 -->
+<article class="rounded-xl border border-white/10 bg-white/5 p-5">
+<p class="text-xs tracking-wide text-white/60">Pack 2</p>
+<h3 class="ewd-serif mt-2 text-2xl text-white">Performance range &amp; information requirements</h3>
+<p class="mt-3 text-sm text-white/75 leading-relaxed">The direction is agreed. Now you need targets, connections and approval criteria in a form suppliers can be held to.</p>
+<ul class="mt-4 space-y-3 text-sm text-white/85">
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Performance range + approval KPIs</span></li>
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Technology screening + whole-life cost view</span></li>
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Connection points + controls intent</span></li>
+</ul>
+</article>
+<!-- Pack 3 -->
+<article class="rounded-xl border border-white/10 bg-white/5 p-5">
+<p class="text-xs tracking-wide text-white/60">Pack 3</p>
+<h3 class="ewd-serif mt-2 text-2xl text-white">Procurement control &amp; approval approach</h3>
+<p class="mt-3 text-sm text-white/75 leading-relaxed">You’re going to market or already looking at bids. This pack structures the evaluation so the decision stays well-supported and the contract reflects what was actually specified.</p>
+<ul class="mt-4 space-y-3 text-sm text-white/85">
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Scope boundaries + controlled equivalence rules</span></li>
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Evaluation approach + clarification support</span></li>
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Verification plan</span></li>
+</ul>
+</article>
+</div>
+</div>
+<div class="mt-10 flex flex-wrap gap-3">
+<a class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white hover:bg-white/10" href="technology-equipment-fit.html">
+ Explore technology fit
+ <span aria-hidden="true">↗</span>
+</a>
+<a class="inline-flex items-center justify-center rounded-full bg-accent px-7 py-3 text-sm font-semibold text-ink hover:opacity-95" href="../get-in-touch.html">Start an enquiry</a>
+</div>
+</div>
+</section>
+<section class="bg-cream" id="enquiry">
+<div class="max-w-6xl mx-auto px-6 py-16">
+<div class="grid lg:grid-cols-2 gap-10 items-start">
+<div>
+<h2 class="ewd-serif text-4xl text-gray-950">Start an enquiry</h2>
+<p class="mt-3 text-gray-700 leading-relaxed max-w-xl">
+ Share the outcome you need, the constraints you’re facing, and any timing drivers. If you don’t have all the data,
+ that’s fine; we’ll define the minimum set to move forward.
+ </p>
+<div class="mt-6 bg-white/40 border hairline rounded-sm p-6">
+<p class="text-xs text-gray-500">What helps us respond quickly</p>
+<ul class="mt-4 space-y-2 text-sm text-gray-800">
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Outcome target (compliance, reuse class, stability goal, cost/risk driver)</span></li>
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Current snapshot (flow, variability, constraints, pain points)</span></li>
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Where you are in the decision cycle (baseline → implementation)</span></li>
+<li class="flex gap-3"><span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>Any existing drawings, data, or vendor proposals (if available)</span></li>
+</ul>
+</div>
+</div>
+<div>
+<form action="/thank-you.html" class="mt-1 grid gap-4" data-netlify="true" data-static-form-name="enwater-enquiry" method="POST" name="enwater-enquiry" netlify-honeypot="bot-field">
+<input name="form-name" type="hidden" value="enwater-enquiry"/>
+<input name="source_page" type="hidden" value="design-sourcing/index.html"/>
+<p style="display:none"><label>Do not fill this out: <input name="bot-field"/></label></p>
+<label class="grid gap-1 text-sm">
+<span class="text-gray-700">Name</span>
+<input class="rounded-sm border hairline bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-accent/30" name="name" placeholder="Your name" required=""/>
+</label>
+<label class="grid gap-1 text-sm">
+<span class="text-gray-700">Email</span>
+<input class="rounded-sm border hairline bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-accent/30" name="email" placeholder="name@company.com" required="" type="email"/>
+</label>
+<label class="grid gap-1 text-sm">
+<span class="text-gray-700">Stage / entry point</span>
+<select class="rounded-sm border hairline bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-accent/30" name="enquiry_type">
+<option>Baseline &amp; characterisation</option>
+<option>Requirements, reuse &amp; savings</option>
+<option>Technology &amp; equipment fit</option>
+<option>Integration, automation &amp; de-risking</option>
+<option>Sourcing advisory</option>
+<option>Implementation &amp; applied support</option>
+</select>
+</label>
+<label class="grid gap-1 text-sm">
+<span class="text-gray-700">What outcome are you aiming for?</span>
+<textarea class="rounded-sm border hairline bg-white/80 px-3 py-2 outline-none focus:ring-2 focus:ring-accent/30" name="message" placeholder="Describe the target, constraints, and what prompted this." required="" rows="5"></textarea>
+</label>
+<button class="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-forest2 text-white px-5 py-3 text-sm hover:bg-forest">
+ Send enquiry
+ <svg aria-hidden="true" class="w-4 h-4" fill="none" viewbox="0 0 24 24">
+<path d="M7 17L17 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+<path d="M9 7h8v8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-cream border-t hairline" id="faq">
+<div class="max-w-6xl mx-auto px-6 py-16">
+<div class="grid lg:grid-cols-12 gap-10 items-start">
+<div class="lg:col-span-4">
+<p class="text-xs text-gray-500">FAQ</p>
+<h2 class="ewd-serif mt-2 text-4xl text-gray-950 leading-tight">Common questions</h2>
+<p class="mt-4 text-gray-700 leading-relaxed">
+ Short answers to the questions that usually come up before a specialist design engagement.
+ </p>
+</div>
+<div class="lg:col-span-8">
+<div class="grid gap-4">
+<details class="bg-white/55 border hairline rounded-sm p-6">
+<summary class="cursor-pointer font-medium text-gray-950">Do you do detailed design or EPC?</summary>
+<p class="mt-3 text-sm text-gray-700 leading-relaxed">
+ No, we don’t replace the appointed detailed designer/EPC/OEM. We define the decision basis, requirements, connections and approval information so delivery is clear and comparable.
+ </p>
+</details>
+<details class="bg-white/55 border hairline rounded-sm p-6">
+<summary class="cursor-pointer font-medium text-gray-950">Are you vendor-neutral?</summary>
+<p class="mt-3 text-sm text-gray-700 leading-relaxed">
+ We don’t sell equipment. Our role is to match needs to technologies through site-fit criteria and information requests, then support a fair, comparable sourcing process.
+ </p>
+</details>
+<details class="bg-white/55 border hairline rounded-sm p-6">
+<summary class="cursor-pointer font-medium text-gray-950">Can we engage you mid-procurement?</summary>
+<p class="mt-3 text-sm text-gray-700 leading-relaxed">
+ Yes. Many engagements start during vendor comparisons, tightening requirements, clarifications and scorecards so bids remain comparable and scope gaps are exposed early.
+ </p>
+</details>
+<details class="bg-white/55 border hairline rounded-sm p-6">
+<summary class="cursor-pointer font-medium text-gray-950">What do you need from us to start?</summary>
+<p class="mt-3 text-sm text-gray-700 leading-relaxed">
+ The outcome you need, what’s driving urgency, and any constraints you already know. If data is missing, we’ll define the minimum gap-closure testing plan as part of the baseline stage.
+ </p>
+</details>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<style id="design-sourcing-footer-add-v2">
+.ds-footer{background:#1f3731;color:rgba(255,255,255,.86);border-top:1px solid rgba(255,255,255,.10);margin-top:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+.ds-footer *{box-sizing:border-box;}
+.ds-footer-pattern{background-image:radial-gradient(circle at 10% 20%,rgba(255,255,255,.07) 0,rgba(255,255,255,.07) 2px,transparent 2px),radial-gradient(circle at 70% 60%,rgba(255,255,255,.06) 0,rgba(255,255,255,.06) 2px,transparent 2px);background-size:48px 48px,64px 64px;}
+.ds-footer-inner{max-width:72rem;margin:0 auto;padding:3.5rem 1.5rem 2rem;}
+.ds-footer-grid{display:grid;gap:2.5rem;}
+@media(min-width:768px){.ds-footer-grid{grid-template-columns:repeat(3,minmax(0,1fr));}.ds-footer-bottom{flex-direction:row;align-items:center;justify-content:space-between;}}
+.ds-footer-brand{display:flex;align-items:center;gap:.55rem;color:#fff;font-weight:700;letter-spacing:.01em;}
+.ds-footer-dot{width:.625rem;height:.625rem;border-radius:999px;background:#55a092;display:inline-flex;flex:0 0 auto;}
+.ds-footer-text{margin-top:.75rem;color:rgba(255,255,255,.70);font-size:.875rem;line-height:1.65;max-width:24rem;}
+.ds-footer-links{display:grid;gap:.5rem;font-size:.875rem;align-content:start;}
+.ds-footer-links p{font-weight:700;color:#fff;margin:0 0 .15rem;}
+.ds-footer-links a{color:rgba(255,255,255,.84);text-decoration:none;}
+.ds-footer-links a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px;}
+.ds-footer-location{color:rgba(255,255,255,.70);margin:0;}
+.ds-footer-bottom{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.10);display:flex;flex-direction:column;gap:.75rem;color:rgba(255,255,255,.56);font-size:.75rem;}
+.ds-footer-bottom p{margin:0;}
+</style>
+<footer class="footer">
+<div class="wrap">
+<div class="footer-top">
+<div>
+<div class="footer-brand"><img alt="EnWater Design logo" class="footer-logo" src="../assets/images/enwater-design-logo-transparent-mark.png"/><span class="footer-name">EnWater Design</span></div>
+<p class="footer-desc">Independent water, wastewater treatment and reuse consulting, helping owners and operators turn complex challenges into clear decisions and practical outcomes.</p>
+</div>
+<div class="footer-col">
+<h4>Explore</h4>
+<a href="../home.html">Home</a>
+<a href="../About/about.html">About</a>
+<a href="../About/BlogList.html">Our Blog</a>
+<a href="../How We Engage/How We Engage with EnWater Design/how-we-engage-with-enwater-design.html">How We Engage</a>
+</div>
+<div class="footer-col">
+<h4>Services</h4>
+<a href="../Advisory/solution-advisory.html">Solution Advisory</a>
+<a href="../design-sourcing/index.html">Design &amp; Sourcing</a>
+<a href="../FlowPlan/flowplan-framework.html">FlowPlan</a>
+<a href="../Projects/index.html">Projects</a>
+<a href="../Sectors/index.html">Sectors</a>
+</div>
+<div class="footer-col">
+<h4>Pathways</h4>
+<a href="../How We Engage/Process Design &amp; Troubleshooting/process-design-troubleshooting-delivery-support.html">Process Design &amp; Troubleshooting</a>
+<a href="../design-sourcing/baseline-diagnostics-planning.html">Baseline Diagnostics</a>
+<a href="../FlowPlan/treatment-reuse-planning.html">Reuse Planning</a>
+<a href="../FlowPlan/flowplan-systems-planning.html">Systems Planning</a>
+<a href="../Sectors/index.html">Sector Pathways</a>
+</div>
+<div class="footer-col">
+<h4>Get in touch</h4>
+<a href="../get-in-touch.html">Contact form</a>
+<a href="../Sectors/vehicle-wash-car-wash.html">Vehicle wash / car wash</a>
+<a href="../Sectors/hotels-commercial-towers.html">Hotels &amp; commercial towers</a>
+<a href="../Sectors/food-beverage-processing.html">Food &amp; beverage processing</a>
+<a href="../Sectors/common-effluent-plant-cetp-industrial-parks.html">Industrial / CETP</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© <span id="yr"></span> EnWater Design</div>
+<div>Clear systems planning for practical project delivery</div>
+</div>
+</div>
+<script>
+  (function() {
+    const yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+  })();
+</script>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+ const CAPABILITIES = [
+ {
+ "id": "baseline",
+ "title": "Baseline & characterisation",
+ "tags": [
+ "baseline",
+ "flows",
+ "constraints",
+ "testing"
+ ],
+ "intro": "Build a shared view of flows, variability, constraints and the minimum testing needed to remove key uncertainty.",
+ "help": [
+ "Operating ranges and peaks (where relevant)",
+ "Constraint map: space, connection points, shutdown limits",
+ "Targeted gap-closure testing plan"
+ ],
+ "questions": [
+ "What are the operating ranges and peaks, not just averages?",
+ "Which constraints (space, connection points, shutdown limits) determine the viable options?",
+ "What is the minimum testing needed to close the key uncertainties?",
+ "Where are the hidden connections that could break delivery or operability?"
+ ]
+ },
+ {
+ "id": "requirements",
+ "title": "Requirements, reuse & savings",
+ "tags": [
+ "targets",
+ "reuse",
+ "KPIs",
+ "information"
+ ],
+ "intro": "Translate targets into measurable parameters, monitoring intent and approval information, tied to intended applications.",
+ "help": [
+ "Requirements matrix: target → parameter → method → information",
+ "Reuse-route logic (application sets assurance approach)",
+ "Value logic built on realistic offsets and risk costs"
+ ],
+ "questions": [
+ "What outcome are we targeting, and how will we measure it?",
+ "Which reuse or discharge route drives the assurance approach?",
+ "What information is required for approval, and who confirms it?",
+ "Which risks/costs matter most (non-compliance, instability, rework)?"
+ ]
+ },
+ {
+ "id": "techfit",
+ "title": "Technology & equipment fit",
+ "tags": [
+ "options",
+ "check",
+ "risk",
+ "TCO"
+ ],
+ "intro": "Shortlist technology families and equipment blocks that can actually meet your targets on your site, using operating ranges and consistent check requirements.",
+ "help": [
+ "Option comparison against the same ranges and KPIs",
+ "Information requests: what vendors must demonstrate and how",
+ "Selection criteria that survive handover"
+ ],
+ "questions": [
+ "Which configurations fit the site conditions and variability?",
+ "What should vendors prove (and how) to demonstrate site-fit?",
+ "What are the common failure modes, and how are they prevented?",
+ "How do CAPEX/OPEX and operability trade-offs compare across options?"
+ ]
+ },
+ {
+ "id": "integration",
+ "title": "Integration, automation & de-risking",
+ "tags": [
+ "connections",
+ "connection points",
+ "controls",
+ "operability"
+ ],
+ "intro": "Make connections, phasing, connection works and controls intent explicit, so delivery is constructible and operable.",
+ "help": [
+ "Scope boundary boundaries across civil, mechanical and E&I",
+ "Phasing plans that respect operations/shutdown limits",
+ "Operational checks aligned to site operating conditions"
+ ],
+ "questions": [
+ "Where are the connection boundaries across civil, mechanical and E&I?",
+ "How do we phase connection works without destabilising operations?",
+ "What is the controls intent and KPI/monitoring layer needed to prove performance?",
+ "What approval checks prevent handover surprises?"
+ ]
+ },
+ {
+ "id": "sourcing",
+ "title": "Sourcing advisory",
+ "tags": [
+ "Supplier request",
+ "scorecards",
+ "contracts",
+ "award"
+ ],
+ "intro": "Turn the design clarity into supplier-ready scope briefs, evaluation criteria and approval checks, so proposals stay comparable.",
+ "help": [
+ "Scope summary, KPIs, clarification themes and supplier scorecards",
+ "Technical/commercial evaluation and negotiation support",
+ "Award readiness and kickoff alignment"
+ ],
+ "questions": [
+ "How do we structure supplier requests so proposals remain comparable?",
+ "What clarifications and scorecards stop scope gaps and ambiguity?",
+ "What contract language protects performance and approval intent?",
+ "What does “award readiness” look like for this package?"
+ ]
+ },
+ {
+ "id": "implementation",
+ "title": "Implementation & applied support",
+ "tags": [
+ "submittals",
+ "commissioning and performance verification",
+ "commissioning",
+ "optimisation"
+ ],
+ "intro": "Designs drift after award. We keep the original intent visible through delivery, review submittals against agreed targets, and structure commissioning so approval is based on information.",
+ "help": [
+ "Submittal and integration reviews",
+ "commissioning and performance verification information aligned to approval",
+ "Early performance proving and optimisation support"
+ ],
+ "questions": [
+ "Which submittals and integration items are critical to review early?",
+ "What commissioning and performance verification information is required for approval?",
+ "How do we manage change without losing design intent?",
+ "What does early performance proving and optimisation look like in weeks 1-12?"
+ ]
+ }
+];
+
+ const cap = document.getElementById('capabilities');
+ const list = cap?.querySelector('[data-cap-list]');
+ const outTitle = cap?.querySelector('[data-cap-title]');
+ const outIntro = cap?.querySelector('[data-cap-intro]');
+ const outTags = cap?.querySelector('[data-cap-tags]');
+ const outHelp = cap?.querySelector('[data-cap-help]');
+ const outQs = cap?.querySelector('[data-cap-questions]');
+
+ function pill(text) {
+ const span = document.createElement('span');
+ span.className = 'tag inline-flex items-center rounded-full px-3 py-1 text-[11px] text-white/85';
+ span.textContent = text;
+ return span;
+ }
+
+ function renderBullets(target, items) {
+ if (!target) return;
+ target.innerHTML = '';
+ const ul = document.createElement('ul');
+ ul.className = 'mt-3 space-y-2 text-sm text-white/80';
+ items.forEach(t => {
+ const li = document.createElement('li');
+ li.className = 'flex gap-3';
+ li.innerHTML = `<span class="mt-1.5 inline-flex w-1.5 h-1.5 rounded-full bg-accent"></span><span>${t}</span>`;
+ ul.appendChild(li);
+ });
+ target.appendChild(ul);
+ }
+
+ function selectCapability(id) {
+ const itemEls = list?.querySelectorAll('[data-cap-item]') || [];
+ itemEls.forEach(el=>el.classList.remove('cap-active'));
+ const chosen = [...itemEls].find(el=>el.dataset.capItem === id);
+ chosen?.classList.add('cap-active');
+
+ const c = CAPABILITIES.find(x=>x.id===id) || CAPABILITIES[0];
+ if (!c) return;
+
+ outTitle.textContent = c.title;
+ outIntro.textContent = c.intro;
+
+ outTags.innerHTML = '';
+ (c.tags || []).slice(0,6).forEach(t=> outTags.appendChild(pill(t)));
+
+ renderBullets(outHelp, c.help || []);
+ renderBullets(outQs, c.questions || []);
+ }
+
+ // Build list
+ if (list && CAPABILITIES.length) {
+ list.innerHTML = '';
+ CAPABILITIES.forEach((c, idx)=>{
+ const btn = document.createElement('button');
+ btn.type = 'button';
+ btn.dataset.capItem = c.id;
+ btn.className = 'w-full text-left px-4 py-3 rounded-sm text-white/90 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20';
+ btn.innerHTML = `<div class="text-sm">${c.title}</div><div class="text-xs text-white/55 mt-1">${(c.tags||[]).slice(0,3).join(' • ')}</div>`;
+ btn.addEventListener('click', ()=>selectCapability(c.id));
+ list.appendChild(btn);
+ if (idx===0) btn.classList.add('cap-active');
+ });
+ selectCapability(CAPABILITIES[0].id);
+ }
+
+ // Domain cards -> preselect in navigator
+ document.querySelectorAll('[data-domain]').forEach((a)=>{
+ a.addEventListener('click', ()=>{
+ const id = a.getAttribute('data-domain');
+ setTimeout(()=>selectCapability(id), 40);
+ });
+ });
+
+ // Deep link support (?stage=baseline)
+ const params = new URLSearchParams(globalThis.location.search);
+ const stage = params.get('stage');
+ if (stage) setTimeout(()=>selectCapability(stage), 60);
+});
+</script>
+<style id="design-sourcing-anchor-scroll-fix-v39">
+/* Design & Sourcing anchor landing fix: keeps hero/internal links from stopping above the target under the two sticky navigation bars. */
+html{scroll-padding-top:120px!important;}
+[id]{scroll-margin-top:120px!important;}
+</style>
+<script id="design-sourcing-anchor-scroll-fix-v39-script">
+(function(){
+  function anchorTarget(hash){
+    if(!hash || hash === '#') return null;
+    try { return document.getElementById(decodeURIComponent(hash.slice(1))); }
+    catch(e){ return document.getElementById(hash.slice(1)); }
+  }
+  function navOffset(){
+    var total = 14;
+    var top = document.querySelector('header.site-topnav, .topnav');
+    var sub = document.querySelector('.design-sourcing-section-nav');
+    if(top){ total += Math.ceil(top.getBoundingClientRect().height || 0); }
+    if(sub){ total += Math.ceil(sub.getBoundingClientRect().height || 0); }
+    return Math.max(96, total);
+  }
+  function scrollToHash(hash, behavior){
+    var target = anchorTarget(hash);
+    if(!target) return false;
+    var y = target.getBoundingClientRect().top + window.pageYOffset - navOffset();
+    window.scrollTo({top: Math.max(0, y), behavior: behavior || 'smooth'});
+    return true;
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var hash = a.getAttribute('href');
+    if(!hash || hash === '#') return;
+    if(!anchorTarget(hash)) return;
+    e.preventDefault();
+    scrollToHash(hash, 'smooth');
+    if(history && history.pushState){ history.pushState(null, '', hash); }
+    else { window.location.hash = hash; }
+  });
+  window.addEventListener('load', function(){
+    if(!window.location.hash) return;
+    [60, 250, 650].forEach(function(delay){
+      window.setTimeout(function(){ scrollToHash(window.location.hash, 'auto'); }, delay);
+    });
+  });
+})();
+</script>
+<script src="../exported-ui-effects.js"></script></body></html>

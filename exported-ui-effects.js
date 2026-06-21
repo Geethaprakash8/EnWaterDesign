@@ -24,6 +24,7 @@ function initAllEnWaterEffects() {
   initAccordions();
   initMobileNav();
   initStoryArc();
+  initNetlifyFormAJAX();
 }
 
 /**
@@ -642,4 +643,40 @@ function initStoryArc() {
 
   updateSpine();
   updateChapter();
+}
+
+/**
+ * 13. Global Netlify Forms AJAX Handler
+ * Intercepts submissions of forms configured with Netlify forms attributes,
+ * posts the inputs via AJAX, and redirects the user using GET to avoid POST 404 errors on static pages.
+ */
+function initNetlifyFormAJAX() {
+  document.addEventListener('submit', function(e) {
+    const form = e.target;
+    if (form && (form.getAttribute('data-netlify') === 'true' || form.hasAttribute('netlify'))) {
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+      }
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(function() {
+        const action = form.getAttribute('action') || '/thank-you.html';
+        window.location.href = action;
+      })
+      .catch(function(err) {
+        console.error('Form submission AJAX error:', err);
+        const action = form.getAttribute('action') || '/thank-you.html';
+        window.location.href = action;
+      });
+    }
+  });
 }

@@ -400,11 +400,17 @@
 
   <!-- Load Supabase Library CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // EnWater Design - Supabase Credentials
+    window.SUPABASE_URL = 'https://goegkdfcyfdzidmmfhap.supabase.co';
+    window.SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdvZWdrZGZjeWZkemlkbW1maGFwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIwMjY4MzgsImV4cCI6MjA5NzYwMjgzOH0.0aCSnhPmPV2gpcO1Tn_hiLZnCRq1orVAtawvFMSgGeE';
+  </script>
+  <script src="../supabase-api.js"></script>
 
   <script>
     (function () {
       'use strict';
-
+ 
       const form = document.getElementById('loginForm');
       const emailInput = document.getElementById('email');
       const passwordInput = document.getElementById('password');
@@ -444,7 +450,17 @@
           let authSuccess = false;
           let sessionToken = null;
 
-          if (supabaseClient) {
+          // 1. Attempt secure database RPC verification (encrypted credentials comparison)
+          if (window.EnWaterAPI && typeof window.EnWaterAPI.verifyAdmin === 'function') {
+            const rpcRes = await window.EnWaterAPI.verifyAdmin(email, password);
+            if (rpcRes.ok && rpcRes.matches) {
+              authSuccess = true;
+              sessionToken = 'admin_hash_' + btoa(email + ':' + Date.now());
+            }
+          }
+
+          // 2. Fall back to Supabase Built-in Auth
+          if (!authSuccess && supabaseClient) {
             const { data, error: authError } = await supabaseClient.auth.signInWithPassword({
               email,
               password,
@@ -465,17 +481,7 @@
               window.location.href = 'admindashboard.html';
             }, 1000);
           } else {
-            // Local bypass fallback credentials validation
-            if (email === 'enwaterdesign@gmail.com' && (password === 'EnWater2026!' || password === '12345678')) {
-              localStorage.setItem('enwater_admin_token', 'dev_bypass_token');
-              successBanner.textContent = 'Demo bypass authentication successful! Redirecting...';
-              successBanner.style.display = 'block';
-              setTimeout(() => {
-                window.location.href = 'admindashboard.html';
-              }, 1000);
-            } else {
-              throw new Error('Authentication failed. Please verify credentials.');
-            }
+            throw new Error('Authentication failed. Please verify credentials.');
           }
         } catch (err) {
           console.error('Admin authentication failure:', err);

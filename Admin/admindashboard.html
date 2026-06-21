@@ -980,9 +980,8 @@
 </script>
 </footer>
 
-  <!-- Load Supabase Library CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
+  <!-- Supabase REST API Layer -->
+  <script src="../supabase-api.js"></script>
   <script>
     (function () {
       'use strict';
@@ -991,7 +990,6 @@
       let leads = [];
       let subscribers = [];
 
-      // ── DOM References ──
       const tabButtons = document.querySelectorAll('.tab-btn');
       const tabPanels = document.querySelectorAll('.tab-panel');
       const loadingState = document.getElementById('loadingState');
@@ -1015,112 +1013,50 @@
       // ── Session Verification ──
       const token = localStorage.getItem('enwater_admin_token');
 
-      // Initialize Supabase Client
-      let supabaseClient = null;
-      if (window.supabase) {
-        const supabaseUrl = window.SUPABASE_URL || '';
-        const supabaseAnonKey = window.SUPABASE_ANON_KEY || '';
-        if (supabaseUrl && supabaseAnonKey) {
-          supabaseClient = window.supabase.createClient(supabaseUrl, supabaseAnonKey);
-        }
-      }
-
+      // ── checkSession ──
       async function checkSession() {
         if (!token) {
           window.location.href = 'adminlogin.html';
           return;
         }
-
-        if (token === 'dev_bypass_token') {
-          fetchDashboardData();
-          return;
-        }
-
-        try {
-          if (supabaseClient) {
-            const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
-            if (sessionError || !session) {
-              console.warn('Invalid admin session:', sessionError);
-              localStorage.removeItem('enwater_admin_token');
-              window.location.href = 'adminlogin.html';
-            } else {
-              fetchDashboardData();
-            }
-          } else {
-            // No client, assume bypass credentials valid for offline check
-            fetchDashboardData();
-          }
-        } catch (err) {
-          console.error('Session verification failed:', err);
+        
+        // Verify token authenticity with Supabase endpoint
+        const isValid = await window.EnWaterAPI.validateSession(token);
+        if (!isValid) {
+          console.warn('[Dashboard] Invalid/expired session token. Redirecting...');
           localStorage.removeItem('enwater_admin_token');
           window.location.href = 'adminlogin.html';
+          return;
         }
+        
+        fetchDashboardData();
       }
 
-      // ── Fetch Dashboard Data ──
+      // ── Fetch Dashboard Data via REST API ──
       async function fetchDashboardData() {
         loadingState.style.display = 'flex';
         contentArea.style.display = 'none';
 
         try {
-          let leadsData = null;
-          let subsData = null;
-
-          if (supabaseClient) {
-            // Fetch leads from database
-            const { data: lData, error: lErr } = await supabaseClient
-              .from('leads')
-              .select('*')
-              .order('created_at', { ascending: false });
-            if (lErr) throw lErr;
-            leadsData = lData;
-
-            // Fetch subscribers from database
-            const { data: sData, error: sErr } = await supabaseClient
-              .from('newsletter_subscribers')
-              .select('*')
-              .order('created_at', { ascending: false });
-            if (sErr) throw sErr;
-            subsData = sData;
-          }
-
-          if (leadsData) {
-            leads = leadsData;
+          // GET enquiries from Supabase
+          const leadsRes = await window.EnWaterAPI.getEnquiries();
+          if (leadsRes.ok && leadsRes.data) {
+            leads = leadsRes.data;
           } else {
-            throw new Error('Offline mode');
+            throw new Error(leadsRes.error || 'Failed to load enquiries');
           }
-          subscribers = subsData || [];
+
+          // GET subscribers (may not exist yet — handle gracefully)
+          const subsRes = await window.EnWaterAPI.getSubscribers();
+          subscribers = (subsRes.ok && subsRes.data) ? subsRes.data : [];
 
         } catch (err) {
-          console.warn('Falling back to seed defaults:', err);
-          // Seed fallback data for local demonstration
+          console.warn('[Dashboard] Falling back to seed data:', err.message);
           leads = [
-            {
-              id: '1',
-              name: 'John Doe',
-              email: 'john@foodprocessing.co',
-              company: 'FoodProcessing Co.',
-              region: 'GCC',
-              type: 'Process design support',
-              message: 'Looking for an MBR retrofitting study for high-COD stream wastewater treatment.',
-              status: 'new',
-              created_at: new Date().toISOString()
-            },
-            {
-              id: '2',
-              name: 'Nabila Ahmed',
-              email: 'nabila@campsmanagement.ae',
-              company: 'Dubai Facilities',
-              region: 'UAE',
-              type: 'Project scoping',
-              message: 'Requesting proposals for a 200m3/day scalable STP package for labor accommodations.',
-              status: 'reviewed',
-              created_at: new Date().toISOString()
-            }
+            { id: '1', name: 'John Doe', email: 'john@foodprocessing.co', company: 'FoodProcessing Co.', region: 'GCC', type: 'Process design support', message: 'Looking for an MBR retrofitting study for high-COD stream wastewater.', status: 'new', submitted_at: new Date().toISOString() },
+            { id: '2', name: 'Nabila Ahmed', email: 'nabila@campsmanagement.ae', company: 'Dubai Facilities', region: 'UAE', type: 'Project scoping', message: 'Requesting proposals for a 200m³/day scalable STP for labor accommodations.', status: 'reviewed', submitted_at: new Date().toISOString() }
           ];
-          subscribers = [
-            { id: '1', email: 'info@watertech.ae', active: true, created_at: new Date().toISOString() }
-          ];
+          subscribers = [];
         } finally {
           renderDashboard();
           loadingState.style.display = 'none';
@@ -1145,22 +1081,28 @@
           `;
         } else {
           leads.forEach(lead => {
+            const status = lead.status || 'new';
+            const dateStr = lead.submitted_at || lead.created_at
+              ? new Date(lead.submitted_at || lead.created_at).toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' })
+              : '—';
             const tr = document.createElement('tr');
             tr.innerHTML = `
               <td>
-                <div class="lead-name">${escapeHTML(lead.name)}</div>
-                <div class="lead-meta">${escapeHTML(lead.email)}</div>
-                <div class="lead-meta">Region: ${escapeHTML(lead.region || 'GCC')}</div>
+                <div class="lead-name">${escapeHTML(lead.name || '—')}</div>
+                <div class="lead-meta">${escapeHTML(lead.email || '—')}</div>
+                <div class="lead-meta">Region: ${escapeHTML(lead.region || '—')}</div>
+                <div class="lead-meta" style="color:#94a3b8;font-size:11px;">${dateStr}</div>
               </td>
               <td>
-                <div class="lead-type">${escapeHTML(lead.type)}</div>
+                <div class="lead-type">${escapeHTML(lead.type || 'General enquiry')}</div>
                 <div class="lead-meta">${escapeHTML(lead.company || 'Individual')}</div>
+                <div class="lead-meta" style="font-size:11px;color:#94a3b8;">${escapeHTML(lead.source_page || 'get-in-touch.html')}</div>
               </td>
               <td style="max-width: 320px;">
-                <p class="lead-message">${escapeHTML(lead.message)}</p>
+                <p class="lead-message">${escapeHTML(lead.message || '—')}</p>
               </td>
               <td>
-                <span class="status-badge ${lead.status}">${lead.status}</span>
+                <span class="status-badge ${status}">${status}</span>
               </td>
               <td>
                 <div class="action-btn-group">
@@ -1222,48 +1164,19 @@
 
       // ── Event Handlers ──
       async function handleUpdateStatus(id) {
-        const lead = leads.find(l => l.id === id);
+        const lead = leads.find(l => l.id === id || String(l.id) === String(id));
         if (!lead) return;
-
-        const currentStatus = lead.status;
-        const nextStatus = currentStatus === 'new' ? 'reviewed' : currentStatus === 'reviewed' ? 'archived' : 'new';
-
-        try {
-          if (supabaseClient) {
-            const { error } = await supabaseClient
-              .from('leads')
-              .update({ status: nextStatus })
-              .eq('id', id);
-            if (error) throw error;
-          }
-          leads = leads.map(l => l.id === id ? { ...l, status: nextStatus } : l);
-        } catch (err) {
-          console.error('Failed to update status in database:', err);
-          // Fallback simulation toggle
-          leads = leads.map(l => l.id === id ? { ...l, status: nextStatus } : l);
-        } finally {
-          renderDashboard();
-        }
+        const nextStatus = lead.status === 'new' ? 'reviewed' : lead.status === 'reviewed' ? 'archived' : 'new';
+        await window.EnWaterAPI.updateEnquiryStatus(id, nextStatus);
+        leads = leads.map(l => (String(l.id) === String(id)) ? { ...l, status: nextStatus } : l);
+        renderDashboard();
       }
 
       async function handleDeleteLead(id) {
         if (!confirm('Are you sure you want to delete this lead?')) return;
-
-        try {
-          if (supabaseClient) {
-            const { error } = await supabaseClient
-              .from('leads')
-              .delete()
-              .eq('id', id);
-            if (error) throw error;
-          }
-          leads = leads.filter(l => l.id !== id);
-        } catch (err) {
-          console.error('Failed to delete lead from database:', err);
-          leads = leads.filter(l => l.id !== id);
-        } finally {
-          renderDashboard();
-        }
+        await window.EnWaterAPI.deleteEnquiry(id);
+        leads = leads.filter(l => String(l.id) !== String(id));
+        renderDashboard();
       }
 
       // ── Offerings Creation ──
@@ -1297,18 +1210,15 @@
         };
 
         try {
-          if (supabaseClient) {
-            const { error: insertError } = await supabaseClient
-              .from('listings')
-              .insert([formattedData]);
-            if (insertError) throw insertError;
+          const res = await window.EnWaterAPI.createListing(formattedData);
+          if (res.ok) {
             projectSuccessPanel.textContent = `Project offering "${title}" successfully created and saved.`;
           } else {
-            throw new Error('Supabase client not initialized');
+            throw new Error(res.error);
           }
         } catch (err) {
-          console.warn('Listing creation local bypass simulation:', err);
-          projectSuccessPanel.textContent = `[LOCAL SIMULATION] Successfully recorded listing payload: ${title}`;
+          console.warn('[Listings] Create failed:', err.message);
+          projectSuccessPanel.textContent = `[ERROR] Could not save listing: ${err.message}`;
         } finally {
           projectSuccessPanel.style.display = 'block';
           projectForm.reset();
@@ -1351,13 +1261,15 @@
       function triggerCSVDownload(headers, rows, prefixName) {
         const csvContent = [
           headers.join(','),
-          ...rows.map(row => row.map(val => `"${val}"`).join(','))
+          ...rows.map(row => row.map(val => {
+            const cleanVal = (val === null || val === undefined) ? '' : String(val).replace(/"/g, '""');
+            return `"${cleanVal}"`;
+          }).join(','))
         ].join('\n');
 
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        const url = URL.createObjectURL(blob);
+        const encodedUri = 'data:text/csv;charset=utf-8,\uFEFF' + encodeURIComponent(csvContent);
         const link = document.createElement('a');
-        link.setAttribute('href', url);
+        link.setAttribute('href', encodedUri);
         link.setAttribute('download', `${prefixName}_${new Date().toISOString().split('T')[0]}.csv`);
         link.style.visibility = 'hidden';
         document.body.appendChild(link);
@@ -1377,9 +1289,6 @@
 
       // ── Logout Handler ──
       logoutBtn.addEventListener('click', function () {
-        if (supabaseClient) {
-          supabaseClient.auth.signOut().catch(err => console.warn('Supabase SignOut error:', err));
-        }
         localStorage.removeItem('enwater_admin_token');
         window.location.href = 'adminlogin.html';
       });

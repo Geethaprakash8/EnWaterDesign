@@ -9,23 +9,26 @@
 <style>
 :root{--accent:#55a092}
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0}
-    body{background:#000;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;overflow:hidden}
-    .wrap{position:fixed;inset:0}
+    html,body{height:100% !important;margin:0 !important;overflow:hidden !important;}
+    body{background:#000 !important;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+    .splash-wrap{position:fixed;inset:0;background:#000;}
     video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
     /* UI only on hover (mobile always visible) */
     .ui{
       position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:space-between;
       gap:14px;padding:18px;opacity:0;transition:opacity .25s ease;
+      z-index: 100005 !important;
+      pointer-events: none;
     }
-    .wrap:hover .ui{opacity:1}
+    .splash-wrap:hover .ui{opacity:1}
     @media (max-width: 768px){.ui{opacity:1}}
     .brand{
       display:inline-flex;align-items:center;gap:10px;color:#fff;text-decoration:none;
-      font-weight:800;letter-spacing:.01em;text-shadow:0 2px 18px rgba(0,0,0,.55)
+      font-weight:800;letter-spacing:.01em;text-shadow:0 2px 18px rgba(0,0,0,.55);
+      pointer-events: auto;
     }
     .dot{width:12px;height:12px;border-radius:999px;background:var(--accent);box-shadow:0 0 0 6px rgba(85,160,146,0.14)}
-    .btns{display:flex;gap:10px;align-items:center}
+    .btns{display:flex;gap:10px;align-items:center;pointer-events: auto;}
     .btn{
       appearance:none;border:1px solid rgba(255,255,255,0.24);background:rgba(0,0,0,0.18);
       color:#fff;border-radius:999px;padding:10px 14px;font-weight:650;font-size:14px;cursor:pointer;
@@ -445,7 +448,7 @@ header.site-topnav .drop a:hover{
   </div>
 </div>
 
-<div class="wrap">
+<div class="splash-wrap">
 <video autoplay="" id="intro" muted="" playsinline="" poster="assets/media/intro_poster.jpg" preload="auto">
 <source src="assets/media/intro.mp4" type="video/mp4"/>
 </video>
@@ -464,6 +467,7 @@ header.site-topnav .drop a:hover{
 <span>EnWater Design</span>
 </a>
 <div class="btns">
+<a class="btn primary" href="home.html">Explore Site &rarr;</a>
 <button class="btn" id="skip" type="button">Skip &rarr;</button>
 </div>
 </div>
@@ -499,7 +503,7 @@ header.site-topnav .drop a:hover{
 
     // Simulate loader progress
     let progress = 0;
-    const duration = 2500; // 2.5 seconds
+    const duration = 6000; // 6 seconds (slowed down for premium loading feel)
     const intervalTime = 16;
     const step = (100 / (duration / intervalTime));
 

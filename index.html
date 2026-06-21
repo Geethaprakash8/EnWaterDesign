@@ -467,7 +467,7 @@ header.site-topnav .drop a:hover{
 <span>EnWater Design</span>
 </a>
 <div class="btns">
-<a class="btn primary" href="home.html">Explore Site &rarr;</a>
+<a class="btn primary" id="exploreBtn" href="home.html">Explore Site &rarr;</a>
 <button class="btn" id="skip" type="button">Skip &rarr;</button>
 </div>
 </div>
@@ -515,6 +515,10 @@ header.site-topnav .drop a:hover{
         setProgress(100);
         setTimeout(() => {
           preloader.classList.add('fade-out');
+          // Hide skip button and rename explore button upon loading completion
+          if (skipBtn) skipBtn.style.display = 'none';
+          const exploreBtn = document.getElementById('exploreBtn');
+          if (exploreBtn) exploreBtn.innerHTML = 'Explore Website &rarr;';
         }, 300);
       } else {
         setProgress(progress);

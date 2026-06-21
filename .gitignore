@@ -38,3 +38,13 @@ Thumbs.db
 # Temporary files and backup scripts
 *.tmp
 *.bak
+
+# Python files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local log files
+*.log
+logs/
+
